@@ -1,0 +1,16 @@
+<?php
+  $ruta = "ppp/";
+  $contenido = opendir( $ruta );
+  $fich = readdir($contenido);
+  while($fich != FALSE) {
+	  if(is_file( $ruta . $fich )){
+		  $posicion_extension = strpos($fich, ".");
+		  if($posicion_extension != FALSE) {
+		  	$extension = substr($fich, $posicion_extension+1);
+		         if($extension == "php")
+				 	echo  "$fich<br>";
+		  }
+	  } 	  
+         $fich = readdir($contenido);
+  }	  
+?>
