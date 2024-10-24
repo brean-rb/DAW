@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora</h1>
+        <form action="micalculadora.php" method="post">
+            <input type="text" name="num1" class="nums" placeholder="Introduce el primer número">
+            <br>
+            <br>
+            <input type="text" name="num2" class="nums" placeholder="Introduce el segundo número">
+            <br>
+            <br>
+
+            <select name="ope" id="ope">
+                <option value="+">Suma (+)</option>
+                <option value="-">Resta (-)</option>
+                <option value="*">Multiplicación (*)</option>
+                <option value="/">División (/)</option>
+            </select>
+            <br>
+            <br>
+
+            <input type="submit" value="Calcular">
+        </form>
+        <div class="footer">
+            <p>© 2024 ruben Calculadora</p>
+        </div>
+    </div>
+</body>
+</html>
