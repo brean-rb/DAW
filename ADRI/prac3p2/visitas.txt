@@ -1,0 +1,10 @@
+ruben: el libro mola<br>
+adri: el libro es una basura<br>
+Antonio: hola  soy Juan<br>
+Pepe: hols soy Pepe<br>
+ruben: muy buen libro<br>
+ruben: Soy Antonio amigo de Juan<br>
+ruben: Soy Antonio amigo de Juan<br>
+ruben: Soy Antonio amigo de Juan<br>
+ruben: hola  soy Juan<br>
+Pepe: hola  soy Juan<br>

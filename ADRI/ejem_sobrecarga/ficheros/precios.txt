@@ -1,0 +1,7 @@
+normal;15
+socio;10
+monitor;5
+normal_10_14; 12
+normal_15_18; 14
+socio_10_14: 6
+socio_15_18; 8
