@@ -97,13 +97,7 @@
 
         }
         function fuentesImg() {
-            var links_img = document.getElementsByTagName('img');
-            var div_fuentes = document.getElementById('fuentes');
 
-            for(let i = 0; i < links_img.length; i++){
-                var get_url = links_img[i].getAttribute('src');
-                div_fuentes.innerHTML+=get_url + '<br>';
-            }
         }
         function togleClase() {
 
@@ -116,7 +110,16 @@
 
         }
         function toggle() {
+            var botoenes = document.getElementsByClassName('botones')[0];
+            var get_boton = document.getElementsByClassName('boton');
 
+            for(let i = 1; i < get_boton.length; i++){
+                if(!get_boton[i].getAttribute('style')){
+                    get_boton[i].setAttribute('style', 'display:none;')
+                } else{
+                    get_boton[i].setAttribute('style', '')
+                }
+            }
         }
     </script>
 </body>

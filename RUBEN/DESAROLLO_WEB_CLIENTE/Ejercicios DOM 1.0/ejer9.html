@@ -97,19 +97,17 @@
 
         }
         function fuentesImg() {
-            var links_img = document.getElementsByTagName('img');
-            var div_fuentes = document.getElementById('fuentes');
 
-            for(let i = 0; i < links_img.length; i++){
-                var get_url = links_img[i].getAttribute('src');
-                div_fuentes.innerHTML+=get_url + '<br>';
-            }
         }
         function togleClase() {
 
         }
         function intercalar() {
-
+            var get_headre = document.getElementsByTagName('header')[0];
+            var create_div = document.createElement('div');
+            create_div.setAttribute('class', 'destacar');
+            create_div.innerHTML='<p><b>Página web</p></b>';
+            get_headre.appendChild(create_div);
         }
 
         function cambiaImg() {
