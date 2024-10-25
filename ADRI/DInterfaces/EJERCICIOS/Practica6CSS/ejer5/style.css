@@ -1,0 +1,24 @@
+.links {
+    display: block;
+    width: 200px;
+    list-style-type: none;
+    text-align: center;
+
+}
+
+.links li {
+    background-color: blue;
+    margin: 10px;
+
+   
+}
+
+.links li a{
+    color: white;
+    text-decoration: none;
+    width: 100%;
+}
+.links li:hover, .links li:focus{
+    outline: 1px solid red;
+}
+

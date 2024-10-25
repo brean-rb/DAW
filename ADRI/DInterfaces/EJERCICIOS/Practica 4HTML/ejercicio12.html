@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 12</title>
+</head>
+<body>
+    <form name="ejercicio"><br>
+       Nombre: <input type="text"><br>
+       <br>Apellidos: <input type="text"><br>
+        <br>Correo electrónico: <input type="text" value="@"><br>
+        <br>Teléfono: <input type="text"><br>
+        <br>Código postal: <input type="text"><br>
+        <br>
+        <table>
+            <tr >
+                <td style="border: 1px solid gray;">Edad: <br><input type="radio" name="edad">0-20 <br>
+                    <input type="radio" name="edad">20-40 <br>
+                    <input type="radio" name="edad">4-60 <br>
+                    <input type="radio" name="edad">60-100</td>
+                <td style="border: 1px solid gray;">
+                    ¿Como nos conociste? <br>
+                    <input type="checkbox" name="conocer"> <br> A través de un amigo. <br>
+                    <input type="checkbox" name="conocer">  <br>A través de un buscador. <br>
+                    <input type="checkbox" name="conocer">  <br>Navegando por la red. <br>
+                    <input type="checkbox" name="conocer">  <br>Otros</td>
+            </tr>
+        </table>
+        <br>
+        Opinión sobre nuestra página web <br>
+        <textarea name="comentario" cols="30" rows="10" placeholder="Introduce tu comentario"></textarea>
+        <br>
+        ¿Cuanto navegas por internet?(Señala la opcion que mas se acerque)
+        <br>
+        <select name="seleccion horas">
+            <option value="2">2 horas al dia</option>
+            <option value="4">4 horas al dia</option>
+        </select>
+        <br><br><br>
+        <blockquote>
+            <table>
+                <tr>
+                    <td style="border: 2px solid black; padding: 20px;">
+                        <input type="submit" value="Enviar formulario">
+                    </td>
+                    <td style="border: 2px solid black; padding: 20px;">
+                        <input type="reset" value="Borrar formulario">
+                    </td>    
+                </tr>
+            </table>
+        </blockquote>
+    </form>   
+</body>
+</html>

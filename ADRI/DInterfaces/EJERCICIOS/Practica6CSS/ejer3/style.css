@@ -1,0 +1,19 @@
+.links a{
+    text-decoration: none;
+    color: red;
+}
+.links a:hover{
+    background-color: red;
+    color: white;
+    text-decoration: underline;    
+}
+.links a:active{
+    color: orange;
+}
+.links a:visited{
+    color: darkgreen;
+}
+.links a:focus{
+    color: blue;
+    text-decoration: underline;
+}

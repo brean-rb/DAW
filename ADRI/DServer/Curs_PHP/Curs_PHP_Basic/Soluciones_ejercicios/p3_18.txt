@@ -1,0 +1,12 @@
+<?php
+  $ruta = "ppp/";
+  $contenido = opendir($ruta);
+  $fich = readdir($contenido);
+  while($fich != FALSE) {
+	  if(is_file($ruta . $fich)){
+		  echo  "$fich<br>";
+	  }	  
+	  $fich = readdir($contenido);
+  }
+  closedir($contenido);	  
+?>

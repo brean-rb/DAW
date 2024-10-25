@@ -1,0 +1,19 @@
+<?php
+  $cad = "perro ladrador poco mordedor";
+ 
+  $letras = array();
+  for($i= 0 ; $i <= 25 ; $i++)
+	  $letras[$i] = chr($i + 97);
+ // Trata la cadena 
+  for($i=0; $i < strlen($cad) ; $i++){
+	  // Busca la posicion en el vector de letras
+	  $pos = (ord($cad[$i]) - 97 + 1) % 26;
+	  //Comprueba que esta en el vector
+	  if($pos >= 0 && $pos <= 25)
+             echo $letras[$pos];
+          else  // Si no esta en el vector la pasa
+	     echo $cad[$i];
+  }	     
+	  
+?>
+

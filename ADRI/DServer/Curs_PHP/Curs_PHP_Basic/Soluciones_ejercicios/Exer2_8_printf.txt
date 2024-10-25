@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+
+define("PRECIO_JUDIAS", 3.50);
+define("PRECIO_PATATAS", 0.40);
+define("PRECIO_TOMATES", 1);
+define("PRECIO_MANZANAS", 1.20);
+define("PRECIO_UVAS", 2.50);
+
+$peso_judias = 1.21;
+$peso_patatas = 1.73;
+$peso_tomates = 2.08;
+$peso_manzanas = 2.15;
+$peso_uvas = 0.77;
+
+printf("[%-40s]<br>", "TIQUET FRUTERIA LOLA");
+
+echo sprintf("%'.-15s - %'.-15s - %'.-10s - %-10s<br>", "Productos", "Precio/Kg", "Peso", "Precio");
+
+echo sprintf("%'.-20s - %'.-17.2f - %'.-15.2f - %-15.2f<br>", "Judias", PRECIO_JUDIAS , $peso_judias, PRECIO_JUDIAS * $peso_judias);
+echo sprintf("%'.-20s - %'.-17.2f - %'.-15.2f - %-15.2f<br>", "Patatas", PRECIO_PATATAS , $peso_patatas, PRECIO_PATATAS * $peso_patatas);
+echo sprintf("%'.-20s - %'.-17.2f - %'.-15.2f - %-15.2f<br>", "Tomates", PRECIO_TOMATES , $peso_tomates, PRECIO_TOMATES * $peso_tomates);
+echo sprintf("%'.-20s - %'.-17.2f - %'.-15.2f - %-15.2f<br>", "Manzanas", PRECIO_MANZANAS , $peso_manzanas, PRECIO_MANZANAS * $peso_manzanas);
+echo sprintf("%'.-20s - %'.-17.2f - %'.-15.2f - %-15.2f<br>", "Uvas", PRECIO_UVAS , $peso_uvas, PRECIO_UVAS * $peso_uvas);
+?>
+
+</body>
+</html>

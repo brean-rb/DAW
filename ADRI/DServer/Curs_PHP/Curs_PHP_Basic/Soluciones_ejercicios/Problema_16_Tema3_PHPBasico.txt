@@ -1,0 +1,50 @@
+<?php
+   $opciones= array("piedra", "papel", "tijeras");
+   
+   if($_REQUEST["jugada"] != "") {
+	   $mijugada = $opciones[rand(0,2)];
+	   if($_REQUEST["jugada"] == $mijugada) { 
+		   $resultado = "Empate";
+		    $_REQUEST["empatadas"]++;
+           } else if(($_REQUEST["jugada"] == "piedra" && $mijugada == "tijeras")
+		   	  || ($_REQUEST["jugada"] == "tijeras" && $mijugada == "papel")
+			  || ($_REQUEST["jugada"] == "papel" && $mijugada == "piedra")) {
+	   		$resultado = "Tu ganas";
+			$_REQUEST["perdidas"]++;
+	 } else {
+		        $resultado = "Gano yo";
+			$_REQUEST["ganadas"]++;
+	 }
+   }
+   ?>
+   <html>
+   	<head>
+		<title> Piedra, papel o tijera</title>
+		Piedra, papel o tijera:
+	</head>
+	<body>
+		<?php
+		    if($_REQUEST["jugada"] != "") {
+		?>
+		   Has elegido <?= $_REQUEST["jugada"] ; ?>, yo he elegido <?= $mijugada?>
+		   <?= $resultado ?><br>
+		   ¿Quieres jugar otra ver?<br>
+		<?php
+		    }
+		?>
+	       <form name="juego" method="post" action="<?= $php_self ?>">
+	            <input type="radio" name="jugada" value="piedra"> Piedra<br>
+		    <input type="radio" name="jugada" value="papel"> Papel<br>
+		    <input type="radio" name="jugada" value="tijeras"> Tijeras<br>
+		    <input type="submit" value="Jugar">
+		    <input type="hidden" name="ganadas" value= "<?= $_REQUEST["ganadas"] ?>">
+		    <input type="hidden" name="empatadas" value="<?=  $_REQUEST["empatadas"] ?>">
+		    <input type="hidden" name="perdidas" value= "<?= $_REQUEST["perdidas"]?>" >
+		</form>
+		<?php
+		echo "Ganadas: ". $_REQUEST["ganadas"] . "<br>";
+		echo "Empatadas: " .  $_REQUEST["empatadas"] ." <br>";
+		echo "Perdidas: " . $_REQUEST["perdidas"] . "<br>";
+		?>
+	</body>
+  </html>

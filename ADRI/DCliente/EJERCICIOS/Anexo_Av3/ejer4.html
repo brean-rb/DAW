@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        document.write("La anchura de la pagina es de: " + screen.width + "px <br>")
+        document.write("La altura de la pagina es de: " + screen.height + "px <br>")
+        document.write("La profundidad de la pagina es de: " + screen.colorDepth + "b <br>")
+    </script>
+    <button onclick="cambio()">Actualizar info</button>
+    <script>
+        function cambio(){
+            var cambioAnchura = screen.width - 600;
+            var cambioAltura = screen.height - 300;
+            var cambioProfundidad = screen.colorDepth - 8;
+            screen.width = cambioAnchura;
+            screen.height = cambioAltura;
+            screen.colorDepth = cambioProfundidad;
+        }
+    </script>
+</body>
+</html>

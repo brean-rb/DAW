@@ -1,0 +1,5 @@
+En las funciones PHP is_file() e is_dir(), debemos además del elemento que estamos evaluando, poner la ruta donde se encuentra:
+
+$ruta = "listar/";
+
+if (is_file($ruta . $fich)) {

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejer 6</title>
+</head>
+<body>
+    <button onclick="nuevaVentana()">Abrir ventana</button>
+    <script>
+        function nuevaVentana(){
+            var nuevaVentana = window.open();
+            nuevaVentana.document.write("<HTML><HEAD><TITLE>"+ "Sin Título</TITLE></HEAD>\n");
+            nuevaVentana.document.write("<BODY><form>\n");
+            nuevaVentana.document.write("<input type='button' "+ "value='Cerrar' onClick='window.close();'>\n");
+            nuevaVentana.document.write("</form>\n");
+            nuevaVentana.document.write("</BODY></HTML>\n"); 
+        }
+    </script>
+</body>
+</html>

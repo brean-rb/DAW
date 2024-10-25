@@ -1,0 +1,361 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="content-language" content="es" />
+    <meta name="copyright" content="Design/Code: Vit Dlouhy [Nuvio - www.nuvio.cz]; e-mail: vit.dlouhy@nuvio.cz" />
+    <title>Mi sitio web</title>
+    <meta name="description" content="Mi sitio web" />
+    <meta name="keywords" content="sitio, web" />
+    <link rel="index" href="./" title="Inicio" />
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="./css/principal.css" />
+
+    <style>
+        body {
+            font-family: Verdana, sans-serif;
+            color: #192666;
+            background: #F2F5FE url("../imagenes/fondo.gif") 0 0 repeat-x;
+        }
+
+        #contenedor {
+            width: 770px;
+            margin: 50px auto 0px auto;
+        }
+
+        #contenido {
+            width: 760px;
+            display: flex;
+            margin-left: 4px;
+            
+        }
+
+        #principal{
+            display: flex;
+            flex-direction: column;
+            background: url("imagenes/fondo_articulo.jpg") repeat-y;
+        }
+        #principal  h2 {
+            background-color:#cddbf7;
+
+        }
+        #principal h2 a{
+            color: rgb(42 42 137);
+        }
+        #secundario{
+            text-align: end;
+            background: url("imagenes/fondo_columna.gif") repeat-x #cddbf7;
+        }
+   
+
+        #sobremi {
+            width: 200px;
+        }
+
+        #cabecera {
+            height: 100px;
+            display: flex;
+            justify-content: space-around;
+            align-content: center;
+            flex-direction: row;
+            background-image: url("imagenes/cabecera.jpg");
+  
+                }
+
+        #menu {
+            background-color: #253575;
+            margin-left: 5px;
+            color: #B5C4E3;
+            width: 760px;
+            height: 30px;
+        }
+
+        #menu ul {
+            list-style-type: none;
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+            height: 100%;
+            display: inline-flex;
+            justify-content:start;
+            gap:10px;
+
+
+        }
+
+        #menu ul li{
+            height: 100%;
+            align-content: center;
+        }
+
+
+        #menu ul li a {
+            color: #B5C4E3;
+            text-decoration: none;
+            background-color: #31479B;
+            width: 100%;
+            padding: 5px;
+            font-weight: bold;
+        }
+
+        #menu li a:hover {
+            background-color: #ffffff;
+            color: #FF9000;
+        }
+
+        #logo a{
+        margin-left: 55px;
+        color: white;
+        text-decoration: none;
+        font-family: Georgia, serif;
+        }
+
+        #logo a:hover{
+            text-decoration: underline;
+        }
+        #buscador fieldset{
+            border: 0px;
+            margin-top: 25px;
+            margin-left: 100px;
+        }
+
+        .info{
+            color:rgb(133, 133, 234) ;
+
+        }
+        .info a{
+            color:rgb(133, 133, 234) ;
+        }
+
+        #secundario h3{
+            background-color: #6c88f5;
+            text-align: start;
+        }
+
+        #sobremi{
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        #sobremi img{
+            width: 60px;
+            height: 60px;
+        }
+        #sobremi p{
+            text-align: start;
+            margin-top: -2px;
+            margin-left: 5px;
+            width: 100px;
+            margin-bottom: 0px;
+        }
+
+        #sobremi a{
+            margin-top: 100px;
+            text-align: left;
+            margin-left: -100px;
+        }
+
+
+        #categorias{
+            text-align: start;
+            list-style-type:none;
+            list-style-image: url("imagenes/icono_categoria.gif");
+        }
+
+        #categorias li:hover{
+            list-style-image: url("imagenes/icono_elemento_seleccionado.gif");
+            font-weight: bold;
+            background-color: #4279e8;
+        
+        }
+
+        #categorias a{
+            text-decoration: none;
+            color: #192666;
+        }
+
+        #archivo{
+            list-style-type: none;
+            text-align: start;
+        }
+
+        #archivo a{
+            text-decoration: none;
+            color: #192666;
+
+        }
+
+        #archivo li a:hover{
+            list-style-image: url("imagenes/icono_elemento_seleccionado.gif");
+            font-weight: bold;
+            background-color: #4279e8;
+        
+        }
+
+        #enlaces{
+            list-style-type: none;
+            text-align: start;
+        }
+
+
+        #enlaces a{
+            text-decoration: none;
+            color: #192666;
+
+        }
+
+        #enlaces a:hover{
+            list-style-image: url("imagenes/icono_elemento_seleccionado.gif");
+            font-weight: bold;
+            background-color: #4279e8;
+        
+        }
+
+        .seleccionado{
+            list-style-image: url("imagenes/icono_elemento_seleccionado.gif");
+            font-weight: bold;
+            background-color: #4279e8;
+        }
+        .sinfoto{
+            font-weight: bold;
+            background-color: #4279e8;
+        }
+       
+    </style>
+</head>
+
+<body>
+    <div id="contenedor">
+        <div id="cabecera">
+            <h1 id="logo"><a href="./" title="Mi sitio web">Mi sitio web</a></h1>
+
+            <div id="buscador">
+                <form action method="get">
+                    <fieldset>
+                        <input type="text" name="busqueda" size="30" />
+                        <input type="submit" name="botonbuscar" value="Buscar" />
+                    </fieldset>
+                </form>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div id="menu">
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Sobre mi</a></li>
+                <li><a href="#">Fotos</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">Contacto</a></li>
+                <li><a href="#">Enlaces</a></li>
+            </ul>
+            <div class="clear"></div>
+        </div>
+
+        <div id="contenido">
+            <div id="principal">
+                <div class="articulo">
+                    <h2><a href="#">Lorem ipsum dolor sit amet</a></h2>
+                    <p class="info">
+                        <span class="fecha">dd-mm-aaaa 00:00</span>
+                        <span class="categoria"><a href="#">diseño</a></span>
+                        <span class="autor"><a href="#">Nombre Apellido</a></span>
+                        <span class="comentarios"><a href="#">Añadir comentario</a></span>
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam pellentesque enim blandit enim
+                        bibendum blandit. Integer eu leo ac est aliquet imperdiet. Quisque nec justo id augue posuere
+                        malesuada. Nullam ac metus. Cras non leo ut est placerat condimentum.
+                    </p>
+                    <p class="btn-more"><a href="#">Seguir leyendo...</a></p>
+                </div>
+                <div class="clear"></div>
+
+                <div class="articulo">
+                    <h2><a href="#">Lorem ipsum dolor sit amet</a></h2>
+                    <p class="info">
+                        <span class="fecha">dd-mm-aaaa 00:00</span>
+                        <span class="categoria"><a href="#">diseño</a></span>
+                        <span class="autor"><a href="#">Nombre Apellido</a></span>
+                        <span class="comentarios"><a href="#">Añadir comentario</a></span>
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam pellentesque enim blandit enim
+                        bibendum blandit. Integer eu leo ac est aliquet imperdiet. Quisque nec justo id augue posuere
+                        malesuada. Nullam ac metus. Cras non leo ut est placerat condimentum.
+                    </p>
+                    <p class="btn-more"><a href="#">Seguir leyendo...</a></p>
+                </div>
+                <div class="clear"></div>
+
+                <div class="articulo">
+                    <h2><a href="#">Lorem ipsum dolor sit amet</a></h2>
+                    <p class="info">
+                        <span class="fecha">dd-mm-aaaa 00:00</span>
+                        <span class="categoria"><a href="#">diseño</a></span>
+                        <span class="autor"><a href="#">Nombre Apellido</a></span>
+                        <span class="comentarios"><a href="#">Añadir comentario</a></span>
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam pellentesque enim blandit enim
+                        bibendum blandit. Integer eu leo ac est aliquet imperdiet. Quisque nec justo id augue posuere
+                        malesuada. Nullam ac metus. Cras non leo ut est placerat condimentum.
+                    </p>
+                    <p class="btn-more"><a href="#">Seguir leyendo...</a></p>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div id="secundario">
+                <h3><a href="#">Sobre mí</a></h3>
+                <div id="sobremi">
+                    <img src="imagenes/mifoto.gif" alt="Mi foto" />
+                    <p>
+                        <strong>Nombre apellidos</strong><br />
+                        Edad<br />
+                        Ciudad de residencia<br />
+                    </p>
+                    <a href="#">Mi perfil público</a>
+
+                </div>
+                <div class="clear"></div>
+
+                <h3>Categorías</h3>
+                <ul id="categorias">
+                    <li class="seleccionado"><a href="#">Categoría 1</a></li>
+                    <li><a href="#">Categoría 2</a></li>
+                    <li><a href="#">Categoría 3</a></li>
+                    <li><a href="#">Categoría 4</a></li>
+                    <li><a href="#">Categoría 5</a></li>
+                </ul>
+                <div class="clear"></div>
+
+                <h3>Archivo</h3>
+                <ul id="archivo">
+                    <li class="sinfoto"><a href="#">Enero 200X</a></li>
+                    <li><a href="#">Diciembre 200X</a></li>
+                    <li><a href="#">Noviembre 200X</a></li>
+                    <li><a href="#">Octubre 200X</a></li>
+                    <li><a href="#">Septiembre 200X</a></li>
+                </ul>
+                <div class="clear"></div>
+
+                <h3>Enlaces</h3>
+                <ul id="enlaces">
+                    <li class="sinfoto"><a href="#">Enlace 1</a></li>
+                    <li><a href="#">Enlace 2</a></li>
+                    <li><a href="#">Enlace 3</a></li>
+                    <li><a href="#">Enlace 4</a></li>
+                    <li><a href="#">Enlace 5</a></li>
+                </ul>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div id="pie">
+            <p id="copyright">&copy; 200X Nombre de empresa</p>
+        </div>
+    </div>
+</body>
+</html>

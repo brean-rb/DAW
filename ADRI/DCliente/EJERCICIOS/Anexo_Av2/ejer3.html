@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejer 3</title>
+
+    <button onclick="mostrarHora()">Mostrar hora</button>
+    <script>
+        var tiempo = new Date();
+        function mostrarHora(){
+            var hora = tiempo.getHours();
+            var minutos = tiempo.getMinutes();
+            if (hora < 14) {
+                document.write("Buenos dias, son las " + hora +":" + minutos + " horas")
+            } else if (hora >= 14 && hora < 20){
+                document.write("Buenas tardes, son las " + hora + ":" + minutos + " horas")     
+            } else if (hora >= 20) {
+                document.write("Buenas noches, son las " + hora + ":" + minutos + " horas")
+            }
+        }
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>
