@@ -4,7 +4,7 @@
 
 ## Descripción
 
-Este repositorio ha sido creado por **Rubén Ferrer** y **Adri** como parte de nuestras actividades en la asignatura de **PHP**. Aquí subiremos todos nuestros **trabajos, ejercicios y proyectos** para tenerlos organizados y siempre accesibles, de modo que nunca perdamos nuestro progreso.
+Este repositorio ha sido creado por **Rubén** y **Adri** como parte de nuestras actividades en la asignatura de **PHP**. Aquí subiremos todos nuestros **trabajos, ejercicios y proyectos** para tenerlos organizados y siempre accesibles, de modo que nunca perdamos nuestro progreso.
 
 ## Objetivos
 
