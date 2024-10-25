@@ -1,0 +1,52 @@
+En Ubuntu 20.04 canvia la gestió de xarxa, de manera que per a assignar una IP estatica ara s'usa netplan i el format YAML. Opcionalmente se puede indicar los servidores de DNS Y rutas estáticas a redes accesibles a través de un gateway de nuestar red
+
+La configuració és a /etc/netplan:
+
+En Desktop: 01-network-manager-all.yaml
+
+Editar-lo:
+
+network:
+version: 2
+renderer: NetworkManager
+ethernets:
+    enp0XX:
+        dhcp4: no (o es pot eliminar la línia)
+        addresses: (hi ha dos sintaxis, supose equivalents)
+            - 192.168.xxx.xx/24 ó
+            [192.168.xxx.xx/24]
+        gateway4: 192.168.xxx.yy
+        nameservers:
+         search: [midominio.org]
+         addresses: [8.8.8.8, 8.8.4.4]
+        routes:
+        - to: 10.xx.xx.0/24
+          via: 192.168.xxx.yy   
+
+En un server sense entorn gràfic:
+
+/etc/netplan/00-installer-config.yaml
+network:
+version: 2
+ethernets:
+    enp0XX:
+        dhcp4: no (o es pot eliminar la línia)
+        addresses: (hi ha dos sintaxis, supose equivalents)
+            - 192.168.xxx.xx/24 ó
+            [192.168.xxx.xx/24]
+        gateway4: 192.168.xxx.yy
+        nameservers:
+         search: [midominio.org]
+         addresses: [8.8.8.8, 8.8.4.4]
+        routes:
+        - to: 10.xx.xx.0/24
+          via: 192.168.xxx.yy  
+
+IMPORTANT:
+        Per a provar la nova configuració: # netplan try
+        Per a aplicar-la: # netplan apply
+
+PER A VEURE ELS SERVIDORS DNS:
+     # resolvectl status | gret "DNS Server"
+
+

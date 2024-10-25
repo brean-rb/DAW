@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        progress {
+            margin-top: 50%;
+            width: 75%;
+            height: 30px;
+            border-radius: 15px;
+            background-color: #e0e0e0;
+        }
+
+        progress::-webkit-progress-bar {
+            background-color: white;
+            border-radius: 15px;
+        }
+
+        progress::-webkit-progress-value {
+            background: linear-gradient(90deg, green, blue);
+            border-radius: 15px;
+        }
+
+    </style>
+</head>
+<body>
+    <progress id="file" max="100" value="0">7</progress>
+
+    <script>
+
+        function barra_carga() {
+            var barra = document.getElementsByTagName("progress");
+
+            barra[0].value = setInterval(barra_carga, 1000); 
+        }
+
+
+        window.onload = function (){
+            setInterval(barra_carga, 100);
+        }
+    </script>
+</body>
+</html>

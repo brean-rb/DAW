@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario con Todos los Atributos</title>
+</head>
+<body>
+    <h1>Formulario con Todos los Tipos de Input</h1>
+    <form action="#" method="POST">
+        <label for="texto">Texto:</label>
+        <input type="text" id="texto" name="texto" placeholder="Escribe algo aquí" required autocomplete="on" autofocus size="30"><br><br>
+
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" placeholder="Escribe tu contraseña" required autocomplete="current-password" size="20"><br><br>
+
+        <label for="email">Correo Electrónico:</label>
+        <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required autocomplete="email" size="30"><br><br>
+
+        <label for="numero">Número:</label>
+        <input type="number" id="numero" name="numero" placeholder="123" required autocomplete="off" size="10"><br><br>
+
+        <label for="telefono">Número de Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono" placeholder="123-456-7890" required autocomplete="tel" size="15"><br><br>
+
+        <label for="url">Página Web:</label>
+        <input type="url" id="url" name="url" placeholder="https://ejemplo.com" autocomplete="url" size="30"><br><br>
+
+        <label for="busqueda">Buscar:</label>
+        <input type="search" id="busqueda" name="busqueda" placeholder="Buscar algo" autocomplete="off" size="20"><br><br>
+
+        <label for="color">Escoge un color:</label>
+        <input type="color" id="color" name="color" required><br><br>
+
+        <label for="fecha">Selecciona una fecha:</label>
+        <input type="date" id="fecha" name="fecha" required autocomplete="bday"><br><br>
+
+        <label for="datetime">Selecciona fecha y hora:</label>
+        <input type="datetime-local" id="datetime" name="datetime" required autocomplete="off"><br><br>
+
+        <label for="mes">Selecciona un mes:</label>
+        <input type="month" id="mes" name="mes" autocomplete="bday-month" required><br><br>
+
+        <label for="semana">Selecciona una semana:</label>
+        <input type="week" id="semana" name="semana" autocomplete="off"><br><br>
+
+        <label for="hora">Selecciona una hora:</label>
+        <input type="time" id="hora" name="hora" required><br><br>
+
+        <label for="rango">Selecciona un rango (0-100):</label>
+        <input type="range" id="rango" name="rango" min="0" max="100"><br><br>
+
+        <label for="archivo">Sube un archivo:</label>
+        <input type="file" id="archivo" name="archivo" required><br><br>
+
+        <label for="checkbox">Acepto los términos:</label>
+        <input type="checkbox" id="checkbox" name="checkbox" required><br><br>
+
+        <label for="radio1">Opción 1:</label>
+        <input type="radio" id="radio1" name="radio" value="opcion1" required>
+        <label for="radio2">Opción 2:</label>
+        <input type="radio" id="radio2" name="radio" value="opcion2" required><br><br>
+
+        <label>Botón simple:</label>
+        <input type="button" value="Haz clic aquí"><br><br>
+
+        <label>Botón de reset:</label>
+        <input type="reset" value="Restablecer formulario"><br><br>
+
+        <label>Botón de envío:</label>
+        <input type="submit" value="Enviar formulario"><br><br>
+
+        <label for="imagen">Enviar con imagen:</label>
+        <input type="image" src="https://via.placeholder.com/150" alt="Enviar con imagen"><br><br>
+
+        <input type="hidden" name="oculto" value="valor_oculto">
+
+        <label for="readonly">Solo lectura (readonly):</label>
+        <input type="text" id="readonly" name="readonly" value="Solo lectura" readonly><br><br>
+
+        <label for="disabled">Deshabilitado (disabled):</label>
+        <input type="text" id="disabled" name="disabled" value="No editable" disabled><br><br>
+
+        <label for="datetime2">Fecha y hora:</label>
+        <input type="datetime" id="datetime2" name="datetime2" required><br><br>
+
+        <label for="time">Tiempo:</label>
+        <input type="time" id="time" name="time" required><br><br>
+
+        <label for="datetime-sin-local">Date Time sin local:</label>
+        <input type="datetime" id="datetime-sin-local" name="datetime-sin-local" required autocomplete="off"><br><br>
+    </form>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Video</title>
+
+    <script src="https://kit.fontawesome.com/fc50daaa8d.js" crossorigin="anonymous"></script>
+
+    <style>
+       body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: grey;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1em;
+        }
+        aside {
+            flex-grow: 1;
+            padding: 1em;
+        }
+
+        nav {
+            text-align: center;
+            background-color: white;
+            color: white;
+            padding: 0.5em;
+        }
+
+        footer{
+            padding: 25px;
+            text-align: center;
+            color: aliceblue;
+            background-color: #333;
+        }
+
+        .video-container {
+            margin-bottom: 2em;
+        }
+        .social-links a {
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Página de Video</h1>
+    </header>
+    <nav>
+        <a href="index.html">Inicio</a> |
+        <a href="audio.html">Audios</a> |
+        <a href="video.html">Videos</a>
+    </nav>
+ 
+    <aside>
+        <h2>Enlaces de interés</h2>
+        <ul>
+            <li><a href="#">Sitio de películas 1</a></li>
+            <li><a href="#">Sitio de series 2</a></li>
+            <li><a href="#">Plataforma de streaming</a></li>
+        </ul>
+        <section>
+            <h2>Videos locales</h2>
+            <div class="video-container">
+                <h3>Video local 1</h3>
+                <video controls width="320" height="240">
+                    <source src="VIDEOS/istockphoto-1140675444-640_adpp_is.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-container">
+                <h3>Video local 2</h3>
+                <video controls width="320" height="240">
+                    <source src="VIDEOS/istockphoto-1469018003-640_adpp_is.mp4" type="video/mp4">
+                </video>
+            </div>
+        </section>
+        <section>
+            <h2>Videos de YouTube</h2>
+            <div class="video-container">
+                <h3>Video de YouTube 1</h3>
+                <iframe width="560" height="315" src="https://www.youtube.com/watch?v=kXwdf8osuFw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <p>intro de F1.</p>
+            </div>
+            <div class="video-container">
+                <h3>Video de YouTube 2</h3>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/jNQXAC9IVRw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <p>Este es el primer video subido a YouTube.</p>
+            </div>
+        </section>
+        <section>
+            <h2>Videos online</h2>
+            <div class="video-container">
+                <h3>Night of the Living Dead (1968)</h3>
+                <video controls width="320" height="240">
+                    <source src="https://ia800902.us.archive.org/25/items/night_of_the_living_dead_dvd/night_of_the_living_dead_512kb.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+                <p>Esta es la película clásica de zombies "Night of the Living Dead" de George A. Romero.</p>
+            </div>
+            <div class="video-container">
+                <h3>Night of the Living Dead - Trailer</h3>
+                <video controls width="320" height="240">
+                    <source src="https://ia800902.us.archive.org/25/items/night_of_the_living_dead_dvd/night_of_the_living_dead_512kb.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+                <p>Este es el trailer de la película "Night of the Living Dead".</p>
+            </div>
+        </section>
+    </aside>
+    <footer>
+        <div class="social-links">
+            <a href="https://x.com/">Twitter
+                <i class="fa-brands fa-x-twitter"></i>
+            </a>
+            <a href="https://www.instagram.com/">Instagram
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://es.linkedin.com/">LinkedIn
+                <i class="fa-brands fa-linkedin"></i>
+            </a>
+            <a href="https://www.facebook.com/">Facebook
+                <i class="fa-brands fa-facebook"></i>
+            </a>
+        </div>
+    </footer>
+</body>
+</html>

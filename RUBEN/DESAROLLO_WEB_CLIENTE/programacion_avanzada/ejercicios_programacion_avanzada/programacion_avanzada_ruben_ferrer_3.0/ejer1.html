@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+</head>
+<body>
+    <button onclick="ventana1()">click</button>
+
+    <script>
+
+        var ventana;
+
+        function ventana1(){
+            ventana = window.open("", "ventana nueva", "width=300, heigth=400");
+
+            setTimeout(ventana2, 2000);
+            setTimeout(ventana3, 5000);
+            setTimeout(close_windows, 10000);
+
+        }
+
+        function ventana2(){
+            ventana.resizeTo(600, 800);
+        }
+
+        function ventana3(){
+            ventana.moveTo(screen.width/ 2, screen.height/ 2);
+        }
+
+        function close_windows(){
+            ventana.close();
+        }
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Audio</title>
+    <script src="https://kit.fontawesome.com/fc50daaa8d.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: grey;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1em;
+        }
+        aside {
+            flex-grow: 1;
+            padding: 1em;
+        }
+
+        nav {
+            text-align: center;
+            background-color: white;
+            color: white;
+            padding: 0.5em;
+        }
+
+        footer{
+            padding: 25px;
+            text-align: center;
+            color: aliceblue;
+            background-color: #333;
+        }
+
+        .audio-container {
+            margin-bottom: 2em;
+        }
+        .social-links a {
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Página de Audio</h1>
+    </header>
+    <nav>
+        <a href="index.html">Inicio</a> |
+        <a href="audio.html">Audios</a> |
+        <a href="video.html">Videos</a>
+    </nav>
+    <aside>
+        <h2>Enlaces de interés</h2>
+        <ul>
+            <li><a href="#">Sitio de música 1</a></li>
+            <li><a href="#">Sitio de música 2</a></li>
+            <li><a href="#">Sitio de podcasts</a></li>
+        </ul>
+
+        <section>
+            <h2>Audios locales</h2>
+            <div class="audio-container">
+                <h3>Audio local 1</h3>
+                <audio controls>
+                    <source src="AUDIO/All that Remains.mp3" type="audio/mp3">
+                </audio>
+            </div>
+            <div class="audio-container">
+                <h3>Audio local 2</h3>
+                <audio controls>
+                    <source src="AUDIO/The First Man-fiftysounds.mp3" type="audio/mp3">
+                </audio>
+            </div>
+        </section>
+        <section>
+            <h2>Audios online</h2>
+            <div class="audio-container">
+                <h3>The Art of War - Capítulo 1</h3>
+                <audio controls>
+                    <source src="https://ia802304.us.archive.org/25/items/art_of_war_librivox/art_of_war_01_sun_tzu_64kb.mp3" type="audio/mpeg">       
+                </audio>
+                <p>Este audio contiene el Capítulo 1 de "El Arte de la Guerra" de Sun Tzu, una obra clásica sobre estrategia militar.</p>
+            </div>
+            <div class="audio-container">
+                <h3>The Art of War - Capítulo 2</h3>
+                <audio controls>
+                    <source src="https://ia802304.us.archive.org/25/items/art_of_war_librivox/art_of_war_02_sun_tzu_64kb.mp3" type="audio/mpeg">
+                </audio>
+                <p>Este audio contiene el Capítulo 2 de "El Arte de la Guerra" de Sun Tzu, continuando las enseñanzas sobre estrategia y tácticas.</p>
+            </div>
+        </section>
+    </aside>
+    <footer>
+        <div class="social-links">
+            <a href="https://x.com/">Twitter
+                <i class="fa-brands fa-x-twitter"></i>
+            </a>
+            <a href="https://www.instagram.com/">Instagram
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://es.linkedin.com/">LinkedIn
+                <i class="fa-brands fa-linkedin"></i>
+            </a>
+            <a href="https://www.facebook.com/">Facebook
+                <i class="fa-brands fa-facebook"></i>
+            </a>
+        </div>
+    </footer>
+</body>
+</html>

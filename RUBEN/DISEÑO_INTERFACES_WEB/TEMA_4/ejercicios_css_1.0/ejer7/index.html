@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="principal">
+        <h1>PROPIEDAD Z-INDEX EN CSS</h1>
+        <div class="bloque" id="bloque-1">
+            <p>bloque-1</p>
+            <p>z-index: 80</p>
+        </div>
+
+        <div class="bloque" id="bloque-2">
+            <p>bloque-2</p>
+            <p>z-index: 40</p>
+            <div id="hijo1_2">
+                <p>hijo 1 de bloque 2</p>
+                <p>z-index: 90</p>
+            </div>
+            <div id="hijo2_2">
+                <p>hijo 2 de bloque 2</p>
+                <p>z-index: 30</p>
+            </div>
+            <div id="hijo1_3">
+                <p>hijo 3 de boque 3</p>
+                <p>z-index: 10</p>
+            </div>
+        </div>
+
+        <div class="bloque" id="bloque-3">
+            <p>bloque-3</p>
+            <p>z-index: 20</p>
+        </div>
+    </div>
+
+</body>
+</html>

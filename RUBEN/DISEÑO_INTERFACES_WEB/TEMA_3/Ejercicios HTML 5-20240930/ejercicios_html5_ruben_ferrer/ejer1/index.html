@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Principal</title>
+    <script src="https://kit.fontawesome.com/fc50daaa8d.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: black;
+        }
+        header {
+            background-color: green;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+        nav {
+            text-align: center;
+            background-color: white;
+            color: white;
+            padding: 0.5em;
+        }
+        aside {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        footer{
+            padding: 25px;
+            text-align: center;
+            color: aliceblue;
+            background-color: #333;
+        }
+        .big-link {
+            font-size: 2em;
+            margin: 0 1em;
+            padding: 0.5em 1em;
+            background-color: #008CBA;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    
+        .social-links a {
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ruben ferrer</h1>
+    </header>
+    <nav>
+        <a href="index.html">Inicio</a> |
+        <a href="audio.html">Audios</a> |
+        <a href="video.html">Videos</a>
+    </nav>
+    <aside>
+        <a href="audio.html" class="big-link">Audios</a>
+        <a href="video.html" class="big-link">Videos</a>
+    </aside>
+    <footer>
+        <div class="social-links">
+            <a href="https://x.com/">Twitter
+                <i class="fa-brands fa-x-twitter"></i>
+            </a>
+            <a href="https://www.instagram.com/">Instagram
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://es.linkedin.com/">LinkedIn
+                <i class="fa-brands fa-linkedin"></i>
+            </a>
+            <a href="https://www.facebook.com/">Facebook
+                <i class="fa-brands fa-facebook"></i>
+            </a>
+        </div>
+    </footer>
+</body>
+</html>

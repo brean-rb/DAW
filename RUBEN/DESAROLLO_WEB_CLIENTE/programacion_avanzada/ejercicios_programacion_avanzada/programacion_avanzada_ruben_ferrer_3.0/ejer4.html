@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+
+        document.write("la anchura es: " + screen.width + "<br>");
+        document.write("la altura es: " + screen.height + "<br>");
+        document.write("profundidad de color: " + screen.colorDepth + "<br>");
+
+        function refresh() {
+            document.write("la anchura es: " + screen.width);
+        document.write("la altura es: " + screen.height);
+        document.write("profundidad de color: " + screen.colorDepth);
+
+        }
+
+    </script>
+</head>
+<body>
+    <button onclick="refresh()">refrescar info</button>
+</body>
+</html>

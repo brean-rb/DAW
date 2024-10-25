@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        function nuevaVentana() {
+            var nuevaVentana = window.open();
+            nuevaVentana.document.write("<HTML><HEAD><TITLE>" + "Sin Título</TITLE></HEAD>\n");
+            nuevaVentana.document.write("<BODY><form>\n");
+            nuevaVentana.document.write("<input type='button'" + " value='Cerrar' onClick='window.close();'>\n");
+            nuevaVentana.document.write("</form>\n");
+            nuevaVentana.document.write("</BODY></HTML>\n");
+        }
+    </script>
+</head>
+<body>
+    <button onclick="nuevaVentana()">nueva ventana</button>
+</body>
+</html>
