@@ -1,0 +1,4 @@
+normal;20
+socio;12
+monitor;7
+menor14;10
