@@ -39,35 +39,57 @@
 </html>
 
 <?php
-include ("tiquet.php");
+  include ("tiquet.php");
+  include ("monitores.php");
 
-$cant = 0;
-$pagar = new tiquet();
+  $cant = 0;
+  $pagar = new tiquet();
 
-if ($pagar->getExcepcionFicheros() !== false) {
-    echo $pagar->getExcepcionFicheros() . "<br>";
-}
-else{
-  if(isset($_POST["pagar"])){
-    if(!empty($_POST["nombresocio"]) && !empty($_POST["fechacuota"])) {
-      $cant = $pagar->pago(trim($_POST["nombresocio"]), $_POST["fechacuota"]);
-    }
-    else {
-      if(!empty($_POST["codigomonitor"])) {
-        $cant = $pagar->pago(trim($_POST["codigomonitor"]));
+  if ($pagar->getExcepcionFicheros() !== false) {
+      echo $pagar->getExcepcionFicheros() . "<br>";
+  } else {
+    if (isset($_POST["pagar"])) {
+      if (!empty($_POST["nombresocio"]) && !empty($_POST["fechacuota"])) {
+        $cant = $pagar->pago(trim($_POST["nombresocio"]), $_POST["fechacuota"]);
+      } else {
+        if (!empty($_POST["codigomonitor"])) {
+          $cant = $pagar->pago(trim($_POST["codigomonitor"]));
+        } else {
+          if ($cant === 0) {
+            $cant = $pagar->pago();
+          }
+        }
       }
-      else {
-        if($cant === 0) {
-          $cant = $pagar->pago();
+
+      if ($cant !== false) {
+        echo "El pago realizado es de: " . $cant . "<br>";
+      } else {
+        echo "Error en el pago<br>";
       }
+      
+    } else {
+      if (isset($_POST["delete"])) {
+        if (!empty($_POST["codigomonitor"])) {
+          $option = new monitores($_POST["codigomonitor"], 1);
+        } 
+      }
+
+      if (isset($_POST["add"])) {
+        if (!empty($_POST["codigomonitor"])) {
+          $option = new monitores($_POST["codigomonitor"], 2);
+        } 
+      }
+
+      if (isset($_POST["see"])) {
+        if (!empty($_POST["codigomonitor"])) {
+          $option = new monitores($_POST["codigomonitor"], 3);
+        } 
+      }
+
     }
-  }    
-  if($cant !== false) {
-    echo "El pago realizado es de: " . $cant . "<br>";
-  }
-  else {
-    echo "Error en el pago<br>";
-  }
- } // pagar
-} // ExcepcionFicheros
+
+
+  } // ExcepcionFicheros
+?>
+
 ?> 
