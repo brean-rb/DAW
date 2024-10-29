@@ -3,7 +3,7 @@ include("modificar_ficheros\fichero.php");
 class monitores{
 
     private $nombre;
-    private $fichmonitor = "ficheros/monitores.txt";
+    private $fichmonitor = "\ficheros\monitor.txt";
     private $fichero;
     public function __construct($nom){
         $this->nombre=$nom;
