@@ -191,7 +191,7 @@ class fichero {
             if(strcmp($contenido, $buscado) === 0) { // Es el buscado
               $encontrado = true;
             }
-            // El bucle ermina cuando encuentra el elemento o llega al final del fichero
+            // El bucle termina cuando encuentra el elemento o llega al final del fichero
             while(!feof($df) && ($encontrado === false)) {
                $contenido = trim(fgets($df));
                if(strcmp($contenido, $buscado) === 0) { // Es el buscado
