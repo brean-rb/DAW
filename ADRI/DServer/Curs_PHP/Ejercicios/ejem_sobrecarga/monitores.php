@@ -1,5 +1,5 @@
 <?php
-include("modificar_ficheros/fichero.php");
+include("modificar_ficheros\fichero.php");
 class monitores{
 
     private $nombre;
