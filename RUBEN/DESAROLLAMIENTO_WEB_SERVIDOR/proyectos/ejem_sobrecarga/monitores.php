@@ -6,15 +6,15 @@
 
         public function __construct($name_monitor, $option){
             $this->name_monitor = $name_monitor;
-            $this->option = $option;
         }
 
-        public function select_optio(){
-            if($this->option === 1){
+        public function select_option($op){
+            if($op == 1){
                 $this->delete_monitor();
-            } else if ($this->option === 2){
+            } else if ($op == 2){
                 $this->add_monitor();
-            } else if ($this->option === 3){
+            } else if ($op == 3){
+                echo "ver";
                 $this->see_monitor();
             } else {
                 echo "error de selecion en empleado";
@@ -81,19 +81,6 @@
         } // delete_monitor()
 
 
-        private function write_delete_fich($content, $fx){
-
-            $content = trim(fgets($fich_original));
-                    
-            if(strcmp($content, $this->name_monitor) !==0){
-
-                fputs($fx, $content . "\n");
-
-            } else{
-                return true;
-            }
-        }
-
         private function add_monitor(){
             $contenido = true;
 
@@ -122,7 +109,51 @@
         } //add_monitor();
 
         private function see_monitor(){
+            $encontrado = false;
 
+            try {
+                $file = @fopen($this->name_fich, "r");
+
+                if($file !== false){
+
+                    $encontrado = read_see_monitor();
+
+                    while(!feof($file) && ($encontrado === false)){
+                        $encontrado = read_see_monitor();
+                    }
+
+                    fclose($file);
+
+                } else {
+                    throw new Exception ("Error al abrir el fichero " . $this->name_fich . "<br>");
+                }
+
+            } catch (\Throwable $th) {
+                $encontrado = $e->getMessage();
+            }
+
+            return $encontrado;
+        }
+
+        private function write_delete_fich($content, $fx){
+
+            $content = trim(fgets($fich_original));
+                    
+            if(strcmp($content, $this->name_monitor) !==0){
+
+                fputs($fx, $content . "\n");
+
+            } else{
+                return true;
+            }
+        }
+
+        private function read_see_monitor(){
+            $contenido = trim(fgets($file));
+
+            if(strcmp($contenido, $this->name_monitor) === 0){
+                return true;
+            }
         }
     }
 ?>

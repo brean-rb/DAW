@@ -45,51 +45,52 @@
   $cant = 0;
   $pagar = new tiquet();
 
-  if ($pagar->getExcepcionFicheros() !== false) {
-      echo $pagar->getExcepcionFicheros() . "<br>";
-  } else {
-    if (isset($_POST["pagar"])) {
-      if (!empty($_POST["nombresocio"]) && !empty($_POST["fechacuota"])) {
-        $cant = $pagar->pago(trim($_POST["nombresocio"]), $_POST["fechacuota"]);
-      } else {
-        if (!empty($_POST["codigomonitor"])) {
-          $cant = $pagar->pago(trim($_POST["codigomonitor"]));
-        } else {
-          if ($cant === 0) {
-            $cant = $pagar->pago();
-          }
-        }
-      }
+  // if ($pagar->getExcepcionFicheros() !== false) {
+  //     echo $pagar->getExcepcionFicheros() . "<br>";
+  // } else {
+  //   if (isset($_POST["pagar"])) {
+  //     if (!empty($_POST["nombresocio"]) && !empty($_POST["fechacuota"])) {
+  //       $cant = $pagar->pago(trim($_POST["nombresocio"]), $_POST["fechacuota"]);
+  //     } else {
+  //       if (!empty($_POST["codigomonitor"])) {
+  //         $cant = $pagar->pago(trim($_POST["codigomonitor"]));
+  //       } else {
+  //         if ($cant === 0) {
+  //           $cant = $pagar->pago();
+  //         }
+  //       }
+  //     }
 
-      if ($cant !== false) {
-        echo "El pago realizado es de: " . $cant . "<br>";
-      } else {
-        echo "Error en el pago<br>";
-      }
+  //     if ($cant !== false) {
+  //       echo "El pago realizado es de: " . $cant . "<br>";
+  //     } else {
+  //       echo "Error en el pago<br>";
+  //     }
       
-    } else {
+  //   } else {
       if (isset($_POST["delete"])) {
         if (!empty($_POST["codigomonitor"])) {
-          $option = new monitores($_POST["codigomonitor"], 1);
+          $option = new monitores($_POST["codigomonitor"]);
         } 
       }
 
       if (isset($_POST["add"])) {
         if (!empty($_POST["codigomonitor"])) {
-          $option = new monitores($_POST["codigomonitor"], 2);
+          $option = new monitores($_POST["codigomonitor"]);
         } 
       }
 
       if (isset($_POST["see"])) {
         if (!empty($_POST["codigomonitor"])) {
-          $option = new monitores($_POST["codigomonitor"], 3);
+          $option = new monitores($_POST["codigomonitor"]);
+          $option->select_option(3);
         } 
       }
 
-    }
+    //}
 
 
-  } // ExcepcionFicheros
+  //} // ExcepcionFicheros
 ?>
 
 ?> 
