@@ -4,7 +4,7 @@ class monitores{
 
     private $fichero;
     public function __construct(){
-        $this->fichero = new fichero("ficheros/monitor.txt");
+        $this->fichero = new fichero("modificar_ficheros/ficheros/monitor.txt");
     }
 
     public function verMonitor($nom){
@@ -16,5 +16,19 @@ class monitores{
            }
         }
         return  $existe;
+    }
+
+    public function anadirMonitor($nom){
+        $grabado = $this->fichero->nuevo($nom);
+        $dev = false;
+        if ($grabado) {
+            $contenido = $this->fichero->leer();
+            for ($i=0; $i <count($contenido) ; $i++) { 
+                if ($nom === $contenido[$i]) {
+                    $dev = true;
+                }
+            } 
+        }
+        if ($dev) {return $contenido;}
     }
 }

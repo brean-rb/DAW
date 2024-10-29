@@ -70,7 +70,6 @@ else{
 
 //Comprobar si el monitor deseado existe 
 if(isset($_POST["ver"])){
-
 if (isset($_POST["codigomonitor"]) && !empty($_POST["codigomonitor"])) {
   $monitor1 = new monitores();
   $nombre = trim($_POST["codigomonitor"]);
@@ -87,9 +86,20 @@ if (isset($_POST["codigomonitor"]) && !empty($_POST["codigomonitor"])) {
 }
 
 if (isset($_POST["anadir"])) {
-  
-  if (isset($_POST["codigomonitor"]) && !empty($_POST["codigomonitor"])) {
 
+  if (isset($_POST["codigomonitor"]) && !empty($_POST["codigomonitor"])) {
+    $monitor2 = new monitores();
+    $monitoranadir = trim($_POST["codigomonitor"]);
+    $contenido = $monitor2->verMonitor($monitoranadir);
+  if ($contenido) {
+    echo "El monitor " . $_POST["codigomonitor"] . " ya existe en la base de datos <br>";
+  }else{
+    $anadido = $monitor2->anadirMonitor($monitoranadir);
+    echo "El monitor " . $_POST["codigomonitor"] . " no esta registrado, se añadirá a la base de datos <br>";
+  }
+}else{
+  echo "Defina un codigo de monitor";
 }
 }
+
 ?>
