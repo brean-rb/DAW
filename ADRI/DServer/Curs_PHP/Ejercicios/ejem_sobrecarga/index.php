@@ -21,7 +21,7 @@
        <div style="border-style:solid;height:30px;width:650px;padding:7px;">
         <label for="camedad">Introduzca la edad</label>
         <select name="edad"><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option></select>
-         <label for= "codigomonitor">Código empleado</label>
+         <label for= "codigomonitor">Código empleado/monitor</label>
          <input type="text" id="codigomonitor" name="codigomonitor">
        </div>
        <input type="submit" name="pagar" value="Pagar">
@@ -66,4 +66,10 @@ else{
   }
  } // pagar
 } // ExcepcionFicheros
+
+if(isset($_POST["codigomonitor"])){
+
+}else{
+  echo "Defina un codigo de monitor";
+}
 ?>
