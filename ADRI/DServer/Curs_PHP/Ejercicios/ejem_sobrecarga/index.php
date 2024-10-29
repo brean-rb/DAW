@@ -70,10 +70,14 @@ else{
 if(isset($_POST["ver"])){
 
 if (isset($_POST["codigomonitor"]) && !empty($_POST["codigomonitor"])) {
-  $monitor1 = new monitores($_POST["codigomonitor"]);
+  $monitor1 = new monitores(trim($_POST["codigomonitor"]));
   $contenido = $monitor1->verMonitor();
-  for ($i=0; $i < count($contenido); $i++) { 
-    echo $contenido[$i];
+  if(is_array($contenido)){
+    foreach ($contenido as $linea) {
+      echo $linea . "<br>";
+    }
+  } else {
+    echo "Error al obtener la informacion del monitor";
   }
 }else{
   echo "Defina un codigo de monitor";
