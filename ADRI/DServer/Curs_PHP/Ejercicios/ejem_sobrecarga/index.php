@@ -67,20 +67,29 @@ else{
  } // pagar
 } // ExcepcionFicheros
 
+
+//Comprobar si el monitor deseado existe 
 if(isset($_POST["ver"])){
 
 if (isset($_POST["codigomonitor"]) && !empty($_POST["codigomonitor"])) {
-  $monitor1 = new monitores(trim($_POST["codigomonitor"]));
-  $contenido = $monitor1->verMonitor();
-  if(is_array($contenido)){
-    foreach ($contenido as $linea) {
-      echo $linea . "<br>";
-    }
-  } else {
-    echo "Error al obtener la informacion del monitor";
+  $monitor1 = new monitores();
+  $nombre = trim($_POST["codigomonitor"]);
+  $contenido = $monitor1->verMonitor($nombre);
+  if ($contenido) {
+    echo "El monitor " . $_POST["codigomonitor"] . " existe en la base de datos";
+  }else{
+    echo "El monitor " . $_POST["codigomonitor"] . " no esta registrado";
+
   }
 }else{
   echo "Defina un codigo de monitor";
+}
+}
+
+if (isset($_POST["anadir"])) {
+  
+  if (isset($_POST["codigomonitor"]) && !empty($_POST["codigomonitor"])) {
+
 }
 }
 ?>

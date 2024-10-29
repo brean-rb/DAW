@@ -20,7 +20,6 @@ class fichero {
    } // __construct
 
    public function leer(){
-      echo $this->nombreFichero; 
       $contenido = array();
       try {
          $df = @fopen($this->nombreFichero, "r");
@@ -38,7 +37,7 @@ class fichero {
       catch(Exception $e) {
          $contenido = $e->getMessage();
       }
-      return($contenido);
+      return $contenido;
    } // leer()
 
    public function eliminar($buscado) {

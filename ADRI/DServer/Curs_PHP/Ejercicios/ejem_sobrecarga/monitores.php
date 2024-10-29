@@ -1,18 +1,20 @@
 <?php
-include("modificar_ficheros\fichero.php");
+include("modificar_ficheros/fichero.php");
 class monitores{
 
-    private $nombre;
-    private $fichmonitor = "\ficheros\monitor.txt";
     private $fichero;
-    public function __construct($nom){
-        $this->nombre=$nom;
-        $this->fichero = new fichero($this->fichmonitor);
+    public function __construct(){
+        $this->fichero = new fichero("ficheros/monitor.txt");
     }
 
-    public function verMonitor(){
-        echo $this->nombre;
+    public function verMonitor($nom){
+        $existe = false;
         $contenido = $this->fichero->leer();
-        return $contenido;
+        for ($i=0; $i <count($contenido) ; $i++) { 
+           if ($nom === $contenido[$i]) {
+            $existe = true;
+           }
+        }
+        return  $existe;
     }
 }
