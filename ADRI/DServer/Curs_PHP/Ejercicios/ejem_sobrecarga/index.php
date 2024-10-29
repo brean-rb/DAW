@@ -67,8 +67,12 @@ else{
  } // pagar
 } // ExcepcionFicheros
 
-if(isset($_POST["codigomonitor"])){
+if(isset($_POST["ver"])){
 
+if (isset($_POST["codigomonitor"]) && !empty($_POST["codigomonitor"])) {
+  $monitor1 = new monitores($_POST["codigomonitor"]);
+  $monitor1->verMonitor();
+}
 }else{
   echo "Defina un codigo de monitor";
 }
