@@ -71,7 +71,10 @@ if(isset($_POST["ver"])){
 
 if (isset($_POST["codigomonitor"]) && !empty($_POST["codigomonitor"])) {
   $monitor1 = new monitores($_POST["codigomonitor"]);
-  $monitor1->verMonitor();
+  $contenido = $monitor1->verMonitor();
+  for ($i=0; $i < count($contenido); $i++) { 
+    echo $contenido[$i];
+  }
 }else{
   echo "Defina un codigo de monitor";
 }

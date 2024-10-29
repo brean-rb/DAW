@@ -13,8 +13,6 @@ class monitores{
     public function verMonitor(){
         echo $this->nombre;
         $contenido = $this->fichero->leer();
-        for ($i=0; $i <count($contenido) ; $i++) { 
-            echo $contenido;
-        }
+        return $contenido;
     }
 }
