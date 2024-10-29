@@ -20,7 +20,7 @@ class fichero {
    } // __construct
 
    public function leer(){
-      echo "abierto";
+      echo $this->nombreFichero; 
       $contenido = array();
       try {
          $df = @fopen($this->nombreFichero, "r");
