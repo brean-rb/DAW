@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .cuadro{
+        width: 200px;
+        height: 200px;
+        background-color: rgb(19, 176, 228);
+        transition-property:border-radius;
+        transition-duration: 5s;
+        transition-timing-function: linear;
+    }
+    .cuadro:hover{
+        border-radius: 100%;
+    }
+
+    .titulo{
+        transition-property:color, font-size,text-align, text-decoration,text-transform, text-shadow, font-weight;
+        transition-duration: 5s;
+        transition-timing-function: linear;
+    }
+
+    .titulo:hover{
+        color:red;
+        font-size: 90px;
+        text-align: center;
+        text-decoration: underline;
+        text-transform: uppercase;
+        text-shadow: 5px 5px 7px black;    
+        font-weight: bolder
+        }
+</style>
+<body>
+    <div class="cuadro">
+
+    </div>
+    <div class="titulo">
+        <p>Titulo espectacular</p>
+    </div>
+</body>
+</html>
