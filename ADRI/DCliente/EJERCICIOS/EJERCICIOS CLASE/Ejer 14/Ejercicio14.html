@@ -1,0 +1,70 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Ejercicio 14 - DOM basico</title>
+
+
+
+
+</head>
+
+
+<body>
+<p id="contenidos_1">[1] Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed
+mattis enim vitae orci. Phasellus libero. Maecenas nisl arcu, consequat congue, commodo
+nec, commodo ultricies, turpis. Quisque sapien nunc, posuere vitae, rutrum et, luctus
+at, pede. Pellentesque massa ante, ornare id, aliquam vitae, ultrices porttitor, pede.
+Nullam sit amet nisl elementum elit convallis malesuada. Phasellus magna sem, semper
+quis, faucibus ut, rhoncus non, mi. Duis pellentesque, felis eu adipiscing ullamcorper,
+odio urna consequat arcu, at posuere ante quam non dolor. Lorem ipsum dolor sit amet,
+consectetuer adipiscing elit. Duis scelerisque.</p>
+<a id="enlace_1" href="#" onclick="muestraOculta('1'); return false;">Ocultar
+contenidos</a>
+<br/>
+<p id="contenidos_2">[2] Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed
+mattis enim vitae orci. Phasellus libero. Maecenas nisl arcu, consequat congue, commodo
+nec, commodo ultricies, turpis. Quisque sapien nunc, posuere vitae, rutrum et, luctus
+at, pede. Pellentesque massa ante, ornare id, aliquam vitae, ultrices porttitor, pede.
+Nullam sit amet nisl elementum elit convallis malesuada. Phasellus magna sem, semper
+quis, faucibus ut, rhoncus non, mi. Duis pellentesque, felis eu adipiscing ullamcorper,
+odio urna consequat arcu, at posuere ante quam non dolor. Lorem ipsum dolor sit amet,
+consectetuer adipiscing elit. Duis scelerisque.</p>
+<a id="enlace_2" href="#" onclick="muestraOculta('2'); return false;">Ocultar
+contenidos</a>
+<br/>
+<p id="contenidos_3">[3] Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed
+mattis enim vitae orci. Phasellus libero. Maecenas nisl arcu, consequat congue, commodo
+nec, commodo ultricies, turpis. Quisque sapien nunc, posuere vitae, rutrum et, luctus
+at, pede. Pellentesque massa ante, ornare id, aliquam vitae, ultrices porttitor, pede.
+Nullam sit amet nisl elementum elit convallis malesuada. Phasellus magna sem, semper
+quis, faucibus ut, rhoncus non, mi. Duis pellentesque, felis eu adipiscing ullamcorper,
+odio urna consequat arcu, at posuere ante quam non dolor. Lorem ipsum dolor sit amet,
+consectetuer adipiscing elit. Duis scelerisque.</p>
+<a id="enlace_3" href="#" onclick="muestraOculta('3'); return false;">Ocultar
+contenidos</a>
+<script type="text/javascript">
+
+    
+    function muestraOculta(enlace){
+        switch (enlace) {
+            case '1':
+            case '2':
+            case '3':
+                var primero = document.getElementById("contenidos_" + enlace);
+                var penlace = document.getElementById("enlace_" + enlace);
+
+                if (primero.style.display === "none") {
+                    primero.style.display = "block";
+                    penlace.innerHTML= "Ocultar contenidos";
+                } else if(primero.style.display = "block"){
+                    primero.style.display = "none";
+                    penlace.innerHTML= "Mostrar contenidos";
+                }              
+            break;
+        }
+    }
+ 
+</script>
+</body>
+</html> 
