@@ -1,13 +1,13 @@
 <?php
 include("modificar_ficheros/fichero.php");
-class monitores{
+class socios{
 
     private $fichero;
     public function __construct(){
-        $this->fichero = new fichero("modificar_ficheros/ficheros/monitor.txt");
+        $this->fichero = new fichero("modificar_ficheros/ficheros/socios.txt");
     }
 
-    public function verMonitor($nom){
+    public function verSocio($nom){
         $existe = false;
         $contenido = $this->fichero->leer();
         for ($i=0; $i <count($contenido) ; $i++) { 
@@ -18,7 +18,7 @@ class monitores{
         return  $existe;
     }
 
-    public function anadirMonitor($nom){
+    public function anadirSocio($nom){
         $grabado = $this->fichero->nuevo($nom);
         $dev = false;
         if ($grabado) {
@@ -32,7 +32,7 @@ class monitores{
         if ($dev) {return $contenido;}
     }
 
-    public function eliminarMonitor($nom){
+    public function eliminarSocio($nom){
         $eliminado =$this->fichero->eliminar($nom);
         $borrado = false;
         if ($eliminado) {
