@@ -45,29 +45,29 @@
   $cant = 0;
   $pagar = new tiquet();
 
-  // if ($pagar->getExcepcionFicheros() !== false) {
-  //     echo $pagar->getExcepcionFicheros() . "<br>";
-  // } else {
-  //   if (isset($_POST["pagar"])) {
-  //     if (!empty($_POST["nombresocio"]) && !empty($_POST["fechacuota"])) {
-  //       $cant = $pagar->pago(trim($_POST["nombresocio"]), $_POST["fechacuota"]);
-  //     } else {
-  //       if (!empty($_POST["codigomonitor"])) {
-  //         $cant = $pagar->pago(trim($_POST["codigomonitor"]));
-  //       } else {
-  //         if ($cant === 0) {
-  //           $cant = $pagar->pago();
-  //         }
-  //       }
-  //     }
+  if ($pagar->getExcepcionFicheros() !== false) {
+      echo $pagar->getExcepcionFicheros() . "<br>";
+  } else {
+    if (isset($_POST["pagar"])) {
+      if (!empty($_POST["nombresocio"]) && !empty($_POST["fechacuota"])) {
+        $cant = $pagar->pago(trim($_POST["nombresocio"]), $_POST["fechacuota"]);
+      } else {
+        if (!empty($_POST["codigomonitor"])) {
+          $cant = $pagar->pago(trim($_POST["codigomonitor"]));
+        } else {
+          if ($cant === 0) {
+            $cant = $pagar->pago();
+          }
+        }
+      }
 
-  //     if ($cant !== false) {
-  //       echo "El pago realizado es de: " . $cant . "<br>";
-  //     } else {
-  //       echo "Error en el pago<br>";
-  //     }
+      if ($cant !== false) {
+        echo "El pago realizado es de: " . $cant . "<br>";
+      } else {
+        echo "Error en el pago<br>";
+      }
       
-  //   } else {
+    } else {
       if (isset($_POST["delete"])) {
         if (!empty($_POST["codigomonitor"])) {
           $option = new monitores($_POST["codigomonitor"]);
@@ -83,14 +83,24 @@
       if (isset($_POST["see"])) {
         if (!empty($_POST["codigomonitor"])) {
           $option = new monitores($_POST["codigomonitor"]);
-          $option->select_option(3);
-        } 
+
+          $result = $option->select_option(3);
+
+          if($result === true){
+            echo "el empleao existe";
+
+          } else {
+            echo "el empleado no existe";
+          }
+        } else{
+          echo "Por favor, ingrese un código de empleado.";
+        }
       }
 
-    //}
+    }
 
 
-  //} // ExcepcionFicheros
+  } // ExcepcionFicheros
 ?>
 
 ?> 

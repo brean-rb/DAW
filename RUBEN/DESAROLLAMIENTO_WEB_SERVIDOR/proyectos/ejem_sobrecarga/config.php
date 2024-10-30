@@ -5,5 +5,5 @@
   define("SOCIOS", "ficheros/socios.txt");
   define("MONITORES", "ficheros/monitor.txt");
   define("REGISTRO", "ficheros/registro.txt");
-
+  
 ?>
