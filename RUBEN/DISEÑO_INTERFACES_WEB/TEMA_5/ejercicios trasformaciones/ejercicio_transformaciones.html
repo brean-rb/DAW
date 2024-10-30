@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Figuras Geométricas</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .imagen {
+
+            position: absolute;
+            top: 0px;
+            left: 650px
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .cuadrado {
+            width: 100px;
+            height: 100px;
+            background-color: #3498db;
+            transform: skewX(-27deg) translate(25.7px);
+        }
+
+        .triangulo {
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 100px solid #e74c3c;
+        }
+
+        .rectangulo {
+            width: 200px;
+            height: 100px;
+            background-color: #2ecc71;
+            transform: skewX(27deg) translate(-25px);
+        }
+
+
+        .trapecio {
+
+            width: 200px;
+            /* Base mayor */
+            height: 100px;
+            /* Altura */
+            background-color: #3498db;
+            /* Color del trapecio */
+            clip-path: polygon(20% 0, 80% 0, 100% 100%, 0% 100%);
+            transform: skewX(42deg) translate(-45px);
+            
+        }
+
+        .rombo {
+
+            width: 100px;
+            /* Ancho del rombo */
+            height: 100px;
+            /* Altura del rombo */
+            background-color: #e74c3c;
+            /* Color del rombo */
+            transform: rotate(45deg);
+            /* Rotación para formar el rombo */
+            transform: skewX(52deg) translate(-66px);
+        }
+    </style>
+
+</head>
+
+<body>
+    <div> <img class="imagen" src="Tetris_logo.png" width="100" height="100">
+    </div>
+    <div class="container">
+        <div class="cuadrado"></div>
+        <div class="triangulo"></div>
+        <div class="rectangulo"></div>
+        <div class="trapecio"></div>
+        <div class="rombo"></div>
+    </div>
+</body>
+
+</html>
