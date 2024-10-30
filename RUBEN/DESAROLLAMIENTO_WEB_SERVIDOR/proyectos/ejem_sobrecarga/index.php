@@ -71,13 +71,35 @@
       if (isset($_POST["delete"])) {
         if (!empty($_POST["codigomonitor"])) {
           $option = new monitores($_POST["codigomonitor"]);
-        } 
+
+          $result = $option->select_option(1);
+
+          if($result){
+              echo "empleado eliminado";
+
+          } else {
+              echo "el empleado no a sido eliminado";
+
+          }
+        } else {
+            echo "Por favor, ingrese un código de empleado";
+        }
       }
 
       if (isset($_POST["add"])) {
         if (!empty($_POST["codigomonitor"])) {
           $option = new monitores($_POST["codigomonitor"]);
-        } 
+
+          $result = $option->select_option(2);
+
+          if($result){
+            echo "empleado añadido";
+          } else {
+            echo "el empleado no a sido añadido";
+          }
+        } else{
+            echo "Por favor, ingrese un código de empleado";
+        }
       }
 
       if (isset($_POST["see"])) {
@@ -86,8 +108,8 @@
 
           $result = $option->select_option(3);
 
-          if($result === true){
-            echo "el empleao existe";
+          if($result){
+            echo "el empleado existe";
 
           } else {
             echo "el empleado no existe";
@@ -103,4 +125,3 @@
   } // ExcepcionFicheros
 ?>
 
-?> 

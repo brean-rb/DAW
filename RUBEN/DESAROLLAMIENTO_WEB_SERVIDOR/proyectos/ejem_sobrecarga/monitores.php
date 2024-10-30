@@ -10,11 +10,11 @@
 
         public function select_option($op){
             if($op == 1){
-                $this->delete_monitor();
+                return $this->delete_monitor();
             } else if ($op == 2){
-                $this->add_monitor();
+                return $this->add_monitor();
             } else if ($op == 3){
-                $this->see_monitor();
+                return $this->see_monitor();
             } else {
                 echo "error de selecion en empleado";
             }
@@ -30,11 +30,11 @@
 
                 if(($fich_original !== false) && ($fich_aux !== false)){
                     
-                    $encontrado = write_delete_fich($contenido, $fich_aux);
+                    $encontrado = $this->write_delete_fich($contenido, $fich_aux);
 
                     while (!feof($fich_original) && ($encontrado === false)) {
 
-                        $encontrado = write_delete_fich($contenido, $fich_aux);
+                        $encontrado = $this->write_delete_fich($contenido, $fich_aux);
     
                     }
 
@@ -115,21 +115,10 @@
 
                 if($file !== false){
 
-                    // $encontrado = read_see_monitor($file);
-                    $contenido = trim(fgets($file));
-
-                    if(strcmp($contenido, $this->name_monitor) === 0){
-                        $encontrado = true;
-                    }
+                    $encontrado = $this->read_see_monitor($file);
 
                     while(!feof($file) && ($encontrado === false)){
-                        // $encontrado = read_see_monitor($file);
-
-                        $contenido = trim(fgets($file));
-
-                        if(strcmp($contenido, $this->name_monitor) === 0){
-                            $encontrado = true;
-                        }
+                        $encontrado = $this->read_see_monitor($file);
                     }
 
                     fclose($file);
@@ -158,12 +147,12 @@
             }
         }
 
-        // private function read_see_monitor($fx){
-        //     $contenido = trim(fgets($fx));
+        private function read_see_monitor($fx){
+            $contenido = trim(fgets($fx));
 
-        //     if(strcmp($contenido, $this->name_monitor) === 0){
-        //         return true;
-        //     }
-        // }
+            if(strcmp($contenido, $this->name_monitor) === 0){
+                return true;
+            }
+        }
     }
 ?>
