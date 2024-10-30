@@ -4,7 +4,7 @@
         private $option;
         private $name_fich = "ficheros/monitor.txt";
 
-        public function __construct($name_monitor, $option){
+        public function __construct($name_monitor){
             $this->name_monitor = $name_monitor;
         }
 
@@ -14,7 +14,6 @@
             } else if ($op == 2){
                 $this->add_monitor();
             } else if ($op == 3){
-                echo "ver";
                 $this->see_monitor();
             } else {
                 echo "error de selecion en empleado";
@@ -102,7 +101,7 @@
                 }
 
             } catch (Exception $e) {
-                $contenido = $e-getMessage();
+                $contenido = $e->getMessage();
             }
 
             return($contenido);
@@ -116,10 +115,21 @@
 
                 if($file !== false){
 
-                    $encontrado = read_see_monitor();
+                    // $encontrado = read_see_monitor($file);
+                    $contenido = trim(fgets($file));
+
+                    if(strcmp($contenido, $this->name_monitor) === 0){
+                        $encontrado = true;
+                    }
 
                     while(!feof($file) && ($encontrado === false)){
-                        $encontrado = read_see_monitor();
+                        // $encontrado = read_see_monitor($file);
+
+                        $contenido = trim(fgets($file));
+
+                        if(strcmp($contenido, $this->name_monitor) === 0){
+                            $encontrado = true;
+                        }
                     }
 
                     fclose($file);
@@ -148,12 +158,12 @@
             }
         }
 
-        private function read_see_monitor(){
-            $contenido = trim(fgets($file));
+        // private function read_see_monitor($fx){
+        //     $contenido = trim(fgets($fx));
 
-            if(strcmp($contenido, $this->name_monitor) === 0){
-                return true;
-            }
-        }
+        //     if(strcmp($contenido, $this->name_monitor) === 0){
+        //         return true;
+        //     }
+        // }
     }
 ?>
