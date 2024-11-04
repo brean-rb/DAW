@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    body {
+      margin: 0px;
+      background-color: black;
+    }
+
+    #fondo {
+      background: url(https://e1.pxfuel.com/desktop-wallpaper/182/171/desktop-wallpaper-green-hill-zone-green-sonic.jpg);
+      height: 700px;
+      background-position: 0px, -400px;
+    }
+
+    #moto1 {
+      height: 100px;
+      transform: translate(0px, 350px) scaleX(-1);
+    }
+
+    #moto2 {
+      height: 100px;
+      transform: translate(800px, 250px)
+    }
+
+    #muelle1 {
+      height: 100px;
+      transform: translate(150px, 150px) rotate(90deg);
+    }
+
+    #muelle2 {
+      height: 100px;
+      transform: translate(730px, 60px) rotate(-90deg);
+    }
+
+    #sonic {
+      transform: translate(200px, -130px);
+      animation-name: movimiento_de_sonic;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+    }
+
+
+    #eggman {
+      width: 150px;
+      transform: translate(200px, 260px);
+    }
+
+    #bocadillo {
+      padding: 10px;
+      width: 200px;
+      border: 2px solid black;
+      background-color: white;
+      box-shadow: 10px 10px;
+      border-radius: 20px;
+      transform: translate(350px, 80px);
+    }
+
+    @keyframes movimiento_de_sonic {
+      0%{
+        transform: translate(200px, -130px);
+      }
+      50%{
+        transform: translate(600px, -130px);
+      }
+      100%{
+        transform: translate(200px, -130px);
+      }
+    }
+
+    @keyframes movimiento_de_eggman {}
+
+    @keyframes movimiento_del_bocadillo {}
+  </style>
+
+</head>
+
+<body>
+
+
+
+  <div id='fondo'>
+    <div id='sonic'></div>
+    <div><img id='eggman' src="http://mappinghell.net/forum/Smileys/frog/r7.gif"></img>
+      <p id="bocadillo">Al fin he dado con la forma de detenerlo para siempre!... Ahora debo averiguar cómo sacarlo de
+        ahí, claro.</p>
+    </div>
+    <div><img id="moto1" src="http://orig12.deviantart.net/6ceb/f/2011/340/e/b/moto_bug_by_cradman-d4icd3x.gif"></div>
+    <div><img id="moto2" src="http://orig12.deviantart.net/6ceb/f/2011/340/e/b/moto_bug_by_cradman-d4icd3x.gif"></div>
+    <div><img id='muelle1'
+        src="http://orig14.deviantart.net/c56d/f/2009/200/c/2/sonic_unleashed_spring_by_crazyalec.gif"></img></div>
+    <div><img id='muelle2'
+        src="http://orig14.deviantart.net/c56d/f/2009/200/c/2/sonic_unleashed_spring_by_crazyalec.gif"></img></div>
+    <div><img id='sonic' src="https://i.gifer.com/origin/d5/d5b88b45655b89b33ff6d1dc2df982ff_w200.gif"></img></div>
+  </div>
+  <audio id="cancion de fondo" autoplay loop>
+    <source src="http://files.catbox.moe/bb98ef.mp3" type="audio/mp3">
+  </audio>
+</body>
+
+</html>
