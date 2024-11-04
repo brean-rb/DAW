@@ -43,7 +43,7 @@
     <?php
     include ("tiquet.php");
     include ("monitores.php");
-    include("socios.php");
+    //include ("socios.php");
     $cant = 0;
     $pagar = new tiquet();
 
@@ -124,32 +124,10 @@
           } else{
             echo "Error al borrar";
           }
-      }
-      }
-      } else if ($_POST["sociomonitor"] === "Socio") {
-        //En este caso antes de hacer ninguna operacion, comprobamos que rellena los campos necesarios  
-        if (
-            isset($_POST["nombresocio"]) && !empty($_POST["nombresocio"]) &&
-            isset($_POST["fechacuota"]) && !empty($_POST["fechacuota"]) &&
-            isset($_POST["codigomonitor"]) && !empty($_POST["codigomonitor"])
-        ) {
-          $socio = $_POST["nombresocio"] . ";" . $_POST["codigomonitor"] . ";" . $_POST["fechacuota"] . "\n";
-            if (isset($_POST["ver"])) {
-              $socio1 = new socios();
-              $listasocios = $socio1->verSocio($socio);
-              if ($socio1) {
-                echo "El socio " . $_POST["nombresocio"] . " existe en la base de datos";
-              }else{
-                echo "El socio " . $_POST["nombresocio"] . " no esta registrado";
-        
-              }
-            }
-        } else{
-          echo "Falta de informacion";
         }
-      
       }
-    }else{
-      echo "Elija un tipo de persona";
     }
+  } else {
+    echo "Elija un tipo de miembro";
+  }
     ?>

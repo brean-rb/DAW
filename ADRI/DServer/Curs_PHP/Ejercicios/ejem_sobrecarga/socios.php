@@ -8,14 +8,7 @@ class socios{
     }
 
     public function verSocio($nom){
-        $existe = false;
-        $contenido = $this->fichero->leer();
-        for ($i=0; $i <count($contenido) ; $i++) { 
-           if ($nom === $contenido[$i]) {
-            $existe = true;
-           }
-        }
-        return  $existe;
+       
     }
 
     public function anadirSocio($nom){
