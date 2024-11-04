@@ -30,11 +30,9 @@
 
                 if(($fich_original !== false) && ($fich_aux !== false)){
                     
-                    $encontrado = $this->write_delete_fich($contenido, $fich_aux);
-
                     while (!feof($fich_original) && ($encontrado === false)) {
 
-                        $encontrado = $this->write_delete_fich($contenido, $fich_aux);
+                        $encontrado = $this->write_delete_fich($contenido,$fich_original ,$fich_aux);
     
                     }
 
@@ -134,13 +132,14 @@
             return $encontrado;
         }
 
-        private function write_delete_fich($content, $fx){
+        private function write_delete_fich($content, $fo ,$fx){
 
-            $content = trim(fgets($fich_original));
+            $content = trim(fgets($fo));
                     
             if(strcmp($content, $this->name_monitor) !==0){
 
                 fputs($fx, $content . "\n");
+                return false;
 
             } else{
                 return true;
@@ -152,6 +151,8 @@
 
             if(strcmp($contenido, $this->name_monitor) === 0){
                 return true;
+            } else{
+                return false;
             }
         }
     }

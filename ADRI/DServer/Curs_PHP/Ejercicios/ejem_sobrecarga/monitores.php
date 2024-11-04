@@ -31,4 +31,13 @@ class monitores{
         }
         if ($dev) {return $contenido;}
     }
+
+    public function eliminarMonitor($nom){
+        $eliminado =$this->fichero->eliminar($nom);
+        $borrado = false;
+        if ($eliminado) {
+            $borrado = true;
+        }
+        return $borrado;
+    }
 }
