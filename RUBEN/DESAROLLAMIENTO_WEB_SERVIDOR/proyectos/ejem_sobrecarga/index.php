@@ -41,6 +41,7 @@
 <?php
   include ("tiquet.php");
   include ("monitores.php");
+  include ("socios.php");
 
   $cant = 0;
   $pagar = new tiquet();
@@ -67,8 +68,7 @@
         echo "Error en el pago<br>";
       }
       
-    } else {
-      if (isset($_POST["delete"])) {
+    } else if (isset($_POST["delete"])) {
         if (!empty($_POST["codigomonitor"])) {
           $option = new monitores($_POST["codigomonitor"]);
 
@@ -81,12 +81,22 @@
               echo "el empleado no a sido eliminado";
 
           }
-        } else {
-            echo "Por favor, ingrese un código de empleado";
-        }
-      }
+        } else if (!empty($_POST["nombresocio"])){
+            
+          $option = new socios($_POST["nombresocio"]);
 
-      if (isset($_POST["add"])) {
+          $result = $option->select_option(1);
+
+          if($result){
+              echo "socio eliminado";
+
+          } else{
+            echo "el socio no a sido eliminado";
+          }
+
+        }
+
+    } else if (isset($_POST["add"])) {
         if (!empty($_POST["codigomonitor"])) {
           $option = new monitores($_POST["codigomonitor"]);
 
@@ -97,12 +107,22 @@
           } else {
             echo "el empleado no a sido añadido";
           }
-        } else{
-            echo "Por favor, ingrese un código de empleado";
-        }
-      }
+        } else if (!empty($_POST["nombresocio"])){
+            
+          $option = new socios($_POST["nombresocio"]);
 
-      if (isset($_POST["see"])) {
+          $result = $option->select_option(2);
+
+          if($result){
+              echo "socio añadido";
+
+          } else{
+            echo "el socio no a sido añadido";
+          }
+
+        }
+
+    } else if (isset($_POST["see"])) {
         if (!empty($_POST["codigomonitor"])) {
           $option = new monitores($_POST["codigomonitor"]);
 
@@ -121,7 +141,6 @@
 
     }
 
-
-  } // ExcepcionFicheros
+ // ExcepcionFicheros
 ?>
 
