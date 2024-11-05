@@ -42,8 +42,8 @@
           <label for="codigomonitor">Código empleado/monitor</label>
           <input type="text" id="codigomonitor" name="codigomonitor">
           <select name="sociomonitor" id="sociomonitor">
+          <option name="sociomonitor" value="Monitor">Monitor</option>
             <option name="sociomonitor" value="Socio">Socio</option>
-            <option name="sociomonitor" value="Monitor">Monitor</option>
           </select>
         </div>
         <input type="submit" name="pagar" value="Pagar">
@@ -60,7 +60,6 @@
     <?php
     include("tiquet.php");
     include("monitores.php");
-    //include ("socios.php");
     $cant = 0;
     $pagar = new tiquet();
 
@@ -90,60 +89,59 @@
 
 
     // Inicio modificaciones Adri
-    if (isset($_POST["sociomonitor"]) && ($_POST["sociomonitor"] === "Socio" || $_POST["sociomonitor"] === "Monitor")) {
+    if (isset($_POST["sociomonitor"])) {
       if ($_POST["sociomonitor"] === "Monitor") {
-        //Comprobar si el monitor deseado existe 
+          if (isset($_POST["ver"])) {
+              if (!empty($_POST["codigomonitor"])) {
+                  $monitor1 = new monitores();
+                  $nombre = trim($_POST["codigomonitor"]);
+                  $contenido = $monitor1->verMonitor($nombre);
+                  if ($contenido) {
+                      echo "El monitor " . $nombre . " existe en la base de datos";
+                  } else {
+                      echo "El monitor " . $nombre . " no está registrado";
+                  }
+              } else {
+                  echo "Defina un código de monitor";
+              }
+          }
+  
+          if (isset($_POST["anadir"])) {
+              if (!empty($_POST["codigomonitor"])) {
+                  $monitor2 = new monitores();
+                  $monitoranadir = trim($_POST["codigomonitor"]);
+                  $contenido = $monitor2->verMonitor($monitoranadir);
+                  if ($contenido) {
+                      echo "El monitor " . $monitoranadir . " ya existe en la base de datos <br>";
+                  } else {
+                      $anadido = $monitor2->anadirMonitor($monitoranadir);
+                      echo "El monitor " . $monitoranadir . " no está registrado, se añadirá a la base de datos <br>";
+                  }
+              } else {
+                  echo "Defina un código de monitor";
+              }
+          }
+  
+          if (isset($_POST["eliminar"])) {
+              if (!empty($_POST["codigomonitor"])) {
+                  $monitor3 = new monitores();
+                  $monitorel = trim($_POST["codigomonitor"]);
+                  $borrado = $monitor3->eliminarMonitor($monitorel);
+                  if ($borrado) {
+                      echo "El monitor " . $monitorel . " se ha borrado con éxito";
+                  } else {
+                      echo "Error al borrar";
+                  }
+              }else {
+                echo "Defina un código de monitor";
+            }
+          }
+      } else if ($_POST["sociomonitor"] === "Socio") {
         if (isset($_POST["ver"])) {
-          if (isset($_POST["codigomonitor"]) && !empty($_POST["codigomonitor"])) //Comprobar que introduce el nombre del monitor
-          {
-            $monitor1 = new monitores();
-            $nombre = trim($_POST["codigomonitor"]);
-            $contenido = $monitor1->verMonitor($nombre); //Envio nombre del monitor y me devuelve un booleano
-            if ($contenido) {
-              echo "El monitor " . $_POST["codigomonitor"] . " existe en la base de datos";
-            } else {
-              echo "El monitor " . $_POST["codigomonitor"] . " no esta registrado";
-            }
-          } else {
-            echo "Defina un codigo de monitor";
-          }
-        }
-
-        //Añadir un nuevo monitor
-        if (isset($_POST["anadir"])) {
-
-          if (isset($_POST["codigomonitor"]) && !empty($_POST["codigomonitor"])) //Comprobar que introduce el nombre del monitor
-          {
-            $monitor2 = new monitores();
-            $monitoranadir = trim($_POST["codigomonitor"]);
-            $contenido = $monitor2->verMonitor($monitoranadir); //Compruebo si el monitor ya existe en la base de datos para no duplicar
-            if ($contenido) {
-              echo "El monitor " . $_POST["codigomonitor"] . " ya existe en la base de datos <br>";
-            } else {
-              $anadido = $monitor2->anadirMonitor($monitoranadir); //No existe, entonces lo añade
-              echo "El monitor " . $_POST["codigomonitor"] . " no esta registrado, se añadirá a la base de datos <br>";
-            }
-          } else {
-            echo "Defina un codigo de monitor";
-          }
-        }
-
-        if (isset($_POST["eliminar"])) {
-          if (isset($_POST["codigomonitor"]) && !empty($_POST["codigomonitor"])) //Comprobar que introduce el nombre del monitor
-          {
-            $monitor3 = new monitores();
-            $monitorel = trim($_POST["codigomonitor"]);
-            $borrado = $monitor3->eliminarMonitor($monitorel); //Envio el nombre de monitor a borrar
-            if ($borrado) {
-              echo "El monitor " . $monitorel . " se ha borrado con exito";
-            } else {
-              echo "Error al borrar";
-            }
-          }
+          echo "hola";
         }
       }
-    } else {
+  } else {
       echo "Elija un tipo de miembro";
-    }
-
-    ?>
+  }
+  ?>
