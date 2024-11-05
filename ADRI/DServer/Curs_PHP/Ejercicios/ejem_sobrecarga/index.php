@@ -60,6 +60,8 @@
     <?php
     include("tiquet.php");
     include("monitores.php");
+    require_once("socios.php");
+   
     $cant = 0;
     $pagar = new tiquet();
 
@@ -138,9 +140,19 @@
           }
       } else if ($_POST["sociomonitor"] === "Socio") {
         if (isset($_POST["ver"])) {
-          echo "hola";
+            if ((isset($_POST["nombresocio"]) && !empty($_POST["nombresocio"])) &&
+                (isset($_POST["fechacuota"]) && !empty($_POST["fechacuota"])) &&
+                (isset($_POST["codigomonitor"]) && !empty($_POST["codigomonitor"]))) 
+            {
+                $socio1 = new Socios();
+                $nombre = trim($_POST["nombresocio"]) . ";" . trim($_POST["codigomonitor"]) . ";" . trim($_POST["fechacuota"]);
+                echo $nombre;
+            } else {
+                echo "Por favor, complete todos los campos.";
+            }
         }
-      }
+    }
+    
   } else {
       echo "Elija un tipo de miembro";
   }
