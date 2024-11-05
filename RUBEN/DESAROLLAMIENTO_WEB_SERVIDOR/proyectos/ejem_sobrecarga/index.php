@@ -94,6 +94,8 @@
             echo "el socio no a sido eliminado";
           }
 
+        } else {
+          echo "Por favor, ingrese el nombre del socio o código del empleado.";
         }
 
     } else if (isset($_POST["add"])) {
@@ -107,9 +109,9 @@
           } else {
             echo "el empleado no a sido añadido";
           }
-        } else if (!empty($_POST["nombresocio"])){
+        } else if (!empty($_POST["nombresocio"]) && !empty($_POST["fechacuota"])){
             
-          $option = new socios($_POST["nombresocio"]);
+          $option = new socios($_POST["nombresocio"], $_POST["fechacuota"]);
 
           $result = $option->select_option(2);
 
@@ -120,6 +122,8 @@
             echo "el socio no a sido añadido";
           }
 
+        } else{
+          echo "ERROR: no ha añadido ningun campo";
         }
 
     } else if (isset($_POST["see"])) {
@@ -134,8 +138,20 @@
           } else {
             echo "el empleado no existe";
           }
+        } else if(!empty($_POST["nombresocio"])){
+          $option = new socios($_POST["nombresocio"]);
+
+          $result = $option->select_option(3);
+
+          if($result){
+            echo "el socio existe";
+
+          } else{
+            echo "el socio no existe";
+          }
+
         } else{
-          echo "Por favor, ingrese un código de empleado.";
+          echo "Por favor, ingrese el nombre del socio o código del empleado.";
         }
       }
 
