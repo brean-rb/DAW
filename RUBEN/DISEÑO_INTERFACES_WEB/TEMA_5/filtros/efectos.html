@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        h2{
+            font-size: 20pxº;
+        }
+
+        div{
+            width: 100%;
+            height: 200px;
+        }
+
+        img{
+            height: 200px;
+            width: 300px;
+            transition-property: transform, opacity, transition-duration, filter;
+            transition-duration: 2s;
+        }
+
+        .div_giro{
+            height: 200px;
+            width: 300px;
+            background-color: black;
+        }
+
+        #div1{
+            overflow: hidden;
+        }
+
+        #zoom1:hover {
+            transform: scale(3, 3);
+        }
+
+        #zoom2:hover {
+            transform: scale(3);
+        }
+
+        #zoom3:hover {
+            transform: scale(0,7);
+        }
+
+        #giro1:hover {
+            transform: rotate(360deg);
+        }
+
+        #giro2:hover {
+            transform: rotateY(180deg);
+            transition-duration: 2s;
+        }
+
+        #combo:hover {
+            transform: rotate(720deg);
+            border-radius: 75%;
+            box-shadow: 0 0 25px 0 rgb(255, 81, 0);
+        }
+
+    </style>
+</head>
+<body>
+    <h2>ZOOM Y CAMBIOS DE TAMAÑO SIN DESBORDAMIENTO</h2>
+    <div id="div1">
+        <img id="zoom1" src="img/IMAGEN_2.png" alt="">
+    </div>
+
+    <h2>ZOOM Y CAMBIOS DE TAMAÑO CON DESBORDAMIENTO</h2>
+    <div>
+        <img id="zoom2" src="img/IMAGEN_2.png" alt="">
+    </div>
+
+    <h2>ZOOM Y CAMBIOS DE TAMAÑO</h2>
+    <div>
+        <img id="zoom3" src="img/IMAGEN_2.png" alt="">
+    </div>
+
+    <h2>GIROS Y ROTACIONES 1.0</h2>
+    <div class="div_giro">
+        <img id="giro1" src="img/IMAGEN_2.png" alt="">
+    </div>
+
+    <h2>GIROS Y ROTACIONES 2.0</h2>
+    <div class="div_giro">
+        <img id="giro2" src="img/IMAGEN_2.png" alt="">
+    </div>
+
+    <h2>COMBINANDO EFECTOS</h2>
+    <div>
+        <img id="combo" src="img/IMAGEN_2.png" alt="">
+    </div>
+
+</body>
+</html>
