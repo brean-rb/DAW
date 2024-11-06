@@ -5,30 +5,30 @@ include_once("socios.php");
 
 $cant = 0;
 $pagar = new tiquet();
-
 if ($pagar->getExcepcionFicheros() !== false) {
     echo $pagar->getExcepcionFicheros() . "<br>";
-} else {
+}
+else {
+    // Verifica si se ha hecho clic en el botón pagar
     if (isset($_POST["pagar"])) {
-        if (!empty($_POST["nombresocio"]) && !empty($_POST["fechacuota"])) {
-            $cant = $pagar->pago(trim($_POST["nombresocio"]), $_POST["fechacuota"]);
-        } else {
-            if (!empty($_POST["codigomonitor"])) {
-                $cant = $pagar->pago(trim($_POST["codigomonitor"]));
-            } else {
-                if ($cant === 0) {
-                    $cant = $pagar->pago();
-                }
-            }
+        if ($_POST["sociomonitor"] === "Socio") {
+        
+        } elseif ($_POST["sociomonitor"] === "Monitor") {
+            // Caso de pago para monitor
+        
+        } else if ($_POST["sociomonitor"] === "Normal"){
+            // Caso de pago normal (sin especificar socio o monitor)
+            $cant = $pagar->pago();
         }
+
+        // Mostrar el resultado del pago
         if ($cant !== false) {
             echo "El pago realizado es de: " . $cant . "<br>";
         } else {
             echo "Error en el pago<br>";
         }
-    } // pagar
-} // ExcepcionFicheros
-
+    }//ExcepcionFicheros
+}
 
 
 // Inicio modificaciones Adri
@@ -131,7 +131,5 @@ if (isset($_POST["sociomonitor"])) {
                 echo "Defina un código de monitor";
             }
         }
-    } else {
-        echo "Elija un tipo de miembro";
     }
 }
