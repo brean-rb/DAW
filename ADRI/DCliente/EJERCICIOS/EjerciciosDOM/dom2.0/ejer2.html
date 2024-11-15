@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+
+</head>
+<body>
+<h1>ANIMALES</h1>
+<ul id="listaelemen">
+    <li>León</li>
+    <li>Pantera</li>
+    <li>Jirafa</li>
+</ul>
+<script>
+    function anadirparrafo() {
+               let parr = caja.getElementsByTagName("p");
+               var parrafo = document.createElement("p");
+               let texto = document.createTextNode("Parrafo añadido");
+               parrafo.appendChild(texto);
+               caja.appendChild(parrafo);
+           }
+
+           function insertarparrafo() {
+               var parrafo = document.createElement("p");
+               let texto = document.createTextNode("Parrafo insertado");
+               parrafo.appendChild(texto);
+               let primerParrafo = caja.getElementsByTagName("p")[1];
+               caja.insertBefore(parrafo, primerParrafo);
+           }
+
+           function reemplazarparrafo() {
+                   let parr = caja.getElementsByTagName("p")[1];
+                   let nuevoParrafo = document.createElement("p");
+                   let texto = document.createTextNode("Párrafo reemplazado");
+                   nuevoParrafo.appendChild(texto);
+                   caja.replaceChild(nuevoParrafo, parr);
+           }
+</script>
+</body>
+</html>
