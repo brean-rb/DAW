@@ -19,28 +19,94 @@
     <button>Insertar nuevo elemento</button><br>
     <button>Reemplazar elemento</button><br>
     <button>Eliminar elemento</button><br>
-    <button>Clonar div</button><br>
-    <!-- <script>
+    <button>Clonar lista</button><br>
+    <button>Agregar sublista en leon usando innerHTML</button><br>
+    <button>Agregar sublista en leon usando funciones DOM</button><br>
+
+    <script>
         const lista = document.getElementById("listaelemen");
         const botones = document.getElementsByTagName("button");
         botones[0].onclick = anadirelemento;
         botones[1].onclick = insertarelemento;
         botones[2].onclick = reemplazarelemento;
         botones[3].onclick = eliminarelemento;
-        botones[4].onclick = clonarcaja;
+        botones[4].onclick = clonarlista;
+        botones[5].onclick = sublistaIner;
+        botones[6].onclick = sublistaDom;
         function anadirelemento() {
             let elementos = lista.getElementsByTagName("li");
             let ultimo = elementos.length - 1;
-            alert(ultimo)
             let ult_elemento = lista.getElementsByTagName("li")[ultimo];
-            var animal = prompt("Introduce el animal a infiltrar en la lista: ");
-            var elemtn = document.createElement("li");
-            var texto = document.createTextNode(animal);
+            let animal = prompt("Introduce el animal a infiltrar en la lista: ");
+            let elemtn = document.createElement("li");
+            let texto = document.createTextNode(animal);
             elemtn.appendChild(texto);
-            lista.appendChild
+            lista.appendChild(elemtn);
         }
 
-    </script> -->
+        function insertarelemento() {
+            let primerelemento = lista.getElementsByTagName("li")[0];
+            let animal = prompt("Introduce el animal a insertar en cabeza de la lista: ");
+            let elemtn = document.createElement("li");
+            let texto = document.createTextNode(animal);
+            elemtn.appendChild(texto);
+            lista.insertBefore(elemtn, primerelemento);
+        }
+
+        function reemplazarelemento() {
+            let elementos = lista.getElementsByTagName("li");
+            if (elementos.length == 3) {
+                alert("DEBE INSERTAR UN ELEMENTO PREVIAMENTE PARA PODER REEMPLAZAR UN ANIMAL");
+            } 
+            else if (elementos.length == 4) {
+            let animal = prompt("Introduce el animal a reemplazar en cabeza de la lista: ");
+            let elemtn = document.createElement("li");
+            let texto = document.createTextNode(animal);
+            elemtn.appendChild(texto);
+            lista.replaceChild(elemtn, elementos[0]);
+        }
+        }
+
+        function eliminarelemento() { 
+            let encontrado = false;
+            let elementos = lista.getElementsByTagName("li");
+            let borrar = prompt("Introduce el animal a eliminar: ");
+            for (let i = 0; i < elementos.length; i++) {
+                if (borrar == elementos[i].textContent){
+                    elementos[i].remove();
+                    alert("Borrado existosamente");
+                    encontrado = true;
+                }
+            } 
+            if(!encontrado){
+                alert("No se a encontrado el animal a desear")
+            }
+            }
+        
+        function clonarlista() { 
+            let clonacion = lista.cloneNode(true);
+            document.body.appendChild(clonacion);
+        }
+        function sublistaIner() { 
+            let elementos = lista.getElementsByTagName("li");
+            for (let i = 0; i < elementos.length; i++) {
+                if (lista[i].textContent == "León") {
+                    let animalL = prompt("Introduce el animal dentro del animal 'León'")
+                    let sublista = document.createElement("ul");
+                    let animalSubLitsa = document.createElement("li");
+                    let texto = document.createTextNode(animalL);
+                    animalSubLitsa.appendChild(texto);
+                    sublista.appendChild(animalSubLitsa);
+                    lista[i].appendChild(sublista);
+                } else{
+                    alert("El elemento León no existe")
+                }
+            }  
+            
+        }
+        function sublistaDom() { }
+
+    </script>
 </body>
 
 </html>
