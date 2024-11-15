@@ -1,42 +1,46 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicio 2</title>
 
 </head>
+
 <body>
-<h1>ANIMALES</h1>
-<ul id="listaelemen">
-    <li>León</li>
-    <li>Pantera</li>
-    <li>Jirafa</li>
-</ul>
-<script>
-    function anadirparrafo() {
-               let parr = caja.getElementsByTagName("p");
-               var parrafo = document.createElement("p");
-               let texto = document.createTextNode("Parrafo añadido");
-               parrafo.appendChild(texto);
-               caja.appendChild(parrafo);
-           }
+    <h1>ANIMALES</h1>
+    <ul id="listaelemen">
+        <li>León</li>
+        <li>Pantera</li>
+        <li>Jirafa</li>
+    </ul>
+    <button>Añadir nuevo elemento</button><br>
+    <button>Insertar nuevo elemento</button><br>
+    <button>Reemplazar elemento</button><br>
+    <button>Eliminar elemento</button><br>
+    <button>Clonar div</button><br>
+    <!-- <script>
+        const lista = document.getElementById("listaelemen");
+        const botones = document.getElementsByTagName("button");
+        botones[0].onclick = anadirelemento;
+        botones[1].onclick = insertarelemento;
+        botones[2].onclick = reemplazarelemento;
+        botones[3].onclick = eliminarelemento;
+        botones[4].onclick = clonarcaja;
+        function anadirelemento() {
+            let elementos = lista.getElementsByTagName("li");
+            let ultimo = elementos.length - 1;
+            alert(ultimo)
+            let ult_elemento = lista.getElementsByTagName("li")[ultimo];
+            var animal = prompt("Introduce el animal a infiltrar en la lista: ");
+            var elemtn = document.createElement("li");
+            var texto = document.createTextNode(animal);
+            elemtn.appendChild(texto);
+            lista.appendChild
+        }
 
-           function insertarparrafo() {
-               var parrafo = document.createElement("p");
-               let texto = document.createTextNode("Parrafo insertado");
-               parrafo.appendChild(texto);
-               let primerParrafo = caja.getElementsByTagName("p")[1];
-               caja.insertBefore(parrafo, primerParrafo);
-           }
-
-           function reemplazarparrafo() {
-                   let parr = caja.getElementsByTagName("p")[1];
-                   let nuevoParrafo = document.createElement("p");
-                   let texto = document.createTextNode("Párrafo reemplazado");
-                   nuevoParrafo.appendChild(texto);
-                   caja.replaceChild(nuevoParrafo, parr);
-           }
-</script>
+    </script> -->
 </body>
+
 </html>
