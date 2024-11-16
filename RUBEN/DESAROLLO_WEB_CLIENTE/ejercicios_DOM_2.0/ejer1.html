@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container_text">
+        <p>Este es mi primer parrafo</p>
+    </div>
+    <button onclick="add_parrf()">Añadir nuevo parrafo</button>
+    <br>
+    <button onclick="insert_parrf()">Insertar nuevo parrafo</button>
+    <br>
+    <button onclick="replay_parrf()">Reemplazar parrafo</button>
+    <br>
+    <button onclick="delete_parrf()">Borrar parrafo</button>
+    <br>
+    <button onclick="clone_parrf()">Clonar div</button>
+
+    <script>
+
+        const container = document.getElementById("container_text");
+
+        function add_parrf(){
+            var parrf= document.createElement("p");
+            var text = document.createTextNode("Párrafo añadido");
+            parrf.appendChild(text);
+            container.appendChild(parrf);
+        }
+
+        function insert_parrf(){
+            var parrf = document.createElement("p");
+            var text = document.createTextNode("Párrafo insertado");
+            parrf.appendChild(text);
+            var parrf_1 = container.getElementsByTagName("p")[1];
+            container.insertBefore(parrf, parrf_1);
+        }
+
+        function replay_parrf(){
+            var parrf_2 = container.getElementsByTagName("p")[1];
+            var new_parrf = document.createElement("p");
+            var text = document.createTextNode("Parrafo reemplazado");
+            new_parrf.appendChild(text);
+            container.replaceChild(new_parrf, parrf_2);
+        }
+
+        function delete_parrf(){
+            var parrf = container.getElementsByTagName("p")[1];
+            parrf.remove();
+        }
+
+        function clone_parrf(){
+            var clone = container.cloneNode(true);
+            var butt = document.getElementsByTagName("button")[0];
+            butt.parentNode.insertBefore(clone, butt);
+        }
+
+    </script>
+</body>
+</html>
