@@ -57,54 +57,65 @@
             let elementos = lista.getElementsByTagName("li");
             if (elementos.length == 3) {
                 alert("DEBE INSERTAR UN ELEMENTO PREVIAMENTE PARA PODER REEMPLAZAR UN ANIMAL");
-            } 
-            else if (elementos.length == 4) {
-            let animal = prompt("Introduce el animal a reemplazar en cabeza de la lista: ");
-            let elemtn = document.createElement("li");
-            let texto = document.createTextNode(animal);
-            elemtn.appendChild(texto);
-            lista.replaceChild(elemtn, elementos[0]);
-        }
+            }
+            else if (elementos.length >= 4) {
+                let animal = prompt("Introduce el animal a reemplazar en cabeza de la lista: ");
+                let elemtn = document.createElement("li");
+                let texto = document.createTextNode(animal);
+                elemtn.appendChild(texto);
+                lista.replaceChild(elemtn, elementos[0]);
+            }
         }
 
-        function eliminarelemento() { 
+        function eliminarelemento() {
             let encontrado = false;
             let elementos = lista.getElementsByTagName("li");
             let borrar = prompt("Introduce el animal a eliminar: ");
             for (let i = 0; i < elementos.length; i++) {
-                if (borrar == elementos[i].textContent){
+                if (borrar == elementos[i].textContent) {
                     elementos[i].remove();
                     alert("Borrado existosamente");
                     encontrado = true;
                 }
-            } 
-            if(!encontrado){
+            }
+            if (!encontrado) {
                 alert("No se a encontrado el animal a desear")
             }
-            }
-        
-        function clonarlista() { 
+        }
+
+        function clonarlista() {
             let clonacion = lista.cloneNode(true);
             document.body.appendChild(clonacion);
         }
-        function sublistaIner() { 
+        function sublistaIner() {
             let elementos = lista.getElementsByTagName("li");
+
             for (let i = 0; i < elementos.length; i++) {
-                if (lista[i].textContent == "León") {
-                    let animalL = prompt("Introduce el animal dentro del animal 'León'")
-                    let sublista = document.createElement("ul");
-                    let animalSubLitsa = document.createElement("li");
-                    let texto = document.createTextNode(animalL);
-                    animalSubLitsa.appendChild(texto);
-                    sublista.appendChild(animalSubLitsa);
-                    lista[i].appendChild(sublista);
-                } else{
-                    alert("El elemento León no existe")
+                if (elementos[i].textContent === "León") {
+                    let animal = prompt("Introduce un animal dentro del león");
+                    let sublistaHTML = "<ul><li>" + animal + "</li></ul>";
+
+                    elementos[i].innerHTML += sublistaHTML; 
+
+                    break; 
                 }
-            }  
-            
+            }
         }
-        function sublistaDom() { }
+        function sublistaDom() {
+            let elementos = lista.getElementsByTagName("li");
+
+            let animalL = prompt("Introduce el animal dentro del animal 'León'")
+            let sublista = document.createElement("ul");
+            let animalSubLitsa = document.createElement("li");
+            let texto = document.createTextNode(animalL);
+            animalSubLitsa.appendChild(texto);
+            sublista.appendChild(animalSubLitsa);
+            if (elementos[0].textContent == "León") {
+                elementos[0].appendChild(sublista);
+            } else {
+                alert("León no existe")
+            }
+        }
 
     </script>
 </body>
