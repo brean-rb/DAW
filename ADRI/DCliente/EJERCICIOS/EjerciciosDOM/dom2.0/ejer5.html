@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 5</title>
+</head>
+<body>
+    <p></p>
+    <button onclick="estilos()">Agregar texto y estilos</button>
+    <script>
+        function estilos(){
+        let texto = prompt("Introduzca el texto que desees mostrar")
+        let colordeLetra = prompt("Introduzca en ingles el color que desea en la letra")
+        let fondo = prompt("Introduzca en ingles el color de fondo que desee aplicar al texto")
+        let tamano = prompt("Introduzca el tamaño de la letra")
+        let posicion = prompt("Introduzca en ingles donde quiere que se encuentre el texto dentro del rectangulo")
+
+        let parr = document.getElementsByTagName("p")[0];
+
+        parr.textContent = texto;
+        parr.style.color = colordeLetra;
+        parr.style.backgroundColor = fondo;
+        parr.style.fontSize = tamano+"px";
+        parr.style.textAlign = posicion;
+    }
+    
+        </script>
+</body>
+</html>

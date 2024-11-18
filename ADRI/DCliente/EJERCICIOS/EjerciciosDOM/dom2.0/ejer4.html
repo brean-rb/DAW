@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.LhlXb7Ktiv6_rdtjfhw-iwHaEN%26pid%3DApi&f=1&ipt=8149cb73ed3ec8516720cc2840fddbb3f2ac382452771c7f5aa2bdf9fe26c42c&ipo=images" alt=""><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.ZsTL4vzjpaJlKtuCsYSTVAHaEK%26pid%3DApi&f=1&ipt=5ed2b504705c2505d6f083ccf3dc981d9fb28201398497d5747fd0ecfb4df79f&ipo=images" alt=""><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.OtE0Pk6nCKlyZCyhwfVVYgHaDa%26pid%3DApi&f=1&ipt=29d61dbf1f1c429cd212eab0c325d823cdc97ff72a095988f6c5dc287d59a377&ipo=images" alt="">
+    <br><a href="https://www.marca.com/">marca</a> <br><a href="https://www.xataka.com/">xataka</a> <br><a href="https://vandal.elespanol.com/">vandal</a>
+    <br><button onclick="contarImagenes()">Contador de imagenes</button><br>
+    <button onclick="contarEnlaces()">Contador de enlaces</button>
+
+    <script>
+        function contarImagenes(){
+            let imagenes = document.getElementsByTagName("img")
+            alert("Imagenes: " + imagenes.length);
+        }
+        function contarEnlaces(){
+            let enlaces = document.getElementsByTagName("a")
+            alert("Enlaces: " + enlaces.length);
+        }
+    </script>
+
+</body>
+</html>
