@@ -57,6 +57,7 @@
             let elementos = lista.getElementsByTagName("li");
             if (elementos.length == 3) {
                 alert("DEBE INSERTAR UN ELEMENTO PREVIAMENTE PARA PODER REEMPLAZAR UN ANIMAL");
+<<<<<<< HEAD
             }
             else if (elementos.length >= 4) {
                 let animal = prompt("Introduce el animal a reemplazar en cabeza de la lista: ");
@@ -65,6 +66,16 @@
                 elemtn.appendChild(texto);
                 lista.replaceChild(elemtn, elementos[0]);
             }
+=======
+            } 
+            else if (elementos.length >= 4) {
+            let animal = prompt("Introduce el animal a reemplazar en cabeza de la lista: ");
+            let elemtn = document.createElement("li");
+            let texto = document.createTextNode(animal);
+            elemtn.appendChild(texto);
+            lista.replaceChild(elemtn, elementos[0]);
+        }
+>>>>>>> 6e4a30863e164a47d2820bde2eaa1fa1311d7d1e
         }
 
         function eliminarelemento() {
@@ -87,10 +98,16 @@
             let clonacion = lista.cloneNode(true);
             document.body.appendChild(clonacion);
         }
+<<<<<<< HEAD
         function sublistaIner() {
+=======
+        function sublistaIner() {  
+            let sublista = null;  
+>>>>>>> 6e4a30863e164a47d2820bde2eaa1fa1311d7d1e
             let elementos = lista.getElementsByTagName("li");
 
             for (let i = 0; i < elementos.length; i++) {
+<<<<<<< HEAD
                 if (elementos[i].textContent === "León") {
                     let animal = prompt("Introduce un animal dentro del león");
                     let sublistaHTML = "<ul><li>" + animal + "</li></ul>";
@@ -116,6 +133,21 @@
                 alert("León no existe")
             }
         }
+=======
+                if(elementos[i].textContent == "León");
+                sublista = document.createElement("ul");
+                let elemntosublista = document.createElement("li");
+                let animalSub = prompt("INtroduce el animal que formará parte de León");
+                let TxtoSublista = document.createTextNode(animalSub);
+                elemntosublista.appendChild(TxtoSublista);
+                sublista.appendChild(elemntosublista);
+            }
+           
+        }
+
+       
+        function sublistaDom() { }
+>>>>>>> 6e4a30863e164a47d2820bde2eaa1fa1311d7d1e
 
     </script>
 </body>
