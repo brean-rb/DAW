@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>ANIMALES</h1>
+
+    <ul id="listaelemen">
+        <li>leon</li>
+        <li>pantera</li>
+        <li>jirafa</li>
+    </ul>
+
+    <button onclick="add_element()">Añadir nuevo elemento</button>
+    <br>
+    <button onclick="">Insertar nuevo elemento</button>
+    <br>
+    <button onclick="">Remplazar elemento</button>
+    <br>
+    <button onclick="">Borrar elemento</button>
+    <br>
+    <button onclick="">Clonar la lista completa</button>
+    <br>
+    <button onclick="">Crear Sublista dentro de leon con funciones DOM</button>
+    <br>
+    <button onclick="">Crear Sublista dentro de leon con innerHTML</button>
+
+    <script>
+
+        const lista = document.getElementById("listaelemen");
+
+        function add_element(){
+            let animal = prompt("escriba el nombre del animal a añadir");
+            let create_element = document.createElement("li");
+            let text = document.createTextNode(animal);
+
+            create_element.appendChild(text);
+            lista.appendChild(create_element);
+
+        }
+
+        function delete_element(){
+            let 
+        }
+
+    </script>
+    
+</body>
+</html>
