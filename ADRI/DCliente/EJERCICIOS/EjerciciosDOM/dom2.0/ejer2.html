@@ -58,7 +58,7 @@
             if (elementos.length == 3) {
                 alert("DEBE INSERTAR UN ELEMENTO PREVIAMENTE PARA PODER REEMPLAZAR UN ANIMAL");
             } 
-            else if (elementos.length == 4) {
+            else if (elementos.length >= 4) {
             let animal = prompt("Introduce el animal a reemplazar en cabeza de la lista: ");
             let elemtn = document.createElement("li");
             let texto = document.createTextNode(animal);
@@ -87,23 +87,22 @@
             let clonacion = lista.cloneNode(true);
             document.body.appendChild(clonacion);
         }
-        function sublistaIner() { 
+        function sublistaIner() {  
+            let sublista = null;  
             let elementos = lista.getElementsByTagName("li");
             for (let i = 0; i < elementos.length; i++) {
-                if (lista[i].textContent == "León") {
-                    let animalL = prompt("Introduce el animal dentro del animal 'León'")
-                    let sublista = document.createElement("ul");
-                    let animalSubLitsa = document.createElement("li");
-                    let texto = document.createTextNode(animalL);
-                    animalSubLitsa.appendChild(texto);
-                    sublista.appendChild(animalSubLitsa);
-                    lista[i].appendChild(sublista);
-                } else{
-                    alert("El elemento León no existe")
-                }
-            }  
-            
+                if(elementos[i].textContent == "León");
+                sublista = document.createElement("ul");
+                let elemntosublista = document.createElement("li");
+                let animalSub = prompt("INtroduce el animal que formará parte de León");
+                let TxtoSublista = document.createTextNode(animalSub);
+                elemntosublista.appendChild(TxtoSublista);
+                sublista.appendChild(elemntosublista);
+            }
+           
         }
+
+       
         function sublistaDom() { }
 
     </script>
