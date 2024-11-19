@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Ejercicio 15 - Informaci�n sobre eventos</title>
+
+
+
+<style type="text/css">
+body {font-family: arial, helvetica;}
+#info {width:160px; border:thin solid silver; padding:.5em; position:fixed;}
+#info h1 {margin: 0;}
+</style>
+
+
+
+<script type="text/javascript">
+	
+	document.onmousemove = muestraInformacionR;
+	document.onclick = cambiaFondo;
+	document.onkeypress = muestraInformacionT;
+
+function cambiaFondo(mensaje){
+	var caja1 = document.getElementById("infoR");
+	caja1.style.backgroundColor = "#FFFFCC";
+
+}
+
+function muestraInformacionR(mensaje) {
+	var caja1 = document.getElementById("infoR");
+	var caja2 = document.getElementById("infoT");
+
+	var parrNav = caja1.getElementsByTagName("p")[0];
+	var parrPag = caja1.getElementsByTagName("p")[1];
+	var evento = mensaje || window.event;
+	var coordenadaNX = evento.clientX;
+	var coordenadaNY = evento.clientY;
+	var coordenadaPX = evento.pageX;
+	var coordenadaPY = evento.pageY;
+	
+	if (parrNav.textContent === "Navegador") {
+		parrNav.innerHTML ="[" + coordenadaNX+ "," + coordenadaNY+"]";
+
+	} else{
+		parrNav.innerHTML ="Navegador: [" + coordenadaNX+ "," + coordenadaNY+"]";
+
+	}
+	if (parrPag.textContent === "Pagina") {
+		parrPag.innerHTML ="[" + coordenadaNX+ "," + coordenadaNY+"]";
+
+	} else{
+		parrPag.innerHTML ="Pagina: [" + coordenadaNX+ "," + coordenadaNY+"]";
+
+	}
+
+	caja1.style.backgroundColor = "white";
+	caja2.style.backgroundColor = "white";
+}
+function muestraInformacionT(mensaje) {
+    var caja2 = document.getElementById("infoT");
+ 	caja2.style.backgroundColor = "#CCE6FF";
+    var parrCar = caja2.getElementsByTagName("p")[0];
+    var parrCod = caja2.getElementsByTagName("p")[1];
+    var evento = mensaje || window.event;
+    
+    var tecla = evento.key;
+    var codigo = evento.keyCode;
+
+    if (parrCar.textContent === "Caracter") {
+        parrCar.innerHTML = "Caracter: [" + tecla + "]";
+    } else {
+        parrCar.innerHTML = "Caracter: [" + tecla + "]";
+    }
+
+    if (parrCod.textContent === "Codigo") {
+        parrCod.innerHTML = "Codigo: [" + codigo + "]";
+    } else {
+        parrCod.innerHTML = "Codigo: [" + codigo + "]";
+    }
+}
+
+</script>
+
+
+</head>
+<body>
+<div id="infoR">
+	<h2>Ratón</h2>
+	<p>Navegador</p>
+	<p>Página</p>
+</div>
+<div id="infoT">
+	<h2>Teclado</h2>
+	<p>Caracter</p>
+	<p>Codigo</p>
+</div>
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+</body>
+</html>
