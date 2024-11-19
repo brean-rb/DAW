@@ -20,30 +20,30 @@
 
     #moto1 {
       position: absolute;
-      width: 100px;
-      height: 100px;
-      transform: scaleX(-1) translate(-50px, 300px);
+      width: 150px;
+      height: 150px;
+      transform: scaleX(-1) translate(-50px, 400px);
       z-index: 1;
     }
 
     #moto2 {
       position: absolute;
-      width: 100px;
-      height: 100px;
-      transform: translate(1300px, 300px);
+      width: 150px;
+      height: 150px;
+      transform: translate(1300px, 400px);
       z-index: 1;
     }
 
     #muelle1 {
-      width: 100px;
-      height: 100px;
-      transform: translate(1250px,300px) rotate(-90deg);
+      width: 150px;
+      height: 150px;
+      transform: translate(1250px,400px) rotate(-90deg);
     }
 
     #muelle2 {
-      width: 100px;
-      height: 100px;
-      transform: translate(100px,200px) rotate(90deg);
+      width: 150px;
+      height: 150px;
+      transform: translate(100px,300px) rotate(90deg);
     }
 
     #sonic {
@@ -67,9 +67,10 @@
     }
 
     #eggman {
-      width: 200px;
-      height: 150px;
-      transform: translate(100px , 200px);
+      width: 100px;
+      height: 50px;
+      transform: translate(100px , 200px) scale(2,2);
+      animation: movimiento_de_eggman 2.5s linear infinite alternate;
     }
 
     #bocadillo {
@@ -79,16 +80,37 @@
       background-color: white;
       width: 200px;
       box-shadow: 10px 10px;
-      transform: translate(300px, -30px);
+      transform: translate(150px, 80px);
+      animation: movimiento_del_bocadillo 2.5s linear infinite alternate;
+      margin-left: 100px;
+
     }
 
     @keyframes movimiento_de_eggman {
       0%{
-        
+        transform: translate(150px, 200px) scale(2,2);
+      }
+      50%{
+        transform: translate(200px, 260px) scale(3,3);
+      }
+      100%{
+        transform: translate(250px, 200px) scale(2,2);
       }
     }
 
-    @keyframes movimiento_del_bocadillo {}
+    @keyframes movimiento_del_bocadillo {
+      0%{
+        transform: translate(250px, 50px);
+      }
+     
+      50%{
+        transform: translate(300px, 100px);
+      }
+      
+      100%{
+        transform: translate(350px, 50px);
+      }
+    }
   </style>
 
 </head>

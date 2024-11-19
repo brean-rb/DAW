@@ -32,7 +32,7 @@
                     
                     while (!feof($fich_original) && ($encontrado === false)) {
 
-                        $encontrado = $this->write_delete_fich($contenido,$fich_original ,$fich_aux);
+                        $encontrado = $this->write_delete_fich($fich_original, $fich_aux);
     
                     }
 
@@ -113,9 +113,7 @@
 
                 if($file !== false){
 
-                    $encontrado = $this->read_see_monitor($file);
-
-                    while(!feof($file) && ($encontrado === false)){
+                    while((!feof($file)) && ($encontrado === false)){
                         $encontrado = $this->read_see_monitor($file);
                     }
 
@@ -125,14 +123,14 @@
                     throw new Exception ("Error al abrir el fichero " . $this->name_fich . "<br>");
                 }
 
-            } catch (\Throwable $th) {
+            } catch (Exception $e) {
                 $encontrado = $e->getMessage();
             }
 
             return $encontrado;
         }
 
-        private function write_delete_fich($content, $fo ,$fx){
+        private function write_delete_fich($fo ,$fx){
 
             $content = trim(fgets($fo));
                     

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    body {
+      margin: 0px;
+      background-color: black;
+    }
+
+    #fondo {
+      background: url(https://e1.pxfuel.com/desktop-wallpaper/182/171/desktop-wallpaper-green-hill-zone-green-sonic.jpg);
+      height: 700px;
+      background-position: 0px, -400px;
+    }
+
+    #moto1 {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      transform: scaleX(-1) translate(-50px, 400px);
+      z-index: 1;
+    }
+
+    #moto2 {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      transform: translate(1650px, 400px);
+      z-index: 1;
+    }
+
+    #muelle1 {
+      width: 100px;
+      height: 100px;
+      transform: translate(150px,425px) rotate(90deg);
+    }
+
+    #muelle2 {
+      width: 100px;
+      height: 100px;
+      transform: translate(1600px,325px) rotate(-90deg);
+    }
+
+    #sonic {
+      transform: translate(150px,150px);
+      animation-name: movimiento_de_sonic;
+      animation-duration: 1.5s;
+      animation-iteration-count: infinite;
+    }
+
+
+    @keyframes movimiento_de_sonic {
+      0%{
+        transform: translate(150px,150px);
+      } 50%{
+        transform: translate(1475px,150px);
+      } 100%{
+        transform: translate(150px,150px);
+
+      }
+    }
+
+    #eggman {
+      width: 100px;
+      height: 50px;
+      transform: translate(100px , 200px) scale(2,2);
+      animation: movimiento_de_eggman 2.5s linear infinite alternate;
+    }
+
+    #bocadillo {
+      border: 2px black solid;
+      border-radius: 20px;
+      padding: 10px;
+      background-color: white;
+      width: 200px;
+      box-shadow: 10px 10px;
+      transform: translate(150px, 80px);
+      animation: movimiento_del_bocadillo 2.5s linear infinite alternate;
+      margin-left: 100px;
+
+    }
+
+    @keyframes movimiento_de_eggman {
+      0%{
+        transform: translate(150px, 200px) scale(2,2);
+      }
+      50%{
+        transform: translate(200px, 260px) scale(3,3);
+      }
+      100%{
+        transform: translate(250px, 200px) scale(2,2);
+      }
+    }
+
+    @keyframes movimiento_del_bocadillo {
+      0%{
+        transform: translate(250px, 50px);
+      }
+     
+      50%{
+        transform: translate(300px, 100px);
+      }
+      
+      100%{
+        transform: translate(350px, 50px);
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+
+  <audio src="sonicmusic.mp3" controls></audio>
+  <div id='fondo'>
+    <div id='sonic'></div>
+    <div><img id='eggman' src="http://mappinghell.net/forum/Smileys/frog/r7.gif"></img>
+      <p id="bocadillo">Al fin he dado con la forma de detenerlo para siempre!... Ahora debo averiguar cómo sacarlo de
+        ahí, claro.</p>
+    </div>
+    <div><img id="moto1" src="http://orig12.deviantart.net/6ceb/f/2011/340/e/b/moto_bug_by_cradman-d4icd3x.gif"></div>
+    <div><img id="moto2" src="http://orig12.deviantart.net/6ceb/f/2011/340/e/b/moto_bug_by_cradman-d4icd3x.gif"></div>
+    <div><img id='muelle1'
+        src="http://orig14.deviantart.net/c56d/f/2009/200/c/2/sonic_unleashed_spring_by_crazyalec.gif"></img></div>
+    <div><img id='muelle2'
+        src="http://orig14.deviantart.net/c56d/f/2009/200/c/2/sonic_unleashed_spring_by_crazyalec.gif"></img></div>
+    <div><img id='sonic' src="https://i.gifer.com/origin/d5/d5b88b45655b89b33ff6d1dc2df982ff_w200.gif"></img></div>
+  </div>
+  
+</body>
+
+</html>

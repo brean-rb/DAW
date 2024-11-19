@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      
+
+        progress {
+            width: 50%;
+            height: 20px;
+            background-color: aqua;
+            border-radius: 15px;
+        }
+
+        /* Estilos para cambiar el color de la barra de progreso */
+        progress::-webkit-progress-value {
+            background-color: rgb(46, 161, 255); /* Cambia el color aquí para Chrome/Safari */
+            border-radius: 15px;
+
+        }
+
+        progress::-webkit-progress-bar {
+            background-color: rgb(73, 0, 128); 
+            border-radius: 15px;
+
+        }
+
+        progress {
+            color: green; /* Cambia este color para navegadores que usen el valor predeterminado */
+        }
+    </style>
+</head>
+<body>
+    <div id="padre">
+        <progress id="barra" min="0" max="100" value="0">
+            Este es un elemento de progreso no soportado por tu navegador, prueba con otro.
+        </progress>
+    </div>
+    
+    <script>
+        function barraDeCarga() {
+            const barra = document.getElementsByTagName("progress")[0];
+            if (barra.value < barra.max) {
+                barra.value += 10;
+            } else {
+                clearInterval(carga);
+            }
+        }
+
+        var carga;
+        window.onload = function() {
+            carga = setInterval(barraDeCarga, 1000);
+        }
+    </script>
+</body>
+</html>

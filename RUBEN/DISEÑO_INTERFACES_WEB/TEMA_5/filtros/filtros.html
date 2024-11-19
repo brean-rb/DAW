@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        h2{
+            font-size: 20px;
+        }
+
+        div{
+            background-color: black;
+            width: 100%;
+            height: 200px;
+        }
+
+        img{
+            height: 200px;
+            transition-property: filter;
+            transition-duration: 1s;
+        }
+
+        #desenfoque:hover{
+            filter: blur(4px);
+        }
+
+        #escala_grises:hover{
+            filter: grayscale(100%);
+        }   
+
+        #sepia:hover{
+            filter: sepia(100%);
+        }
+
+        #saturacion:hover{
+            filter: saturate(500%);
+        }
+
+        #tranparencia:hover{
+            filter: opacity(0.5);
+        }
+    </style>
+
+</head>
+<body>
+    <h2>DESENFOQUE</h2>
+    <div>
+        <img id="desenfoque" src="img/IMAGEN_1.jpg">
+    </div>
+
+    <h2>ESCALA DE GRISES</h2>
+    <div>
+        <img id="escala_grises" src="img/IMAGEN_1.jpg">
+    </div>
+
+    <h2>SEPIA</h2>
+    <div>
+        <img id="sepia" src="img/IMAGEN_1.jpg">
+    </div>
+
+    <h2>SATURACIÓN</h2>
+    <div>
+        <img id="saturacion" src="img/IMAGEN_1.jpg">
+    </div>
+
+    <h2>TRASNPARENCIA</h2>
+    <div>
+        <img id="tranparencia" src="img/IMAGEN_1.jpg">
+    </div>
+</body>
+</html>

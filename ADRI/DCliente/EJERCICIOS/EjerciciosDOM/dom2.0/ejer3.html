@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3</title>
+</head>
+<body>
+    <p>Bienvenido a esta pagina de prueba de colores</p>
+    <button onclick="cambiarcolor('blue')">Azul</button>
+    <button onclick="cambiarcolor('green')">Verde</button>
+    <button onclick="cambiarcolor('white')">Valor inicial</button>
+
+    <script>
+          function cambiarcolor(color){
+            let parrf = document.getElementsByTagName("p")[0];
+            parrf.style.backgroundColor = color;
+        }
+    </script>
+</body>
+</html>

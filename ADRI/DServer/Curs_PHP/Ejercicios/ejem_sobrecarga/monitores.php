@@ -1,10 +1,10 @@
 <?php
-include("modificar_ficheros/fichero.php");
+include_once("modificar_ficheros/fichero.php");
 class monitores{
 
     private $fichero;
     public function __construct(){
-        $this->fichero = new fichero("modificar_ficheros/ficheros/monitor.txt");
+        $this->fichero = new fichero("ficheros/monitor.txt");
     }
 
     public function verMonitor($nom){
