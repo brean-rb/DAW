@@ -16,17 +16,17 @@
 
     <button onclick="add_element()">Añadir nuevo elemento</button>
     <br>
-    <button onclick="">Insertar nuevo elemento</button>
+    <button onclick="insert_element()">Insertar nuevo elemento</button>
     <br>
-    <button onclick="">Remplazar elemento</button>
+    <button onclick="replay_element()">Remplazar elemento</button>
     <br>
-    <button onclick="">Borrar elemento</button>
+    <button onclick="delete_element()">Borrar elemento</button>
     <br>
-    <button onclick="">Clonar la lista completa</button>
+    <button onclick="clone_element()">Clonar la lista completa</button>
     <br>
-    <button onclick="">Crear Sublista dentro de leon con funciones DOM</button>
+    <button onclick="create_ul_DOM()">Crear Sublista dentro de leon con funciones DOM</button>
     <br>
-    <button onclick="">Crear Sublista dentro de leon con innerHTML</button>
+    <button onclick="create_ul_inner()">Crear Sublista dentro de leon con innerHTML</button>
 
     <script>
 
@@ -42,8 +42,62 @@
 
         }
 
+        function insert_element(){
+            let animal = prompt("escriba el nombre del animal a isertar");
+            let get_li2 = lista.getElementsByTagName("li")[1];
+            let create_element = document.createElement("li");
+            let text = document.createTextNode(animal);
+
+            create_element.appendChild(text);
+            lista.insertBefore(create_element, get_li2);
+        }
+
+        function replay_element(){
+            let replay_animal = prompt("escriba el nombre a remplazar");
+            let get_li = lista.getElementsByTagName("li")[1];
+            let add_li = document.createElement("li");
+            let texto = document.createTextNode(replay_animal);
+
+            add_li.appendChild(texto);
+            lista.replaceChild(add_li, get_li);
+        }
+
         function delete_element(){
-            let 
+            let elementos = lista.getElementsByTagName("li");
+            let del_eleme = prompt("escriba el nombre a eliminar");
+
+            for(let i = 0; i <= elementos.length; i++){
+                if(elementos[i] == del_eleme){
+                    elementos[i].remove();
+                }
+            }
+        }
+
+        function clone_element(){
+            let clone = lista.cloneNode(true);
+            let butt = document.getElementsByTagName("button")[0];
+            butt.parentNode.insertBefore(clone, butt);
+        }
+
+        function create_ul_DOM(){
+            let elementos = document.getElementsByTagName("li")[0];
+
+            let animal = prompt("inserte el animal que queira añadir a la sublista");
+
+            let create_ul = document.createElement("ul");
+            let create_li = document.createElement("li");
+            let texto = document.createTextNode(animal);
+
+            create_li.appendChild(texto);
+            create_ul.appendChild(create_li);
+
+            elementos.appendChild(create_ul);
+        }
+
+        function create_ul_inner(){
+            let elemento = document.getElementsByTagName("li")[0]; 
+            let animal = prompt("Inserte el animal que quiera añadir a la sublista");
+            elemento.innerHTML += "<ul><li>" + animal + "</li></ul>";
         }
 
     </script>
