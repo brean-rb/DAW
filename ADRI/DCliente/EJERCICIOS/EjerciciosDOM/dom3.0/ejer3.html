@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="valores" value="">
+    <button onclick="suma()">SUMAR</button>
+    <button onclick="inicio()">INICIALIZAR</button>
+
+    <script>
+        var valores = document.getElementById("valores");
+        var num_valor = Number(valores);
+        function suma() {
+            num_valor += 10;
+            valores.value = String(num_valor)
+        }
+        function inicio(){
+            num_valor = 0;
+            valores.value = String(num_valor)
+
+        }
+    </script>
+
+</body>
+</html>

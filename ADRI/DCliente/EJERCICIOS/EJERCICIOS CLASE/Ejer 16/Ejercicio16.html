@@ -11,7 +11,23 @@ body {font-family: arial, helvetica;}
 <script type="text/javascript">
 function informacion(elEvento) {
 	var evento = elEvento || window.event;
-	
+	var dimensiones = tamanoVentanaNavegador();
+	var coordenadaX = evento.clientX;
+	var coordenadaY = evento.clientY;
+
+	if (coordenadaX >= 0 && coordenadaX <= 799) {
+		if (coordenadaY >= 0 && coordenadaY <= 369) {
+			alert("Pulsaste arriba izquierda")
+		} else if (coordenadaY >= 370 && coordenadaY <= 740){
+			alert("Pulsaste abajo izquierda")
+		}
+	} else if (coordenadaX >= 800 && coordenadaX <= 1600) {
+		if (coordenadaY >= 0 && coordenadaY <= 369) {
+			alert("Pulsaste arriba derecha")
+		} else if (coordenadaY >= 370 && coordenadaY <= 740){
+			alert("Pulsaste abajo derecha")
+		}
+	}
 	muestraInformacion();
 }
 

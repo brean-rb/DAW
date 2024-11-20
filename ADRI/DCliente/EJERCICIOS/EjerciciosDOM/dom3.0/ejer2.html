@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form onsubmit="return verDNI()">
+        <label for="">DNI</label>
+        <input type="text" name="DNI" id="DNI" value=" ">
+        <input type="submit" value="Enviar">
+    </form>
+
+    <script>
+
+        function verDNI() {
+            var correcto = false;
+            var dni = document.getElementById("DNI");
+            if (dni.value == " ") {
+                alert("Introduzca valores")
+            } else {
+                var DNI = dni.value;
+                var letras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N',
+                    'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
+
+                // Solicitar número de DNI y letra al usuario
+                var numeroDNI = DNI.substring(0,8);
+                var letraDNI = DNI.substring(8,9);
+
+                // Comprobar si el número es válido (mayor que 0 y menor o igual a 99999999)
+                if (numeroDNI < 0 || numeroDNI > 99999999) {
+                    alert("El número proporcionado no es válido.");
+                } else {
+                    // Calcular la letra correspondiente al número de DNI
+                    var letraCalculada = letras[numeroDNI % 23];
+
+                    // Comprobar si la letra introducida es correcta
+                    if (letraCalculada !== letraDNI) {
+                        alert("La letra que has indicado no es correcta. Debería ser: " + letraCalculada);
+                    } else {
+                        correcto = true;
+                        }
+                }
+
+                if (correcto) {
+                    alert(" El DNI introducido: " + dni.value + " es correcto")
+                } else{
+                    alert("DNI erroneo")
+                    return false;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
