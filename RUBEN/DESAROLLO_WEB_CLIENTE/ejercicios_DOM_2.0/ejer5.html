@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div></div>
+
+    <button onclick="styles()">agregar un texto y estilos al contenedor</button>
+
+    <script>
+
+        const contenedor = document.getElementsByTagName("div")[0];
+
+        function styles(){
+            let color_fondo = prompt("intruduzca el color de fondo en ingles: ");
+            let texto_add = prompt("introduzca el texto a añadir");
+            let alto = prompt("introduzca el alto del contenedor: ");
+            let num_alto = Number(alto);
+            let ancho = prompt("introduzca el ancho del contenedor: ");
+            let num_ancho = Number(ancho);
+
+            contenedor.style.backgroundColor = color_fondo;
+            contenedor.textContent = texto_add;
+            contenedor.style.height = num_alto + "px";
+            contenedor.style.width = num_ancho + "px"; 
+        }
+
+    </script>
+</body>
+</html>

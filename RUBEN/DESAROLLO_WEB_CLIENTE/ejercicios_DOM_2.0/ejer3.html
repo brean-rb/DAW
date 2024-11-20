@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <p>Bienvenidos a esta páguina de prueva de colores</p>
+    </div>
+
+    <button onclick="color_div('blue')">Azul</button>
+    <button onclick="color_div('green')">Verde</button>
+    <button onclick="color_div('white')">Restablecer calor inicial</button>
+
+    <script>
+
+        const contenedor = document.getElementsByTagName("div")[0];
+
+        function color_div(color){
+            contenedor.style.backgroundColor = color;
+        }
+
+
+    </script>
+</body>
+</html>
