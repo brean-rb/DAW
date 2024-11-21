@@ -12,7 +12,6 @@ try {
             echo "<h3>FRUTAS</h3>";
             echo "<table>";
             echo "<tr>";
-            echo "<th>ID fruta</th>";
             echo "<th>Nombre Fruta</th>";
             echo "<th>Precio_Kg</th>";
             echo "<th>Temporada</th>";
