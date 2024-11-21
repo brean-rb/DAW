@@ -10,7 +10,7 @@
 <body>
     <form onsubmit="return verDNI()">
         <label for="">DNI</label>
-        <input type="text" name="DNI" id="DNI" value=" ">
+        <input type="text" name="DNI" id="DNI" value="">
         <input type="submit" value="Enviar">
     </form>
 
@@ -19,7 +19,7 @@
         function verDNI() {
             var correcto = false;
             var dni = document.getElementById("DNI");
-            if (dni.value == " ") {
+            if (dni.value == "") {
                 alert("Introduzca valores")
             } else {
                 var DNI = dni.value;
