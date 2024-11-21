@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="return alerta()">
+        <label for="text_dni"></label>
+        <input type="text" name="text_dni" value="">
+        <input type="submit" value="enviar">
+    </form>
+
+    <script>
+
+        function alerta(){
+            var input_one = document.getElementsByTagName("input")[0]
+            
+            if(input_one.value == ""){
+                alert("introduzca valores")
+            }
+        }
+
+    </script>
+</body>
+</html>

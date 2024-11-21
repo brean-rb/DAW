@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <a href="http://www.youtube.com">youtube</a>
+
+    <script>
+
+        const link = document.getElementsByTagName("a")[0];
+
+        link.onmouseover = alerta;
+
+        function alerta(elEvento) {
+            var evento = elEvento;
+
+            alert("estas encima de un hipervinculo");
+        }
+
+    </script>
+
+</body>
+</html>
