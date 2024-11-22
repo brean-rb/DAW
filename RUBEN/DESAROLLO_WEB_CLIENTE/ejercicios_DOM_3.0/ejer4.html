@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="return comprovate_number()">
+        <label for="numero">Introduce un número</label>
+        <input type="text" id="numero" name="numero">
+        <input type="submit" value="Enviar">
+    </form>
+
+    <script>
+        function comprovate_number() {
+            var num_user = Number(document.getElementById("numero").value);
+            var num_ran = Math.floor(Math.random() * 10) + 1;
+
+            if (num_ran === num_user) {
+                alert("Acertaste el número");
+            } else {
+                alert("No acertaste el número.");
+            }
+
+            return false;
+        }
+    </script>
+</body>
+</html>
