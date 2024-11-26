@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Treasure Map</title>
+   
+
+    
+    <style>
+            body {
+            background: #34495e;
+            color: #fff;
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction:column;
+            }
+
+            
+            p {
+            display: block;
+            }
+
+
+    </style>
+
+  </head>
+  <body>
+
+    <h1>Encuentra el Tesoro pirata</h1>
+    <img src="treasuremap.png" width="400" height="400" id="map" draggable="false">
+
+    <p id="distance">	</p>
+
+    <script >
+            
+        const imagen = document.getElementById("map");
+        imagen.addEventListener("click", position);
+        var cordenada_tesoro_x = 0;
+        var cordenada_tesoro_y = 0;
+        var clicks_user = 0;
+
+        window.onload = function() {
+          cordenada_tesoro_x = Math.floor(Math.random() * 400) + 1;
+          cordenada_tesoro_y = Math.floor(Math.random() * 400) + 1;
+        }
+
+        function position(elEvento) {
+          var evento = elEvento || window.event;
+          var texto = document.getElementById("distance");
+          clicks_user ++;
+          var encontrado = false;
+
+          var cordenada_user_x = evento.offsetX;
+          var cordenada_user_y = evento.offsetY;
+
+          let catetox = cordenada_tesoro_x - cordenada_user_x;
+          let catetoy = cordenada_tesoro_y - cordenada_user_y;
+
+          let hipotenusa = Math.sqrt((catetox * catetox) + (catetoy * catetoy));
+
+          if (hipotenusa <= 20) {
+            alert("Encontraste el tesoro pirataria");
+            encontrado = true;
+          } else if (hipotenusa > 20 && hipotenusa <= 50) {
+            texto.innerHTML = "muy caliente";
+
+          } else if (hipotenusa > 51 && hipotenusa <= 100) {
+            texto.innerHTML = "caliente";
+
+          } else if (hipotenusa > 100 && hipotenusa <= 200) {
+            texto.innerHTML = "templado";
+
+          } else if (hipotenusa > 200 && hipotenusa <= 300) {
+            texto.innerHTML = "frio";
+
+          } else if (hipotenusa > 300 && hipotenusa <= 400) {
+            texto.innerHTML = "te congelas";
+          }
+
+          if(encontrado){
+            alert("has gastado " + clicks_user + " clicks");
+          }
+
+        }
+                 
+
+
+    </script>
+
+  </body>
+</html>
