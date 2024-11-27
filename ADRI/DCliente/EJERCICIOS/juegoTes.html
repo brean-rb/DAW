@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Treasure Map</title>
+
+  <style>
+    body {
+      background: #34495e;
+      color: #fff;
+      padding: 0;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    p {
+      display: block;
+    }
+
+    #portiempo {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      gap: 25px;
+      width: 350px;
+      margin-bottom: 20px;
+    }
+
+    #portiempo button {
+      background: #34495e;
+      color: #fff;
+    }
+
+    #mdificil {
+      width: 200px;
+      background: #34495e;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    #tiempo {
+      font-size: 20px;
+      color: #ffffff;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <h1>Encuentra el Tesoro pirata</h1>
+  <div id="portiempo">
+    <button onclick="iniciarContador(30)" id="30segs">30 segundos</button>
+    <button onclick="iniciarContador(15)" id="15segs">15 segundos</button>
+    <button onclick="iniciarContador(5)" id="5segs">5 segundos</button>
+  </div>
+  <button onclick="modoDificil()" id="mdificil">Modo dificil</button>
+  <p id="contador"></p>
+  <img src="treasuremap.png" width="400" height="400" id="map" draggable="false">
+
+  <p id="distance"> </p>
+
+  <script>
+    const imagen = document.getElementById("map");
+    const parrf = document.getElementById("distance");
+    imagen.onclick = posiciones;
+    var cordenadaTesX = 0;
+    var cordenadaTesY = 0;
+    var contadorclick = 0;
+    var modoDificilActivo = false;
+    var intentosRestantes = 5;  
+    var contador;
+    var intervalo;
+
+    window.onload = function () {
+      cordenadaTesX = Math.floor(Math.random() * 400) + 1;
+      cordenadaTesY = Math.floor(Math.random() * 400) + 1;
+    }
+
+    function modoDificil() {
+      modoDificilActivo = true;
+      intentosRestantes = 5; 
+      document.getElementById("contador").textContent = "Intentos restantes: " + intentosRestantes;
+
+    }
+
+    
+    function posiciones(event) {
+      if (modoDificilActivo && intentosRestantes <= 0) {
+        alert("Se han agotado los intentos");
+      }
+
+      var evento = event || window.event;
+      var coordenadaX = evento.offsetX;
+      var coordenadaY = evento.offsetY;
+      var catetoX = cordenadaTesX - coordenadaX;
+      var catetoY = cordenadaTesY - coordenadaY;
+
+      if (catetoX < 0) {
+        catetoX = catetoX * (-1);
+      }
+      if (catetoY < 0) {
+        catetoY = catetoY * (-1);
+      }
+
+      var hipotenusa = Math.sqrt((catetoX * catetoX) + (catetoY * catetoY));
+
+      if (hipotenusa <= 20) {
+        alert("¡Tesoro encontrado en " + contadorclick + " clics!");
+        resetJuego(); 
+      } else if (hipotenusa <= 50 && hipotenusa > 20) {
+        parrf.textContent = "Muy caliente";
+        contadorclick++;
+        verificarIntentos();
+      } else if (hipotenusa <= 100 && hipotenusa > 50) {
+        parrf.textContent = "Caliente";
+        contadorclick++;
+        verificarIntentos();
+      } else if (hipotenusa <= 200 && hipotenusa > 100) {
+        parrf.textContent = "Templado";
+        contadorclick++;
+        verificarIntentos();
+      } else if (hipotenusa <= 250 && hipotenusa > 200) {
+        parrf.textContent = "Frio";
+        contadorclick++;
+        verificarIntentos();
+      } else if (hipotenusa <= 400 && hipotenusa > 250) {
+        parrf.textContent = "Muy frio";
+        contadorclick++;
+        verificarIntentos();
+      }
+    }
+
+    function verificarIntentos() {
+      if (modoDificilActivo) {
+        intentosRestantes--;
+        document.getElementById("contador").textContent = "Intentos restantes: " + intentosRestantes;
+        if (intentosRestantes <= 0) {
+          alert("Se han agotado los intentos");
+          resetJuego(); 
+        }
+      }
+    }
+   
+    function resetJuego() {
+      contadorclick = 0;
+      modoDificilActivo = false;
+      intentosRestantes = 5;
+      document.getElementById("contador").textContent = "";
+      parrf.textContent = "";
+    }
+
+    function iniciarContador(tiempo) {
+      if (intervalo) {
+        clearInterval(intervalo);
+      }
+
+      contador = tiempo;
+      actualizarContador();
+
+      intervalo = setInterval(() => {
+        if (contador > 0) {
+          contador--;
+          actualizarContador();
+        } else {
+          clearInterval(intervalo);
+        }
+      }, 1000);
+    }
+
+    function actualizarContador() {
+      if (contador != 0) {
+      document.getElementById("contador").textContent = "Tiempo restante: " + contador + " segundos";
+    } else{
+      alert("Tiempo agotado");
+      
+    }
+  }
+  </script>
+
+</body>
+
+</html>
