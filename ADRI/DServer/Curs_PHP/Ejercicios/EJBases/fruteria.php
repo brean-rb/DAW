@@ -31,7 +31,10 @@ try {
             }
         }
 
-        // Consultas y llamadas a la función mostrarTabla()
+        
+        /*
+        PRACTICA 4.3
+        */ 
         
         // 4.3.1 Ordenar la tabla de frutas según su precio por kg
         $select = "SELECT * FROM precios ORDER BY precio_kg";
@@ -58,6 +61,41 @@ try {
         $result = mysqli_query($conex, $select);
         mostrarTabla($result, "FRUTAS CON VENTA ANUAL CON PRECIO INFERIOR A 0.50");
 
+        /*
+         * PRACTICA 4.4
+        */
+
+        // 4.4.1 Añade las frutas: melones - 0.80 euros/kg - verano, naranjas – 1.50 euros/kg - invierno.
+
+        $insert = "INSERT INTO precios (fruta,precio_kg,temporada) VALUES
+        ('Melones', 0.8, 'verano'),
+        ('Naranjas',1.5,'invierno');";
+        $result = mysqli_query($conex,$insert);
+        if ($result) {
+            echo "<p style='text-align:center; font-weight:bold;'>Nuevos datos insertados</p>";
+        } else{
+            echo "<p style='text-align:center; font-weight:bold;'>Error al insertar</p>";
+        }
+
+        // 4.4.2 Elimina la fruta manzanas
+
+        $delete = "DELETE FROM precios WHERE fruta = 'Manzana'";
+        $result = mysqli_query($conex,$delete);
+        if ($result) {
+            echo "<p style='text-align:center; font-weight:bold;'>Datos eliminados correctamente</p>";
+        } else{
+            echo "<p style='text-align:center; font-weight:bold;'> Error al borrar</p>";
+        }
+        
+        // 4.4.3 Modificar precio de melones a 0.60
+        
+        $update = "UPDATE precios SET precio_kg = 0.60 WHERE fruta = 'Melones'";
+        $result = mysqli_query($conex,$update);
+        if ($result) {
+            echo "<p style='text-align:center; font-weight:bold;'>Precio modificado correctamente</p>";
+        } else{
+            echo "<p style='text-align:center; font-weight:bold;'> Error al modificar el precio </p>";
+        }
         mysqli_close($conex);
     }
 } catch (Exception $e) { //Se ejecutará el mensaje si no se realiza la conexión
