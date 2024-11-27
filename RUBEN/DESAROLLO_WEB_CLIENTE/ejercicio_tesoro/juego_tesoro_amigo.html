@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>¡Encuentra el Tesoro Pirata!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pirata+One&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: url('pirate_background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+            font-family: 'Pirata One', cursive;
+            text-align: center;
+            overflow: auto;
+        }
+
+        h1 {
+            color: #000;
+            font-size: 2.5em; /* Reducido de 4em */
+            margin-top: 20px;
+            text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.7);
+        }
+
+        #botones {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px; /* Reducido de 30px */
+            gap: 15px; /* Reducido de 20px */
+        }
+
+        button {
+            background: rgba(255, 215, 0, 0.8);
+            color: #000;
+            border: none;
+            padding: 10px 20px; /* Reducido de 15px 30px */
+            font-size: 1em; /* Reducido de 1.5em */
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Ajustado */
+        }
+
+        button:hover {
+            transform: translateY(-4px); /* Ajustado */
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5); /* Ajustado */
+        }
+
+        #tiempo_contador {
+            font-size: 1.2em; /* Reducido de 2em */
+            color: #f39c12;
+            margin-top: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Nuevo contenedor para la imagen y el texto */
+        #map-container {
+            display: inline-block;
+            text-align: center;
+            margin-top: 15px; /* Reducido de 20px */
+        }
+
+        #map {
+            width: 400px; /* Reducido de 500px */
+            height: 400px; /* Reducido de 500px */
+            border: 4px solid #bdc3c7; /* Ajustado */
+            border-radius: 15px;
+            cursor: crosshair;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #map:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); /* Ajustado */
+        }
+
+        #distance {
+            font-size: 1em; /* Reducido de 1.5em */
+            margin-top: 10px; /* Reducido de 15px */
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px; /* Reducido de 15px */
+            border-radius: 10px;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Ajustado */
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+    </style>
+</head>
+<body>
+    <h1>¡Encuentra el Tesoro Pirata!</h1>
+
+    <div id="botones">
+        <button onclick="contador(30)">30 segundos</button>
+        <button onclick="contador(15)">15 segundos</button>
+        <button onclick="contador(5)">5 segundos</button>
+    </div>
+
+    <p id="tiempo_contador">Tiempo restante: 0s</p>
+
+    <!-- Contenedor para la imagen y el texto -->
+    <div id="map-container">
+        <img src="treasuremap.png" id="map" draggable="false">
+        <br>
+        <p id="distance"></p>
+    </div>
+
+    <script>
+        const imagen = document.getElementById("map");
+        imagen.addEventListener("click", position);
+        var cordenada_tesoro_x = 0;
+        var cordenada_tesoro_y = 0;
+        var clicks_user = 0;
+        var tiempo = 0;
+        var interval = null;
+
+        window.onload = function () {
+            cordenada_tesoro_x = Math.floor(Math.random() * imagen.width);
+            cordenada_tesoro_y = Math.floor(Math.random() * imagen.height);
+        };
+
+        function position(elEvento) {
+            var evento = elEvento || window.event;
+            var texto = document.getElementById("distance");
+            clicks_user++;
+
+            var cordenada_user_x = evento.offsetX;
+            var cordenada_user_y = evento.offsetY;
+
+            let catetox = cordenada_tesoro_x - cordenada_user_x;
+            let catetoy = cordenada_tesoro_y - cordenada_user_y;
+
+            let hipotenusa = Math.sqrt(catetox * catetox + catetoy * catetoy);
+
+            if (hipotenusa <= 20) {
+                texto.innerHTML = "🌟 ¡Encontraste el tesoro pirata en " + clicks_user + " clicks! 🌟";
+                clearInterval(interval);
+            } else if (hipotenusa > 20 && hipotenusa <= 50) {
+                texto.innerHTML = "🔥 ¡Muy caliente!";
+            } else if (hipotenusa > 50 && hipotenusa <= 100) {
+                texto.innerHTML = "🌡️ Caliente";
+            } else if (hipotenusa > 100 && hipotenusa <= 200) {
+                texto.innerHTML = "🌤️ Templado";
+            } else if (hipotenusa > 200 && hipotenusa <= 300) {
+                texto.innerHTML = "❄️ Frío";
+            } else {
+                texto.innerHTML = "🧊 ¡Te congelas!";
+            }
+        }
+
+        function contador(tiempo_recibido) {
+            if (interval) {
+                clearInterval(interval);
+            }
+
+            tiempo = tiempo_recibido;
+            actualizar_contador();
+
+            interval = setInterval(() => {
+                if (tiempo > 0) {
+                    tiempo--;
+                    actualizar_contador();
+                } else {
+                    clearInterval(interval);
+                    alert("¡Tiempo agotado!");
+                }
+            }, 1000);
+        }
+
+        function actualizar_contador() {
+            document.getElementById("tiempo_contador").innerHTML = "Tiempo restante: " + tiempo + "s";
+        }
+    </script>
+</body>
+</html>
