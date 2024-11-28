@@ -1,6 +1,6 @@
 <?php
 
-include("configuracion/config.php");
+include("../configuracion/config.php");
 
 try {
     
