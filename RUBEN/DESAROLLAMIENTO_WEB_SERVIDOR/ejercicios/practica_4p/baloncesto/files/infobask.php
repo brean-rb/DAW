@@ -38,9 +38,44 @@
             // 4.7.3
             $sql = "SELECT * FROM jugadores WHERE puntos > 10 AND rebotes >= 4 AND asistencias >= 4";
             $res = mysqli_query($conec, $sql);
-            $text = "Jugadores con mas de 6 rebotes";
+            $text = "Jugadores completo";
             write_table($res, $text);
             // 4.7.3 fin
+
+            // 4.7.4.1
+            $sql = "SELECT * FROM jugadores WHERE posicion = 'base' AND asistencias > 8";
+            $res = mysqli_query($conec, $sql);
+            $text = "Bases con mas de 8 asistencias por partido";
+            write_table($res, $text);
+            // 4.7.4.1 fin
+
+            // 4.7.4.2
+            $sql = "SELECT * FROM jugadores WHERE (posicion = 'escolta' OR posicion = 'alero') AND puntos > 15";
+            $res = mysqli_query($conec, $sql);
+            $text = "Escoltas o aleros que anotan más de 15 puntos por partido.";
+            write_table($res, $text);
+            // 4.7.4.2 fin
+
+            // 4.7.4.3
+            $sql = "SELECT * FROM jugadores WHERE (posicion = 'ala pivot' OR posicion = 'pivot') AND rebotes > 7";
+            $res = mysqli_query($conec, $sql);
+            $text = "Ala pivots o pivots que cogen más de 7 rebotes por partido.";
+            write_table($res, $text);
+            // 4.7.4.3 fin
+
+            // 4.8.1
+            $sql = "DELETE FROM jugadores WHERE nombre IN ('Juanfran', 'Carter');";
+            $res = mysqli_query($conec, $sql);
+            // 4.8.1 fin
+
+            // 4.8.2
+            $sql = "INSERT INTO jugadores (nombre, posicion, partidos, puntos, rebotes, asistencias)
+                    VALUES 
+                    ('Jofre', 'alero', 0, 0, 0, 0),
+                    ('Lehman', 'ala pivot', 0, 0, 0, 0),
+                    ('Stevenson', 'pivot', 0, 0, 0, 0);";
+            $res = mysqli_query($conec, $sql);
+            // 4.8.2 fin
         }
     }catch (Exception $e) {
         echo $e->getMessage();
