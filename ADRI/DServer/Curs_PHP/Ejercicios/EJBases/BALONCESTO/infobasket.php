@@ -72,6 +72,49 @@ try {
     $select = "SELECT * FROM jugadores WHERE posicion = 'base' AND asistencias > 8;";
     $result = mysqli_query($conex,$select);
     crearTabla($result, "Bases con mas de 8 asistencias");
+
+    // 4.7.4.2 Escoltas o aleros que consiguen mas de 15 puntos por partido
+
+    $select = "SELECT * FROM jugadores WHERE (posicion = 'escolta' OR posicion = 'alero') AND puntos > 15;";
+    $result = mysqli_query($conex,$select);
+    crearTabla($result, "Aleros o Escoltas con mas de 15 puntos");
+
+    // 4.7.4.3 Ala pivots o pivots que cojen mas de 7 rebotes por partido
+
+    $select = "SELECT * FROM jugadores WHERE (posicion = 'ala pivot' OR posicion = 'pivot') AND rebotes > 7;";
+    $result = mysqli_query($conex,$select);
+    crearTabla($result, "Ala pivots o pivots con mas de 7 rebotes");
+    
+    //4.8.1 Modificar tabla para indicar que JuanFran y Carter estan de baja
+
+   $delete1 = "DELETE FROM jugadores WHERE nombre='JuanFran'";
+   $delete2 = "DELETE FROM jugadores WHERE nombre='Carter'";
+
+   $result1 = mysqli_query($conex,$delete1);
+   $result2 = mysqli_query($conex,$delete2);
+   $datoseliminados = mysqli_affected_rows($conex);
+   if ($datoseliminados === 1) {
+    echo "<p><strong>Jugadores dados de baja correctamente</strong></p>";
+   } else{
+    echo"<p><strong>Error a dar de baja</strong></p>";
+   }
+
+   //4.8.2 Fichar a  Jofre - alero, Lehman - ala pivot y a Stevenson -Pivot
+
+//    $insert = "INSERT INTO jugadores (nombre,posicion,partidos,puntos,rebotes,asistencias) VALUES 
+//    ('Jofre','alero',0,0,0,0),
+//    ('Lehman','ala pivot',0,0,0,0),
+//    ('Stevenson','pivot',0,0,0,0);";
+
+//    $result = mysqli_query($conex,$insert);
+//    if ($result) {
+//     $colsaffect = mysqli_affected_rows($conex);
+//     if ($colsaffect === 3) {
+//        echo "<p><strong>Insercion correcta</strong></p>";
+//     } else{
+//         echo "<p><strong>Error en la insercion</strong></p>";
+//     }
+//     }
 } catch (Exception $e) {
     echo $e->getMessage();
 }
