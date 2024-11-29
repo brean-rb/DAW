@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="create_cookie(1)">boton 1</button>
+    <button onclick="create_cookie(2)">boton 2</button>
+    <button onclick="create_cookie(3)">boton 3</button>
+    <button onclick="create_cookie(4)">boton 4</button>
+    <button onclick="create_cookie(5)">boton 5</button>
+
+
+    <script>
+
+        function create_cookie(option){
+            try {
+                switch(option){
+                    case 1:
+                        var name_ck = prompt("introduzca el nombre de la cookie");
+                        var value_ck = prompt("introduzca el valor de la cookie");
+                        var create_cookie1 = document.cookie = name_ck + "=" + value_ck;
+                        if(create_cookie){
+                            alert("cookie con nombre: " + name_ck + " y con valor: " + value_ck + " creada correctamente");
+                        } else{
+                            throw new Error("error al cerar la cookie");
+                        }
+                        break;
+
+                    case 2:
+                        var search_ck = prompt("introduzca el nombre de la cookie a cambiar");
+                        var find_ck = find_cookie(search_ck);
+                        if(find_ck){
+                            var change_value_ck = prompt("introduzca el valor a cambiar de la cookie: " + search_ck);
+                            var complete_change_value = document.cookie = search_ck + "=" + change_value_ck;
+                            if(complete_change_value){
+                                alert("valor de la cookie cambiado correctamente");
+                            } else{
+                                throw new Error("error al cambiar el valor de la cookie");
+                                
+                            }
+                        }else{
+                            throw new Error("la cookie no a sido encontrada o esta mal escrita");
+                            
+                        }
+                        break;
+                    
+                    case 3:
+                        read_cookie();
+                        break;
+                    
+                    case 4:
+                        var name_cookie_find = prompt("introduzca el nombre de la cookie que quieras ver su valor");
+                        var see_ck = see_cookie(name_cookie_find);
+                        break;
+
+                }
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+
+        function find_cookie(n_ck){
+            var cookies = document.cookie.split(';');
+
+            for(let i = 0; i < cookies.length; i++){
+                var cookie = cookies[i].trim();
+                if(cookie.split('=')[0].trim() === n_ck){ return true;}
+            }
+            return false;
+        }
+
+        function read_cookie(){
+            var array_cookies = document.cookie;
+            var ca = document.cookie.split(';');
+
+            for(let i = 0; i < ca.length; i++){
+                alert(ca[i]);
+            }
+        }
+
+        function see_cookie(name_ck_see){
+            var cookies = document.cookie.split(';');
+
+            for(let i = 0; i < cookies.length; i++){
+                var cookie = cookies[i].trim();
+                if(cookie.split('=')[0].trim() === name_ck_see){ 
+                    alert("el valor de la cookie " + name_ck_see + " es: \n" + cookie.split('=')[1].trim())
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>

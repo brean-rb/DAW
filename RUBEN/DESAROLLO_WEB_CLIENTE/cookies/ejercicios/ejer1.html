@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="create_cookie(1)">boton 1</button>
+    <br>
+    <button onclick="create_cookie(2)">boton 2</button>
+    <br>
+    <button onclick="create_cookie(3)">boton 3</button>
+    <br>
+    <button onclick="create_cookie(4)">boton 4</button>
+    <br>
+    <button onclick="create_cookie(5)">boton 5</button>
+
+
+    <script>
+
+        try {
+            function create_cookie(option){
+                switch (option) {
+                    case 1:
+                        var cookie1 = document.cookie = "ck1 = cookie_1";
+                        if(cookie1){
+                            alert("cookie1 creada con exito")
+                        } else{
+                            throw new Error("error al crear la cookie1");
+                        }
+                        break;
+                
+                    case 2:
+                        var cookie2 = document.cookie = "ck2 = cookie_2";
+                        if(cookie2){
+                            alert("cookie2 creada con exito")
+                        } else{
+                            throw new Error("error al crear la cookie2");
+                        }
+                        break;
+
+                    case 3:
+                        var array_cookies = document.cookie;
+                        read_cookie(array_cookies);
+                        break;
+
+                    case 4:
+                        var delete_ck_1 = document.cookie = "ck1=; max-age=0";
+                        if(delete_ck_1){
+                            alert("cookie1 eliminada con exito");
+                        } else{
+                            throw new Error("error al eliminar la cookie1");
+                        }
+                        break;
+                    
+                    case 5:
+                    var delete_ck_2 = document.cookie = "ck2=; max-age=0";
+                    if(delete_ck_1){
+                        alert("cookie2 eliminada con exito");
+                    } else{
+                        throw new Error("error al eliminar la cookie2");
+                    }
+                    break;
+
+                    default:
+                    break;
+                }
+            }
+
+        } catch (error) {
+            alert(error);
+        }
+
+        function read_cookie(name){
+            var ca = document.cookie.split(';');
+
+            for(let i = 0; i < ca.length; i++){
+                alert(ca[i]);
+            }
+        }
+    </script>
+</body>
+</html>
