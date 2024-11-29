@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="crearCookie(1)">Crear cookie 1</button><br>
+    <button onclick="crearCookie(2)">Crear cookie 2</button><br>
+    <button onclick="mostrarCookie()">Mostrar cookie</button><br>
+    <button onclick="borrarCookie(1)">Borrar cookie 1</button><br>
+    <button onclick="borrarCookie(2)">Borrar cookie 2</button><br>
+
+    <script>
+      function crearCookie(num) {
+            switch (num) {
+                case 1:
+                    document.cookie = "cookie1=valor1; max-age=3600; path=/";
+                    alert("Cookie 1 creada correctamente"); 
+                    break;
+                case 2:
+                    document.cookie = "cookie2=valor2; max-age=3600; path=/";
+                    alert("Cookie 2 creada correctamente"); 
+                    break;
+            }
+        }
+
+
+      function mostrarCookie(){
+        var allCookies = document.cookie.split(";");
+        for (let i = 0; i < allCookies.length; i++) {
+            var posIgual= allCookies[i].lastIndexOf("=");
+            var long = allCookies[i].length;
+            var valor = allCookies[i].substring(posIgual+1,long);
+            alert("La cookie " + (i + 1) + " tiene valor: "+ valor);
+            
+        }
+      }  
+
+      function borrarCookie(num) {
+    var allCookies = document.cookie.split(";");
+    
+    for (let i = 0; i < allCookies.length; i++) {
+        // Clean the cookie name from any extra spaces
+        var cookie = allCookies[i].trim();
+        var posIgual = cookie.indexOf("="); // Find the position of '='
+        var name = cookie.substring(0, posIgual); // Cookie name
+        var value = cookie.substring(posIgual + 1); // Cookie value
+        
+        // Check if the last character of the cookie name matches the provided num
+        var numValor = name.charAt(name.length - 1); // Last character of the cookie name
+        
+        if (numValor === num.toString()) {
+            // To ensure we delete the cookie correctly, we need to match the path and domain
+            document.cookie = name + "=; max-age=0; path=/"; // This works for cookies set on the root path
+        }
+    }
+}
+
+    </script>
+</body>
+
+</html>
