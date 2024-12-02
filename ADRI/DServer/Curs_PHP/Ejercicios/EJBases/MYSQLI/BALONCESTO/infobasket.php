@@ -87,9 +87,12 @@ try {
     
     //4.8.1 Modificar tabla para indicar que JuanFran y Carter estan de baja
 
-   $delete1 = "DELETE FROM jugadores WHERE nombre='JuanFran'";
-   $delete2 = "DELETE FROM jugadores WHERE nombre='Carter'";
+    $select = "SELECT nombre FROM jugadores WHERE nombre='JuanFran' OR nombre='Carter'";
+    $result = mysqli_query($conex, $select);
 
+   if (mysqli_num_rows($result) > 0) {
+    $delete1 = "DELETE FROM jugadores WHERE nombre='JuanFran'";
+    $delete2 = "DELETE FROM jugadores WHERE nombre='Carter'";
    $result1 = mysqli_query($conex,$delete1);
    $result2 = mysqli_query($conex,$delete2);
    $datoseliminados = mysqli_affected_rows($conex);
@@ -98,23 +101,40 @@ try {
    } else{
     echo"<p><strong>Error a dar de baja</strong></p>";
    }
+    }else{
+        echo "<p><strong>Jugadores ya eliminados</strong></p>";
+    }
 
    //4.8.2 Fichar a  Jofre - alero, Lehman - ala pivot y a Stevenson -Pivot
 
-//    $insert = "INSERT INTO jugadores (nombre,posicion,partidos,puntos,rebotes,asistencias) VALUES 
-//    ('Jofre','alero',0,0,0,0),
-//    ('Lehman','ala pivot',0,0,0,0),
-//    ('Stevenson','pivot',0,0,0,0);";
+   $select = "SELECT nombre FROM jugadores WHERE nombre = 'Jofre' OR nombre = 'Lehman' OR nombre = 'Stevenson'";
+$result = mysqli_query($conex, $select);
 
-//    $result = mysqli_query($conex,$insert);
-//    if ($result) {
-//     $colsaffect = mysqli_affected_rows($conex);
-//     if ($colsaffect === 3) {
-//        echo "<p><strong>Insercion correcta</strong></p>";
-//     } else{
-//         echo "<p><strong>Error en la insercion</strong></p>";
-//     }
-//     }
-} catch (Exception $e) {
+
+if (mysqli_num_rows($result) == 0) {
+    // Insert players if none of them are found
+    $insert = "INSERT INTO jugadores (nombre, posicion, partidos, puntos, rebotes, asistencias) VALUES 
+        ('Jofre', 'alero', 0, 0, 0, 0),
+        ('Lehman', 'ala pivot', 0, 0, 0, 0),
+        ('Stevenson', 'pivot', 0, 0, 0, 0);";
+    
+    // Execute the insert query
+    $result = mysqli_query($conex, $insert);
+    
+    if ($result) {
+        $colsaffect = mysqli_affected_rows($conex);
+        if ($colsaffect === 3) {
+            echo "<p><strong>Inserción correcta</strong></p>";
+        } else {
+            echo "<p><strong>Error en la inserción</strong></p>";
+        }
+    } else {
+        echo "<p><strong>Error al ejecutar la consulta de inserción</strong></p>";
+    }
+} else {
+    echo "<p><strong>Jugadores ya insertados</strong></p>";
+}
+}catch (Exception $e) {
     echo $e->getMessage();
 }
+?>
