@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #padre{
+            display: flex;
+            flex-direction: row;
+            gap: 2px;
+            height: 100vh;
+        }
+
+        #cont1{
+            padding: 12px 24px;
+            background-color: lightblue;
+            flex: 1;
+        }
+
+        #cont2{
+            background-color: rgba(193,219,210,1.00);
+            flex: 4;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="padre">
+        <div id="cont1">contenido lateral</div>
+        <div id="cont2">esto seria el contenido principal</div>
+    </div>
+</body>
+</html>
