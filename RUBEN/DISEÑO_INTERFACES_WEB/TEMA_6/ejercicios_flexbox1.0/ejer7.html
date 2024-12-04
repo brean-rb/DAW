@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=+, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #carta{
+            border: 1px solid black;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            font-family: sans-serif;
+        }
+
+        #title, #foot{
+            text-align: center;
+            align-content: center;
+        }
+
+        #title{
+            background-color: black;
+            color: white;
+            height: 50px;
+        }
+
+        #content{
+            height: 100px;
+        }
+
+        #foot{
+            height: 40px;
+            background-color: gray;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="carta">
+        <div id="title">Tarjeta de presentacion</div>
+        <div id="content">contenido del cuerpo de la tarjeta</div>
+        <div id="foot">Pie de la tarjeta</div>
+    </div>
+</body>
+</html>

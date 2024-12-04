@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        body{
+            font-family: sans-serif;
+            text-align: center;
+        }
+        #title{
+            background-color: rgb(255, 153, 0);
+            font-weight: bold;
+            height: 100px;
+            font-size: 24px;
+            align-content: center;
+        }
+        #content{
+            height: 100vh;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .lateral{
+            padding: 24px;
+            flex: 1;
+            background-color: gray;
+            color: white;
+        }
+        .center{
+            padding: 24px;
+            flex: 2;
+            color: gray;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="title">
+        <h2>Titulo de la página</h2>
+    </div>
+    <div id="content">
+        <div class="lateral">Lateral izquierdo</div>
+        <div class="center">Zona central</div>
+        <div class="lateral">Lateral derecho</div>
+    </div>
+</body>
+</html>
