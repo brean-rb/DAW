@@ -1,0 +1,91 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <title>Ejercicio 1 examen</title>
+
+  <style type="text/css">
+    table {
+      border-collapse: collapse;
+    }
+
+    td {
+      border: 1px solid #000;
+      padding: 25px;
+      background-color: #ccc;
+    }
+  </style>
+</head>
+
+<body>
+
+  <button id="add">Añadir Fila</button>
+  <br>
+  <button id="delete">Eliminar Fila</button>
+  <table id="miTabla">
+
+    <tr>
+      <td><b>Nombre</b></td>
+      <td><b>Años</b></td>
+    </tr>
+
+    <tr>
+      <td>Manolo</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <td>Laura</td>
+      <td>25</td>
+    </tr>
+    </tbody>
+
+
+    <script>
+      var get_table = document.getElementById("miTabla");
+      var add_row = document.getElementById("add");
+      var delete_row = document.getElementById("delete");
+      
+      add_row.onclick = row_add;
+      delete_row.onclick = row_delete;
+
+      function row_add() {
+        let name = prompt("introduce nombre");
+        let old = prompt("introduce la edad");
+
+        let text_name = document.createTextNode(name);
+        let text_old = document.createTextNode(old);
+
+        let create_td_name = document.createElement("td");
+        let create_td_old = document.createElement("td");
+        let create_tr = document.createElement("tr");
+
+        create_td_name.appendChild(text_name);
+        create_td_old.appendChild(text_old);
+
+        create_tr.appendChild(create_td_name);
+        create_tr.appendChild(create_td_old);
+
+        get_table.appendChild(create_tr);
+
+      }
+
+      function row_delete(){
+        let get_td = document.getElementsByTagName("td");
+        let name_delete = prompt("indica el nombre a eliminar");
+
+        for(let i = 0; i < get_td.length; i++){
+          var name_text = get_td[i].textContent;
+          if(name_text == name_delete){
+            get_td[i].remove();
+            get_td[i].remove();
+          }
+        }
+      }
+    </script>
+
+</body>
+
+
+
+</html>

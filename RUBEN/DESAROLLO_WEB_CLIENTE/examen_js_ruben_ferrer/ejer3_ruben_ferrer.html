@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Este es el primer parrafo <a href="http://">google</a></p>
+    <p>Este es el segundo parrafo <a href="http://">sport</a></p>
+    <p>Este es el tercer parrafo <a href="http://">marca</a></p>
+
+    <script>
+
+        var get_p_one = document.getElementsByTagName("p")[0];
+        var get_a = document.getElementsByTagName("a");
+
+
+        get_p_one.addEventListener("mouseover", evento);
+        get_p_one.addEventListener("mouseout", evento);
+
+        function evento(el_evento) {
+            var evento = el_evento;
+
+            switch (evento.type) {
+                case "mouseover":
+                    for(let i = 0; i < get_a.length; i++){
+                        get_a[i].style.fontSize = "20pt";
+                    }
+                    break;
+                
+                case "mouseout":
+                    for(let i = 0; i < get_a.length; i++){
+                        get_a[i].style.fontSize = "12pt";
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+    </script>
+</body>
+</html>

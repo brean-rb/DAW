@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <div id="c_1" style="background-color: red;">color1</div>
+    <br>
+    <div id="c_2" style="background-color: blue;">color2</div>
+
+
+    <script>
+
+        window.onload = function() {
+            setInterval(change, 1000);
+        }
+
+        function change(){
+            var get_div = document.getElementsByTagName("div");
+            for(let i = 0; i < get_div.length; i ++){
+                if(get_div[i].style.backgroundColor == "red"){
+                    
+                    get_div[i].setAttribute("style" , "background-color: blue;")
+                }else{
+                    get_div[i].setAttribute("style" , "background-color: red;")
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>
