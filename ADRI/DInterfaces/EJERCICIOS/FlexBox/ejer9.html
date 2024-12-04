@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejer 9</title>
+</head>
+<style>
+    body{
+        padding: 20px;
+    }
+    #padre{
+        display: flex;
+        flex-direction: row;
+        font-family: sans-serif;
+        padding: 24px;
+        width: 400px;
+    }
+
+    #colizq{
+        color: white;
+        background-color: #0e7c74;
+        flex: 2;
+    }
+
+    #colder{
+        display: flex;
+        flex-direction: column;
+        height: 300px;
+        flex: 1;
+    }
+    #colderarr{
+        height: 50%;
+        border: 1px solid lightgray;
+    }
+    #colderabj{
+        height: 50%;
+        border: 1px solid lightgray;
+    }
+</style>
+<body>
+    <div id="padre">
+        <div id="colizq">
+            <p>Columna izquierda</p>
+        </div>
+        <div id="colder">
+            <div id="colderarr">
+                <p>Derecha parte alta</p>
+            </div>
+            <div id="colderabj">
+                <p>Derecha parte abajo</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

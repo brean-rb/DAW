@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejer 6</title>
+</head>
+<style>
+    #padre{
+        display: flex;
+        height: 100vh;
+        width: 100%;
+        gap: 2px;
+        padding: 12px 24px;
+        flex-direction: row;
+    }
+    #sidebar{
+        background-color: aqua;
+        flex: 1;
+    }
+    #principal{
+        background-color: aquamarine;
+        flex: 8;
+    }
+
+    .linea{
+        border-bottom: 1px solid grey;
+        width: 100px;
+        list-style-type: none;
+        font-family: sans-serif;
+    }
+</style>
+<body>
+    <div id="padre">
+        <div id="sidebar">
+            <ul>
+            <li class="linea">Home</li>
+            <li class="linea">Servicios</li>
+            <li class="linea">Opciones</li>
+            <li class="linea">Planes</li>
+            <li class="linea">Contacto</li>
+            </ul>
+        </div>
+        <div id="principal">
+            Este seria el contenido principal
+        </div>
+    </div>
+</body>
+</html>

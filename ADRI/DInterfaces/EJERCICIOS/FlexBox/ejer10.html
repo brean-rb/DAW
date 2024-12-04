@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejer 10</title>
+</head>
+<style>
+    body{
+        margin: 0;
+    }
+    #padre{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    #cabecera{
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        background-color:rgb(255, 212, 22);
+        width: 100%;
+    }
+    #cuerpo{
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        width: 100%;
+    }
+    .later{
+        display: flex;
+        justify-content: center;
+        padding: 24px;
+        height: 600px;
+        flex: 1;
+        background-color: gray;
+        color:white;
+    }
+
+    .centro{
+        display: flex;
+        justify-content: center;
+        padding: 24px;
+        flex: 2;
+    }
+</style>
+<body>
+    <div id="padre">
+        <div id="cabecera">
+            <p>Titulo de la pagina</p>
+        </div>
+        <div id="cuerpo">
+            <div class="later"><p>Lateral izquierdo</p></div>
+            <div class="centro">Zona central</div>
+            <div class="later">Lateral derecho</div>
+        </div>
+    </div>
+</body>
+</html>
