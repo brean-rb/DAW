@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body{
+            padding: 20px;
+        }
+
+        #padre{
+            height: 200px;
+            padding: 24px;
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+        }
+
+        #content_left{
+            background-color: #0e7c74;
+            color: white;
+            flex: 2;
+        }
+
+        #content_rigt{
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .rigt_content{
+            border: 1px solid lightgray;
+            flex: 1;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="padre">
+        <div id="content_left">Columna izquierda</div>
+        <div id="content_rigt">
+            <div class="rigt_content">Dercha parte alta</div>
+            <div class="rigt_content">Derecha parte baja</div>
+        </div>
+    </div>
+</body>
+</html>

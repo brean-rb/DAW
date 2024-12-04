@@ -35,6 +35,15 @@ try {
         if ($res) {
             mostrarTabla($res,"Ordenar frutas de mayor a menor");            
         }
+
+        //4.3 Las frutas que tienen precio mayor a 1.50
+
+        $sql = "SELECT * FROM precios WHERE precio_kg > 1.50;";
+        $res = $conex->query($sql);
+        if ($res) {
+            mostrarTabla($res, "Frutas con precio mayor a 1.50");
+        }
+
     }
 } catch ( Exception $e) {
     echo $e->getMessage();
