@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4 Adrian Marschal</title>
+</head>
+<body>
+    <p style="background-color: red;">Este es el primer parrafo </p>
+    <p style="background-color: blue;">Este es el segundo parrafo</p>
+   
+
+    <script>
+      var parrafos = document.getElementsByTagName("p");
+
+      setInterval(cambiarColor,1000);
+      function cambiarColor() {
+      for (let index = 0; index < parrafos.length; index++) {
+           if (parrafos[index].getAttribute("style") == "background-color: red;") {
+            parrafos[index].setAttribute("style","background-color: blue;")
+           } else if (parrafos[index].getAttribute("style") == "background-color: blue;") {
+            parrafos[index].setAttribute("style","background-color: red;")
+           }
+        }
+    }
+      
+    </script>
+</body>
+</html>

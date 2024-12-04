@@ -1,0 +1,86 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Ejercicio 2 Adrian Marschal</title>
+    
+    <style type="text/css">
+    table{ 
+        border-collapse: collapse; 
+    } 
+             
+    td{ 
+        border:1px solid #000; 
+        padding:25px; 
+        background-color:#ccc; 
+    } 
+    </style>
+    </head>
+    <body>
+      <button id="anadir" style="margin-bottom: 20px ;" onclick="anadir()">Añadir Fila</button>
+      <button id="eliminar" style="margin-bottom: 20px ;" onclick="eliminar()">Eliminar Fila</button>
+
+        <table id="miTabla">
+            <tr>
+                <td><b>Nombre</b></td>
+                <td><b>Años</b></td>
+              </tr>
+
+              <tr>
+                <td>Manolo</td>
+                <td>30</td>
+              </tr>
+              <tr>
+                <td>Laura</td>
+                <td>25</td>
+              </tr>
+            </tbody>
+         
+            <script>
+              function anadir(){
+                var nombre = prompt("Introduce el nombre a añadir");
+                var edad = prompt("Introduce la edad");
+                var tabla = document.getElementById("miTabla");
+                var fila = document.createElement("tr");
+                var columnombre = document.createElement("td");
+                var columnedad = document.createElement("td");
+                var textoNombre = document.createTextNode(nombre);
+                var textoedad = document.createTextNode(edad);
+                columnombre.appendChild(textoNombre);
+                columnedad.appendChild(textoedad);
+                fila.appendChild(columnombre);
+                fila.appendChild(columnedad);
+                tabla.appendChild(fila);
+              }
+              function eliminar() {
+                var borrarNombre = prompt("Introduce el nombre a borrar:");
+                var eliminar = false;
+                if (borrarNombre == "Nombre") {
+                  alert("No se puede eliminar esta columna");
+
+                } else{
+
+                  var tabla = document.getElementById("miTabla");
+                  var filas = tabla.getElementsByTagName("tr");
+
+                  for (let i = 1; i < filas.length; i++) {
+                    var columna = filas[i].getElementsByTagName("td") 
+                    for (let j = 0; j < columna.length; j++) {
+                      if (columna[j].textContent == borrarNombre) {
+                        eliminar = true;
+                      }
+                    }
+                    if (eliminar) {
+                      filas[i].remove();
+                    }
+                  }
+                  
+                  }
+                }
+              
+            </script>
+    
+    </body>
+    
+    
+    
+    </html>
+    
