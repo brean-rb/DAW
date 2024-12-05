@@ -44,18 +44,15 @@
     var allCookies = document.cookie.split(";");
     
     for (let i = 0; i < allCookies.length; i++) {
-        // Clean the cookie name from any extra spaces
         var cookie = allCookies[i].trim();
-        var posIgual = cookie.indexOf("="); // Find the position of '='
-        var name = cookie.substring(0, posIgual); // Cookie name
-        var value = cookie.substring(posIgual + 1); // Cookie value
+        var posIgual = cookie.indexOf("="); 
+        var name = cookie.substring(0, posIgual); 
+        var value = cookie.substring(posIgual + 1); 
         
-        // Check if the last character of the cookie name matches the provided num
-        var numValor = name.charAt(name.length - 1); // Last character of the cookie name
+        var numValor = name.charAt(name.length - 1); 
         
         if (numValor === num.toString()) {
-            // To ensure we delete the cookie correctly, we need to match the path and domain
-            document.cookie = name + "=; max-age=0; path=/"; // This works for cookies set on the root path
+            document.cookie = name + "=; max-age=0; path=/"; 
         }
     }
 }
