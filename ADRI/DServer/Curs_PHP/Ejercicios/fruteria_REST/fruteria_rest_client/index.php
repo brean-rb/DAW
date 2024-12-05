@@ -91,7 +91,7 @@ if(isset($_REQUEST["validar"])){
         $res .= '<h5 class="card-title">Frutas de ' . $temporada . '</h5>';
         $response = curl_conexion($url, "GET");
         $frutas = json_decode($response);
-        if(count($frutas) > 1){
+        if(count($frutas) >= 1){
             for($i = 0 ; $i < count($frutas) ; $i++ ){
                 $nom .= 'ID: ' . $frutas[$i][0] . '  Fruta: ' . $frutas[$i][1] . "<br>";
             }

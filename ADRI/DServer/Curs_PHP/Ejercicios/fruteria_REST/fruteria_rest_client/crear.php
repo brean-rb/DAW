@@ -43,7 +43,7 @@ Alta nueva fruta
  *  
  */
 include 'curl_conexion.php';
-include_once 'config.php';
+include 'config.php';
 $res = '<div class="card" style="width: 18rem;">';
 $res .= '<div class="card-body">';
 $res .= '<p class="card-text">';
