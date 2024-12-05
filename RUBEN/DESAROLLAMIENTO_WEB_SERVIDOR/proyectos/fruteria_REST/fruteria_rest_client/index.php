@@ -78,7 +78,8 @@ Ejemplo Cliente REST para el Servicio Web frutería
  * Cliente REST de Servicio Web de la fruteria
  */
 include 'curl_conexion.php';
-include_once '../CONFIG/config.php';
+include 'config.php';
+
 // Crea una CARD de Bootstrap para mostrar los resultados de las búsquedas
 $res = '<div class="card" style="width: 18rem;">';
 $res .= '<div class="card-body">';
@@ -87,11 +88,12 @@ $nom ='';
 if(isset($_REQUEST["validar"])){
     if(isset($_REQUEST["temporada"])){
         $temporada= filter_input(INPUT_POST, "temporada", FILTER_SANITIZE_STRING);
-        $url = "http://localhost/toni/fruteria_rest_servidor/index.php?temporada=" . $temporada;
+        
+        $url = URL . "index.php?temporada=" . $temporada;
         $res .= '<h5 class="card-title">Frutas de ' . $temporada . '</h5>';
         $response = curl_conexion($url, "GET");
-        $frutas = json_decode($response);
-        if(count($frutas) > 1){
+        $frutas = json_decode($response, true);
+        if(count($frutas) >= 1 ){
             for($i = 0 ; $i < count($frutas) ; $i++ ){
                 $nom .= 'ID: ' . $frutas[$i][0] . '  Fruta: ' . $frutas[$i][1] . "<br>";
             }
@@ -113,9 +115,9 @@ if(isset($_REQUEST["validar2"])){
         $fruta = filter_input(INPUT_POST, "fruta", FILTER_SANITIZE_STRING);
         $res .= '<h5 class="card-title">Datos de ' . $fruta . '</h5>';
         $dato ='';
-        $url = "http://localhost/toni/fruteria_rest_servidor/index.php?tempo=" . $temporada . "&fruta=" . $fruta;
+        $url = URL . "index.php?tempo=" . $temporada . "&fruta=" . $fruta;
         $response = curl_conexion($url, "GET");       
-        $frutas = json_decode($response);
+        $frutas = json_decode($response, true);
         $nom_columna = array('ID', 'FRUTA','PRECIO Kg','TEMPORADA');
         if(is_array($frutas)){
             foreach ($frutas as $fr){
@@ -143,9 +145,9 @@ if(isset($_REQUEST["modificar"])){
         $id = filter_input(INPUT_POST, "id", FILTER_SANITIZE_STRING);
         $precio_kg = filter_input(INPUT_POST, "precio_kg", FILTER_SANITIZE_STRING);
         $params = array('id' => $id, 'precio_kg' => $precio_kg) ;
-        $url = URL;
+        $url = URL . "index.php";
         $response = curl_conexion($url, "PUT", $params);
-        $resp = json_decode($response);
+        $resp = json_decode($response, true);
         $res .= $resp;
         $res .= '</p>';
         $res .= '<a href="index.php" class="btn btn-primary">Cerrar</a>';
@@ -157,9 +159,9 @@ if(isset($_REQUEST["modificar"])){
 if(isset($_REQUEST["eliminar"])){
     if(isset($_REQUEST["id"])) {
         $id = filter_input(INPUT_POST, "id", FILTER_SANITIZE_STRING);
-        $url = "http://localhost/toni/fruteria_rest_servidor/index.php?id=" .$id;
+        $url = URL . "index.php?id=" .$id;
         $response = curl_conexion($url, "DELETE");
-        $resp = json_decode($response);
+        $resp = json_decode($response, true);
         $res .= $resp;
         $res .= '</p>';
         $res .= '<a href="index.php" class="btn btn-primary">Cerrar</a>';

@@ -43,7 +43,7 @@ Alta nueva fruta
  *  
  */
 include 'curl_conexion.php';
-include_once '../CONFIG/config.php';
+include 'config.php';
 
 $res = '<div class="card" style="width: 18rem;">';
 $res .= '<div class="card-body">';
@@ -58,7 +58,7 @@ if(isset($_REQUEST["crear"])){
         $precio_kg = filter_input(INPUT_POST, "precio", FILTER_SANITIZE_STRING);
         $res .= '<h5 class="card-title">Datos de ' . $fruta . '</h5>';
         $params = array('temporada' => $temporada, 'fruta' => $fruta, 'precio_kg' => $precio_kg) ;
-        $url = URL;
+        $url = URL . "index.php";
         $response = curl_conexion($url, 'POST', $params);
         $res .= json_decode($response);
         $res .=  $fruta . 'añadida a la BD</p>';
