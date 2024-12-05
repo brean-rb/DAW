@@ -32,14 +32,23 @@
                     case 2:
                         var search_ck = prompt("introduzca el nombre de la cookie a cambiar");
                         var find_ck = find_cookie(search_ck);
-                        if(find_ck){
-                            var change_value_ck = prompt("introduzca el valor a cambiar de la cookie: " + search_ck);
-                            var complete_change_value = document.cookie = search_ck + "=" + change_value_ck;
-                            if(complete_change_value){
-                                alert("valor de la cookie cambiado correctamente");
-                            } else{
-                                throw new Error("error al cambiar el valor de la cookie");
-                                
+                        var cookies = document.cookie.split(";");
+
+                            if(find_ck){
+                            for (let i = 0; i < cookies.length; i++) {
+                                var value_cookie = cookies[i].split("=")[1];
+                                var change_value_ck = prompt("introduzca el valor a cambiar de la cookie: " + search_ck);
+                                if(value_cookie === change_value_ck){
+                                    throw new Error("el valor es el mismo");
+                                } else{
+                                    var complete_change_value = document.cookie = search_ck + "=" + change_value_ck;
+                                    if(complete_change_value){
+                                        alert("valor de la cookie cambiado correctamente");
+                                    } else{
+                                        throw new Error("error al cambiar el valor de la cookie");
+                                        
+                                    }
+                                }
                             }
                         }else{
                             throw new Error("la cookie no a sido encontrada o esta mal escrita");
@@ -54,6 +63,18 @@
                     case 4:
                         var name_cookie_find = prompt("introduzca el nombre de la cookie que quieras ver su valor");
                         var see_ck = see_cookie(name_cookie_find);
+                        break;
+                    
+                    case 5:
+                        var cookie_select = prompt("que cookie desea eliminar");
+                        var cookies = document.cookie.split(";");
+                        for(let i = 0; i < cookies.length; i++){
+                            let cookie_name = cookies[i].split("=")[0];
+                            if(cookie_name === cookie_select){
+                                document.cookie = cookie_name + "=; max-age=0";
+                                alert("la cookie " + cookie_name + " eliminada");
+                            }
+                        }
                         break;
 
                 }
