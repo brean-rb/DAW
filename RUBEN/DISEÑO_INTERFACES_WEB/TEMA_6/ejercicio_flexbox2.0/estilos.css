@@ -93,4 +93,14 @@ body {
 	cursor: pointer;
 }
 
+.contenedor-conciertos h3{
+	margin-bottom: 125px;
+}
 
+.banner h3{
+	margin-bottom: 50px;
+}
+
+.banner button{
+	margin-top: 70px;
+}
