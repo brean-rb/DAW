@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helados</title>
+</head>
+<body>
+    <script>
+        var sabor = prompt("¿Qué sabor de helado quieres?").toLowerCase();
+        var precio;
+
+        if (sabor === "sinsabor") {
+            precio = 1.90;
+        } else if (sabor === "oreo") {
+            precio = 1.00;
+        } else if (sabor === "kitkat") {
+            precio = 1.50;
+        } else if (sabor === "brownie") {
+            precio = 0.75;
+        } else if (sabor === "lacasitos") {
+            precio = 0.95;
+        } else {
+            alert("No tenemos este sabor, lo sentimos.");
+            alert("El helado SinSabor cuesta 1.90€.");
+            precio = null;   }
+
+        
+        if (precio !== null) {
+            alert("El precio del helado de " + sabor + " es " + precio + "€.");
+        }
+    </script>
+</body>
+</html>

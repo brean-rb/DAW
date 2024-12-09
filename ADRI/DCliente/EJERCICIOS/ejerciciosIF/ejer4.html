@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var diametro = Number(prompt("Introduce el diámetro de la rueda (en metros):"));
+var grosor = Number(prompt("Introduce el grosor de la rueda (en metros):"));
+
+if (isNaN(diametro) || isNaN(grosor)) {
+    alert("Introduce valores numéricos válidos.");
+} else {
+    if (diametro > 1.4) {
+        alert("La rueda es para un vehículo grande.");
+        if (grosor < 0.4) {
+            alert("El grosor para esta rueda es inferior al recomendado.");
+        }
+    } else if (diametro > 0.8) {
+        alert("La rueda es para un vehículo mediano.");
+        if (grosor < 0.25) {
+            alert("El grosor para esta rueda es inferior al recomendado.");
+        }
+    } else {
+        alert("La rueda es para un vehículo pequeño.");
+    }
+}
+
+    </script>
+</body>
+</html>
