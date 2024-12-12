@@ -90,3 +90,35 @@
 //      idescondiv.style.backgroundColor = "cyan";
 //  })
 
+// // Ejercicio 13: Seleccionar todos los elementos <p> que contienen la palabra "párrafo" y cambiar su tamaño de fuente a 18px
+// var parraftextos = document.querySelectorAll('p');
+
+// parraftextos.forEach(function(parraftextos){
+//   if (parraftextos.textContent.includes('párrafo')) {
+//     p.style.fontSize = '18px';
+//   }
+// });
+
+// // Ejercicio 14:  Seleccionar el último elemento <li> dentro del elemento con id "tabla" y cambiar su estilo a negrita
+// var ultimoLi = document.querySelector('#tabla li:last-of-type');
+// if (ultimoLi) {
+//   ultimoLi.style.fontWeight = 'bold';
+// }
+
+// //Ejercicio 15: Selecciona todos los <li> vacíos y ponles un fondo verde.
+// var liVacios = document.querySelectorAll('li:empty');
+// liVacios.forEach(function(liVacios) {
+//   liVacios.style.backgroundColor = 'green';
+// });
+
+// // Ejercicio 16:  Selecciona los asientos en negrita y aplícales el color rojo
+// var asientosNegrita = document.querySelectorAll('#tabla strong');
+// asientosNegrita.forEach(function(asientosNegrita){
+//   asientosNegrita.style.color = 'red';
+// });
+
+// Ejercicio 17:  Selecciona todos los <h1> excepto los que tienen la clase rojo y ponles un fondo amarillo
+var h1SinClaseRojo = document.querySelectorAll('h1:not(.rojo)');
+  h1SinClaseRojo.forEach(function(h1SinClaseRojo){
+    h1SinClaseRojo.style.backgroundColor = 'yellow';
+  });
