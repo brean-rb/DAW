@@ -74,8 +74,47 @@
 //fin ejer 11
 
 //ejer 12
-    var get_div_div =document.querySelectorAll("div^=['div']");
+    var get_div_div =document.querySelectorAll("div[id^='div']");
     get_div_div.forEach(function(get_div_div){
         get_div_div.style.backgroundColor = "cyan";
-    })
+    });
 //fin ejer 12
+
+// ejer 13
+    var get_p_parrafo = document.querySelectorAll("p");
+    get_p_parrafo.forEach(function(get_p_parrafo){
+        if(get_p_parrafo.textContent === "parrafo"){
+            get_p_parrafo.style.fontSize = "18px";
+        }
+    });
+// fin ejer 13
+
+//eejer 14
+    var get_ult_li = document.querySelectorAll("#tabla > li:last-of-type");
+    get_ult_li.style.fontWeight = "bold";
+//  fin ejer 14
+
+// ejer 15
+    var get_empty_li = document.querySelectorAll("li");
+    get_empty_li.forEach(function(get_empty_li){
+        if(get_empty_li.trim() === ""){
+            get_empty_li.style.backgroundColor = "green";
+        }
+    });
+// fin ejer 15
+
+//ejer16
+    var boldSeats = document.querySelectorAll("b"); 
+    boldSeats.forEach(function(boldSeats) {
+        boldSeats.style.color = "red";
+    });
+//fin ejer 16
+
+//ejer 17
+    var get_h1_exc_red = document.querySelectorAll("h1");
+    get_h1_exc_red.forEach(function(get_h1_exc_red){
+        if(!get_h1_exc_red.getAttribute("class") === "rojo"){
+            get_h1_exc_red.style.backgroundColor = "yellow";
+        }
+    });
+//fin ejer17
