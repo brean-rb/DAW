@@ -63,6 +63,3 @@ switch($metodo){
     default:
         $respuesta ="Opción incorrecta!!!!";
 }
-
- 
- 

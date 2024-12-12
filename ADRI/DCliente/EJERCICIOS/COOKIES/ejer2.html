@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="crearCookie()">Crear cookie</button><br>
+    <button onclick="modificarCookie()">Modificar cookie </button><br>
+    <button onclick="mostrarCookie()">Mostrar cookie</button><br>
+    <button onclick="leerCookie()">Leer cookie </button><br>
+    <button onclick="borrarCookie()">Borrar cookie </button><br>
+
+    <script>
+      function crearCookie() {
+           var nombre = prompt('Introduce el nombre de la cookie:');
+           var valor = prompt('Introduce el valor de la cookie' + nombre);
+
+           document.cookie = nombre+'='+valor + ';max-age=3600;path=/;';
+           alert(nombre+' creada correctamente');
+        }
+
+        function modificarCookie() {
+            var cambio = false;
+            var igual = false;
+            var nombreCambio = prompt("Introduce el nombre de la cookie a cambiar:");
+            var allCookies = document.cookie.split(';');
+           for (let i = 0; i < allCookies.length; i++) {
+            var posIgual= allCookies[i].lastIndexOf("=");
+            var long = allCookies[i].length;
+            var nombreEX = allCookies[i].substring(0,posIgual);
+            var valorEX = allCookies[i].substring(posIgual+1,long);
+
+            if (nombreCambio == nombreEX) {
+                var valorDif =  prompt("Introduce el valor de la cookie" + nombreCambio +  "a cambiar:");
+                cambio = true;
+                if (valorDif != valorEX) {
+                    document.cookie = nombreCambio+'='+valorDif;
+                    alert("Valor de la cookie " + nombreCambio + " a cambiado el valor a: " + valorDif);
+                    igual = true;
+                } 
+            }
+           }
+           if (!cambio) {
+            alert("Esa cookie no existe");
+           }
+           if (!igual) {
+            alert("La cookie" + nombreCambio + "ya tiene ese valor");
+           }
+        }
+      function mostrarCookie(){
+        var allCookies = document.cookie.split(";");
+        for (let i = 0; i < allCookies.length; i++) {
+            var posIgual= allCookies[i].lastIndexOf("=");
+            var long = allCookies[i].length;
+            var valor = allCookies[i].substring(posIgual+1,long);
+            alert("La cookie " + (i + 1) + " tiene valor: "+ valor);
+            
+        }
+      }  
+
+      function borrarCookie() {
+    var allCookies = document.cookie.split(";");
+    
+    for (let i = 0; i < allCookies.length; i++) {
+        
+    }
+}
+
+    </script>
+</body>
+
+</html>

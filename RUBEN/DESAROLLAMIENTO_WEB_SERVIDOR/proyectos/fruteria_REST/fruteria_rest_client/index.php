@@ -14,26 +14,26 @@ Ejemplo Cliente REST para el Servicio Web frutería
 <h3>Frutería</h3>
 <!-- Carrusel de frutas -->
 <div id="carousel" class="carousel slide" data-ride="carousel" >
-  <div class="carousel-inner">
+<div class="carousel-inner">
     <div class="carousel-item active">
         <img  src="images/cerezas.jpg" alt="Cerezas"  height="250" width="250">
     </div>
     <div class="carousel-item">
-      <img  src="images/fresas.jpg" alt="Fresas"   height="250" width="250">
+        <img  src="images/fresas.jpg" alt="Fresas"   height="250" width="250">
     </div>
     <div class="carousel-item">
-      <img  src="images/melocotones.jpg" alt="Melocotones"  height="250" width="250">
+        <img  src="images/melocotones.jpg" alt="Melocotones"  height="250" width="250">
     </div>
     <div class="carousel-item">
-      <img  src="images/peras.jpg" alt="Peras"  height="250" width="250">
+        <img  src="images/peras.jpg" alt="Peras"  height="250" width="250">
     </div> 
     <div class="carousel-item">
-      <img  src="images/manzanas.jpeg" alt="Manzanas"  height="250" width="250">
+        <img  src="images/manzanas.jpeg" alt="Manzanas"  height="250" width="250">
     </div>  
     <div class="carousel-item">
         <img  src="images/naranjas.jpeg" alt="Naranjas"  height="250" width="250">
     </div>  
-  </div>
+</div>
 </div>
 <form name="fruteria" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
     <div style="border-style: solid; border-color: green; border-radius: 8px;">

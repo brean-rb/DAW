@@ -20,7 +20,7 @@ function curl_conexion($url, $metodo, $params = NULL){
     $err = curl_error($curl); 
     curl_close($curl);
     if ($err) {
-           $response = json_encode("cURL Error #:" . $err);
+        $response = json_encode("cURL Error #:" . $err);
     }
     return $response;
 }

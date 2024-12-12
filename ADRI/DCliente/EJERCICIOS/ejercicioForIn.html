@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<script>
+    var numeros = [];
+    for (let i = 0; i < 5; i++) {
+        var num = Number(prompt("Introduce un número:"));
+        numeros[i] = num;
+    }
+
+    for (var i in numeros) {  
+        document.write(numeros[i] + " * 3 = " + (numeros[i] * 3) + "<br>");
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helados</title>
+</head>
+<body>
+    <script>
+        var dinero = parseFloat(prompt("Introduce el dinero disponible:"));
+
+        if (dinero >= 2.9) {
+            alert("Puedes comprar: piña, pomelo.");
+            alert("Tu cambio es: " + (dinero - 2.9).toFixed(2) + "€.");
+        } else if (dinero >= 1.8) {
+            alert("Puedes comprar: mora.");
+            alert("Tu cambio es: " + (dinero - 1.8).toFixed(2) + "€.");
+        } else if (dinero >= 1.7) {
+            alert("Puedes comprar: vainilla.");
+            alert("Tu cambio es: " + (dinero - 1.7).toFixed(2) + "€.");
+        } else if (dinero >= 1.6) {
+            alert("Puedes comprar: nata.");
+            alert("Tu cambio es: " + (dinero - 1.6).toFixed(2) + "€.");
+        } else if (dinero >= 1.0) {
+            alert("Puedes comprar: chocolate.");
+            alert("Tu cambio es: " + (dinero - 1.0).toFixed(2) + "€.");
+        } else if (dinero >= 0.6) {
+            alert("Puedes comprar: fresa.");
+            alert("Tu cambio es: " + (dinero - 0.6).toFixed(2) + "€.");
+        } else {
+            alert("No tienes suficiente dinero para comprar ningún helado.");
+        }
+    </script>
+</body>
+</html>
