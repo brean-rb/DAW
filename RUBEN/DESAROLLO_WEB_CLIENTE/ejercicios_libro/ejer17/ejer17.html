@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <label for="text">textarea</label>
+        <textarea name="text" id="texto" onkeypress="return limita(100)" onkeyup="return limita(100)"></textarea>
+        <br>
+        <label for="caracteres">caracteres restantes</label>
+        <input type="text" name="caracteres" id="caracteres" value="0" readonly />
+    </form>
+
+    <script>
+        function limita(maximoCaracteres) {
+            var elemento = document.getElementById("texto");
+            if(elemento.value.length > maximoCaracteres ) {
+                return false;
+            } else {
+                var contador =  maximoCaracteres - elemento.value.length;
+                var get_input = document.getElementById("caracteres");
+                get_input.setAttribute("value", contador);
+                return true;
+            }
+        }
+    </script>
+</body>
+</html>
