@@ -43,14 +43,13 @@ switch ($metodo) {
         $cant_sql = "SELECT presupuesto FROM presupuesto";
         $con_bd=conexion($cant_sql);
         if (!$con_bd) {
-            echo json_encode("Error en encontrar cantidad de presupuesto", TRUE)
+            echo json_encode("Error en encontrar cantidad de presupuesto", TRUE);
         } else{
             $cantidadPres = $con_bd['presupuesto'];
             if ($cantidadPres<$sueldo) {
                 echo json_encode("Presupuesto insuficiente",TRUE);
             } else{
-                $sql = "INSERT INTO empleado (nombre,telefono,nif,sueldo) VALUES
-                (".$nombre,",".$telf.",".$nif.",".$sueldo.")";
+                $sql = "INSERT INTO empleado (nombre, telefono, nif, sueldo) VALUES ('" . $nombre . "', '" . $telf . "', '" . $nif . "', " . $sueldo . ")";
                 $con_bd = conexion($sql);
                 if ($con_bd) {
                     $total = $cantidadPres - $sueldo;
@@ -58,14 +57,17 @@ switch ($metodo) {
                     $sql = "UPDATE presupuesto SET presupuesto = '".$total."' WHERE presupuesto = '".$cantidadPres."';";
                     $con_bd = conexion($sql);
                     if (!$con_bd) {
-                        echo json encode("Error al modificar el presupuesto restante",TRUE);
+                        echo json_encode("Error al modificar el presupuesto restante",TRUE);
                     }
                 } else{
-                    echo json encode("Error al dar de alta al nuevo empleado",TRUE);
+                    echo json_encode("Error al dar de alta al nuevo empleado",TRUE);
                 }
             }
         }
-
+        break;
+    case 'PUT':
+        
+        break;
     default:
         # code...
         break;
