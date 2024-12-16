@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #formulario{
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+    }
+</style>
+<body>
+    <form id="formulario">
+        <label for="name">Nombre:</label>
+        <input type="text" name="name" id="name">
+        <br>
+        <label for="surname">Apellidos:</label>
+        <input type="text" name="surname" id="surname">
+        <br>
+        <label for="telefone">Telefono:</label>
+        <input type="text" name="telefone" id="telefone">
+        <br>
+        <label for="dni">Dni:</label>
+        <input type="text" name="dni" id="dni">
+        <br>
+        <label for="age">Edad:</label>
+        <input type="number" name="age" id="age">
+        <br>
+        <label for="">Sexo:</label>
+        <br>
+        <label for="man">Hombre</label>
+        <input type="radio" name="sex" id="man">
+        <br>
+        <label for="woman">Mujer</label>
+        <input type="radio" name="sex" id="woman">
+        <br>
+        <label for="foto">Incluir mi foto</label>
+        <input type="file" id="foto" name="foto" accept="image/*">
+        <br>
+        <input type="checkbox" name="publi" id="publi">
+        <label for="publi">Enviar publicidad</label>
+        <br>
+        <label for="aficitio">Elige tu aficion favorita</label>
+        <select name="aficion" id="aficion">
+            <option value="musica">Música</option>
+            <option value="lectura">Lectura</option>
+            <option value="deporte">Deporte</option>
+        </select>
+        <br>
+        <label for="observations">Observaciones</label><br>
+        <textarea name="observations" id="observations" onkeypress="return limita(150)"></textarea>
+        <br>
+        <input type="submit" value="Guardar cambios">
+        <input type="reset" value="Borrar los datos introducidos">
+    </form>
+
+    <script>
+// Ejer1: Construir un formulario con los campos que ves en la captura que adjunto al final. Tener en
+// cuenta lo siguiente:
+//  - Al cargarse el formulario establecer el foco en el cuadro de texto nombre.
+// - Incluir mi foto, permitirá cargar una imagen.
+// - El campo aficiones será un cuadro de lista que nos permitirá elegir entre los siguientes
+// valores: música, lectura y deporte. Al elegir una opción(evento onchange) nos mostrará
+// un alert con los siguientes datos: longitud de la lista,número del índice seleccionado y el
+// valor del índice. Ejemplo: Si seleccionamos lectura en la lista, nos debe aparecer:
+//  La longitud de la lista es 3
+//  El índice seleccionado es el 1
+//  El valor del índice seleccionado es lectura
+// - El campo observaciones(textarea) debe estar limitado a un tamaño de 150 caracteres.
+// - Los botones “Guardar Cambios” y “Borrar datos introducidos” permitirán enviar el
+// formulario y borrar todos los datos(resetear el formulario).
+// - Al enviar el formulario, debemos validar los siguientes campos:
+//  . El campo Dni debe ser un campo obligatorio.
+//  . El campo Teléfono debe estar formado por nueve dígitos consecutivos y sin
+// espacios ni guiones entre las cifras.
+
+        var camNombre = document.getElementsByName("name")[0];
+        camNombre.focus();
+        var listaAF = document.getElementById("aficion");
+        listaAF.onchange = mostrarMensaje;
+        
+        var formu = document.getElementById("formulario")
+        formu.onsubmit = Validar;
+        
+        function Validar () {
+        var dni = document.getElementById("dni").value.trim();
+        var telf = document.getElementById("telefone").value.trim();
+
+        if (dni === "") {
+            alert("El campo DNI es obligatorio.");
+            return false; 
+        }
+
+        var telefonoRegex = /^\d{9}$/;
+        if (!telefonoRegex.test(telf)) {
+            alert("El teléfono debe contener 9 dígitos consecutivos.");
+            return false; 
+        }
+
+        return true;
+    };
+
+
+        function mostrarMensaje(){
+            alert(listaAF.length);
+            alert(listaAF.selectedIndex)
+            var indice = listaAF.selectedIndex;      
+            alert(listaAF.options[indice].value);      
+        }
+        function limita(num){
+            var campoObv = document.getElementById("observations")
+            if (campoObv.value.length > num) {
+                     return false;
+            } else{
+                return true;
+            }
+        }
+
+        
+    </script>
+    </body>
+</html>
