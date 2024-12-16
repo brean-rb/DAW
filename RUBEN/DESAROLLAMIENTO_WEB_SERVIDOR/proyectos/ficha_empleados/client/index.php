@@ -36,21 +36,42 @@
 
         $result = "";
 
+        $name = $_POST["name"];
+        $telefon = $_POST["tel"];
+        $nif = $_POST["nif"];
+        $salary = $_POST["seld"];
+
         try {
             if($_SERVER["REQUEST_METHOD"] === "POST"){
                 if($_REQUEST["mostrar"]){
-                    $nif = filter_input(INPUT_POST, "nif", FILTER_SANITIZE_STRING);
-                    if($nif !== NULL){
+                    if(!empty($nif)){
                         $url = URL_SERVER. "?nif=" . $nif;
                         $responde = curl_conect( $url ,"GET");
                         $result = json_decode($responde, TRUE);
                     } else{
                         throw new Exception("Debe introducir el campo NIF para mostrar");
                     }
-                } elseif ($_REQUEST["alta"]){
-                    
-                } elseif ($_SERVER["borrar"]){
 
+                } elseif ($_REQUEST["alta"]){
+                    if(!empty($name), !empty($telefon), !empty($nif), !empty($salary)){
+                        $params = ["nombre" => $name,
+                                    "telefono" => $telefon,
+                                    "nif" => $nif,
+                                    "suldo" = $salary];
+                        $response = curl_conect($url, "POST", $params);
+                        $result = json_decode($responde, TRUE);
+                    } else{
+                        $resultado = "Debe rellenar todos los campos para dar de alta.";
+                    }
+
+                } elseif ($_SERVER["borrar"]){
+                    if(!empty("nif")){
+                        $url = URL_SERVER . "?nif=" . $nif;
+                        $responde = curl_conect($url, "DELETE");
+                        $result = json_decode($responde, TRUE);
+                    } else{
+                        throw new Exception("Debe introducir el campo NIF para mostrar");
+                    }
                 }
             }
         } catch (Exeception $e) {

@@ -18,14 +18,13 @@ INSERT INTO empresa (presupuesto) VALUES (50000.00);
 
 -- Crear tabla empleado
 -- id: PK, entero autoincremental
--- nombre, apellidos: VARCHAR para texto
+-- nombre: VARCHAR para texto
 -- telefono: VARCHAR (puedes ajustar la longitud)
 -- nif: VARCHAR(20) con índice único para evitar duplicados
 -- sueldo: DECIMAL para almacenar valores con decimales
     CREATE TABLE empleado (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
-    apellidos VARCHAR(100) NOT NULL,
     telefono VARCHAR(50) NOT NULL,
     nif VARCHAR(20) NOT NULL UNIQUE,
     sueldo DECIMAL(10,2) NOT NULL
