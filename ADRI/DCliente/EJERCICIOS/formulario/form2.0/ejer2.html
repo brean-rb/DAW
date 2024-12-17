@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+</head>
+<body>
+    <form onsubmit="return validarFormulario();">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre"><br><br>
+        
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" id="apellidos" name="apellidos"><br><br>
+        
+        <label for="correo">Correo electrónico:</label>
+        <input type="email" id="correo" name="correo"><br><br>
+        
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono"><br><br>
+        
+        <label for="codigo">Código Postal:</label>
+        <input type="text" id="codigo" name="codigo"><br><br>
+
+        <fieldset>
+            <legend>Edad:</legend>
+            <input type="radio" id="edad1" name="edad" value="0-20">
+            <label for="edad1">0-20</label><br>
+            <input type="radio" id="edad2" name="edad" value="20-40">
+            <label for="edad2">20-40</label><br>
+            <input type="radio" id="edad3" name="edad" value="40-60">
+            <label for="edad3">40-60</label><br>
+            <input type="radio" id="edad4" name="edad" value="60-100">
+            <label for="edad4">60-100</label><br>
+        </fieldset><br>
+
+        <fieldset>
+            <legend>¿Cómo nos conociste?</legend>
+            <input type="checkbox" id="amigo" name="conociste" value="amigo">
+            <label for="amigo">A través de un amigo.</label><br>
+            <input type="checkbox" id="buscador" name="conociste" value="buscador">
+            <label for="buscador">A través de un buscador.</label><br>
+            <input type="checkbox" id="red" name="conociste" value="red">
+            <label for="red">Navegando por la red.</label><br>
+            <input type="checkbox" id="otros" name="conociste" value="otros">
+            <label for="otros">Otros</label>
+        </fieldset><br>
+
+        <label for="opinion">Opinión sobre nuestra página web:</label><br>
+        <textarea id="opinion" name="opinion" rows="4" cols="50"></textarea><br><br>
+
+        <label for="sugerencia">¿Tiene alguna sugerencia?</label><br>
+        <textarea id="sugerencia" name="sugerencia" rows="4" cols="50"></textarea><br><br>
+
+        <label for="navegacion">¿Cuánto navegas por internet?</label><br>
+        <select id="navegacion" name="navegacion">
+            <option value="default">Selecciona una opción</option>
+            <option value="4horas">4 horas al día.</option>
+            <option value="10horas">10 horas a la semana.</option>
+        </select><br><br>
+
+        <button type="submit">Enviar formulario</button>
+        <button type="reset">Borrar formulario</button>
+    </form>
+    <script>
+    function validarFormulario(){
+        var validado = true;
+        var nombre = document.getElementById("nombre").value;
+        var apellidos = document.getElementById("apellidos").value;
+
+        if (nombre === ""){
+            alert("El nombre no puede estar vacío");
+            validado = false;
+        }
+        if (apellidos === ""){
+            alert("El apellido no puede estar vacío");
+            validado = false;
+        }
+
+        var regexNum = /^[^0-9]*$/;
+        var NumenNomb = regexNum.test(nombre);
+        var NumenApell = regexNum.test(apellidos);
+        if (!NumenNomb) {
+            alert("No pueden haber números en tu nombre");
+            validado = false;
+        }
+        if (!NumenApell) {
+            alert("No pueden haber números en tu apellido");
+            validado = false;
+        }
+
+        var email = document.getElementById("correo").value;
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert("Introduce un email válido");
+            validado = false;
+        }
+
+        var telf = document.getElementById("telefono").value;
+        var telfValido = /^[0-9\s]+$/;
+        if (!telf.match(telfValido)) {
+            alert("Introduce un teléfono válido");
+            validado = false;
+        }
+
+        var cp = document.getElementById("codigo").value;
+        var regexLet = /^[^a-zA-Z]*$/;
+        if (!regexLet.test(cp)) {
+            alert("En el código postal no pueden haber letras");
+            validado = false;
+        } else if (cp <= 0) {
+            alert("El código postal no puede ser 0 o menor");
+            validado = false;
+        }
+
+        var edades = document.getElementsByName("edad");
+        var seleccionadoED = false;
+        for (let i = 0; i < edades.length; i++) {
+            if (edades[i].checked) {
+                seleccionadoED = true;
+                break;
+            }
+        }
+        if (!seleccionadoED) {
+            alert("No se ha seleccionado ninguna edad.");
+            validado = false;
+        }
+        var conocer = document.getElementsByName("conociste");
+        var seleccionadoCon = false;
+        for (let i = 0; i < conocer.length; i++) {
+            if (conocer[i].checked) {
+                seleccionadoCon = true;
+                break;
+            }
+        }
+        if (!seleccionadoCon) {
+            alert("No se ha seleccionado como nos conociste.");
+            validado = false;
+        }
+
+        var opinion = document.getElementById("opinion");
+        if (opinion.value.length >100) {
+            alert("Tu opinion es mayor a 100 caracteres");
+            validado = false;
+        }
+
+        var selectHor = document.getElementById("navegacion");
+        if (selectHor.value == "default") {
+            alert("No se ha seleccionado ninguna opción");
+            validado = false;
+        }
+        return validado;
+    }
+</script>
+</body>
+</html>

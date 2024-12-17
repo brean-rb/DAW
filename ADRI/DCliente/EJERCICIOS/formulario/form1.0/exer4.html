@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="post">
+        <input type="checkbox" name="negrita" id="negrita"/><label for="negrita">Negrita</label>
+        <input type="checkbox" name="cursiva" id="cursiva"/><label for="cursiva">Cursiva</label>
+    </form>
+    <p>AQUI, EN ESTE TEXTO TAN BONITO SE VA A CAMBIAR SU COLOR DE LETRA POR EL COLOR SELECCIONADO ARRIBA</p>
+<script>
+    var negrita = document.getElementById("negrita");
+    var cursiva = document.getElementById("cursiva");
+    var parrf = document.getElementsByTagName("p")[0];
+
+    negrita.onchange = cambiarNegrita;
+    cursiva.onchange = cambiarCursiva;
+
+    function cambiarNegrita() {
+        if (negrita.checked) {
+            parrf.style.fontWeight = "bold";
+        } else {
+            parrf.style.fontWeight = "normal";
+        }
+    }
+
+    function cambiarCursiva() {
+        if (cursiva.checked) {
+            parrf.style.fontStyle = "italic";
+        } else {
+            parrf.style.fontStyle = "normal";
+        }
+    }
+</script>
+</body>
+</html>

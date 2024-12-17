@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="post" id="formulario">
+        <input type="radio" name="color" id="rojo"/>
+        <label for="rojo">rojo</label>
+        <input type="radio" name="color" id="azul"/>
+        <label for="azul">azul</label>
+        <input type="radio" name="color" id="verde"/>
+        <label for="verde">verde</label>
+    </form>
+    <p>AQUI, EN ESTE TEXTO TAN BONITO SE VA A CAMBIAR SU COLOR DE LETRA POR EL COLOR SELECCIONADO ARRIBA</p>
+
+    <script>
+var colores = document.querySelectorAll('input[name="color"]');
+var parrf = document.getElementsByTagName("p")[0];
+
+        
+        colores.forEach(function(radio){
+            radio.addEventListener("change",function(){
+                if (radio.getAttribute("id") == "rojo") {
+                    parrf.style.color = "red";
+                } else if (radio.getAttribute("id") == "azul") {
+                    parrf.style.color = "blue";
+                } else if (radio.getAttribute("id") == "verde") {
+                    parrf.style.color = "green";
+                }
+            })
+        })
+    </script>
+</body>
+</html>
