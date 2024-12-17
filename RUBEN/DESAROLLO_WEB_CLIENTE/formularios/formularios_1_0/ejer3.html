@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <label for="red">red</label>
+        <input type="radio" name="color" value="red" id="red">
+        <br>
+        <label for="blue">blue</label>
+        <input type="radio" name="color" value="blue" id="blue">
+        <br>
+        <label for="green">green</label>
+        <input type="radio" name="color" value="green" id="green">
+    </form>
+    <p>Este párrafo cambiará de color con la opción seleccionada del cuadro de lista</p>
+
+    <script>
+        var color_input = document.getElementsByName("color");
+        color_input.forEach(function(color_input){
+            color_input.addEventListener("change", function(){
+                if(color_input.checked){
+                    chage_color(color_input.value);
+                }
+            });
+        });
+
+        function chage_color(cl) {
+            var get_p = document.getElementsByTagName("p")[0];
+            get_p.style.color = cl;
+        }
+    </script>
+</body>
+</html>

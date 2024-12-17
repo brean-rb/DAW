@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <select name="color" id="color">
+            <option value="red">rojo</option>
+            <option value="green">verde</option>
+            <option value="blue">azul</option>
+        </select>
+    </form>
+    <p>Este párrafo cambiará de color con la opción seleccionada del cuadro de lista</p>
+
+    <script>
+        document.getElementById("color").addEventListener("change" , function(){
+            var select_color = document.getElementById("color");
+            var value_select_color = select_color.value;
+            change_color(value_select_color);
+        });
+
+        function change_color(cl){
+            var get_p = document.getElementsByTagName("p")[0];
+            get_p.style.color = cl;
+        }
+    </script>
+</body>
+</html>
