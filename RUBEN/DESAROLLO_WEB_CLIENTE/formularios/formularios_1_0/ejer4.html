@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <label for="bold">negrita</label>
+        <input type="checkbox" value="bold" id="bold">
+        <br>
+        <label for="italic">cursiva</label>
+        <input type="checkbox" value="italic" id="italic">
+    </form>
+    <p>Este párrafo cambiará de color con la opción seleccionada del cuadro de lista</p>
+
+    <script>
+        var get_p = document.getElementsByTagName("p")[0];
+
+        var get_bold = document.getElementById("bold");
+        get_bold.addEventListener("change", function() {
+            if (get_bold.checked) {
+                get_p.style.fontWeight = "bold";
+            } else {
+                get_p.style.fontWeight = "normal";
+            }
+        });
+
+        var get_italic = document.getElementById("italic");
+        get_italic.addEventListener("change", function() {
+            if (get_italic.checked) {
+                get_p.style.fontStyle = "italic";
+            } else {
+                get_p.style.fontStyle = "normal";
+            }
+        });
+
+    </script>
+</body>
+</html>
