@@ -14,7 +14,7 @@
         <input type="text" id="apellidos" name="apellidos"><br><br>
         
         <label for="correo">Correo electrónico:</label>
-        <input type="email" id="correo" name="correo"><br><br>
+        <input type="text" id="correo" name="correo"><br><br>
         
         <label for="telefono">Teléfono:</label>
         <input type="tel" id="telefono" name="telefono"><br><br>
@@ -22,7 +22,7 @@
         <label for="codigo">Código Postal:</label>
         <input type="text" id="codigo" name="codigo"><br><br>
 
-        <fieldset>
+        <fieldset id="tabedad">
             <legend>Edad:</legend>
             <input type="radio" id="edad1" name="edad" value="0-20">
             <label for="edad1">0-20</label><br>
@@ -34,7 +34,7 @@
             <label for="edad4">60-100</label><br>
         </fieldset><br>
 
-        <fieldset>
+        <fieldset id="darconocer">
             <legend>¿Cómo nos conociste?</legend>
             <input type="checkbox" id="amigo" name="conociste" value="amigo">
             <label for="amigo">A través de un amigo.</label><br>
@@ -65,15 +65,23 @@
     <script>
     function validarFormulario(){
         var validado = true;
-        var nombre = document.getElementById("nombre").value;
-        var apellidos = document.getElementById("apellidos").value;
+        var nombre = document.getElementById("nombre");
+        var apellidos = document.getElementById("apellidos");
 
-        if (nombre === ""){
+        if (nombre.value === ""){
             alert("El nombre no puede estar vacío");
+            nombre.style.border = "#e62e1b 2px solid";
+            nombre.addEventListener("click" , function(){
+                recibirFoco(this);
+            });
             validado = false;
         }
-        if (apellidos === ""){
+        if (apellidos.value === ""){
             alert("El apellido no puede estar vacío");
+            apellidos.style.border = "#e62e1b 2px solid";
+            apellidos.addEventListener("click" , function(){
+                recibirFoco(this);
+            });
             validado = false;
         }
 
@@ -82,38 +90,62 @@
         var NumenApell = regexNum.test(apellidos);
         if (!NumenNomb) {
             alert("No pueden haber números en tu nombre");
+            nombre.style.border = "#e62e1b 2px solid";
+            nombre.addEventListener("click" , function(){
+                recibirFoco(this);
+            });
             validado = false;
         }
         if (!NumenApell) {
             alert("No pueden haber números en tu apellido");
+            apellidos.style.border = "#e62e1b 2px solid";
+            apellidos.addEventListener("click" , function(){
+                recibirFoco(this);
+            });
             validado = false;
         }
 
-        var email = document.getElementById("correo").value;
+        var email = document.getElementById("correo");
         var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
+        if (!emailRegex.test(email.value)) {
             alert("Introduce un email válido");
+            email.style.border = "#e62e1b 2px solid";
+            email.addEventListener("click" , function(){
+                recibirFoco(this);
+            });
             validado = false;
         }
 
+        var numer = document.getElementById("telefono");
         var telf = document.getElementById("telefono").value;
         var telfValido = /^[0-9\s]+$/;
         if (!telf.match(telfValido)) {
             alert("Introduce un teléfono válido");
+            numer.style.border = "#e62e1b 2px solid";
+            numer.addEventListener("click" , function(){
+                recibirFoco(this);
+            });
             validado = false;
         }
 
+        var codgPOs = document.getElementById("codigo");
         var cp = document.getElementById("codigo").value;
         var regexLet = /^[^a-zA-Z]*$/;
         if (!regexLet.test(cp)) {
             alert("En el código postal no pueden haber letras");
+            codgPOs.style.border = "#e62e1b 2px solid";
             validado = false;
         } else if (cp <= 0) {
             alert("El código postal no puede ser 0 o menor");
+            codgPOs.style.border = "#e62e1b 2px solid";
+            codgPOs.addEventListener("click" , function(){
+                recibirFoco(this);
+            });
             validado = false;
         }
 
         var edades = document.getElementsByName("edad");
+        var tabledad = document.getElementById("tabedad")
         var seleccionadoED = false;
         for (let i = 0; i < edades.length; i++) {
             if (edades[i].checked) {
@@ -123,9 +155,14 @@
         }
         if (!seleccionadoED) {
             alert("No se ha seleccionado ninguna edad.");
+            tabledad.style.border = "#e62e1b 2px solid";
+            tabledad.addEventListener("click" , function(){
+                recibirFoco(this);
+            });
             validado = false;
         }
         var conocer = document.getElementsByName("conociste");
+        var dadoconocer = document.getElementById("darconocer")
         var seleccionadoCon = false;
         for (let i = 0; i < conocer.length; i++) {
             if (conocer[i].checked) {
@@ -134,6 +171,10 @@
             }
         }
         if (!seleccionadoCon) {
+            dadoconocer.style.border = "#e62e1b 2px solid";
+            dadoconocer.addEventListener("click" , function(){
+                recibirFoco(this);
+            });
             alert("No se ha seleccionado como nos conociste.");
             validado = false;
         }
@@ -141,16 +182,27 @@
         var opinion = document.getElementById("opinion");
         if (opinion.value.length >100) {
             alert("Tu opinion es mayor a 100 caracteres");
+            opinion.style.border = "#e62e1b 2px solid";
+            opinion.addEventListener("click" , function(){
+                recibirFoco(this);
+            });
             validado = false;
         }
 
         var selectHor = document.getElementById("navegacion");
         if (selectHor.value == "default") {
             alert("No se ha seleccionado ninguna opción");
+            selectHor.style.border = "#e62e1b 2px solid";
+            selectHor.addEventListener("click" , function(){
+                recibirFoco(this);
+            });
             validado = false;
         }
+
+       
         return validado;
     }
+    function recibirFoco(elemento){elemento.style.border = "1px solid grey";}
 </script>
 </body>
 </html>
