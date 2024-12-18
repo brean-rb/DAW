@@ -118,7 +118,64 @@
 
             if (get_email === "" || !regex_email.test(get_email)) {
                 result = false;
-                alert("El campo email es incorrecto");
+                alert("El campo email es incorrecto o esta vacio");
+            }
+
+            //Que el teléfono no tenga este formato 900 90 09 00
+            var get_number = document.getElementById("telefono").value;
+            var regex_telefone = /^\d{3}\s\d{2}\s\d{2}\s\d{2}$/;
+
+            if(get_number === ""  ||!regex_telefone.test(get_number)){
+                result = false;
+                alert("El campo numero es incorrecto o esta vacio");
+            }
+
+            //El código postal sea cero o menor de cero o letras
+            var get_post_code = document.getElementById("codigo_postal").value;
+            var regex_post_code = /([a-zA-Z]|0|-\d+)$/;
+
+            if(get_post_code === "" || !regex_post_code.test(get_post_code)){
+                result = false;
+                alert("El campo codigo postal es incorrecto, esta vacio, es 0, menor que 0 o contiene letras");
+            }
+
+            //No se haya seleccionado la edad
+            var get_select_age = document.getElementsByName("edad");
+            var select_age = false;
+
+            for(let i = 0; i <get_select_age.length; i++){
+                if(get_select_age[i].checked){
+                    select_age =  true;
+                    break;
+                }
+            }
+
+            if(!select_age){
+                result = false;
+                alert("no has selecionado ninguna edad");
+            }
+
+            //No se haya seleccionado como nos conocieron
+            var get_select_known = document.getElementsByName("conociste");
+            var select_known = false;
+
+            for(let i = 0; i <get_select_known.length; i++){
+                if(get_select_known[i].checked){
+                    select_known =  true;
+                    break;
+                }
+            }
+
+            if(!select_known){
+                result = false;
+                alert("no has selecionado ninguna edad");
+            }
+
+            //Si la opinión de nuestra pagina web supera los 100 caracteres
+            var opinion = document.getElementById("opinion").length;
+            if(opinion > 100){
+                result = false;
+                alert("su opinion tiene mas de 100 caracteres");
             }
 
             return result;
