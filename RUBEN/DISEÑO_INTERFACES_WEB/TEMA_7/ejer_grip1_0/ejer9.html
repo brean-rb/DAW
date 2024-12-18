@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{font-family: sans-serif; color: white;}
+        .padre{
+            display: grid;
+            gap: 1px;
+            border: 2px solid black;
+            padding: 10px;
+            width: 75%;
+            height: 100px;
+            grid-auto-flow: column dense;
+            grid-template-rows: auto auto auto;
+        }
+        .celda{
+            background-color: rgb(129, 129, 129);
+            text-align: center;
+            align-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="padre">
+        <div class="celda" id="celda1">celda1</div>
+        <div class="celda" id="celda2">celda2</div>
+        <div class="celda" id="celda3">celda3</div>
+        <div class="celda" id="celda4">celda4</div>
+        <div class="celda" id="celda5">celda5</div>
+        <div class="celda" id="celda6">celda6</div>
+    </div>
+</body>
+</html>
