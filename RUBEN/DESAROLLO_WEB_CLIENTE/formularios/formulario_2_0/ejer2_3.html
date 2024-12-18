@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <style>
+        body{font-family: sans-serif;}
+        form {
+            width: 60%;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid black;
+        }
+        .section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        textarea, select, input[type="text"], input[type="email"] {
+            width: 100%;
+            margin-top: 5px;
+        }
+        .buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .buttons button {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <form onsubmit="return comprovate_form()">
+        <h2>Formulario</h2>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre">
+
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" id="apellidos" name="apellidos">
+
+        <label for="email">Correo electrónico:</label>
+        <input type="text" id="email" name="email">
+
+        <label for="telefono">Teléfono:</label>
+        <input type="text" id="telefono" name="telefono">
+
+        <label for="codigo_postal">Código Postal:</label>
+        <input type="text" id="codigo_postal" name="codigo_postal">
+
+        <div class="section">
+            <fieldset>
+                <legend>Edad:</legend>
+                <input type="radio" id="edad1" name="edad" value="0-20">
+                <label for="edad1">0-20</label><br>
+                <input type="radio" id="edad2" name="edad" value="20-40">
+                <label for="edad2">20-40</label><br>
+                <input type="radio" id="edad3" name="edad" value="40-60">
+                <label for="edad3">40-60</label><br>
+                <input type="radio" id="edad4" name="edad" value="60-100">
+                <label for="edad4">60-100</label>
+            </fieldset>
+
+            <fieldset>
+                <legend>¿Cómo nos conociste?</legend>
+                <input type="radio" id="conociste1" name="conociste" value="amigo">
+                <label for="conociste1">A través de un amigo.</label><br>
+                <input type="radio" id="conociste2" name="conociste" value="buscador">
+                <label for="conociste2">A través de un buscador.</label><br>
+                <input type="radio" id="conociste3" name="conociste" value="red">
+                <label for="conociste3">Navegando por la red.</label><br>
+                <input type="radio" id="conociste4" name="conociste" value="otros">
+                <label for="conociste4">Otros</label>
+            </fieldset>
+        </div>
+
+        <label for="opinion">Opinión sobre nuestra página web:</label>
+        <textarea id="opinion" name="opinion" rows="4"></textarea>
+
+        <label for="sugerencias">¿Tiene alguna sugerencia?</label>
+        <textarea id="sugerencias" name="sugerencias" rows="4"></textarea>
+
+        <label for="uso_internet">¿Cuánto navegas por internet? (Señala la opción que más se acerque):</label>
+        <select id="uso_internet" name="uso_internet">
+            <option value="4horas">4 horas al día</option>
+            <option value="10horas">10 horas a la semana</option>
+            <option value="30horas">30 horas al mes</option>
+            <option value="otros">Otros</option>
+        </select>
+
+        <div class="buttons">
+            <button type="submit">Enviar formulario</button>
+            <button type="reset">Borrar formulario</button>
+        </div>
+    </form>
+
+    <script>
+        function comprovate_form() {
+            var result = true;
+
+            // Validar que el nombre y apellidos no estén vacíos ni contengan números.
+            var get_name = document.getElementById("nombre").value.trim();
+            var get_surname = document.getElementById("apellidos").value.trim();
+            var regex_name_surname = /^[^\d]+$/;
+
+            if (get_name === "" || !regex_name_surname.test(get_name)) {
+                result = false;
+                alert("El campo nombre está vacío o contiene números");
+            }
+            if (get_surname === "" || !regex_name_surname.test(get_surname)) {
+                result = false;
+                alert("El campo apellido está vacío o contiene números");
+            }
+
+            // Validar que el correo electrónico sea válido.
+            var get_email = document.getElementById("email").value.trim();
+            var regex_email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (get_email === "" || !regex_email.test(get_email)) {
+                result = false;
+                alert("El campo email es incorrecto");
+            }
+
+            return result;
+        }
+
+    </script>
+</body>
+</html>
