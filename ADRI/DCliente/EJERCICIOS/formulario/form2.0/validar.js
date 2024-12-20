@@ -22,10 +22,29 @@ function enviarForm(elemento){
                 return false; 
             }
         }
-
+        var botonBorrar = document.getElementById("borrar")
         elemento.disabled = true;
+        botonBorrar.disabled = true;
+        botonBorrar.value = "cargando";
         elemento.value = "enviando";
-        elemento.form.submit()
+
+        let output = "";
+        var tipotext = document.querySelectorAll("input[type='text']");
+
+        alert(tipotext) 
+        for (let i = 0; i < tipotext.length; i++) {
+            output += tipotext[i].value + "<br>";
+        }
+        var cuerpo = document.getElementsByTagName("body")[0];
+        var parrf = document.createElement("p");
+        parrf.innerHTML = output;
+        cuerpo.appendChild(parrf);
+        
+        
+        setTimeout(() => {
+            document.forms[0].submit();
+        }, 10000);
+        
         return true; 
         
 }

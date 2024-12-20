@@ -8,12 +8,12 @@
 </head>
 <body>
     <form action="">
-        <label for="">Introduce tu nombre</label><input  type="text" onkeypress="ponerMayus()" name="" id=""><br><br>
-        <label for="">Introduce tus apellidos</label><input  type="text" name="" id=""><br><br>
+        <label for="">Introduce tu nombre</label><input  type="text" onkeypress="ponerMayus()" name="" id="nombre"><br><br>
+        <label for="">Introduce tus apellidos</label><input  type="text" name="" id="apellidos"><br><br>
         <label for="">Introduzca contraseña:</label><input type="password" name="" id=""><br><br>
         <label for="">Repita contraseña:</label><input type="password"  id=""><br><br>
 
-        <input type="reset" onclick="return borrarForm()">
+        <input  id="borrar" type="reset" onclick="return borrarForm()">
         <input type="submit" value="enviar" onclick="return enviarForm(this)">
     </form>
 </body>
