@@ -31,7 +31,6 @@ function enviarForm(elemento){
         let output = "";
         var tipotext = document.querySelectorAll("input[type='text']");
 
-        alert(tipotext) 
         for (let i = 0; i < tipotext.length; i++) {
             output += tipotext[i].value + "<br>";
         }
