@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="it_form" action="">
+        <label for="first_name">First Name</label>
+        <input type="text" oninput="put_mayus(this)" name="first_name" id="first_name">
+        <br><br>
+
+        <label for="last_name">Last Name</label>
+        <input type="text" oninput="put_mayus(this)" name="last_name" id="last_name">
+        <br><br>
+
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" oninput="check_passwords()">
+        <br><br>
+
+        <label for="repeat_password">Repeat Password</label>
+        <input type="password" name="repeat_password" id="repeat_password" oninput="check_passwords()">
+        <br><br>
+
+        <input type="submit" value="Submit" id="submit_btn" onclick="return validate_form()">
+        <input type="reset" value="Reset" onclick="return confirm_reset()">
+    </form>
+
+    <div id="summary" style="display:none;">
+        <h2>Resumen de los datos</h2>
+        <p id="summaryText"></p>
+    </div>
+</body>
+</html>
+
+<script>
+    document.getElementById('firstName').focus();
+
+    function put_mayus(){
+        var input = document.querySelector('input');
+        input.forEach(element => {
+            element.addEventListener('keypress', function(){
+                if(element.value.length > 0){
+                    element.value = element.value.charAt(0).toUpperCase() + element.value.slice(1);
+                }
+            });
+        });
+    }
+
+
+    //creo que el try y catch no lo hemos dado pero me gusta utilizarlo, no soy como adri que no valida nada
+    function validate_form(){
+        try {
+            check_passwords = check_passwords();
+            if(!check_passwords){
+                throw 'Las conraseñas no coinciden';
+            } else{
+                var first_name = document.querySelector('#first_name').value;
+                var last_name = document.querySelector('#last_name').value;
+
+                var it_form = document.querySelector('#it_form');
+                var summary = document.querySelector('#summary');
+                var summaryText = document.querySelector('#summaryText');
+
+                summary.innerHTML = '<strong>Nombre:</strong>' + first_name + '<br>'
+                                    + '<strong>Apellidos:</strong>' + last_name + '<br>';
+                
+                summary.style.display = 'block';
+                it_form.style.display = 'none';
+
+                return false;
+
+            }
+        } catch (error) {
+            alert(error);
+        }
+    }
+
+    function confirm_reset(){
+        var confirm_rest = confirm('¿Seguto que quieres resetear el formulario?');
+        if(confirm_rest){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    function check_passwords(){
+        var password = document.querySelector('#password').value;
+        var repeat_password = document.querySelector('#repeat_password').value;
+
+        if(password != repeat_password){
+            return false;
+        }else{
+            return true;
+        }
+    }
+</script>
