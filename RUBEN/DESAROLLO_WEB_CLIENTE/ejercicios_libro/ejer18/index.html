@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="stylesheet" type="text/css" href="css/calendar-blue2.css" />
+    <script type="text/javascript" src="js/calendar.js"></script>
+    <script type="text/javascript" src="js/calendar-es.js"></script>
+    <script type="text/javascript" src="js/calendar-setup.js"></script>
+</head>
+<body>
+    <p>Introduce la fecha pulsando sobre la imagen del calendario</p>
+    <input type="hidden" name="date" id="fecha" />
+    <span id="fecha_texto"></span>
+    <img src="img.gif" id="selector" />
+
+    <script type="text/javascript">
+        // Ejecuta la función cuando la ventana se haya cargado completamente
+        window.onload = function() {
+            // Configura el calendario
+            Calendar.setup({
+                // Campo de entrada donde se almacenará la fecha seleccionada
+                inputField: "fecha",
+                // Área de visualización donde se mostrará la fecha en formato de texto
+                displayArea: "fecha_texto",
+                // Formato de la fecha para mostrar en el área de visualización
+                daFormat: "%A, %d de %B de %Y",
+                // Formato de la fecha para almacenar en el campo de entrada
+                ifFormat: "%d/%m/%Y",
+                // Botón que abrirá el selector de calendario
+                button: "selector",
+                // Desactiva la visualización de números de semana
+                weekNumbers: false
+            });
+        }
+    </script>
+</body>
+</html>
