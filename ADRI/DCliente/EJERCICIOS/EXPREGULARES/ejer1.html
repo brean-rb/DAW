@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" id="nombre">
+        <br>
+        <input type="submit" onclick="comprobar()" value="Encuentra cualquier numero de 3 digitos">
+        <input type="submit" onclick="inicioG()" value="Encuentra las palabras que empiecen por la G">
+
+    </form>
+    <script>
+        function comprobar() {
+            var nombre = document.getElementById("nombre").value;
+            var regex = /[0-9]{3}/;
+            if (regex.test(nombre)) {
+                alert("El nombre contiene un numero de 3 digitos");
+            } else {
+                alert("El nombre no contiene un numero de 3 digitos");
+            }
+        }
+
+        function inicioG() {
+            var nombre = document.getElementById("nombre").value;
+            var regex = /^g/i;
+           if(regex.test(nombre)){
+            alert("El nombre: " + nombre + " empieza por G");
+           }
+        }
+    </script>
+</body>
+</html>
