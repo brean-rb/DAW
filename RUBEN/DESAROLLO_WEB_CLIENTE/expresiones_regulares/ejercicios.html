@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            margin: 10px;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <!-- Ejercicio 1: Encuentra cualquier número de tres dígitos en una cadena: -->
+    <h1>Ejercicio 1</h1>
+    <p>Encuentra cualquier número de tres dígitos en una cadena</p>
+    <form action="" id="ejercicio1">
+        <label for="cadena">Introduce una cadena:</label>
+        <input type="text" name="cadena" id="cadena1">
+        <input type="submit" value="Enviar">
+    </form>
+    <script>
+        document.querySelector("#ejercicio1").addEventListener("submit", function() {
+            let cadena = document.querySelector("#cadena1").value;
+            let regex = /\d{3}/;
+            if(regex.test(cadena)) {
+                alert("Contiene un número de tres dígitos");
+            } else {
+                alert("No contiene un número de tres dígitos");
+            }
+        });
+    </script>
+
+    <!-- Ejercicio 2: Encuentra todas las palabras que comienzan con "g" en una cadena: -->
+    <h1>Ejercicio 2</h1>
+    <p>Encuentra todas las palabras que comienzan con "g" en una cadena</p>
+    <form action="" id="ejercicio2">
+        <label for="cadena">Introduce una cadena:</label>
+        <input type="text" name="cadena" id="cadena2">
+        <input type="submit" value="Enviar">
+    </form>
+    <script>
+        document.querySelector("#ejercicio2").addEventListener("submit", function(){
+            let cadena = document.querySelector("#cadena2").value;
+            let regex = /^g/i;
+            if(regex.test(cadena)) {
+                alert("Contiene una palabra que comienza con 'g'");
+            } else {
+                alert("No contiene una palabra que comienza con 'g'");
+            }
+        })
+    </script>
+</body>
+</html>
