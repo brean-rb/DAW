@@ -7,51 +7,328 @@
     <style>
         body{
             font-family: Arial, sans-serif;
-            margin: 10px;
-            padding: 0;
-            box-sizing: border-box;
+        }
+
+        .ejercicios{
+            margin: 0 auto;
+            width: 80%;
+            padding: 10px;
+        }
+        footer{
+            bottom: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
         }
     </style>
 </head>
 <body>
-    <!-- Ejercicio 1: Encuentra cualquier número de tres dígitos en una cadena: -->
-    <h1>Ejercicio 1</h1>
-    <p>Encuentra cualquier número de tres dígitos en una cadena</p>
-    <form action="" id="ejercicio1">
-        <label for="cadena">Introduce una cadena:</label>
-        <input type="text" name="cadena" id="cadena1">
-        <input type="submit" value="Enviar">
-    </form>
-    <script>
-        document.querySelector("#ejercicio1").addEventListener("submit", function() {
-            let cadena = document.querySelector("#cadena1").value;
-            let regex = /\d{3}/;
-            if(regex.test(cadena)) {
-                alert("Contiene un número de tres dígitos");
-            } else {
-                alert("No contiene un número de tres dígitos");
-            }
-        });
-    </script>
+    <div class="ejercicios">
+        <!-- Ejercicio 1: Encuentra cualquier número de tres dígitos en una cadena: -->
+        <h1>Ejercicio 1</h1>
+        <p>Encuentra cualquier número de tres dígitos en una cadena</p>
+        <form action="" id="ejercicio1">
+            <label for="cadena">Introduce una cadena:</label>
+            <input type="text" name="cadena" id="cadena1">
+            <input type="submit" value="Enviar">
+        </form>
+        <script>
+            document.querySelector("#ejercicio1").addEventListener("submit", function() {
+                let cadena = document.querySelector("#cadena1").value;
+                let regex = /\d{3}/;
+                if(regex.test(cadena)) {
+                    alert("Contiene un número de tres dígitos");
+                } else {
+                    alert("No contiene un número de tres dígitos");
+                }
+            });
+        </script>
 
-    <!-- Ejercicio 2: Encuentra todas las palabras que comienzan con "g" en una cadena: -->
-    <h1>Ejercicio 2</h1>
-    <p>Encuentra todas las palabras que comienzan con "g" en una cadena</p>
-    <form action="" id="ejercicio2">
-        <label for="cadena">Introduce una cadena:</label>
-        <input type="text" name="cadena" id="cadena2">
-        <input type="submit" value="Enviar">
-    </form>
-    <script>
-        document.querySelector("#ejercicio2").addEventListener("submit", function(){
-            let cadena = document.querySelector("#cadena2").value;
-            let regex = /^g/i;
-            if(regex.test(cadena)) {
-                alert("Contiene una palabra que comienza con 'g'");
-            } else {
-                alert("No contiene una palabra que comienza con 'g'");
-            }
-        })
-    </script>
+        <!-- Ejercicio 2: Encuentra todas las palabras que comienzan con "g" en una cadena: -->
+        <h1>Ejercicio 2</h1>
+        <p>Encuentra todas las palabras que comienzan con "g" en una cadena</p>
+        <form action="" id="ejercicio2">
+            <label for="cadena">Introduce una cadena:</label>
+            <input type="text" name="cadena" id="cadena2">
+            <input type="submit" value="Enviar">
+        </form>
+        <script>
+            document.querySelector("#ejercicio2").addEventListener("submit", function(){
+                let cadena = document.querySelector("#cadena2").value;
+                let regex = /^g/i;
+                if(regex.test(cadena)) {
+                    alert("Contiene una palabra que comienza con 'g'");
+                } else {
+                    alert("No contiene una palabra que comienza con 'g'");
+                }
+            })
+        </script>
+
+        <!-- Ejercicio 3: Encuentra todas las ocurrencias de letras seguidas por un número: -->
+        <h1>Ejercicio3</h1>
+        <p>Encuentra todas las ocurrencias de letras seguidas por un número</p>
+        <form action="" id="ejercicio3">
+            <label for="cadena">Introduce una cadena:</label>
+            <input type="text" name="cadena" id="cadena3">
+            <input type="submit" value="Enviar">
+        </form>
+        <script>
+            document.querySelector('#ejercicio3').addEventListener('submit', function(){
+                let cadena = document.querySelector('#cadena3').value;
+                let regex = /[0-9]$/;
+                if(regex.test(cadena)){
+                    alert('Contiene una letra seguida por un número');
+                } else {
+                    alert('No contiene una letra seguida por un número');
+                }
+            })
+        </script>
+
+        <!-- Ejercicio 4: Encuentra todas las ocurrencias de espacios en blanco seguidos por una palabra: -->
+        <h1>Ejercicio4</h1>
+        <p>Encuentra todas las ocurrencias de espacios en blanco seguidos por una palabra:</p>
+        <form action="" id="ejercicio4">
+            <label for="cadena">Introduce una cadena:</label>
+            <input type="text" name="cadena" id="cadena4">
+            <input type="submit" value="Enviar">
+        </form>
+        <script>
+            document.querySelector('#ejercicio4').addEventListener('submit', function (){
+                let cadena = document.querySelector('#cadena4').value;
+                let regex = /\s\w+/;
+                if(regex.test(cadena)){
+                    alert('Contiene un espacio en blanco seguido por una palabra');
+                }else{
+                    alert('No contiene un espacio en blanco seguido por una palabra');
+                }
+            })
+        </script>
+
+        <!--Ejercicio 5: Encuentra todas las ocurrencias de palabras que no terminan en "s"-->
+        <h1>Ejercicio5</h1>
+        <p>Encuentra todas las ocurrencias de palabras que no terminan en "s"</p>
+        <form action="" id="ejercicio5">
+            <label for="cadena">Introduce una cadena:</label>
+            <input type="text" name="cadena" id="cadena5">
+            <input type="submit" value="Enviar">
+        </form>
+        <script>
+            document.querySelector('#ejercicio5').addEventListener('submit', function(){
+                let cadena = document.querySelector('#cadena5').value;
+                let regex = /\w+[^s]$/;
+                if(regex.test(cadena)){
+                    alert('Contiene una palabra que no termina en "s"');
+                }else{
+                    alert('No contiene una palabra que no termina en "s"');
+                }
+            })
+        </script>
+
+        <!--Ejercicio 6: Encuentra todas las líneas que comienzan con "Inicio"-->
+        <h1>Ejercicio6</h1>
+        <p>Encuentra todas las líneas que comienzan con "Inicio"</p>
+        <form action="" id="ejercicio6">
+            <label for="cadena">Introduce una cadena:</label>
+            <input type="text" name="cadena" id="cadena6">
+            <input type="submit" value="Enviar">
+        </form>
+        <script>
+            document.querySelector('#ejercicio6').addEventListener('submit', function(){
+                let cadena = document.querySelector('#cadena6').value;
+                let regex = /^Inicio/gm;
+                if(regex.test(cadena)){
+                    alert('Contiene una línea que comienza con "Inicio"');
+                }else{
+                    alert('No contiene una línea que comienza con "Inicio"');
+                }
+            })
+        </script>
+
+        <!--Ejercicio 7: Encuentra todas las líneas que terminan con "Fin"-->
+        <h1>Ejercicio7</h1>
+        <p>Encuentra todas las líneas que terminan con "Fin"</p>
+        <form action="" id="ejercicio7">
+            <label for="cadena">Introduce una cadena:</label>
+            <input type="text" name="cadena" id="cadena7">
+            <input type="submit" value="Enviar">
+        </form>
+        <script>
+            document.querySelector('#ejercicio7').addEventListener('submit', function(){
+                let cadena = document.querySelector('#cadena7').value;
+                let regex = /Fin$/gm;
+                if(regex.test(cadena)){
+                    alert('Contiene una línea que termina con "Fin"');
+                }else{
+                    alert('No contiene una línea que termina con "Fin"');
+                }
+            })
+        </script>
+
+        <!--Ejercicio 8: Encuentra todas las ocurrencias de palabras que contienen al menos una vocal:-->
+        <h1>Ejercicio8</h1>
+        <p>Encuentra todas las ocurrencias de palabras que contienen al menos una vocal:</p>
+        <form action="" id="ejercicio8">
+            <label for="cadena">Introduce una cadena:</label>
+            <input type="text" name="cadena" id="cadena8">
+            <input type="submit" value="Enviar">
+        </form>
+        <script>
+            document.querySelector('#ejercicio8').addEventListener('submit', function(){
+                let cadena = querySelector('#cadena8').value;
+                let regex = /[aeiou]/gm;
+                if(regex.test(cadena)){
+                    alert('Contiene una palabra que contiene al menos una vocal');
+                }else{
+                    alert('No contiene una palabra que contiene al menos una vocal');
+                }
+            })
+        </script>
+
+        <!--Ejercicio 9: Encuentra todas las ocurrencias de números de teléfono en el formato (123) 456-7890-->
+        <h1>Ejercicio9</h1>
+        <p>Encuentra todas las ocurrencias de números de teléfono en el formato (123) 456-7890</p>
+        <form action="" id="ejercicio9">
+            <label for="cadena">Introduce una cadena:</label>
+            <input type="text" name="cadena" id="cadena9">
+            <input type="submit" value="Enviar">
+        </form>
+        <script>
+            document.querySelector('#ejercicio9').addEventListener('submit', function(){
+                let cadena = document.querySelector('#cadena9').value;
+                let regex = /\(\d{3}\)\s\d{3}-\d{4}/;
+                if(regex.test(cadena)){
+                    alert('Contiene un número de teléfono en el formato (123) 456-7890');
+                }else{
+                    alert('No contiene un número de teléfono en el formato (123) 456-7890');
+                }
+            })
+        </script>
+
+        <!--Ejercicio 10: Encuentra todas las ocurrencias de palabras que tienen al menos tres letras:-->
+        <h1>Ejercicio10</h1>
+        <p>Encuentra todas las ocurrencias de palabras que tienen al menos tres letras:</p>
+        <form action="" id="ejercicio10">
+            <label for="cadena">Introduce una cadena:</label>
+            <input type="text" name="cadena" id="cadena10">
+            <input type="submit" value="Enviar">
+        </form>
+        <script>
+            document.querySelector('#ejercicio10').addEventListener('submit', function(){
+                let cadena = document.querySelector('#cadena10').value;
+                let regex = /\D{3,}/i;
+                if(regex.test(cadena)){
+                    alert('Contiene una palabra que tiene al menos tres letras');
+                }else{
+                    alert('No contiene una palabra que tiene al menos tres letras');
+                }
+            })
+        </script>
+
+        <!--Ejercicio 11: Encuentra todas las ocurrencias de palabras que no contienen la letra "e"-->
+        <h1>Ejercicio11</h1>
+        <p>Encuentra todas las ocurrencias de palabras que no contienen la letra "e"</p>
+        <form action="" id="ejercicio11">
+            <label for="cadena">Introduce una cadena:</label>
+            <input type="text" name="cadena" id="cadena11">
+            <input type="submit" value="Enviar">
+        </form>
+        <script>
+            document.querySelector('#ejercicio11').addEventListener('submit', function(){
+                let cadena = document.querySelector('#cadena11').value;
+                let regex = /\b[eE]+\b/gm;
+                if(regex.test(cadena)){
+                    alert('La palabra no contiene la letra "e"');
+                }else{
+                    alert('La palabra contiene la letra "e"');
+                }
+            })
+        </script>
+
+        <!--Ejercicio 12: Encuentra todas las ocurrencias de palabras que comienzan con "a" o "b":-->
+        <h1>Ejercicio12</h1>
+        <p>Encuentra todas las ocurrencias de palabras que comienzan con "a" o "b":</p>
+        <form action="" id="ejercicio12">
+            <label for="cadena">Introduce una cadena:</label>
+            <input type="text" name="cadena" id="cadena12">
+            <input type="submit" value="Enviar">
+        </form>
+        <script>
+            document.querySelector('#ejercicio12').addEventListener('submit', function() {
+                let cadena = document.querySelector('#cadena12').value;
+                let regex = /^[abAB]\D+/g;
+                if(regex.test(cadena)){
+                    alert('Contiene una palabra que comienza con "a" o "b"');
+                }else{
+                    alert('No contiene una palabra que comienza con "a" o "b"');
+                }
+            })
+        </script>
+
+        <!--Ejercicio 13: Encuentra todas las ocurrencias de palabras que terminan con "o" o "a":-->
+        <h1>Ejercicio13</h1>
+        <p>Encuentra todas las ocurrencias de palabras que terminan con "o" o "a":</p>
+        <form action="" id="ejercicio13">
+            <label for="cadena">Introduce una cadena:</label>
+            <input type="text" name="cadena" id="cadena13">
+            <input type="submit" value="Enviar">
+        </form>
+        <script>
+            document.querySelector('#ejercicio13').addEventListener('submit', function(){
+                let cadena = document.querySelector('#cadena13').value;
+                let regex = /\D[oa]$/igm;
+                if(regex.test(cadena)){
+                    alert('la palabra termina con "o" o "a"');
+                }else{
+                    alert('la palabra no termina con "o" o "a"');
+                }
+            })
+        </script>
+
+        
+        <!--Ejercicio 14: Encuentra todas las ocurrencias de palabras que tienen exactamente cinco letras-->
+        <h1>Ejercicio14</h1>
+        <p>Encuentra todas las ocurrencias de palabras que tienen exactamente cinco letras</p>
+        <form action="" id="ejercicio14">
+            <label for="cadena">Introduce una cadena:</label>
+            <input type="text" name="cadena" id="cadena14">
+            <input type="submit" value="Enviar">
+        </form>
+        <script>
+            document.querySelector('#ejercicio14').addEventListener('submit', function(){
+                let cadena = document.querySelector('#cadena14').value;
+                let regex = /\b\D{5}\b/gm;
+                if(regex.test(cadena)){
+                    alert('la palabra tiene exactamente cinco letras');
+                }else{
+                    alert('la palabra no tiene exactamente cinco letras');
+                }
+            })
+        </script>
+
+        <!--Ejercicio 15: Encuentra todas las ocurrencias de palabras que comienzan con "c" y terminan con "o":-->
+        <h1>Ejercicio15</h1>
+        <p>Encuentra todas las ocurrencias de palabras que comienzan con "c" y terminan con "o"</p>
+        <form action="" id="ejercicio15">
+            <label for="cadena">Introduce una cadena:</label>
+            <input type="text" name="cadena" id="cadena15">
+            <input type="submit" value="Enviar">
+        </form>
+        <script>
+            document.querySelector('#ejercicio15').addEventListener('submit', function(){
+                let cadena = document.querySelector('#cadena15').value;
+                let regex = /^c\D+o$/i;
+                if(regex.test(cadena)){
+                    alert('la palabra comienza con "c" y termina con "o"');
+                }else{
+                    alert('la palabra no comienza con "c" y termina con "o"');
+                }
+            })
+        </script>
+    </div>
 </body>
+<footer>
+    <p>Realizado por: Ruben Ferrer Marquez</p>
+</footer>
 </html>
