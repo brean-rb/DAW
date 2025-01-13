@@ -1,0 +1,26 @@
+Page 46, Exercise 2.
+Listen to the many dialogues between a business customer and a software developer
+and fill in the missing words.
+Which questions are asked by the customer and which by the developer?
+1.
+What do you need the software to do for your company?
+I need a program that will help me manage the cash flow, analyze sales,
+and improve my accounting efficiency.
+2.
+How can I try a demo of the software?
+You can download a trial version of the software and try it for 30 days.
+This allows you to familiarize yourself with the programs and see how some of the key functions work.
+3.
+Is that software package very expensive?
+It isn't cheap, but you can buy the basic package now and purchase add-on modules later for an additional fee.
+4.
+Are you looking to integrate this program with any other software?
+Yes, I need a program designed by an established company so that it will easily combine with other software packages in the future.
+5.
+Will it be difficult for me to move information from my existing software to a new program?
+Not really.
+The information can be transferred overnight and you will be able to use the new software in the morning.
+6.
+What support or maintenance can you offer me for this software?
+We provide a long list of FAQs on our website or you can email us.
+Once you purchase the software, you can call our 24-hour help desk for assistance.
