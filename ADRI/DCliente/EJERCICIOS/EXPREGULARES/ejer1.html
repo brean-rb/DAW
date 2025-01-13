@@ -1,17 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <form action="">
         <label for="nombre">Nombre:</label>
         <input type="text" name="nombre" id="nombre">
         <br>
-        <input type="submit" onclick="comprobar()" value="Encuentra cualquier numero de 3 digitos">
-        <input type="submit" onclick="inicioG()" value="Encuentra las palabras que empiecen por la G">
+        <input type="submit" onclick="comprobar()" value="Encuentra cualquier numero de 3 digitos"><br><br>
+        <input type="submit" onclick="inicioG()" value="Encuentra las palabras que empiecen por la G"><br><br>
+        <input type="submit" onclick="finConNum()" value="Encuentra las palabras que terminen con un numero"><br><br>
+        <input type="submit" onclick="espacioPal()"
+            value="Encuentra los espacios en blanco seguido por palabras"><br><br>
+        <input type="submit" onclick="finPalabrasinS()" value="Encuentra las palabras que no terminen con 'S'"><br><br>
+        <input type="submit" onclick="palEmpInicio()"
+            value="Encuentra todas las lineas que empiecen por Inicio"><br><br>
+        <input type="submit" onclick="palTerFin()" value="Encuentra todas las lineas que terminen en Fin"><br><br>
+        <input type="submit" onclick="tieneVocal()" value="Todas las palabras que tienen vocal"><br><br>
+        <input type="submit" onclick="formatoTelf()" value="Números de teléfono en el formato (123) 456-7890"><br><br>
+        <input type="submit" onclick="palMinimo3Letras()" value="Palabras con minimo 3 letras"><br><br>
+        <input type="submit" onclick="palConE()" value="Palabras que no tengan la letra 'E'"><br><br>
+        <input type="submit" onclick="palinicioAB()" value="Palabras que empiecen con 'a' o 'b'"><br><br>
+        <input type="submit" onclick="palfinAO()" value="Palabras que terminen con 'a' o con 'o'"><br><br>
+        <input type="submit" onclick="longit5()" value="Palabras que tienen exactamente 5 letras"><br><br>
+        <input type="submit" onclick="inicioCfinO()" value="Palabras que empiecen por la C y terminen con la O"><br><br>
+
 
     </form>
     <script>
@@ -28,10 +46,139 @@
         function inicioG() {
             var nombre = document.getElementById("nombre").value;
             var regex = /^g/i;
-           if(regex.test(nombre)){
-            alert("El nombre: " + nombre + " empieza por G");
-           }
+            if (regex.test(nombre)) {
+                alert("El nombre: " + nombre + " empieza por G");
+            }
+        }
+
+        function finConNum() {
+            var nombre = document.getElementById("nombre").value;
+            var regex = /[0-9]$/;
+            if (regex.test(nombre)) {
+                alert("El nombre: " + nombre + " termina con un numero");
+            }
+        }
+
+        function espacioPal() {
+            var nombre = document.getElementById("nombre").value;
+            var regex = /\s(\w+)/;
+            var valor = regex.exec(nombre);
+            if (valor != "") {
+                alert("La palabra que he encontrado después de un espacio es: " + valor[1]);
+            } else {
+                alert("No se encontró ninguna palabra después de un espacio.");
+            }
+        }
+
+        function finPalabrasinS() {
+            var nombre = document.getElementById("nombre").value;
+            var regex = /\b\w*[^sS]\b/g;
+            var valor;
+            while ((valor = regex.exec(nombre)) !== null) {
+                alert("Palabra que no termina con 'S': " + valor[0]);
+            }
+        }
+
+        function palEmpInicio() {
+            var nombre = document.getElementById("nombre").value;
+            var regex = /^Inicio/gm;
+            if (regex.test(nombre)) {
+                alert("La linea empieza por 'Inicio'")
+            } else {
+                alert("No empieza en 'Inicio'")
+            }
+        }
+
+        function palTerFin() {
+            var nombre = document.getElementById("nombre").value;
+            var regex = /Fin$/gm;
+            if (regex.test(nombre)) {
+                alert("La linea termina por 'Fin'")
+            } else {
+                alert("No termina en 'Fin'")
+            }
+        }
+
+        function tieneVocal() {
+            var nombre = document.getElementById("nombre").value;
+            var palabras = nombre.split(/\s+/);
+            var regex = /[aeiouAEIOU]/gm;
+            for (var i = 0; i < palabras.length; i++) {
+                if (regex.test(palabras[i])) {
+                    alert("Palabra que tiene vocales: " + palabras[i]);
+                }
+            }
+        }
+
+        function formatoTelf() {
+            var nombre = document.getElementById("nombre").value;
+            var regex = /^\([0-9]{3}\)\s[0-9]{3}-[0-9]{4}/;
+            if (regex.test(nombre)) {
+                alert("Formato correcto")
+            } else {
+                alert("Error de formato")
+            }
+        }
+
+        function palMinimo3Letras() {
+            var nombre = document.getElementById("nombre").value;
+            var regex = /\D{3,}/i;
+            if (regex.test(nombre)) {
+                alert("La palabra tiene minimo 3 letras")
+            }
+        }
+
+        function palConE() {
+            var nombre = document.getElementById("nombre").value;
+            var regex = /\b[^eE]+\b/gm;
+            if (!regex.test(nombre)) {
+                alert("Palabra contiene la letra e");
+            } else {
+                alert("No tiene la e")
+            }
+        }
+
+        function palinicioAB() {
+            var nombre = document.getElementById("nombre").value;
+            var palabras = nombre.split(/\s+/);
+            var regex = /^[aAbB]/gm;
+            for (var i = 0; i < palabras.length; i++) {
+                if (regex.test(palabras[i])) {
+                    alert("Palabra que empiezan con la letra 'a' o 'b': " + palabras[i]);
+                }
+            }
+        }
+
+        function palfinAO() {
+            var nombre = document.getElementById("nombre").value;
+            var regex = /\D(a|A|o|O)$/gm;
+            if (regex.test(nombre)) {
+                alert("Palabra termina con la A o con la O");
+            } else {
+                alert("No termina ni con la A ni con la O")
+            }
+        }
+
+        function longit5() {
+            var nombre = document.getElementById("nombre").value;
+            var regex = /\b\D{5}\b/gmi;
+            if (regex.test(nombre)) {
+                alert("Palabra tiene 5 letras");
+            } else {
+                alert("No tiene 5 letras")
+            }
+        }
+
+        function inicioCfinO() {
+            var nombre = document.getElementById("nombre").value;
+            var regex = /^[Cc].*[oO]$/gm;
+            if (regex.test(nombre)) {
+                alert("Palabra empieza con la C y termina con la O");
+            } else {
+                alert("Palabra ni empieza con la C ni termina con la O")
+            }
         }
     </script>
 </body>
+
 </html>

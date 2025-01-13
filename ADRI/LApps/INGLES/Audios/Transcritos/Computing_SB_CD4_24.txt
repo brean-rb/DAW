@@ -1,0 +1,34 @@
+Page 72, exercise 2.
+Two colleagues are discussing internet security.
+Choose a correct answer.
+Then listen to the dialogue and check your answers.
+Hi, Katie.
+My daughter was surfing the web last night
+and I noticed some undesirable content
+that I didn't want her to see.
+I need to block certain websites.
+Do you know how I can do this?
+It's easy, Wendy.
+You can set up your PC to monitor what your children are viewing.
+It will also keep them away from certain games and sites.
+You can even set limits on how much time they spend online.
+You mean I can actually limit what sites the browser finds?
+Sure.
+Almost all browsers and social media websites
+have parental controls or privacy settings.
+Where do I find the parental controls on Google?
+How do I set them?
+In your browser, go to search settings
+on the right-hand side of the screen.
+Under safe search filters,
+check the box next to turn on safe search.
+Then at the bottom of the page,
+click save.
+How does this help?
+When someone does a search in their browser,
+this filters the search results
+and eliminates undesirable videos and websites.
+Is it completely safe?
+It's not 100% accurate.
+However, it helps protect children
+for most of the inappropriate search results.

@@ -1,0 +1,31 @@
+Page 73. Your turn.
+Listen to the conversation between a bank employee and a client.
+Copy and complete the chart.
+Then tick the correct columns.
+Hello, this is Dorothy Myers.
+Who am I speaking to?
+Hello, Mrs. Myers.
+This is Philip Clark.
+I'm the customer relations officer at the bank.
+I think I've got a problem, Mr. Clark.
+This morning I got an email from the bank asking me to confirm my password
+by filling in a form on the email and sending it back.
+I was a bit surprised because the bank only asks for my password
+when I log into your website.
+The other thing that seemed to be suspicious was the logo.
+I checked it against some other correspondence that I've had from you
+and it looks fraudulent.
+Yes, it's a scam.
+We've received a number of calls this morning about this phishing.
+It seems that a bulk email has gone out to some of our clients.
+At the moment, we are monitoring all outgoing transactions
+and sending notification of the risk to all our clients.
+Does this mean that thieves are trying to get into my account?
+Yes, they could be.
+Is there anything I can do to ensure this doesn't happen again?
+Yes. First, delete the email immediately.
+Don't reply.
+Then adjust your filters to block any further emails from this undesirable sender.
+Don't put your password on any document
+except the bank's website protected sign-in page.
+I will. Thanks, Mr. Clark. I'm so pleased I called you.
