@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeNova</title>
+    <link rel="shortcut icon" href="img/logo_codenova.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .card-custom-bg {
+            background-color: #181b1f;
+            color: #fff;
+            border: none; 
+        }
+
+        .card-custom-bg:hover {
+            background-color: #fff;
+            color: #000;
+            text-decoration: none;
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+    </style>
+</head>
+
+<body class="bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand justify-content-center" href="#">
+                <img src="img/logo_codenova.png" alt="" width="45" height="45" class="d-inline-block align-text-center">
+                CodeNova
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav ">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Principiante</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Intermedio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Avanzado</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido de niveles -->
+    <div class="container-fluid bg-dark py-5">
+        <div class="d-flex justify-content-center mb-4 ">
+            <h1 class="text-white">¿Qué nivel tienes?</h1>
+        </div>
+
+        <div class="row justify-content-center g-4">
+            <div class="row justify-content-center g-4">
+                <!-- Tarjeta 1 (Junior) -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                    <a href="junior.html" class="card card-custom-bg text-center text-decoration-none flex-fill">
+                        <img src="img/imgs_levles/logo_junior.png" class="card-img-top" alt="Logo Junior" />
+                        <div class="card-body">
+                            <h5 class="card-title">Nivel Junior</h5>
+                            <p class="card-text">
+                                Para quienes comienzan en programación.
+                                Da tus primeros pasos aquí.
+                            </p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Tarjeta 2 (Senior) -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                    <a href="senior.html" class="card card-custom-bg text-center text-decoration-none">
+                        <img src="img/imgs_levles/logo_senior.png" class="card-img-top" alt="Logo Senior" />
+                        <div class="card-body">
+                            <h5 class="card-title">Nivel Senior</h5>
+                            <p class="card-text">
+                                Si ya tienes experiencia y buscas nuevos desafíos,
+                                este nivel es perfecto para ti.
+                            </p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Tarjeta 3 (Master) -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <a href="master.html" class="card card-custom-bg text-center text-decoration-none">
+                        <img src="img/imgs_levles/logo_master.png" class="card-img-top" alt="Logo Master" />
+                        <div class="card-body">
+                            <h5 class="card-title">Nivel Master</h5>
+                            <p class="card-text">
+                                Para expertos que dominan múltiples tecnologías.
+                                Lleva tus habilidades al siguiente nivel.
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- contenido de presentacion de los cursos -->
+
+    <!-- Footer -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
