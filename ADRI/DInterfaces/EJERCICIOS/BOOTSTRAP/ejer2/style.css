@@ -1,0 +1,71 @@
+#menuSup {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar-toggler:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+#botonregistro button {
+    background-color: white;
+    color: #dc3545;
+    border: 0px;
+}
+
+#botonregistro button:hover {
+    background-color: #dc3545;
+    color: #ffffff;
+    border: 0px;
+}
+
+#busqueda:hover {
+    background-color: #ffffff;
+    color: #ffffff;
+    border: 0px;
+}
+
+#menuLat {
+    border: 0px;
+}
+
+#carouselExampleControls .carousel-inner img {
+    object-fit: cover;
+    /* Ajusta las imágenes para que cubran todo el contenedor */
+    height: 650px;
+    /* Define una altura específica para todas las imágenes */
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fondo oscuro semi-transparente para mejor visibilidad */
+    color: white;
+    /* Color del texto */
+    padding: 10px;
+    /* Espaciado alrededor del texto */
+}
+
+.carousel-item:first-child .carousel-caption {
+    position: absolute;
+    top: 100px;
+    left: 105px;
+    width: 500px;
+    height: 450px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.carousel-item:nth-child(2) .carousel-caption {
+    position: absolute;
+    top: 100px;
+    left: 955px;
+    width: 500px;
+    height: 450px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.carousel-item:last-child .carousel-caption {
+    position: absolute;
+    bottom: 100px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
