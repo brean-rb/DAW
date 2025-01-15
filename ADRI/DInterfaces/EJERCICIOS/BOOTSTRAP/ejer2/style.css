@@ -1,29 +1,57 @@
+body {
+    background-color: #dc3545;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente más moderna */
+    background: linear-gradient(45deg, #dc3545, #ff5733); /* Gradiente de fondo para más dinamismo */
+    transition: background 0.3s ease-in-out;
+}
+
 #menuSup {
     display: flex;
     justify-content: space-between;
+    padding: 15px;
+    background: linear-gradient(135deg, #dc3545, #ff5733);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra para dar profundidad */
+}
+
+.navbar-toggler {
+    border: none;
+    background: transparent;
 }
 
 .navbar-toggler:focus {
     outline: none;
-    box-shadow: none;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Efecto de foco futurista */
 }
 
 #botonregistro button {
     background-color: white;
     color: #dc3545;
-    border: 0px;
+    border: 2px solid #dc3545;
+    border-radius: 25px; /* Bordes redondeados */
+    padding: 12px 24px;
+    transition: all 0.3s ease;
 }
 
 #botonregistro button:hover {
     background-color: #dc3545;
-    color: #ffffff;
-    border: 0px;
+    color: white;
+    border: 2px solid #ff5733; /* Color de borde en hover */
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más sutil */
+}
+
+#busqueda {
+    border-radius: 50px;
+    background-color: #ffffff;
+    color: #dc3545;
+    transition: background-color 0.3s ease-in-out;
 }
 
 #busqueda:hover {
-    background-color: #ffffff;
-    color: #ffffff;
-    border: 0px;
+    background-color: #ff5733;
+    color: white;
 }
 
 #menuLat {
@@ -32,40 +60,87 @@
 
 #carouselExampleControls .carousel-inner img {
     object-fit: cover;
-    /* Ajusta las imágenes para que cubran todo el contenedor */
     height: 650px;
-    /* Define una altura específica para todas las imágenes */
+    filter: brightness(0.7); /* Ajusta la luminosidad */
 }
 
 .carousel-caption {
-    background-color: rgba(0, 0, 0, 0.5);
-    /* Fondo oscuro semi-transparente para mejor visibilidad */
+    background-color: rgba(0, 0, 0, 0.6);
     color: white;
-    /* Color del texto */
+    padding: 20px;
+    border-radius: 10px; /* Bordes redondeados */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Sombra de texto */
+}
+
+.carousel-item img {
+    object-fit: cover;
+    height: 70vh; 
+    filter: brightness(0.8); /* Más brillo */
+}
+
+.carousel-control-prev, .carousel-control-next {
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro para las flechas */
+    border-radius: 50%;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+aside {
+    margin-top: 20px;
+}
+
+aside {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; 
+    height: 100vh;
+    margin: 0;
+}
+
+.encuesta {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra más intensa */
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.encuesta:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4); /* Efecto de hover para profundidad */
+}
+
+.encuesta ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.encuesta li {
+    border: 1px solid #ddd;
     padding: 10px;
-    /* Espaciado alrededor del texto */
+    margin-bottom: 10px;
+    background-color: rgb(196, 196, 196);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.3s ease-in-out;
+    transform-origin: center;
+    border-radius: 8px; /* Bordes redondeados */
 }
 
-.carousel-item:first-child .carousel-caption {
-    position: absolute;
-    top: 100px;
-    left: 105px;
-    width: 500px;
-    height: 450px;
-    background-color: rgba(0, 0, 0, 0.5);
+.encuesta li:hover {
+    background-color: #dc3545;
+    transform: scale3d(1.05, 1.05, 1); /* Escala al pasar el ratón */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra al hacer hover */
 }
 
-.carousel-item:nth-child(2) .carousel-caption {
-    position: absolute;
-    top: 100px;
-    left: 955px;
-    width: 500px;
-    height: 450px;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.carousel-item:last-child .carousel-caption {
-    position: absolute;
-    bottom: 100px;
-    background-color: rgba(0, 0, 0, 0.5);
+.encuesta li img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Imágenes redondeadas */
 }
