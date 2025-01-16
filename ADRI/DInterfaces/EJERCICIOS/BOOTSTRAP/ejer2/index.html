@@ -60,22 +60,22 @@
                 <div class="carousel-item active">
                     <img class="d-block w-100 img-fluid" src="src/spike1.jpg" alt="First slide">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>Imagen 1</h5>
-                        <p>Descripción de la imagen 1</p>
+                        <h5>¿Te gusta el competitivo de Valorant?</h5>
+                        <p><a href="#compe">Pincha aquí</a> para saber mas</p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img class="d-block w-100 img-fluid" src="src/deathmatch.jpg" alt="Second slide">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>Imagen 2</h5>
-                        <p>Descripción de la imagen 2</p>
+                        <h5>¿Prefieres la accion sin frenos?</h5>
+                        <p><a href="#combmuerte">Pincha aquí</a> para saber mas</p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img class="d-block w-100 img-fluid" src="src/esconditw.jpg" alt="Third slide">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>Imagen 3</h5>
-                        <p>Descripción de la imagen 3</p>
+                        <h5>¿Eres de los que se esconden?</h5>
+                        <p><a href="#escondit">Pincha aquí</a> para saber mas</p>
                     </div>
                 </div>
             </div>
@@ -83,30 +83,223 @@
             <!-- Flecha anterior -->
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
                 data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" style="display: none;" aria-hidden="true"></span>
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
 
             <!-- Flecha siguiente -->
             <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
                 data-bs-slide="next">
-                <span class="carousel-control-next-icon" style="display: none;" aria-hidden="true"></span>
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
+
         </div>
     </section>
     <aside>
         <div class="encuesta">
             <h4 style="color: #dc3545;">¿Que rol jugarás?</h4>
-            <ul>
-                <li><img src="src/iniciador.png"   height="50px" width="50px" alt="">Iniciador</li>
-                <li><img src="src/smoker.png"      height="50px" width="50px" alt="">Humos</li>
-                <li><img src="src/duelista.png"    height="50px" width="50px" alt="">Duelista</li>
-                <li><img src="src/centinela.png"   height="50px" width="50px" alt="">Centinela</li>
+            <ul id="roles">
+                <!-- Iniciador -->
+                <li data-bs-toggle="modal" data-bs-target="#modalIniciador">
+                    <img src="src/iniciador.png" height="50px" width="50px" alt="">
+                    Iniciador
+                </li>
+
+                <!-- Modal Iniciador -->
+                <div class="modal fade" id="modalIniciador" tabindex="-1" role="dialog"
+                    aria-labelledby="modalIniciadorTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalIniciadorTitle">¿Sabías que...?</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <img class="fotosmodal" src="src/iniciadoresfondo.gif" alt="" width="475px"
+                                    height="200px"><br>
+                                <br>
+                                <h5> El <em>20-25%</em> de jugadores en la comunidad juegan iniciador pero
+                                    realmente sabes para que sirven?</h5> <br>
+                                Ellos preparan el terreno para que su equipo pueda entrar a zonas controladas por el
+                                enemigo. <br>
+                                Esto lo logran facilitando información, desestabilizando al equipo contrario y creando
+                                oportunidades para que sus compañeros <br>
+                                avancen de manera segura.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ya lo
+                                    sabía</button>
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">WOW</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Humos -->
+                <li data-bs-toggle="modal" data-bs-target="#modalHumos">
+                    <img src="src/smoker.png" height="50px" width="50px" alt="">
+                    Controladores
+                </li>
+
+                <!-- Modal Humos -->
+                <div class="modal fade" id="modalHumos" tabindex="-1" role="dialog" aria-labelledby="modalHumosTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalHumosTitle">¿Sabías que...?</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <img src="src/controladorModal.gif" alt="">
+                                <h5> El <em>15-20%</em> de jugadores en la comunidad juegan controlador pero
+                                    realmente sabes para que sirven?</h5> <br>
+                                Los controladores son especialistas en bloquear líneas de visión, restringir movimientos
+                                enemigos y facilitar la ejecución de estrategias tanto ofensivas como defensivas. <br>Su
+                                objetivo principal es proporcionar ventaja táctica a su equipo, ya sea asegurando un
+                                sitio para plantar la spike o dificultando el avance del equipo contrario.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ya lo
+                                    sabía</button>
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">WOW</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Duelista -->
+                <li data-bs-toggle="modal" data-bs-target="#modalDuelista">
+                    <img src="src/duelista.png" height="50px" width="50px" alt="">
+                    Duelista
+                </li>
+
+                <!-- Modal Duelista -->
+                <div class="modal fade" id="modalDuelista" tabindex="-1" role="dialog"
+                    aria-labelledby="modalDuelistaTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalDuelistaTitle">¿Sabías que...?</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <img class="fotosmodal" src="src/duelistasmodal.gif" alt="" width="475px"
+                                    height="200px"><br>
+                                <br>
+                                <h5> El <em>35-40%</em> de jugadores en la comunidad juegan duelista pero
+                                    realmente sabes para que sirven?</h5> <br>
+                                Los duelistas son los encargados de abrir las rondas, buscar eliminaciones y generar
+                                espacio para su <br>
+                                equipo. Este rol destaca por su alta capacidad de daño y habilidades que permiten
+                                enfrentamientos directos con los enemigos. Su objetivo principal es hacer que su equipo
+                                <br>
+                                gane terreno mediante el control de zonas clave del mapa, generalmente iniciando el
+                                combate.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ya lo
+                                    sabía</button>
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">WOW</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Centinela -->
+                <li data-bs-toggle="modal" data-bs-target="#modalCentinela">
+                    <img src="src/centinela.png" height="50px" width="50px" alt="">
+                    Centinela
+                </li>
+
+                <!-- Modal Centinela -->
+                <div class="modal fade" id="modalCentinela" tabindex="-1" role="dialog"
+                    aria-labelledby="modalCentinelaTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalCentinelaTitle">¿Sabías que...?</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <img src="src/centinelasModal.gif" alt="" width="475px" height="auto">
+                                <h5> El <em>20-25%</em> de jugadores en la comunidad juegan centinela pero
+                                    realmente sabes para que sirven?</h5> <br>
+                                Los centinelas son esenciales para garantizar la seguridad de sitios clave y
+                                proporcionar herramientas para frenar o retrasar los avances enemigos. <br> Su enfoque
+                                es
+                                mayormente defensivo, aunque también pueden apoyar en el ataque asegurando flancos o
+                                zonas críticas.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ya lo
+                                    sabía</button>
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">WOW</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </ul>
         </div>
     </aside>
+    <main class="container my-5">
+        <div class="tournament-title text-center mb-4">
+            <h1>INSCRIPCIONES Y TORNEOS</h1>
+        </div>
+        
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <img src="src/competitivoValorantRojp.png" class="card-img-top" alt="Torneo Competitivo Valorant">
+                    <div class="card-body">
+                        <h5 class="card-title">Torneo Competitivo de Valorant</h5>
+                        <p class="card-text">Inscribete al torneo competitivo de Valorant! Las reglas son las comunes, el equipo que llegue a 13 rondas gana.</p>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" type="button">Acerca de</button>
+                            <button class="btn btn-secondary" type="button">Inscribirse</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <img src="src/deathmatchTorneo.jpg" class="card-img-top" alt="Torneo Combate a Muerte Valorant">
+                    <div class="card-body">
+                        <h5 class="card-title">Torneo Combate a Muerte de Valorant</h5>
+                        <p class="card-text">Inscribete al torneo de combate a muerte de Valorant! Las reglas son las comunes, el jugador que llegue a 40 asesinatos gana.</p>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" type="button">Acerca de</button>
+                            <button class="btn btn-secondary" type="button">Inscribirse</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <img src="src/esconditeTorneo.jpg" class="card-img-top" alt="Torneo Escondite Valorant">
+                    <div class="card-body">
+                        <h5 class="card-title">Torneo Escondite de Valorant</h5>
+                        <p class="card-text">Inscribete al torneo competitivo de Valorant! Las reglas son las comunes, el equipo que llegue a 13 rondas gana.</p>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" type="button">Acerca de</button>
+                            <button class="btn btn-secondary" type="button">Inscribirse</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets.js"></script>
 </body>
+
 </html>

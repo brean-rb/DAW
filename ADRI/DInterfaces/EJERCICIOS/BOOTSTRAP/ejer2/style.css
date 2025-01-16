@@ -1,47 +1,54 @@
+/* Estilo general del body con fondo degradado, fuente y transición suave */
 body {
     background-color: #dc3545;
     color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente más moderna */
-    background: linear-gradient(45deg, #dc3545, #ff5733); /* Gradiente de fondo para más dinamismo */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    background: linear-gradient(45deg, #dc3545, #ff5733);
     transition: background 0.3s ease-in-out;
 }
 
+/* Estilo para el menú superior */
 #menuSup {
     display: flex;
     justify-content: space-between;
     padding: 15px;
     background: linear-gradient(135deg, #dc3545, #ff5733);
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra para dar profundidad */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
 }
 
+/* Estilo para el botón de despliegue del menú (toggler) */
 .navbar-toggler {
     border: none;
     background: transparent;
 }
 
+/* Efecto de enfoque para el botón toggler */
 .navbar-toggler:focus {
     outline: none;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Efecto de foco futurista */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); 
 }
 
+/* Estilo para el botón de registro */
 #botonregistro button {
     background-color: white;
     color: #dc3545;
     border: 2px solid #dc3545;
-    border-radius: 25px; /* Bordes redondeados */
+    border-radius: 25px;
     padding: 12px 24px;
     transition: all 0.3s ease;
 }
 
+/* Efecto hover para el botón de registro */
 #botonregistro button:hover {
     background-color: #dc3545;
     color: white;
-    border: 2px solid #ff5733; /* Color de borde en hover */
+    border: 2px solid #ff5733;
     transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más sutil */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
 }
 
+/* Estilo para el cuadro de búsqueda */
 #busqueda {
     border-radius: 50px;
     background-color: #ffffff;
@@ -49,61 +56,84 @@ body {
     transition: background-color 0.3s ease-in-out;
 }
 
+/* Efecto hover para el cuadro de búsqueda */
 #busqueda:hover {
     background-color: #ff5733;
     color: white;
 }
 
+/* Estilo para el menú lateral */
 #menuLat {
     border: 0px;
 }
 
+/* Configuración de imágenes dentro del carrusel */
 #carouselExampleControls .carousel-inner img {
     object-fit: cover;
     height: 650px;
-    filter: brightness(0.7); /* Ajusta la luminosidad */
+    filter: brightness(0.7); 
 }
 
+/* Estilo para los textos dentro del carrusel */
 .carousel-caption {
     background-color: rgba(0, 0, 0, 0.6);
     color: white;
     padding: 20px;
-    border-radius: 10px; /* Bordes redondeados */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Sombra de texto */
+    border-radius: 10px; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); 
 }
 
+/* Ajuste de altura de las imágenes del carrusel */
 .carousel-item img {
     object-fit: cover;
     height: 70vh; 
-    filter: brightness(0.8); /* Más brillo */
+    filter: brightness(0.8); 
 }
 
-.carousel-control-prev, .carousel-control-next {
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro para las flechas */
-    border-radius: 50%;
+/* Estilo inicial para los controles del carrusel */
+.carousel-control-prev,
+.carousel-control-next {
+    display: flex;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none; 
 }
 
+/* Mostrar los controles al pasar el cursor sobre el carrusel */
+#carouselExampleControls:hover .carousel-control-prev,
+#carouselExampleControls:hover .carousel-control-next {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Espaciado entre secciones */
 section {
     margin-bottom: 20px;
 }
 
-aside {
-    margin-top: 20px;
+/* Estilo para el área principal */
+main {
+    margin-left: 5px; 
+    padding: 5px; 
 }
 
+/* Estilo para el área lateral */
 aside {
+    margin-top: 30px; 
+    margin-right: 5px;
+    padding: 5px; 
     display: flex;
     justify-content: center;
     align-items: flex-start; 
-    height: 100vh;
-    margin: 0;
+    height: 70vh;
 }
 
+/* Estilo para el contenedor de encuestas */
 .encuesta {
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra más intensa */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     width: 100%;
     max-width: 700px;
     text-align: center;
@@ -111,15 +141,18 @@ aside {
     transition: all 0.3s ease;
 }
 
+/* Efecto hover para la encuesta */
 .encuesta:hover {
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4); /* Efecto de hover para profundidad */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4); 
 }
 
+/* Estilo para la lista dentro de la encuesta */
 .encuesta ul {
     list-style-type: none;
     padding: 0;
 }
 
+/* Estilo para los elementos de la lista */
 .encuesta li {
     border: 1px solid #ddd;
     padding: 10px;
@@ -130,17 +163,90 @@ aside {
     gap: 10px;
     transition: transform 0.3s ease-in-out;
     transform-origin: center;
-    border-radius: 8px; /* Bordes redondeados */
+    border-radius: 8px;
 }
 
+/* Efecto hover para los elementos de la lista */
 .encuesta li:hover {
     background-color: #dc3545;
-    transform: scale3d(1.05, 1.05, 1); /* Escala al pasar el ratón */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra al hacer hover */
+    transform: scale3d(1.05, 1.05, 1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
 }
 
+/* Estilo para imágenes dentro de los elementos de la lista */
 .encuesta li img {
     width: 50px;
     height: 50px;
-    border-radius: 50%; /* Imágenes redondeadas */
+    border-radius: 50%; 
 }
+
+/* Estilo para el contenido del modal */
+.modal-content {
+    border-radius: 15px; 
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); 
+    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d); 
+    color: #fff;
+    overflow: hidden;
+}
+
+/* Estilo para el encabezado del modal */
+.modal-header {
+    background-color: rgba(0, 0, 0, 0.7); 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3); 
+}
+
+/* Estilo para el título del modal */
+.modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); 
+}
+
+/* Estilo para el cuerpo del modal */
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Estilo para las imágenes dentro del cuerpo del modal */
+.modal-body img {
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para los botones en el footer del modal */
+.modal-footer .btn {
+    border-radius: 25px; 
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+/* Estilo para el botón secundario en el footer del modal */
+.modal-footer .btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+/* Estilo para el botón primario en el footer del modal */
+.modal-footer .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Efecto hover para los botones en el footer del modal */
+.modal-footer .btn:hover {
+    opacity: 0.8; 
+}
+
+/* Estilo para el título de los torneos */
+.tournament-title{
+    text-align: center;
+}
+
+/* Estilo para las tarjetas de torneos */
