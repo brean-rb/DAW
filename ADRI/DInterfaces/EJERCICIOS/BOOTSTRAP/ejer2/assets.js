@@ -8,3 +8,12 @@ botonLat.onclick = function () {
         menuPath.setAttribute("d", "M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z");
     }
 };
+document.getElementById('logo').addEventListener('click', function() {
+    location.reload();  
+});window.onscroll = function() {
+    if (document.documentElement.scrollTop > 100) {
+        document.getElementById("volverArriba").style.display = "block";
+    } else {
+        document.getElementById("volverArriba").style.display = "none";
+    }
+};

@@ -245,8 +245,114 @@ aside {
 }
 
 /* Estilo para el título de los torneos */
-.tournament-title{
+.tournament-title h1{
     text-align: center;
+    color: white;
+    font-size: 40px;
 }
 
 /* Estilo para las tarjetas de torneos */
+#tarjetasT{
+    color: black;
+    text-align: center;
+}
+/*Color personalizado para los botones*/
+.btn-custom {
+    background-color: #dc3545;
+    color: white;
+}
+
+.tarjetasTipo {
+    transition: transform 0.4s ease-in-out;
+  }
+  
+.tarjetasTipo:hover{
+    transform: scale(1.1);
+    .card-body{background-color: black;}
+    color: white;
+}
+.tarjetasTipo:hover img {
+    filter: brightness(0.7); /* Cambia la luminosidad al 50% */
+}
+#contacto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh; /* Asegura que el contenido se centre verticalmente */
+    padding: 20px;
+}
+#formucon {
+    max-width: 500px;
+    width: 100%;
+    background-color: #fff;
+    color: black;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+#formucon label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+#formucon input[type="text"],
+#formucon input[type="email"],
+#formucon textarea {
+    box-shadow: 0 2px 5px rgba(220, 53, 69, 0.4);
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#formucon textarea {
+    height: 100px;
+}
+
+#formucon button {
+    background-color: #dc3545;
+    transition: transform 0.3 ease-in-out;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#formucon button:hover {
+transform: scale(1.1);
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 40px;
+}
+
+.app-icons img {
+    width: 150px;
+    margin: 10px;
+}
+#volverArriba {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    z-index: 1000;
+    display: none;
+}
+#volverArriba a{
+    text-decoration: none;
+    color: white;
+}
