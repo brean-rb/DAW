@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    
+
     <nav class="navbar navbar-expand-lg bg-danger" data-bs-theme="dark">
         <div class="container-fluid d-flex align-items-center">
             <!-- Logo -->
@@ -62,21 +62,21 @@
                     <img class="d-block w-100 img-fluid" src="src/spike1.jpg" alt="First slide">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>¿Te gusta el competitivo de Valorant?</h5>
-                        <p><a href="#compe">Pincha aquí</a> para saber mas</p>
+                        <p><a href="#comperef">Pincha aquí</a> para saber mas</p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img class="d-block w-100 img-fluid" src="src/deathmatch.jpg" alt="Second slide">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>¿Prefieres la accion sin frenos?</h5>
-                        <p><a href="#combmuerte">Pincha aquí</a> para saber mas</p>
+                        <p><a href="#deathref">Pincha aquí</a> para saber mas</p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img class="d-block w-100 img-fluid" src="src/esconditw.jpg" alt="Third slide">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>¿Eres de los que se esconden?</h5>
-                        <p><a href="#escondit">Pincha aquí</a> para saber mas</p>
+                        <p><a href="#esconditeref">Pincha aquí</a> para saber mas</p>
                     </div>
                 </div>
             </div>
@@ -253,45 +253,511 @@
         <div class="tournament-title text-center mb-4">
             <h1>INSCRIPCIONES Y TORNEOS</h1>
         </div>
-        
+
         <div class="row">
             <div class="col-12 col-md-6 col-lg-4 mb-4 tarjetasTipo">
                 <div class="card h-100">
-                    <img src="src/competitivoValorantRojp.png" class="card-img-top" alt="Torneo Competitivo Valorant" height="230px">
-                    <div class="card-body">
+                    <img src="src/competitivoValorantRojp.png" class="card-img-top" alt="Torneo Competitivo Valorant"
+                        height="230px">
+                    <div class="card-body" id="comperef">
                         <h5 class="card-title">Torneo Competitivo de Valorant</h5>
-                        <p class="card-text">Inscribete al torneo competitivo de Valorant! Las reglas son las comunes, el equipo que llegue a 13 rondas gana.</p>
+                        <p class="card-text">Inscribete al torneo competitivo de Valorant! Las reglas son las comunes,
+                            el equipo que llegue a 13 rondas gana.</p>
                         <div class="d-grid gap-2">
-                            <button class="btn btn-custom" type="button">Acerca de</button>
-                            <button id="referen" class="btn btn-secondary" type="button">Inscribirse</button>
+                            <button type="button" class="btn btn-primary btnAcercade" data-bs-toggle="modal"
+                                data-bs-target="#exampleModalLongCompe">Acerca de</button>
+                            <button type="button" class="btn btn-primary btnInscribirse" data-bs-toggle="modal"
+                                data-bs-target="#exampleModalCenterCompe">Inscribirse</button>
                         </div>
                     </div>
                 </div>
             </div>
-    
+            <!-- Modal Acerca de modo competitivo-->
+            <div class="modal fade" id="exampleModalLongCompe" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Acerca del torneo competitivo</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Estructura de la Partida
+
+                            Formato del torneo:
+                            Las partidas suelen jugarse al mejor de 3 (Bo3) o al mejor de 5 (Bo5), dependiendo de la
+                            etapa del torneo.
+                            En algunos casos, la fase inicial puede incluir eliminatorias simples o dobles.
+
+                            Selección de mapas:
+                            Se utiliza un proceso de veto entre los equipos para decidir los mapas a jugar:
+                            Cada equipo elimina un mapa de la rotación oficial.
+                            Alternativamente seleccionan un mapa para jugar.
+                            El último mapa no vetado se utiliza como desempate (si es necesario).
+                            El equipo que elige el mapa inicial empieza atacando o defendiendo.
+
+                            Reglas de la Partida
+
+                            Duración de las rondas:
+                            Cada partida tiene un máximo de 25 rondas:
+                            12 rondas por lado (ataque/defensa).
+                            Cambian de lado después de la ronda 12.
+                            El primer equipo en alcanzar 13 rondas ganadas se lleva la victoria.
+                            En caso de empate 12-12, se activa una prórroga (ver detalles abajo).
+
+                            Prórrogas:
+                            Cada equipo juega una ronda en ataque y otra en defensa.
+                            Ambos equipos reciben la misma cantidad de créditos (normalmente 5000) y pueden comprar
+                            armas y habilidades.
+                            Gana el equipo que consiga 2 rondas consecutivas en la prórroga.
+                            Si no hay un ganador tras un ciclo de prórrogas, estas continúan hasta que se cumpla la
+                            condición.
+
+                            Dinero y economía:
+                            Los equipos comienzan con 800 créditos en la primera ronda.
+                            Los créditos se ganan en función de las acciones de la ronda:
+                            Victoria: 3000 créditos.
+                            Derrota: Entre 1900 y 2900 créditos dependiendo de las rondas consecutivas perdidas.
+                            Eliminaciones y colocación/desactivación de la Spike también otorgan créditos.
+
+                            Condiciones de victoria en una ronda:
+                            Eliminar a todos los jugadores del equipo contrario.
+                            Colocar la Spike y hacerla detonar.
+                            Defender con éxito la Spike y evitar su colocación hasta que el tiempo se agote.
+                            Desactivar la Spike si fue colocada.
+
+                            Restricciones y Normas Adicionales
+
+                            Tiempo de pausa:
+                            Los equipos pueden solicitar pausas tácticas (generalmente 2 por mapa, de 60 segundos cada
+                            una).
+                            Se pueden usar pausas técnicas para resolver problemas técnicos.
+
+                            Uso de agentes:
+                            Los equipos deben seleccionar agentes antes de iniciar el mapa.
+                            Pueden evitar que dos jugadores usen el mismo agente dentro del mismo equipo.
+                            Algunos agentes pueden estar bloqueados temporalmente si han sido modificados recientemente.
+
+                            Reglas de descalificación:
+                            Uso de trampas o programas externos está prohibido.
+                            Conducta antideportiva, como aprovechar bugs intencionalmente, puede resultar en sanciones.
+
+                            Restricciones técnicas:
+                            Se usan servidores dedicados para mantener un ping bajo y constante.
+                            Las configuraciones de hardware y software deben ser aprobadas por los oficiales del torneo.
+
+                            Coaching:
+                            Los entrenadores pueden comunicarse con los jugadores solo durante las pausas o antes del
+                            inicio del mapa.
+                            No pueden intervenir durante las rondas.
+
+                            Comportamiento en Competencia
+
+                            Deportividad:
+                            Respetar a los rivales, oficiales y reglas del torneo.
+                            Los jugadores y equipos deben cumplir con las políticas de Riot Games.
+
+                            Revisión previa:
+                            Los equipos deben proporcionar listas de jugadores, agentes y estrategias antes del inicio
+                            de cada partida.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-custom" data-bs-dismiss="modal">Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Inscribirse competitivo-->
+            <div class="modal fade" id="exampleModalCenterCompe" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Inscripcion al torneo competitivo</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" id="inscripcion">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Nombre:</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                    <div class="invalid-feedback">
+                                        Por favor, ingresa tu nombre.
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Correo Electrónico:</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                    <div class="invalid-feedback">
+                                        Por favor, ingresa un correo electrónico válido.
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="selector" class="form-label">Tipo de torneo:</label><br>
+                                    <select name="torneosDis" id="torneosDIs" class="styled-select">
+                                        <option value="">Selecciona un torneo</option>
+                                        <option value="1">Torneo Competitivo</option>
+                                        <option value="2">Torneo Deathmatch</option>
+                                        <option value="3">Torneo de Escondite</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Por favor, ingresa una opción válida.
+                                    </div>
+                                </div>
+
+
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" id="showMessageBtn" class="btn btn-custom"
+                                data-bs-dismiss="modal">Inscribete</button>
+                            <button type="button" onclick="limpiar()" class="btn btn-custom">Limpiar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="successMessage" class="alert alert-success alert-overlay" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512" width="16" height="16"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                    <path
+                        d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z" />
+                </svg>
+                ¡Inscrito con éxito!
+            </div>
             <div class="col-12 col-md-6 col-lg-4 mb-4 tarjetasTipo">
                 <div class="card h-100">
                     <img src="src/deathmatchTorneo.jpg" class="card-img-top" alt="Torneo Combate a Muerte Valorant">
-                    <div class="card-body">
+                    <div class="card-body" id="deathref">
                         <h5 class="card-title">Torneo Combate a Muerte de Valorant</h5>
-                        <p class="card-text">Inscribete al torneo de combate a muerte de Valorant! Las reglas son las comunes, el jugador que llegue a 40 asesinatos gana.</p>
+                        <p class="card-text">Inscribete al torneo de combate a muerte de Valorant! Las reglas son las
+                            comunes, el jugador que llegue a 40 asesinatos gana.</p>
                         <div class="d-grid gap-2">
-                            <button class="btn btn-custom" type="button">Acerca de</button>
-                            <button class="btn btn-secondary" type="button">Inscribirse</button>
+                            <button type="button" class="btn btn-primary btnAcercade" data-bs-toggle="modal"
+                                data-bs-target="#exampleModalLongDeath">Acerca de</button>
+                            <button type="button" class="btn btn-primary btnInscribirse" data-bs-toggle="modal"
+                                data-bs-target="#exampleModalCenterDeath">Inscribirse</button>
                         </div>
                     </div>
                 </div>
             </div>
-    
+
+            <!-- Modal Acerca de modo deathmatch-->
+            <div class="modal fade" id="exampleModalLongDeath" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title deathmatch</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Objetivo del Juego
+
+                            Ganar acumulando eliminaciones: Cada jugador compite por obtener la mayor cantidad de bajas
+                            dentro de un tiempo límite o alcanzando el puntaje objetivo.
+
+                            Configuración del Torneo
+
+                            Participantes:
+                            Hasta 14 jugadores por partida.
+                            Los jugadores compiten de manera individual, sin equipos.
+
+                            Duración de la partida:
+                            Cada partida dura 9 minutos o hasta que un jugador alcance las 40 eliminaciones.
+
+                            Mapas:
+                            Se seleccionan mapas pequeños o medianos, como Ascent, Bind o Split, para intensificar los
+                            combates.
+
+                            Respawn (reaparición):
+                            Los jugadores reaparecen automáticamente en ubicaciones aleatorias del mapa tras ser
+                            eliminados.
+                            Tiempo de respawn: 3 segundos.
+
+                            Armas:
+                            Los jugadores comienzan con armas aleatorias.
+                            Las armas cambian automáticamente tras cada eliminación (rotación predeterminada del modo
+                            Deathmatch).
+
+                            Reglas del Torneo
+
+                            Puntaje:
+                            Cada eliminación otorga 1 punto.
+                            Asistencias o daños a enemigos no otorgan puntos.
+                            El ganador es el jugador con más puntos al finalizar el tiempo o quien alcance 40 puntos
+                            primero.
+
+                            Prohibiciones:
+                            Las habilidades de agentes están deshabilitadas. El enfoque está en el uso de armas y la
+                            precisión.
+                            No se permite la comunicación entre jugadores.
+
+                            Condiciones de Victoria:
+                            Rondas clasificatorias: Los mejores X jugadores (según las eliminaciones) avanzan a la
+                            siguiente fase del torneo.
+                            Final: El jugador con más eliminaciones en la última partida será declarado campeón.
+
+                            Dinámica del Juego
+
+                            Inicio de la partida:
+                            Todos los jugadores comienzan simultáneamente en ubicaciones aleatorias del mapa.
+                            El combate inicia al sonar el temporizador.
+
+                            Combate continuo:
+                            Los jugadores deben eliminar a sus oponentes mientras evitan ser eliminados.
+                            No hay tiempo de descanso; los jugadores reaparecen automáticamente tras ser eliminados.
+
+                            Control del mapa:
+                            Conocer el mapa es clave para dominar posiciones estratégicas y anticipar reaparecimientos.
+
+                            Formato del Torneo
+
+                            Fase de clasificación:
+                            Los jugadores se distribuyen en grupos (máximo 14 por partida).
+                            Los mejores 4-6 jugadores con más eliminaciones avanzan.
+
+                            Semifinales:
+                            Los clasificados compiten nuevamente bajo las mismas reglas, pero en mapas más desafiantes.
+
+                            Gran final:
+                            Los finalistas juegan una última partida.
+                            Se puede agregar un reto adicional, como reducción del tiempo de respawn o cambio de armas
+                            más frecuente.
+
+                            Consejos para Competir
+
+                            Aprovecha las armas: Cambia tu estilo de juego según las armas que obtengas tras cada
+                            eliminación.
+                            Mantente en movimiento: Evita posiciones estáticas para reducir la probabilidad de ser
+                            emboscado.
+                            Conoce los mapas: Usa zonas elevadas y áreas con buena visibilidad para tener ventaja
+                            táctica.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-custom" data-bs-dismiss="modal">Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Inscribirse deathmatch-->
+            <div class="modal fade" id="exampleModalCenterDeath" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Modal title deathmatch</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" id="inscripcion">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Nombre:</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                    <div class="invalid-feedback">
+                                        Por favor, ingresa tu nombre.
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Correo Electrónico:</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                    <div class="invalid-feedback">
+                                        Por favor, ingresa un correo electrónico válido.
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="selector" class="form-label">Tipo de torneo:</label><br>
+                                    <select name="torneosDis" id="torneosDIs" class="styled-select">
+                                        <option value="">Selecciona un torneo</option>
+                                        <option value="1">Torneo Competitivo</option>
+                                        <option value="2">Torneo Deathmatch</option>
+                                        <option value="3">Torneo de Escondite</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Por favor, ingresa una opción válida.
+                                    </div>
+                                </div>
+
+
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-custom" data-bs-dismiss="modal">Inscribete</button>
+                            <button type="button" onclick="limpiar()" class="btn btn-custom">Limpiar</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="col-12 col-md-6 col-lg-4 mb-4 tarjetasTipo">
                 <div class="card h-100">
                     <img src="src/esconditeTorneo.jpg" class="card-img-top" alt="Torneo Escondite Valorant">
-                    <div class="card-body">
+                    <div class="card-body" id="esconditeref">
                         <h5 class="card-title">Torneo Escondite de Valorant</h5>
-                        <p class="card-text">Inscribete al torneo competitivo de Valorant! Las reglas son las comunes, el equipo que llegue a 13 rondas gana.</p>
+                        <p class="card-text">Inscribete al torneo competitivo de Valorant! Las reglas son las comunes,
+                            el equipo que llegue a 13 rondas gana.</p>
                         <div class="d-grid gap-2">
-                            <button class="btn btn-custom" type="button">Acerca de</button>
-                            <button class="btn btn-secondary" type="button">Inscribirse</button>
+                            <button type="button" class="btn btn-primary btnAcercade" data-bs-toggle="modal"
+                                data-bs-target="#exampleModalLongEscond">Acerca de</button>
+                            <button type="button" class="btn btn-primary btnInscribirse" data-bs-toggle="modal"
+                                data-bs-target="#exampleModalCenterEscond">Inscribirse</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Acerca de modo escondite-->
+            <div class="modal fade" id="exampleModalLongEscond" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title escondite</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Objetivo del Modo de Juego
+
+                            Buscadores: Localizar y eliminar a los escondidos dentro del tiempo límite.
+                            Escondidos: Permanecer ocultos o evadir a los buscadores hasta que el tiempo se acabe.
+
+                            Configuración Inicial
+
+                            Número de jugadores:
+                            2 equipos (Buscadores y Escondidos).
+                            Recomendado: 5 jugadores en total, con 1 o 2 buscadores y el resto como escondidos.
+
+                            Mapas permitidos:
+                            Mapas abiertos con múltiples niveles y escondites creativos son ideales: Haven, Split, o
+                            Lotus.
+
+                            Duración:
+                            Cada ronda dura entre 3 y 5 minutos.
+                            Se juegan varias rondas alternando roles.
+
+                            Agentes permitidos:
+                            Buscadores:
+                            Agentes con habilidades de rastreo (Sova, Fade, Skye).
+                            Escondidos:
+                            Agentes con habilidades de movilidad o para ocultarse (Jett, Omen, Yoru, Reyna).
+
+                            Reglas del Juego
+                            Reglas Generales
+
+                            Inicio de la partida:
+                            Los escondidos tienen 30 segundos al inicio de la ronda para buscar un lugar donde
+                            esconderse.
+                            Durante este tiempo, los buscadores deben quedarse en la base y no mirar.
+
+                            Eliminación:
+                            Los buscadores deben eliminar a los escondidos utilizando armas cuerpo a cuerpo (cuchillo).
+                            Los escondidos no pueden atacar ni utilizar habilidades ofensivas contra los buscadores.
+
+                            Habilidades permitidas:
+                            Escondidos:
+                            Habilidades defensivas o de movimiento (ej.: el humo de Jett, el teleport de Omen).
+                            Buscadores:
+                            Habilidades de rastreo para encontrar escondidos (ej.: el dron de Sova, los perros de Skye).
+                            Restricción: No se permite usar habilidades que inflijan daño directo.
+
+                            Condiciones de victoria:
+                            Buscadores ganan si eliminan a todos los escondidos antes de que acabe el tiempo.
+                            Escondidos ganan si al menos uno de ellos sobrevive hasta que termine la ronda.
+
+                            Opcionales y Variantes
+
+                            Variante "Superviviente":
+                            Un solo escondido contra un equipo completo de buscadores. El escondido debe utilizar todas
+                            sus habilidades para sobrevivir el tiempo límite.
+
+                            Modo "Zombi":
+                            Los escondidos eliminados se convierten en buscadores. Ganan si convierten a todos en
+                            buscadores antes de que termine la ronda.
+
+                            Regla de movimiento:
+                            Los escondidos deben cambiar de posición al menos una vez cada 30 segundos para evitar que
+                            el juego sea demasiado estático.
+
+                            Castigos:
+                            Si un buscador utiliza armas de fuego o habilidades no permitidas, los escondidos ganan
+                            automáticamente la ronda.
+
+                            Consejos y Estrategias
+
+                            Para los Escondidos:
+                            Usa habilidades creativamente para bloquear la visión de los buscadores.
+                            Esconde tu sonido: evita caminar o correr innecesariamente.
+                            Trabaja en equipo y despista a los buscadores.
+
+                            Para los Buscadores:
+                            Coordina habilidades para cubrir más terreno.
+                            Escucha con atención: los sonidos de habilidades o pasos pueden delatar a los escondidos.
+                            Usa mapas con rastreo para priorizar áreas.
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-custom" data-bs-dismiss="modal">Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Inscribirse escondite-->
+            <div class="modal fade" id="exampleModalCenterEscond" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Modal title escondite</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" id="inscripcion">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Nombre:</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                    <div class="invalid-feedback">
+                                        Por favor, ingresa tu nombre.
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Correo Electrónico:</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                    <div class="invalid-feedback">
+                                        Por favor, ingresa un correo electrónico válido.
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="selector" class="form-label">Tipo de torneo:</label><br>
+                                    <select name="torneosDis" id="torneosDIs" class="styled-select">
+                                        <option value="">Selecciona un torneo</option>
+                                        <option value="1">Torneo Competitivo</option>
+                                        <option value="2">Torneo Deathmatch</option>
+                                        <option value="3">Torneo de Escondite</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Por favor, ingresa una opción válida.
+                                    </div>
+                                </div>
+
+
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-custom" data-bs-dismiss="modal">Inscribete</button>
+                            <button type="button" onclick="limpiar()" class="btn btn-custom">Limpiar</button>
+
                         </div>
                     </div>
                 </div>
@@ -308,7 +774,7 @@
                     Por favor, ingresa tu nombre.
                 </div>
             </div>
-    
+
             <div class="mb-3">
                 <label for="email" class="form-label">Correo Electrónico:</label>
                 <input type="email" class="form-control" id="email" name="email" required>
@@ -324,7 +790,7 @@
                     Por favor, ingresa el asunto.
                 </div>
             </div>
-            
+
             <div class="mb-3">
                 <label for="message" class="form-label">Mensaje:</label>
                 <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
@@ -332,7 +798,7 @@
                     Por favor, escribe tu mensaje.
                 </div>
             </div>
-    
+
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
     </div>
@@ -349,7 +815,7 @@
             Volver Arriba
         </a>
     </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets.js"></script>
 </body>
 

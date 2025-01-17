@@ -17,3 +17,14 @@ document.getElementById('logo').addEventListener('click', function() {
         document.getElementById("volverArriba").style.display = "none";
     }
 };
+
+function limpiar(){
+    document.getElementById('inscripcion').reset();
+}
+document.getElementById('showMessageBtn').addEventListener('click', function() {
+    const successMessage = document.getElementById('successMessage');
+    successMessage.classList.add('show'); 
+    setTimeout(() => {
+      successMessage.classList.remove('show'); 
+    }, 3000);
+  });

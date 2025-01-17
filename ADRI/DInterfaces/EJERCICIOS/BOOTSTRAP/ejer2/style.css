@@ -228,11 +228,21 @@ aside {
 }
 
 /* Estilo para el botón secundario en el footer del modal */
-.modal-footer .btn-secondary {
+.modal-footer .btn-secondary{
     background-color: #6c757d;
     color: #fff;
 }
-
+.btnAcercade{
+    background-color: #6c757d;
+    color: #fff;
+    border: 0px;
+}
+.btnAcercade:hover,
+.btnAcercade:focus{
+    background-color: #6c757d;
+    color: #fff;
+    border: 0px;
+}
 /* Estilo para el botón primario en el footer del modal */
 .modal-footer .btn-primary {
     background-color: #007bff;
@@ -257,11 +267,22 @@ aside {
     text-align: center;
 }
 /*Color personalizado para los botones*/
-.btn-custom {
+.btn-custom{
     background-color: #dc3545;
     color: white;
 }
-
+/*Color personalizado para los botones*/
+.btnInscribirse{
+    background-color: #dc3545;
+    color: white;
+    border: 0px;
+}
+.btnInscribirse:hover,
+.btnInscribirse:focus{
+    background-color: #dc3545;
+    color: white;
+    border: 0px;
+}
 .tarjetasTipo {
     transition: transform 0.4s ease-in-out;
   }
@@ -356,3 +377,39 @@ footer {
     text-decoration: none;
     color: white;
 }
+.styled-select {
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    background: linear-gradient(45deg, #772c81, #ff7b00);
+    color: white;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    appearance: none; 
+    cursor: pointer;
+}
+
+.styled-select:hover {
+    background: linear-gradient(45deg, #6a2674, #e66d00);
+}
+
+.styled-select option {
+    color: black;
+    background: white;
+}
+.alert-overlay {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1050; 
+    display: none;
+    width: 300px;
+    transition: opacity 0.5s ease-in-out; 
+    
+  }
+  .alert-overlay.show {
+    display: block;
+    opacity: 1; 
+  }
