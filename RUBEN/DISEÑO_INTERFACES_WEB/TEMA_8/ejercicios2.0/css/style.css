@@ -1,0 +1,221 @@
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Estilos para el botón de Iniciar Sesión */
+.btn-outline-light {
+    border: 2px solid #fff;
+    font-weight: 600;
+    padding: 8px 20px;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-light:hover {
+    background-color: #fff;
+    color: #181b1f;
+    transform: translateY(-2px);
+}
+
+/* Estilos para el botón de Registrarse */
+.btn-primary {
+    background-color: transparent;
+    border: 2px solid #03fa6e;
+    color: #03fa6e;
+    font-weight: 600;
+    padding: 8px 20px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #03fa6e;
+    color: #fff;
+    transform: translateY(-2px);
+    border: 0px;
+}
+
+/* Estilos comunes para ambos botones */
+.btn {
+    border-radius: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+    margin: 3px;
+}
+
+/* Fondo personalizado de la tarjeta */
+.card-custom-bg {
+    background-color: #181b1f;
+    color: #fff;
+    border: none;
+}
+
+/* Efecto hover: fondo blanco con texto negro */
+.card-custom-bg:hover {
+    background-color: #fff;
+    color: #000;
+    text-decoration: none;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+/* Estilo de la tarjeta del curso */
+.course-card {
+    background-color: #181b1f;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    overflow: hidden; /* Previene el desbordamiento de las esquinas redondeadas */
+}
+
+/* Efecto hover: fondo blanco con texto negro */
+.course-card:hover {
+    background-color: #fff;
+    color: #000;
+    transform: translateY(-5px);
+}
+
+/* Estilo de la imagen con márgenes y borde */
+.course-card img {
+    margin: 15px;
+    border-radius: 8px;
+    border: 2px solid #fff;
+    max-height: 160px; /* Ajustar la altura según sea necesario */
+    object-fit: cover; /* Asegura que la imagen cubra el área */
+}
+
+/* Contenedor del contenido derecho */
+.contenedor-cursos .card-body {
+    padding: 1rem;
+    margin-left: 20px;
+}
+
+/* Título más grande que no se superpone a la imagen */
+.card-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+/* Sección inferior: Duración, Nivel, Instructor */
+.course-info {
+    border-top: 1px solid #2c3035; /* Un poco más claro que el fondo */
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+    background-color: #222529;
+}
+
+.course-info>div {
+    text-align: center;
+}
+
+/* Etiqueta (Duración, Nivel, Instructor) arriba, información abajo */
+.course-info .label-text {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+/* Al hacer hover, cambiar el fondo y el color del texto de course-info */
+.course-card:hover .course-info {
+    background-color: #f8f9fa !important;
+    color: #000 !important;
+}
+
+/* Asegurar que los textos internos también se vuelvan negros al hacer hover */
+.course-card:hover .course-info .label-text,
+.course-card:hover .course-info div {
+    color: #000 !important;
+}
+
+/* ====== TARJETAS DE CHARLAS (talk-card) ====== */
+.talk-card {
+    background-color: #181b1f; /* Fondo oscuro para integrarse con tu diseño */
+    color: #fff;              /* Texto blanco */
+    border: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.talk-card:hover {
+    background-color: #fff;
+    color: #000;
+    transform: translateY(-5px);
+}
+
+/* Ajustamos la imagen para que encaje con el resto de tu estilo */
+.talk-card img {
+    display: block; /* Convierte la imagen en bloque */
+    margin: 15px auto; /* Márgenes laterales en auto para centrar */
+    border-radius: 8px;
+    border: 2px solid #fff;
+    max-height: 160px;
+    object-fit: cover;
+}
+
+/* Título de la charla */
+.talk-card .card-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.section-full {
+    border: 2px solid #03fa6e;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.form-control {
+    border: 1px solid #2c3035;
+}
+
+.form-control:focus {
+    background-color: #2c3035;
+    border-color: #03fa6e;
+    color: white;
+    box-shadow: 0 0 0 0.25rem rgba(43, 255, 0, 0.25);
+}
+
+.invalid-feedback {
+    color: #ff6b6b;
+}
+
+.was-validated .form-control:invalid {
+    border-color: #ff6b6b;
+    background-color: #2c3035;
+}
+
+.was-validated .form-control:valid {
+    border-color: #03fa6e;
+    background-color: #2c3035;
+}
+
+footer {
+    border-top: 5px solid #2c3035;
+}
+
+footer .social-links a {
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+footer .social-links a:hover {
+    color: #03fa6e;
+}
+
+footer a:hover {
+    color: #03fa6e !important;
+    text-decoration: underline !important;
+}
+
+.footer-logo {
+    transition: transform 0.3s ease;
+}
+
+.footer-logo:hover {
+    transform: scale(1.1);
+}

@@ -7,101 +7,8 @@
     <title>CodeNova</title>
     <link rel="shortcut icon" href="img/logo_codenova.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .card-custom-bg {
-            background-color: #181b1f;
-            color: #fff;
-            border: none;
-        }
-
-        .card-custom-bg:hover {
-            background-color: #fff;
-            color: #000;
-            text-decoration: none;
-            transition: background-color 0.5s, color 0.5s;
-        }
-
-        .course-card {
-            background-color: #181b1f;
-            /* Fondo oscuro por defecto */
-            color: #fff;
-            /* Texto blanco por defecto */
-            border: none;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            overflow: hidden;
-            /* Para que no “salten” bordes redondeados */
-        }
-
-        /* Efecto hover: se vuelve blanca con texto negro */
-        .course-card:hover {
-            background-color: #fff;
-            color: #000;
-            transform: translateY(-5px);
-        }
-
-        /* Imagen con márgenes y borde */
-        .course-card img {
-            margin: 15px;
-            border-radius: 8px;
-            border: 2px solid #fff;
-            max-height: 160px;
-            /* Ajusta si quieres otra altura */
-            object-fit: cover;
-            /* Recorta la imagen si es muy grande */
-        }
-
-        /* Contenedor del contenido derecho */
-        .contenedor-cursos .card-body {
-            padding: 1rem;
-            margin-left: 20px;
-        }
-
-        /* Título más grande y que no se superponga a la imagen */
-        .card-title {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Sección inferior: Duración, Nivel, Profe */
-        .course-info {
-            border-top: 1px solid #2c3035;
-            /* Ligeramente más claro que el fondo */
-            display: flex;
-            justify-content: space-around;
-            padding: 1rem;
-            background-color: #222529;
-        }
-
-        .course-info>div {
-            text-align: center;
-        }
-
-        /* Etiqueta (Duración, Nivel, Profe) arriba, info abajo */
-        .course-info .label-text {
-            display: block;
-            font-size: 0.9rem;
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-        }
-
-        /* Al hacer hover, también cambia el fondo y texto de course-info */
-        .course-card:hover .course-info {
-            background-color: #f8f9fa !important;
-            color: #000 !important;
-        }
-
-        /* Y obligamos a que los textos internos también se pongan en negro */
-        .course-card:hover .course-info .label-text,
-        .course-card:hover .course-info div {
-            color: #000 !important;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body class="bg-dark">
@@ -130,6 +37,10 @@
                         <a class="nav-link" href="#">Avanzado</a>
                     </li>
                 </ul>
+                <div class="d-flex">
+                    <button class="btn btn-outline-light me-2">Iniciar Sesión</button>
+                    <button class="btn btn-primary">Registrarse</button>
+                </div>
             </div>
         </div>
     </nav>
@@ -189,6 +100,9 @@
 
     <!-- contenido de presentacion de los cursos -->
     <div class="contenedor-cursos container my-4">
+        <div class="d-flex justify-content-center mb-4 ">
+            <h1 class="text-white">Algunos de nuestros cursos</h1>
+        </div>
         <div class="row row-cols-1 row-cols-lg-3 g-4">
             <div class="col">
                 <!-- Tarjeta 1 -->
@@ -224,14 +138,14 @@
                     </div>
                 </div>
             </div>
+
             <div class="col">
                 <!-- Tarjeta 2 -->
                 <div class="course-card h-100 shadow d-flex flex-column">
                     <div class="row g-0 align-items-center flex-grow-1">
                         <!-- Columna de la imagen -->
                         <div class="col-md-4">
-                            <img src="img/imgs_cursos/Html_css_js.jpg" alt="Curso Python"
-                                class="img-fluid" />
+                            <img src="img/imgs_cursos/Html_css_js.jpg" alt="Curso Python" class="img-fluid" />
                         </div>
                         <!-- Columna del contenido (título, etc.) -->
                         <div class="col-md-8">
@@ -258,14 +172,14 @@
                     </div>
                 </div>
             </div>
+
             <div class="col">
                 <!-- Tarjeta 3 -->
                 <div class="course-card h-100 shadow d-flex flex-column">
                     <div class="row g-0 align-items-center flex-grow-1">
                         <!-- Columna de la imagen -->
                         <div class="col-md-4">
-                            <img src="img/imgs_cursos/python.jpg" alt="Curso Python"
-                                class="img-fluid" />
+                            <img src="img/imgs_cursos/python.jpg" alt="Curso Python" class="img-fluid" />
                         </div>
                         <!-- Columna del contenido (título, etc.) -->
                         <div class="col-md-8">
@@ -292,14 +206,14 @@
                     </div>
                 </div>
             </div>
+
             <div class="col">
                 <!-- Tarjeta 4 -->
                 <div class="course-card h-100 shadow d-flex flex-column">
                     <div class="row g-0 align-items-center flex-grow-1">
                         <!-- Columna de la imagen -->
                         <div class="col-md-4">
-                            <img src="img/imgs_cursos/moviles.jpg" alt="Curso Python"
-                                class="img-fluid" />
+                            <img src="img/imgs_cursos/moviles.jpg" alt="Curso Python" class="img-fluid" />
                         </div>
                         <!-- Columna del contenido (título, etc.) -->
                         <div class="col-md-8">
@@ -326,14 +240,14 @@
                     </div>
                 </div>
             </div>
+
             <div class="col">
                 <!-- Tarjeta 5 -->
                 <div class="course-card h-100 shadow d-flex flex-column">
                     <div class="row g-0 align-items-center flex-grow-1">
                         <!-- Columna de la imagen -->
                         <div class="col-md-4">
-                            <img src="img/imgs_cursos/node_js.jpg" alt="Curso Python"
-                                class="img-fluid" />
+                            <img src="img/imgs_cursos/node_js.jpg" alt="Curso Python" class="img-fluid" />
                         </div>
                         <!-- Columna del contenido (título, etc.) -->
                         <div class="col-md-8">
@@ -360,14 +274,14 @@
                     </div>
                 </div>
             </div>
+
             <div class="col">
                 <!-- Tarjeta 6 -->
                 <div class="course-card h-100 shadow d-flex flex-column">
                     <div class="row g-0 align-items-center flex-grow-1">
                         <!-- Columna de la imagen -->
                         <div class="col-md-4">
-                            <img src="img/imgs_cursos/boostrap.jpg" alt="Curso Python"
-                                class="img-fluid" />
+                            <img src="img/imgs_cursos/boostrap.jpg" alt="Curso Python" class="img-fluid" />
                         </div>
                         <!-- Columna del contenido (título, etc.) -->
                         <div class="col-md-8">
@@ -394,9 +308,283 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col">
+                <!-- Tarjeta 7 -->
+                <div class="course-card h-100 shadow d-flex flex-column">
+                    <div class="row g-0 align-items-center flex-grow-1">
+                        <!-- Columna de la imagen -->
+                        <div class="col-md-4">
+                            <img src="img/imgs_cursos/java.jpg" alt="Curso Python" class="img-fluid" />
+                        </div>
+                        <!-- Columna del contenido (título, etc.) -->
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Creando Tu Mundo Personalizado De Minecrarft Con Java</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Parte inferior: Duración, Nivel y Profe (etiqueta arriba, info abajo) -->
+                    <div class="course-info mt-auto">
+                        <div>
+                            <span class="label-text">Duración</span>
+                            <span>10 horas</span>
+                        </div>
+                        <div>
+                            <span class="label-text">Nivel</span>
+                            <span>Junior</span>
+                        </div>
+                        <div>
+                            <span class="label-text">Profe</span>
+                            <span>María González</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <!-- Tarjeta 8 -->
+                <div class="course-card h-100 shadow d-flex flex-column">
+                    <div class="row g-0 align-items-center flex-grow-1">
+                        <!-- Columna de la imagen -->
+                        <div class="col-md-4">
+                            <img src="img/imgs_cursos/mysql.jpg" alt="Curso Python" class="img-fluid" />
+                        </div>
+                        <!-- Columna del contenido (título, etc.) -->
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Aprendiendo Las Bases De Datos Con Mysql</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Parte inferior: Duración, Nivel y Profe (etiqueta arriba, info abajo) -->
+                    <div class="course-info mt-auto">
+                        <div>
+                            <span class="label-text">Duración</span>
+                            <span>20 horas</span>
+                        </div>
+                        <div>
+                            <span class="label-text">Nivel</span>
+                            <span>Junior</span>
+                        </div>
+                        <div>
+                            <span class="label-text">Profe</span>
+                            <span>Juan Pérez</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <!-- Tarjeta 9 -->
+                <div class="course-card h-100 shadow d-flex flex-column">
+                    <div class="row g-0 align-items-center flex-grow-1">
+                        <!-- Columna de la imagen -->
+                        <div class="col-md-4">
+                            <img src="img/imgs_cursos/programing_c.jpg" alt="Curso Python" class="img-fluid" />
+                        </div>
+                        <!-- Columna del contenido (título, etc.) -->
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Programando Con C</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Parte inferior: Duración, Nivel y Profe (etiqueta arriba, info abajo) -->
+                    <div class="course-info mt-auto">
+                        <div>
+                            <span class="label-text">Duración</span>
+                            <span>35 horas</span>
+                        </div>
+                        <div>
+                            <span class="label-text">Nivel</span>
+                            <span>Senior</span>
+                        </div>
+                        <div>
+                            <span class="label-text">Profe</span>
+                            <span>Antonio Fernandez</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charlas -->
+    <div class="container my-5">
+        <!-- Título de la sección -->
+        <div class="d-flex justify-content-center mb-4">
+            <h1 class="text-white">Próximas Charlas</h1>
+        </div>
+
+        <!-- Fila de tarjetas -->
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 g-4">
+            <!-- Charla 1 -->
+            <div class="col">
+                <div class="card talk-card h-100">
+                    <img src="img/imgs_events/Código_limpio.jpg" class="card-img-top" alt="Código Limpio del Siglo XXI">
+                    <div class="card-body">
+                        <h5 class="card-title">Código Limpio del Siglo XXI</h5>
+                        <p class="card-text">
+                            <strong>Fecha y hora:</strong> 25 de febrero, 18:00 - 19:30<br>
+                            <strong>Lugar:</strong> Auditorio principal de CodeNova Academy (o retransmisión online)<br>
+                            <strong>Ponente:</strong> Juan Reyes
+                        </p>
+                        <p class="card-text">
+                            <em>Descripción:</em> Una conversación profunda sobre las mejores prácticas para mantener tu
+                            código limpio y escalable en un entorno de desarrollo moderno. ¡Ideal para programadores de
+                            todos
+                            los niveles!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charla 2 -->
+            <div class="col">
+                <div class="card talk-card h-100">
+                    <img src="img/imgs_events/refactoring.jpg" class="card-img-top"
+                        alt="Refactoring: Mejorando el Código Existente">
+                    <div class="card-body">
+                        <h5 class="card-title">Refactoring: Mejorando el Código Existente</h5>
+                        <p class="card-text">
+                            <strong>Fecha y hora:</strong> 3 de marzo, 18:00 - 19:30<br>
+                            <strong>Lugar:</strong> Sala B - CodeNova Academy<br>
+                            <strong>Ponente:</strong> Laura Suárez
+                        </p>
+                        <p class="card-text">
+                            <em>Descripción:</em> Aprende estrategias para refactorizar y optimizar código heredado,
+                            disminuyendo la deuda técnica y mejorando el rendimiento de tus aplicaciones.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charla 3 -->
+            <div class="col">
+                <div class="card talk-card h-100">
+                    <img src="img/imgs_events/programador_pragmatico.jpeg" class="card-img-top"
+                        alt="El Programador Pragmático: Del Aprendiz al Maestro">
+                    <div class="card-body">
+                        <h5 class="card-title">El Programador Pragmático: Del Aprendiz al Maestro</h5>
+                        <p class="card-text">
+                            <strong>Fecha y hora:</strong> 10 de marzo, 18:00 - 19:30<br>
+                            <strong>Lugar:</strong> Auditorio principal de CodeNova Academy<br>
+                            <strong>Ponente:</strong> Carlos Vázquez
+                        </p>
+                        <p class="card-text">
+                            <em>Descripción:</em> Exploraremos consejos y técnicas para convertirte en un programador
+                            pragmático, mediante la resolución de problemas cotidianos y la mejora continua de tu flujo
+                            de trabajo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charla 4 -->
+            <div class="col">
+                <div class="card talk-card h-100">
+                    <img src="img/imgs_events/codigo_limpio_v2.jpg" class="card-img-top"
+                        alt="Clean Code (versión actualizada)">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Clean Code <small>(versión actualizada)</small>
+                        </h5>
+                        <p class="card-text">
+                            <strong>Fecha y hora:</strong> 17 de marzo, 18:00 - 19:30<br>
+                            <strong>Lugar:</strong> Sesión virtual vía Zoom<br>
+                            <strong>Ponente:</strong> Elena González
+                        </p>
+                        <p class="card-text">
+                            <em>Descripción:</em> En esta charla, se revisarán los principios fundamentales para
+                            escribir código limpio, incluyendo cómo estructurar funciones, clases y módulos de forma
+                            clara y mantenible.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contacto -->
+    <div class="section-full container my-5">
+        <div class="d-flex justify-content-center mb-4">
+            <h1 class="text-white">Contacto</h1>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form class="needs-validation" novalidate>
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label text-white">Nombre</label>
+                        <input type="text" class="form-control bg-dark text-white" id="nombre" required>
+                        <div class="invalid-feedback">
+                            Por favor, introduce tu nombre
+                        </div>
+                    </div>
+    
+                    <div class="mb-3">
+                        <label for="email" class="form-label text-white">Correo electrónico</label>
+                        <input type="email" class="form-control bg-dark text-white" id="email" required>
+                        <div class="invalid-feedback">
+                            Por favor, introduce un email válido
+                        </div>
+                    </div>
+    
+                    <div class="mb-3">
+                        <label for="asunto" class="form-label text-white">Asunto</label>
+                        <input type="text" class="form-control bg-dark text-white" id="asunto" required>
+                        <div class="invalid-feedback">
+                            Por favor, introduce un asunto
+                        </div>
+                    </div>
+    
+                    <div class="mb-3">
+                        <label for="mensaje" class="form-label text-white">Mensaje</label>
+                        <textarea class="form-control bg-dark text-white" id="mensaje" rows="5" required></textarea>
+                        <div class="invalid-feedback">
+                            Por favor, introduce tu mensaje
+                        </div>
+                    </div>
+    
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary px-4 py-2">Enviar mensaje</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Redes sociales -->
+                <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
+                    <h5 class="mb-3">Síguenos en redes</h5>
+                    <div class="social-links">
+                        <a href="#" class="me-3"><i class="fab fa-github fa-2x"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-linkedin fa-2x"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-instagram fa-2x"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Copyright -->
+                <div class="col-md-4 text-center mb-3 mb-md-0">
+                    <img src="img/logo_codenova.png" alt="CodeNova Logo" class="footer-logo mb-2" width="40" height="40">
+                    <p class="mb-0">&copy; 2025 CodeNova Academy</p>
+                    <p class="mb-0">Todos los derechos reservados</p>
+                </div>
+                
+                <!-- Enlaces legales -->
+                <div class="col-md-4 text-center text-md-end">
+                    <a href="#" class="text-white text-decoration-none">Política de privacidad</a>
+                </div>
+            </div>
+        </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
