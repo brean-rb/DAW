@@ -22,9 +22,22 @@ function limpiar(){
     document.getElementById('inscripcion').reset();
 }
 document.getElementById('showMessageBtn').addEventListener('click', function() {
-    const successMessage = document.getElementById('successMessage');
-    successMessage.classList.add('show'); 
-    setTimeout(() => {
-      successMessage.classList.remove('show'); 
-    }, 3000);
+    
+    var opcionTorneo = document.getElementById("torneosDIs").value;
+    var email = document.getElementById("email").value;
+    var nombre = document.getElementById("name").value;
+    if ((opcionTorneo !="")&& (email!="")&&(nombre!="")) {
+        const successMessage = document.getElementById('successMessage');
+        successMessage.classList.add('show'); 
+        setTimeout(() => {
+          successMessage.classList.remove('show'); 
+        }, 3000);
+    }else{
+        const errorMessage = document.getElementById('errorMessage');
+        errorMessage.classList.add('show'); 
+        setTimeout(() => {
+          errorMessage.classList.remove('show'); 
+        }, 3000);
+    } 
+   
   });
