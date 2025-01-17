@@ -15,7 +15,7 @@
         .card-custom-bg {
             background-color: #181b1f;
             color: #fff;
-            border: none; 
+            border: none;
         }
 
         .card-custom-bg:hover {
@@ -25,6 +25,82 @@
             transition: background-color 0.5s, color 0.5s;
         }
 
+        .course-card {
+            background-color: #181b1f;
+            /* Fondo oscuro por defecto */
+            color: #fff;
+            /* Texto blanco por defecto */
+            border: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            /* Para que no “salten” bordes redondeados */
+        }
+
+        /* Efecto hover: se vuelve blanca con texto negro */
+        .course-card:hover {
+            background-color: #fff;
+            color: #000;
+            transform: translateY(-5px);
+        }
+
+        /* Imagen con márgenes y borde */
+        .course-card img {
+            margin: 15px;
+            border-radius: 8px;
+            border: 2px solid #fff;
+            max-height: 160px;
+            /* Ajusta si quieres otra altura */
+            object-fit: cover;
+            /* Recorta la imagen si es muy grande */
+        }
+
+        /* Contenedor del contenido derecho */
+        .contenedor-cursos .card-body {
+            padding: 1rem;
+            margin-left: 20px;
+        }
+
+        /* Título más grande y que no se superponga a la imagen */
+        .card-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Sección inferior: Duración, Nivel, Profe */
+        .course-info {
+            border-top: 1px solid #2c3035;
+            /* Ligeramente más claro que el fondo */
+            display: flex;
+            justify-content: space-around;
+            padding: 1rem;
+            background-color: #222529;
+        }
+
+        .course-info>div {
+            text-align: center;
+        }
+
+        /* Etiqueta (Duración, Nivel, Profe) arriba, info abajo */
+        .course-info .label-text {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Al hacer hover, también cambia el fondo y texto de course-info */
+        .course-card:hover .course-info {
+            background-color: #f8f9fa !important;
+            color: #000 !important;
+        }
+
+        /* Y obligamos a que los textos internos también se pongan en negro */
+        .course-card:hover .course-info .label-text,
+        .course-card:hover .course-info div {
+            color: #000 !important;
+        }
     </style>
 </head>
 
@@ -71,7 +147,7 @@
                     <a href="junior.html" class="card card-custom-bg text-center text-decoration-none flex-fill">
                         <img src="img/imgs_levles/logo_junior.png" class="card-img-top" alt="Logo Junior" />
                         <div class="card-body">
-                            <h5 class="card-title">Nivel Junior</h5>
+                            <h2 class="card-title">Nivel Junior</h2>
                             <p class="card-text">
                                 Para quienes comienzan en programación.
                                 Da tus primeros pasos aquí.
@@ -112,9 +188,216 @@
     </div>
 
     <!-- contenido de presentacion de los cursos -->
+    <div class="contenedor-cursos container my-4">
+        <div class="row row-cols-1 row-cols-lg-3 g-4">
+            <div class="col">
+                <!-- Tarjeta 1 -->
+                <div class="course-card h-100 shadow d-flex flex-column">
+                    <div class="row g-0 align-items-center flex-grow-1">
+                        <!-- Columna de la imagen -->
+                        <div class="col-md-4">
+                            <img src="img/imgs_cursos/fundamentos_de_la_programacion.jpg" alt="Curso Python"
+                                class="img-fluid" />
+                        </div>
+                        <!-- Columna del contenido (título, etc.) -->
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Fundamentos de Programación</h5>
+                            </div>
+                        </div>
+                    </div>
 
+                    <!-- Parte inferior: Duración, Nivel y Profe (etiqueta arriba, info abajo) -->
+                    <div class="course-info mt-auto">
+                        <div>
+                            <span class="label-text">Duración</span>
+                            <span>20 horas</span>
+                        </div>
+                        <div>
+                            <span class="label-text">Nivel</span>
+                            <span>Junior</span>
+                        </div>
+                        <div>
+                            <span class="label-text">Profe</span>
+                            <span>Juan Pérez</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <!-- Tarjeta 2 -->
+                <div class="course-card h-100 shadow d-flex flex-column">
+                    <div class="row g-0 align-items-center flex-grow-1">
+                        <!-- Columna de la imagen -->
+                        <div class="col-md-4">
+                            <img src="img/imgs_cursos/Html_css_js.jpg" alt="Curso Python"
+                                class="img-fluid" />
+                        </div>
+                        <!-- Columna del contenido (título, etc.) -->
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Desarrollo Web con HTML, CSS y JavaScript</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Parte inferior: Duración, Nivel y Profe (etiqueta arriba, info abajo) -->
+                    <div class="course-info mt-auto">
+                        <div>
+                            <span class="label-text">Duración</span>
+                            <span>40 horas</span>
+                        </div>
+                        <div>
+                            <span class="label-text">Nivel</span>
+                            <span>Senior</span>
+                        </div>
+                        <div>
+                            <span class="label-text">Profe</span>
+                            <span>Ana Torres</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <!-- Tarjeta 3 -->
+                <div class="course-card h-100 shadow d-flex flex-column">
+                    <div class="row g-0 align-items-center flex-grow-1">
+                        <!-- Columna de la imagen -->
+                        <div class="col-md-4">
+                            <img src="img/imgs_cursos/python.jpg" alt="Curso Python"
+                                class="img-fluid" />
+                        </div>
+                        <!-- Columna del contenido (título, etc.) -->
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Introducción a Python para Ciencia de Datos</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Parte inferior: Duración, Nivel y Profe (etiqueta arriba, info abajo) -->
+                    <div class="course-info mt-auto">
+                        <div>
+                            <span class="label-text">Duración</span>
+                            <span>45 horas</span>
+                        </div>
+                        <div>
+                            <span class="label-text">Nivel</span>
+                            <span>Master</span>
+                        </div>
+                        <div>
+                            <span class="label-text">Profe</span>
+                            <span>Luis Morales</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <!-- Tarjeta 4 -->
+                <div class="course-card h-100 shadow d-flex flex-column">
+                    <div class="row g-0 align-items-center flex-grow-1">
+                        <!-- Columna de la imagen -->
+                        <div class="col-md-4">
+                            <img src="img/imgs_cursos/moviles.jpg" alt="Curso Python"
+                                class="img-fluid" />
+                        </div>
+                        <!-- Columna del contenido (título, etc.) -->
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Aprende react y next js</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Parte inferior: Duración, Nivel y Profe (etiqueta arriba, info abajo) -->
+                    <div class="course-info mt-auto">
+                        <div>
+                            <span class="label-text">Duración</span>
+                            <span>45 horas</span>
+                        </div>
+                        <div>
+                            <span class="label-text">Nivel</span>
+                            <span>Senior</span>
+                        </div>
+                        <div>
+                            <span class="label-text">Profe</span>
+                            <span>Gabriela Castro</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <!-- Tarjeta 5 -->
+                <div class="course-card h-100 shadow d-flex flex-column">
+                    <div class="row g-0 align-items-center flex-grow-1">
+                        <!-- Columna de la imagen -->
+                        <div class="col-md-4">
+                            <img src="img/imgs_cursos/node_js.jpg" alt="Curso Python"
+                                class="img-fluid" />
+                        </div>
+                        <!-- Columna del contenido (título, etc.) -->
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Desarrollo de APIs con Node.js y Express</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Parte inferior: Duración, Nivel y Profe (etiqueta arriba, info abajo) -->
+                    <div class="course-info mt-auto">
+                        <div>
+                            <span class="label-text">Duración</span>
+                            <span>35 horas</span>
+                        </div>
+                        <div>
+                            <span class="label-text">Nivel</span>
+                            <span>Senior</span>
+                        </div>
+                        <div>
+                            <span class="label-text">Profe</span>
+                            <span>Carlos Rojas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <!-- Tarjeta 6 -->
+                <div class="course-card h-100 shadow d-flex flex-column">
+                    <div class="row g-0 align-items-center flex-grow-1">
+                        <!-- Columna de la imagen -->
+                        <div class="col-md-4">
+                            <img src="img/imgs_cursos/boostrap.jpg" alt="Curso Python"
+                                class="img-fluid" />
+                        </div>
+                        <!-- Columna del contenido (título, etc.) -->
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Bootstrap: Construye Sitios Web Responsive</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Parte inferior: Duración, Nivel y Profe (etiqueta arriba, info abajo) -->
+                    <div class="course-info mt-auto">
+                        <div>
+                            <span class="label-text">Duración</span>
+                            <span>15 horas</span>
+                        </div>
+                        <div>
+                            <span class="label-text">Nivel</span>
+                            <span>Junior</span>
+                        </div>
+                        <div>
+                            <span class="label-text">Profe</span>
+                            <span>Diego Romero</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Footer -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
