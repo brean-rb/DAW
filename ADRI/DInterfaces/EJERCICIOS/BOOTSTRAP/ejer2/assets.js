@@ -17,25 +17,29 @@ document.getElementById('logo').addEventListener('click', function() {
         document.getElementById("volverArriba").style.display = "none";
     }
 };
+document.querySelectorAll('.btn.btn-custom').forEach(button => {
+    button.addEventListener('click', function() {
+        // Identificar el modal actual basado en el botón presionado
+        const modal = button.closest('.modal-content');
+        
+        // Obtener los valores de los campos en el modal
+        const nombre = modal.querySelector('#name').value;
+        const email = modal.querySelector('#email').value;
+        const torneo = modal.querySelector('#torneosDIs').value;
 
-
-document.getElementById('showMessageBtn').addEventListener('click', function() {
-    
-    var opcionTorneo = document.getElementById("torneosDIs").value;
-    var email = document.getElementById("email").value;
-    var nombre = document.getElementById("name").value;
-    if ((opcionTorneo !="")&& (email!="")&&(nombre!="")) {
-        const successMessage = document.getElementById('successMessage');
-        successMessage.classList.add('show'); 
-        setTimeout(() => {
-          successMessage.classList.remove('show'); 
-        }, 3000);
-    }else{
-        const errorMessage = document.getElementById('errorMessage');
-        errorMessage.classList.add('show'); 
-        setTimeout(() => {
-          errorMessage.classList.remove('show'); 
-        }, 3000);
-    } 
-   
-  });
+        // Validación y lógica
+        if (nombre !== "" && email !== "" && torneo !== "") {
+            const successMessage = document.getElementById('successMessage');
+            successMessage.classList.add('show'); 
+            setTimeout(() => {
+                successMessage.classList.remove('show'); 
+            }, 3000);
+        } else {
+            const errorMessage = document.getElementById('errorMessage');
+            errorMessage.classList.add('show'); 
+            setTimeout(() => {
+                errorMessage.classList.remove('show'); 
+            }, 3000);
+        }
+    });
+});
