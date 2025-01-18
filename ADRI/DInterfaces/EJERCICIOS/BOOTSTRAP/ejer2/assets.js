@@ -18,9 +18,7 @@ document.getElementById('logo').addEventListener('click', function() {
     }
 };
 
-function limpiar(){
-    document.getElementById('inscripcion').reset();
-}
+
 document.getElementById('showMessageBtn').addEventListener('click', function() {
     
     var opcionTorneo = document.getElementById("torneosDIs").value;
