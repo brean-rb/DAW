@@ -445,3 +445,41 @@ footer {
     border-color: #f44336;
     box-shadow: 0 0 6px rgba(255, 107, 107, 0.8);
 }
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .tooltip .tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background: linear-gradient(135deg, #92278f, #ff5722);
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+    padding: 10px;
+    position: absolute;
+    bottom: 120%; /* Position above the element */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .tooltip .tooltip-text::after {
+    content: '';
+    position: absolute;
+    top: 100%; /* At the bottom of the tooltip */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: #ff5722 transparent transparent transparent;
+  }
+
+  .tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }

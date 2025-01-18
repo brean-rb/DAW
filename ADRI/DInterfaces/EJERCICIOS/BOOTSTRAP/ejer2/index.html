@@ -15,12 +15,13 @@
     <nav class="navbar navbar-expand-lg bg-danger" data-bs-theme="dark">
         <div class="container-fluid d-flex align-items-center">
             <!-- Logo -->
-            <img src="src/logo.png" alt="logo" width="75px" height="75px" id="logo" style="cursor: pointer;">
+            <img src="src/logo.png" alt="logo" width="75px" height="75px" id="logo" style="cursor: pointer;"
+                data-bs-toggle="tooltip" data-bs-placement="bottom" title="Volver al inicio">
 
             <!-- Botón de hamburguesa para pantallas pequeñas -->
             <button id="menuLat" class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false"
-                aria-label="Toggle navigation">
+                aria-label="Toggle navigation" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Abrir menú">
                 <span class="navbar-toggler-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                         <path id="menuPath" fill="#ffffff"
@@ -33,24 +34,30 @@
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active text-white" href="#tarjetasT">Inscripciones</a>
+                        <a class="nav-link active text-white" href="#tarjetasT" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" title="Ver inscripciones">Inscripciones</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#contacto">Contacto</a>
+                        <a class="nav-link text-white" href="#contacto" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" title="Contáctanos">Contacto</a>
                     </li>
                 </ul>
 
                 <!-- Contenedor para centrar el buscador -->
                 <form class="d-flex mb-3 mb-lg-0">
-                    <input class="form-control me-2 w-100" type="search" placeholder="Acerca de...">
+                    <input class="form-control me-2 w-100" type="search" placeholder="Acerca de..."
+                        data-bs-toggle="tooltip" data-bs-placement="bottom" title="Busca información aquí">
                     <button class="btn btn-secondary" style="background-color: #dc3545; border: 1px solid #ffffff;"
-                        type="submit">Buscar</button>
+                        type="submit" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Haz una búsqueda">Buscar</button>
                 </form>
 
                 <!-- Botones blancos -->
                 <div class="d-flex ms-auto" id="botonregistro">
-                    <button class="btn btn-secondary mx-1" type="button">Registrarse</button>
-                    <button class="btn btn-secondary mx-1" type="button">Iniciar sesión</button>
+                    <button class="btn btn-secondary mx-1" type="button" data-bs-toggle="tooltip"
+                        data-bs-placement="bottom" title="Regístrate para participar">Registrarse</button>
+                    <button class="btn btn-secondary mx-1" type="button" data-bs-toggle="tooltip"
+                        data-bs-placement="bottom" title="Inicia sesión en tu cuenta">Iniciar sesión</button>
                 </div>
             </div>
         </div>
@@ -102,8 +109,10 @@
             <h4 style="color: #dc3545;">¿Que rol jugarás?</h4>
             <ul id="roles">
                 <!-- Iniciador -->
-                <li data-bs-toggle="modal" data-bs-target="#modalIniciador">
-                    <img src="src/iniciador.png" height="50px" width="50px" alt="">
+                <li data-bs-toggle="modal" data-bs-target="#modalIniciador" data-bs-toggle="tooltip"
+                    data-bs-placement="top" title="Haz clic para saber más sobre el rol de Iniciador">
+                    <img src="src/iniciador.png" height="50px" width="50px" alt="Iniciador" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Imagen del rol Iniciador">
                     Iniciador
                 </li>
 
@@ -139,8 +148,10 @@
                 </div>
 
                 <!-- Humos -->
-                <li data-bs-toggle="modal" data-bs-target="#modalHumos">
-                    <img src="src/smoker.png" height="50px" width="50px" alt="">
+                <li data-bs-toggle="modal" data-bs-target="#modalHumos" data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Haz clic para saber más sobre el rol de Controlador">
+                    <img src="src/smoker.png" height="50px" width="50px" alt="Controlador" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Imagen del rol Controlador">
                     Controladores
                 </li>
 
@@ -173,8 +184,10 @@
                 </div>
 
                 <!-- Duelista -->
-                <li data-bs-toggle="modal" data-bs-target="#modalDuelista">
-                    <img src="src/duelista.png" height="50px" width="50px" alt="">
+                <li data-bs-toggle="modal" data-bs-target="#modalDuelista" data-bs-toggle="tooltip"
+                    data-bs-placement="top" title="Haz clic para saber más sobre el rol de Duelista">
+                    <img src="src/duelista.png" height="50px" width="50px" alt="Duelista" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Imagen del rol Duelista">
                     Duelista
                 </li>
 
@@ -212,8 +225,10 @@
                 </div>
 
                 <!-- Centinela -->
-                <li data-bs-toggle="modal" data-bs-target="#modalCentinela">
-                    <img src="src/centinela.png" height="50px" width="50px" alt="">
+                <li data-bs-toggle="modal" data-bs-target="#modalCentinela" data-bs-toggle="tooltip"
+                    data-bs-placement="top" title="Haz clic para saber más sobre el rol de Centinela">
+                    <img src="src/centinela.png" height="50px" width="50px" alt="Centinela" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Imagen del rol Centinela">
                     Centinela
                 </li>
 
@@ -257,21 +272,40 @@
         <div class="row">
             <div class="col-12 col-md-6 col-lg-4 mb-4 tarjetasTipo">
                 <div class="card h-100">
+                    <!-- Imagen con Tooltip -->
                     <img src="src/competitivoValorantRojp.png" class="card-img-top" alt="Torneo Competitivo Valorant"
-                        height="230px">
+                        height="230px" data-bs-toggle="tooltip" data-bs-placement="top"
+                        title="Torneo Competitivo de Valorant">
+                    
                     <div class="card-body" id="comperef">
-                        <h5 class="card-title">Torneo Competitivo de Valorant</h5>
-                        <p class="card-text">Inscribete al torneo competitivo de Valorant! Las reglas son las comunes,
-                            el equipo que llegue a 13 rondas gana.</p>
-                        <div class="d-grid gap-2">
+                        <!-- Título con Tooltip -->
+                        <h5 class="card-title" data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="Torneo Competitivo de Valorant">Torneo Competitivo de Valorant</h5>
+                        
+                        <!-- Descripción con Tooltip -->
+                        <p class="card-text" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-toggle="tooltip" data-bs-placement="top"
+                        title="Torneo Competitivo de Valorant">
+                            Inscríbete al torneo competitivo de Valorant! Las reglas son las comunes, el equipo que llegue a 13 rondas gana.
+                        </p>
+                        
+                        <div class="d-grid gap-2" data-bs-toggle="tooltip" data-bs-placement="top"
+                        title="Torneo Competitivo de Valorant">
+                            <!-- Botones con Tooltips -->
                             <button type="button" class="btn btn-primary btnAcercade" data-bs-toggle="modal"
-                                data-bs-target="#exampleModalLongCompe">Acerca de</button>
+                                data-bs-target="#exampleModalLongCompe" data-bs-toggle="tooltip" data-bs-placement="top"
+                                title="Torneo Competitivo de Valorant">
+                                Acerca de
+                            </button>
                             <button type="button" class="btn btn-primary btnInscribirse" data-bs-toggle="modal"
-                                data-bs-target="#exampleModalCenterCompe">Inscribirse</button>
+                                data-bs-target="#exampleModalCenterCompe" data-bs-toggle="tooltip" data-bs-placement="top"
+                                title="Haz clic para inscribirte en el torneo competitivo de Valorant">
+                                Inscribirse
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
+            
             <!-- Modal Acerca de modo competitivo-->
             <div class="modal fade" id="exampleModalLongCompe" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -404,7 +438,7 @@
                                         <option value="2025-03-10">10/03/2025</option>
                                     </select>
                                 </div>
-                                
+
                                 <div class="mb-3">
                                     <label for="selector" class="form-label">Tipo de torneo:</label><br>
                                     <select name="torneosDis" id="torneosDIs" class="styled-select">
@@ -422,20 +456,19 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <!-- <button type="button" id="showMessageBtn" class="btn btn-custom"
-                                data-bs-dismiss="modal">Inscribete</button> -->
-                                <button type="button" id="inscribirTorneoCompetitivo" class="btn btn-custom" data-bs-dismiss="modal">Inscribete</button>
+                            <button type="button" id="inscribirTorneoCompetitivo" class="btn btn-custom"
+                                data-bs-dismiss="modal">Inscribete</button>
 
-                            <button type="reset"  class="btn limpio btn-custom ">Limpiar</button> 
-                         </form>
+                            <button type="reset" class="btn limpio btn-custom ">Limpiar</button>
+                            </form>
 
                         </div>
                     </div>
                 </div>
             </div>
             <div id="successMessage" class="alert alert-success alert-overlay" role="alert">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512" width="16" height="16"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16"
+                    height="16"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                     <path
                         d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z" />
                 </svg>
@@ -443,16 +476,20 @@
             </div>
             <div id="errorMessage" class="alert alert-danger alert-overlay" role="alert">
                 <img src="src/error.jpg" width="36" height="26" alt="">
-            ¡Error en la inscripcion!
-        </div>
+                ¡Error en la inscripcion!
+            </div>
             <div class="col-12 col-md-6 col-lg-4 mb-4 tarjetasTipo">
                 <div class="card h-100">
-                    <img src="src/deathmatchTorneo.jpg" class="card-img-top" alt="Torneo Combate a Muerte Valorant">
+                    <img src="src/deathmatchTorneo.jpg" class="card-img-top" alt="Torneo Combate a Muerte Valorant" data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Torneo de Deathmatch en Valorant">
                     <div class="card-body" id="deathref">
-                        <h5 class="card-title">Torneo Combate a Muerte de Valorant</h5>
-                        <p class="card-text">Inscribete al torneo de combate a muerte de Valorant! Las reglas son las
+                        <h5 class="card-title" data-bs-toggle="tooltip" data-bs-placement="top"
+                        title="Torneo de Deathmatch en Valorant">Torneo Combate a Muerte de Valorant</h5>
+                        <p class="card-text" data-bs-toggle="tooltip" data-bs-placement="top"
+                        title="Torneo de Deathmatch en Valorant">Inscribete al torneo de combate a muerte de Valorant! Las reglas son las
                             comunes, el jugador que llegue a 40 asesinatos gana.</p>
-                        <div class="d-grid gap-2">
+                        <div class="d-grid gap-2" data-bs-toggle="tooltip" data-bs-placement="top"
+                        title="Torneo de Deathmatch en Valorant">
                             <button type="button" class="btn btn-primary btnAcercade" data-bs-toggle="modal"
                                 data-bs-target="#exampleModalLongDeath">Acerca de</button>
                             <button type="button" class="btn btn-primary btnInscribirse" data-bs-toggle="modal"
@@ -611,12 +648,13 @@
                                 </div>
 
 
-                           
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="button" id="inscribirTorneoDeathmatch" class="btn btn-custom" data-bs-dismiss="modal">Inscribete</button>
-                            <button type="reset"  class="btn limpio btn-custom ">Limpiar</button>
+                            <button type="button" id="inscribirTorneoDeathmatch" class="btn btn-custom"
+                                data-bs-dismiss="modal">Inscribete</button>
+                            <button type="reset" class="btn limpio btn-custom ">Limpiar</button>
                             </form>
                         </div>
                     </div>
@@ -625,12 +663,16 @@
 
             <div class="col-12 col-md-6 col-lg-4 mb-4 tarjetasTipo">
                 <div class="card h-100">
-                    <img src="src/esconditeTorneo.jpg" class="card-img-top" alt="Torneo Escondite Valorant">
+                    <img src="src/esconditeTorneo.jpg" class="card-img-top" alt="Torneo Escondite Valorant" data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Torneo Competitivo de Escondite en Valorant">
                     <div class="card-body" id="esconditeref">
-                        <h5 class="card-title">Torneo Escondite de Valorant</h5>
-                        <p class="card-text">Inscribete al torneo competitivo de Valorant! Las reglas son las comunes,
+                        <h5 class="card-title" data-bs-toggle="tooltip" data-bs-placement="top"
+                        title="Torneo Competitivo de Escondite en Valorant">Torneo Escondite de Valorant</h5>
+                        <p class="card-text" data-bs-toggle="tooltip" data-bs-placement="top"
+                        title="Torneo Competitivo de Escondite en Valorant">Inscribete al torneo competitivo de Valorant! Las reglas son las comunes,
                             el equipo que llegue a 13 rondas gana.</p>
-                        <div class="d-grid gap-2">
+                        <div class="d-grid gap-2" data-bs-toggle="tooltip" data-bs-placement="top"
+                        title="Torneo Competitivo de Escondite en Valorant">
                             <button type="button" class="btn btn-primary btnAcercade" data-bs-toggle="modal"
                                 data-bs-target="#exampleModalLongEscond">Acerca de</button>
                             <button type="button" class="btn btn-primary btnInscribirse" data-bs-toggle="modal"
@@ -786,13 +828,14 @@
                                 </div>
 
 
-                            
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="button" id="inscribirTorneoEscondite" class="btn btn-custom" data-bs-dismiss="modal">Inscribete</button>
+                            <button type="button" id="inscribirTorneoEscondite" class="btn btn-custom"
+                                data-bs-dismiss="modal">Inscribete</button>
                             <button type="reset" class="btn limpio btn-custom ">Limpiar</button>
-                        </form>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -801,7 +844,8 @@
     </main>
     <h1 style="text-align: center;">CONTÁCTANOS</h1>
     <div id="contacto">
-        <form id="formucon" method="POST">
+        <form id="formucon" method="POST" data-bs-toggle="tooltip" data-bs-placement="top"
+        title="Formulario de contacto">
             <div class="mb-3">
                 <label for="name" class="form-label">Nombre:</label>
                 <input type="text" class="form-control" id="name" name="name" required>
@@ -840,20 +884,24 @@
         </form>
     </div>
     <footer>
-        <p>&copy; 2025 Clutch Kings CUP. Todos los derechos reservados.</p>
-        <p>Síguenos en:
+        <p data-bs-toggle="tooltip" data-bs-placement="top"
+        title="Derechos reservados">&copy; 2025 Clutch Kings CUP. Todos los derechos reservados.</p>
+        <p data-bs-toggle="tooltip" data-bs-placement="top"
+        title="Enlaces a nuestras redes">Síguenos en:
             <a href="https://www.facebook.com" style="color: white; margin: 0 5px;">Facebook</a>|
             <a href="https://x.com" style="color: white; margin: 0 5px;">Twitter</a>|
             <a href="https://www.instagram.com/" style="color: white; margin: 0 5px;">Instagram</a>|
-            <a href="https://www.protocolo.com/politica-privacidad/?utm_term=&utm_campaign=&utm_source=adwords&utm_medium=ppc&hsa_acc=3982314473&hsa_cam=20924966636&hsa_grp=&hsa_ad=&hsa_src=x&hsa_tgt=&hsa_kw=&hsa_mt=&hsa_net=adwords&hsa_ver=3&gad_source=1&gclid=Cj0KCQiAv628BhC2ARIsAIJIiK_Z4zUXNziAhxJYk05ElUrZsVVwQQJx2pc3fzN7tPO8dI8Aw0SYqs4aAoj6EALw_wcB" style="color: white; margin: 0 5px;">Política de privacidad</a>
-        </p> 
+            <a href="https://www.protocolo.com/politica-privacidad/?utm_term=&utm_campaign=&utm_source=adwords&utm_medium=ppc&hsa_acc=3982314473&hsa_cam=20924966636&hsa_grp=&hsa_ad=&hsa_src=x&hsa_tgt=&hsa_kw=&hsa_mt=&hsa_net=adwords&hsa_ver=3&gad_source=1&gclid=Cj0KCQiAv628BhC2ARIsAIJIiK_Z4zUXNziAhxJYk05ElUrZsVVwQQJx2pc3fzN7tPO8dI8Aw0SYqs4aAoj6EALw_wcB"
+                style="color: white; margin: 0 5px;">Política de privacidad</a>
+        </p>
         <div class="d-flex justify-content-center mt-4">
-        <a href="#logo" id="volverArriba" class="btn btn-primary btn-lg">
-            Volver Arriba
-        </a>
-    </div>
+            <a href="#logo" id="volverArriba" class="btn btn-primary btn-lg" data-bs-toggle="tooltip" data-bs-placement="top"
+            title="volver al inicio">
+                Volver Arriba
+            </a>
+        </div>
     </footer>
-   
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets.js"></script>
 </body>
