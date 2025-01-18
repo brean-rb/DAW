@@ -412,4 +412,36 @@ footer {
   .alert-overlay.show {
     display: block;
     opacity: 1; 
-  }
+}
+.campo-fecha {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.campo-fecha label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #f3e5f5;
+}
+
+.campo-fecha input {
+    width: 100%;
+    padding: 10px;
+    border: 0px;
+    border-radius: 4px;
+    background: linear-gradient(45deg, #772c81, #ff7b00);
+    color: linear-gradient(45deg, #772c81, #ff7b00);;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+.campo-fecha input::placeholder {
+    color: #ffe1e1;
+}
+
+.campo-fecha input:focus {
+    border-color: #f44336;
+    box-shadow: 0 0 6px rgba(255, 107, 107, 0.8);
+}
