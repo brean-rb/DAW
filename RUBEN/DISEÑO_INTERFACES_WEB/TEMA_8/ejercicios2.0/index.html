@@ -23,18 +23,22 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav ">
+                <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="#" onclick="location.reload();">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="nivelesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Niveles
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="nivelesDropdown">
+                            <li><a class="dropdown-item" id="junior" href="#cursos">Junior</a></li>
+                            <li><a class="dropdown-item" id="senior" href="#cursos">Senior</a></li>
+                            <li><a class="dropdown-item" id="master" href="#cursos">Master</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Principiante</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Intermedio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Avanzado</a>
+                        <a class="nav-link" href="#contacto">Contacto</a>
                     </li>
                 </ul>
                 <div class="d-flex">
@@ -99,7 +103,7 @@
     </div>
 
     <!-- contenido de presentacion de los cursos -->
-    <div class="contenedor-cursos container my-4">
+    <div class="contenedor-cursos container my-4" id="cursos">
         <div class="d-flex justify-content-center mb-4 ">
             <h1 class="text-white">Algunos de nuestros cursos</h1>
         </div>
@@ -437,9 +441,95 @@
                         <p class="card-text">
                             <em>Descripción:</em> Una conversación profunda sobre las mejores prácticas para mantener tu
                             código limpio y escalable en un entorno de desarrollo moderno. ¡Ideal para programadores de
-                            todos
-                            los niveles!
+                            todos los niveles!
                         </p>
+
+                        <!-- Botones para abrir los modales -->
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-outline-info me-2" data-bs-toggle="modal"
+                                data-bs-target="#infoModal">
+                                Más Información
+                            </button>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#registerModal">
+                                Inscribirse
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Más Información: charla 1 -->
+            <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content bg-dark text-white">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="infoModalLabel">Más Información sobre el Evento</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                <strong>Temario:</strong>
+                            <ul>
+                                <li>Introducción a la limpieza de código</li>
+                                <li>Principios SOLID</li>
+                                <li>Refactorización de código</li>
+                                <li>Buenas prácticas en la escritura de código</li>
+                                <li>Herramientas y técnicas para mantener el código limpio</li>
+                            </ul>
+                            <br>
+                            <strong>Objetivos:</strong>
+                            <ul>
+                                <li>Entender la importancia de mantener un código limpio</li>
+                                <li>Aprender a aplicar los principios SOLID en proyectos reales</li>
+                                <li>Conocer técnicas de refactorización para mejorar el código existente</li>
+                                <li>Adoptar buenas prácticas en la escritura de código</li>
+                                <li>Utilizar herramientas que faciliten la limpieza y mantenimiento del código</li>
+                            </ul>
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                Cerrar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Inscripción: charla 1 -->
+            <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content bg-dark text-white">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="registerModalLabel">Inscribirse en el Evento</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="registerName" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control bg-dark text-white" id="registerName"
+                                        required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerEmail" class="form-label">Correo Electrónico</label>
+                                    <input type="email" class="form-control bg-dark text-white" id="registerEmail"
+                                        required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerPhone" class="form-label">Teléfono</label>
+                                    <input type="tel" class="form-control bg-dark text-white" id="registerPhone"
+                                        required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    Inscribirse
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -460,6 +550,96 @@
                             <em>Descripción:</em> Aprende estrategias para refactorizar y optimizar código heredado,
                             disminuyendo la deuda técnica y mejorando el rendimiento de tus aplicaciones.
                         </p>
+
+                        <!-- Botones para abrir los modales (charla 2) -->
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-outline-info me-2" data-bs-toggle="modal"
+                                data-bs-target="#infoModal2">
+                                Más Información
+                            </button>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#registerModal2">
+                                Inscribirse
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Más Información: Charla 2 -->
+            <div class="modal fade" id="infoModal2" tabindex="-1" aria-labelledby="infoModal2Label" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content bg-dark text-white">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="infoModal2Label">
+                                Más Información: Refactoring
+                            </h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                <strong>Temario:</strong>
+                                <ul>
+                                    <li>Introducción al refactoring</li>
+                                    <li>Principios y técnicas de refactorización</li>
+                                    <li>Identificación de "code smells"</li>
+                                    <li>Refactorización de código heredado</li>
+                                    <li>Mejora del rendimiento y la mantenibilidad</li>
+                                </ul>
+                                <br>
+                                <strong>Objetivos:</strong>
+                                <ul>
+                                    <li>Comprender la importancia del refactoring</li>
+                                    <li>Aprender a identificar y corregir "code smells"</li>
+                                    <li>Aplicar técnicas de refactorización en proyectos reales</li>
+                                    <li>Mejorar la calidad y mantenibilidad del código</li>
+                                </ul>
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                Cerrar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Inscripción: Charla 2 -->
+            <div class="modal fade" id="registerModal2" tabindex="-1" aria-labelledby="registerModal2Label"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content bg-dark text-white">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="registerModal2Label">
+                                Inscribirse en “Refactoring: Mejorando el Código Existente”
+                            </h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="registerName2" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control bg-dark text-white" id="registerName2"
+                                        required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerEmail2" class="form-label">Correo Electrónico</label>
+                                    <input type="email" class="form-control bg-dark text-white" id="registerEmail2"
+                                        required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerPhone2" class="form-label">Teléfono</label>
+                                    <input type="tel" class="form-control bg-dark text-white" id="registerPhone2"
+                                        required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    Inscribirse
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -481,6 +661,96 @@
                             pragmático, mediante la resolución de problemas cotidianos y la mejora continua de tu flujo
                             de trabajo.
                         </p>
+
+                        <!-- Botones para abrir los modales (charla 3) -->
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-outline-info me-2" data-bs-toggle="modal"
+                                data-bs-target="#infoModal3">
+                                Más Información
+                            </button>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#registerModal3">
+                                Inscribirse
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Más Información: Charla 3 -->
+            <div class="modal fade" id="infoModal3" tabindex="-1" aria-labelledby="infoModal3Label" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content bg-dark text-white">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="infoModal3Label">
+                                Más Información: El Programador Pragmático
+                            </h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        <p>
+                            <strong>Temario:</strong>
+                        <ul>
+                            <li>Introducción a la programación pragmática</li>
+                            <li>Principios de la programación pragmática</li>
+                            <li>Herramientas y técnicas para mejorar la productividad</li>
+                            <li>Buenas prácticas en la gestión de proyectos</li>
+                            <li>Casos de estudio y ejemplos prácticos</li>
+                        </ul>
+                        <br>
+                        <strong>Objetivos:</strong>
+                        <ul>
+                            <li>Desarrollar habilidades para resolver problemas de manera eficiente</li>
+                            <li>Adoptar un enfoque pragmático en el desarrollo de software</li>
+                            <li>Mejorar la calidad del código y la productividad</li>
+                            <li>Aplicar buenas prácticas en la gestión de proyectos</li>
+                        </ul>
+                        </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                Cerrar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Inscripción: Charla 3 -->
+            <div class="modal fade" id="registerModal3" tabindex="-1" aria-labelledby="registerModal3Label"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content bg-dark text-white">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="registerModal3Label">
+                                Inscribirse en “El Programador Pragmático: Del Aprendiz al Maestro”
+                            </h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="registerName3" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control bg-dark text-white" id="registerName3"
+                                        required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerEmail3" class="form-label">Correo Electrónico</label>
+                                    <input type="email" class="form-control bg-dark text-white" id="registerEmail3"
+                                        required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerPhone3" class="form-label">Teléfono</label>
+                                    <input type="tel" class="form-control bg-dark text-white" id="registerPhone3"
+                                        required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    Inscribirse
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -504,17 +774,110 @@
                             escribir código limpio, incluyendo cómo estructurar funciones, clases y módulos de forma
                             clara y mantenible.
                         </p>
+
+                        <!-- Botones para abrir los modales (charla 4) -->
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-outline-info me-2" data-bs-toggle="modal"
+                                data-bs-target="#infoModal4">
+                                Más Información
+                            </button>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#registerModal4">
+                                Inscribirse
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Modal Más Información: Charla 4 -->
+            <div class="modal fade" id="infoModal4" tabindex="-1" aria-labelledby="infoModal4Label" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content bg-dark text-white">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="infoModal4Label">
+                                Más Información: Clean Code (versión actualizada)
+                            </h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        <p>
+                            <strong>Contenido del libro:</strong>
+                        <ul>
+                            <li>Introducción a los principios de Clean Code</li>
+                            <li>Cómo escribir funciones y clases limpias</li>
+                            <li>Organización de módulos y paquetes</li>
+                            <li>Buenas prácticas para comentarios y documentación</li>
+                            <li>Refactorización y mejora continua del código</li>
+                            <li>Ejemplos prácticos y casos de estudio</li>
+                        </ul>
+                        <br>
+                        <strong>Objetivos del libro:</strong>
+                        <ul>
+                            <li>Entender la importancia de escribir código limpio</li>
+                            <li>Aprender a estructurar el código de manera clara y mantenible</li>
+                            <li>Adoptar buenas prácticas en la programación diaria</li>
+                            <li>Mejorar la calidad y legibilidad del código</li>
+                        </ul>
+                        </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                Cerrar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Inscripción: Charla 4 -->
+            <div class="modal fade" id="registerModal4" tabindex="-1" aria-labelledby="registerModal4Label"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content bg-dark text-white">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="registerModal4Label">
+                                Inscribirse en “Clean Code (versión actualizada)”
+                            </h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="registerName4" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control bg-dark text-white" id="registerName4"
+                                        required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerEmail4" class="form-label">Correo Electrónico</label>
+                                    <input type="email" class="form-control bg-dark text-white" id="registerEmail4"
+                                        required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerPhone4" class="form-label">Teléfono</label>
+                                    <input type="tel" class="form-control bg-dark text-white" id="registerPhone4"
+                                        required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    Inscribirse
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
+
     <!-- Contacto -->
-    <div class="section-full container my-5">
+    <div class="section-full container my-5" id="contacto">
         <div class="d-flex justify-content-center mb-4">
             <h1 class="text-white">Contacto</h1>
         </div>
-        
+
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <form class="needs-validation" novalidate>
@@ -525,7 +888,7 @@
                             Por favor, introduce tu nombre
                         </div>
                     </div>
-    
+
                     <div class="mb-3">
                         <label for="email" class="form-label text-white">Correo electrónico</label>
                         <input type="email" class="form-control bg-dark text-white" id="email" required>
@@ -533,7 +896,7 @@
                             Por favor, introduce un email válido
                         </div>
                     </div>
-    
+
                     <div class="mb-3">
                         <label for="asunto" class="form-label text-white">Asunto</label>
                         <input type="text" class="form-control bg-dark text-white" id="asunto" required>
@@ -541,7 +904,7 @@
                             Por favor, introduce un asunto
                         </div>
                     </div>
-    
+
                     <div class="mb-3">
                         <label for="mensaje" class="form-label text-white">Mensaje</label>
                         <textarea class="form-control bg-dark text-white" id="mensaje" rows="5" required></textarea>
@@ -549,9 +912,10 @@
                             Por favor, introduce tu mensaje
                         </div>
                     </div>
-    
+
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary px-4 py-2">Enviar mensaje</button>
+                        <button type="reset" class="btn btn-secondary px-4 py-2">Limpiar</button>
                     </div>
                 </form>
             </div>
@@ -570,14 +934,15 @@
                         <a href="#" class="me-3"><i class="fab fa-instagram fa-2x"></i></a>
                     </div>
                 </div>
-                
+
                 <!-- Copyright -->
                 <div class="col-md-4 text-center mb-3 mb-md-0">
-                    <img src="img/logo_codenova.png" alt="CodeNova Logo" class="footer-logo mb-2" width="40" height="40">
+                    <img src="img/logo_codenova.png" alt="CodeNova Logo" class="footer-logo mb-2" width="40"
+                        height="40">
                     <p class="mb-0">&copy; 2025 CodeNova Academy</p>
                     <p class="mb-0">Todos los derechos reservados</p>
                 </div>
-                
+
                 <!-- Enlaces legales -->
                 <div class="col-md-4 text-center text-md-end">
                     <a href="#" class="text-white text-decoration-none">Política de privacidad</a>

@@ -2,6 +2,54 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+/* Ajusta el menú desplegable */
+.dropdown-menu {
+    background-color: #181b1f;
+    /* Fondo oscuro */
+    border: none;
+    /* Sin borde */
+    transition: background-color 0.3s ease;
+}
+
+/* Opciones dentro del dropdown */
+.dropdown-item {
+    color: #fff;
+    /* Texto blanco por defecto */
+    transition: background-color 0.3s ease;
+}
+
+/* Opcional: quitar la línea que aparece en la parte superior del dropdown */
+.dropdown-menu::before {
+    display: none;
+}
+
+/* Opcional: si quieres que la flecha del toggle no cambie de color al hacer hover */
+.navbar-dark .navbar-nav .nav-link.dropdown-toggle:hover {
+    color: #03fa6e;
+    /* Por ejemplo, verde al pasar el ratón */
+    background-color: transparent;
+}
+
+/* Hover en “Junior” */
+#junior.dropdown-item:hover {
+    background-color: #5ce1e6 !important;
+    color: #000 !important;
+    /* Texto negro para mayor contraste */
+}
+
+/* Hover en “Senior” */
+#senior.dropdown-item:hover {
+    background-color: #ffbd59 !important;
+    color: #000 !important;
+}
+
+/* Hover en “Master” */
+#master.dropdown-item:hover {
+    background-color: #cb6ce6 !important;
+    color: #000 !important;
+}
+
+
 /* Estilos para el botón de Iniciar Sesión */
 .btn-outline-light {
     border: 2px solid #fff;
@@ -64,7 +112,8 @@ body {
     border: none;
     border-radius: 8px;
     transition: all 0.3s ease;
-    overflow: hidden; /* Previene el desbordamiento de las esquinas redondeadas */
+    overflow: hidden;
+    /* Previene el desbordamiento de las esquinas redondeadas */
 }
 
 /* Efecto hover: fondo blanco con texto negro */
@@ -79,8 +128,10 @@ body {
     margin: 15px;
     border-radius: 8px;
     border: 2px solid #fff;
-    max-height: 160px; /* Ajustar la altura según sea necesario */
-    object-fit: cover; /* Asegura que la imagen cubra el área */
+    max-height: 160px;
+    /* Ajustar la altura según sea necesario */
+    object-fit: cover;
+    /* Asegura que la imagen cubra el área */
 }
 
 /* Contenedor del contenido derecho */
@@ -98,7 +149,8 @@ body {
 
 /* Sección inferior: Duración, Nivel, Instructor */
 .course-info {
-    border-top: 1px solid #2c3035; /* Un poco más claro que el fondo */
+    border-top: 1px solid #2c3035;
+    /* Un poco más claro que el fondo */
     display: flex;
     justify-content: space-around;
     padding: 1rem;
@@ -131,8 +183,10 @@ body {
 
 /* ====== TARJETAS DE CHARLAS (talk-card) ====== */
 .talk-card {
-    background-color: #181b1f; /* Fondo oscuro para integrarse con tu diseño */
-    color: #fff;              /* Texto blanco */
+    background-color: #181b1f;
+    /* Fondo oscuro para integrarse con tu diseño */
+    color: #fff;
+    /* Texto blanco */
     border: none;
     border-radius: 8px;
     transition: all 0.3s ease;
@@ -145,10 +199,45 @@ body {
     transform: translateY(-5px);
 }
 
+.talk-card.h-100 {
+    display: flex;
+    flex-direction: column;
+    /* Hace que la tarjeta crezca verticalmente */
+}
+
+.talk-card .card-body {
+    flex: 1 1 auto;
+    /* Ocupa todo el espacio restante */
+    display: flex;
+    /* Convierte el card-body en flex */
+    flex-direction: column;
+    /* Apila texto arriba y botones abajo */
+}
+
+.talk-card .card-body .d-flex.justify-content-end {
+    margin-top: auto;
+    /* Empuja este contenedor (los botones) al fondo */
+}
+
+.talk-card:hover .btn-primary {
+    background-color: #03fa6e !important;
+    color: #000 !important;
+    border: 2px solid #03fa6e !important;
+}
+
+.talk-card:hover .btn-outline-info {
+    background-color: #5ce1e6 !important;
+    color: #000 !important;
+    border: 2px solid #5ce1e6 !important;
+}
+
+
 /* Ajustamos la imagen para que encaje con el resto de tu estilo */
 .talk-card img {
-    display: block; /* Convierte la imagen en bloque */
-    margin: 15px auto; /* Márgenes laterales en auto para centrar */
+    display: block;
+    /* Convierte la imagen en bloque */
+    margin: 15px auto;
+    /* Márgenes laterales en auto para centrar */
     border-radius: 8px;
     border: 2px solid #fff;
     max-height: 160px;
