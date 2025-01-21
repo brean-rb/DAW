@@ -1,6 +1,34 @@
+/* ====== INICIO: Estilos generales ====== */
+
+/* Estilo general del cuerpo */
 body {
     font-family: 'Poppins', sans-serif;
 }
+
+.section-title {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+}
+
+/* Opcional: subrayado fino con un pseudo-elemento */
+.section-title::after {
+    content: "";
+    display: block;
+    width: 50%;
+    margin: 0.5rem auto 0;
+    height: 3px;
+    background-color: #03fa6e;
+    border-radius: 2px;
+}
+/* ====== FIN: Estilos generales ====== */
+
+/* ====== INICIO: Menú desplegable ====== */
 
 /* Ajusta el menú desplegable */
 .dropdown-menu {
@@ -49,6 +77,9 @@ body {
     color: #000 !important;
 }
 
+/* ====== FIN: Menú desplegable ====== */
+
+/* ====== INICIO: Botones ====== */
 
 /* Estilos para el botón de Iniciar Sesión */
 .btn-outline-light {
@@ -89,6 +120,88 @@ body {
     font-size: 0.9rem;
     margin: 3px;
 }
+
+/* ====== FIN: Botones ====== */
+
+/* ======== INICIO: Carrusel Custom ======== */
+.carousel-custom {
+    position: relative;
+    margin-bottom: 2rem;
+    /* Un poco de espacio debajo si deseas */
+}
+
+/* Ajustamos fondo y color del texto dentro de las captions */
+.carousel-custom .carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fondo oscuro semi-transparente */
+    padding: 1rem;
+    border-radius: 8px;
+    color: #fff;
+    /* Texto blanco */
+    transition: background-color 0.3s ease;
+}
+
+.carousel-custom .carousel-caption h5 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.carousel-custom .carousel-caption p {
+    font-size: 1rem;
+}
+
+/* Ajustamos las imágenes del carrusel (opcional) */
+.carousel-image {
+    border-radius: 5px;
+    object-fit: cover;
+    /* Recorta la imagen si es muy grande */
+    border-bottom: 3px solid #03fa6e;
+    /* Pequeño borde verde en la parte inferior (opcional) */
+    max-height: 600px;
+    /* Controla la altura máxima */
+}
+
+/* Indicadores de posición (los botones circulares) */
+.carousel-indicators [data-bs-target] {
+    background-color: #03fa6e;
+    /* Circulitos verdes */
+}
+
+.carousel-indicators .active {
+    background-color: #fff;
+    /* El indicador activo en blanco */
+}
+
+/* Flechas de control (prev / next) */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(100%);
+    /* Invierte el color para que sean blancas sobre fondo oscuro */
+    width: 2rem;
+    height: 2rem;
+}
+
+/* Ajuste del botón "Previous" y "Next" para que no choquen con el contenido */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+}
+
+/* Hover en las flechas */
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+    transform: scale(1.2);
+}
+
+/* Transición suave entre slides */
+.carousel-inner .carousel-item {
+    transition: transform 1s ease-in-out;
+}
+
+/* ======== FIN: Carrusel Custom ======== */
+
+/* ====== INICIO: Tarjetas de cursos ====== */
 
 /* Fondo personalizado de la tarjeta */
 .card-custom-bg {
@@ -181,10 +294,13 @@ body {
     color: #000 !important;
 }
 
-/* ====== TARJETAS DE CHARLAS (talk-card) ====== */
+/* ====== FIN: Tarjetas de cursos ====== */
+
+/* ====== INICIO: Tarjetas de charlas ====== */
+
+/* Fondo oscuro para integrarse con tu diseño */
 .talk-card {
     background-color: #181b1f;
-    /* Fondo oscuro para integrarse con tu diseño */
     color: #fff;
     /* Texto blanco */
     border: none;
@@ -231,7 +347,6 @@ body {
     border: 2px solid #5ce1e6 !important;
 }
 
-
 /* Ajustamos la imagen para que encaje con el resto de tu estilo */
 .talk-card img {
     display: block;
@@ -251,12 +366,20 @@ body {
     margin-bottom: 0.5rem;
 }
 
+/* ====== FIN: Tarjetas de charlas ====== */
+
+/* ====== INICIO: Sección completa ====== */
+
 .section-full {
     border: 2px solid #03fa6e;
     border-radius: 8px;
     padding: 2rem;
     margin-bottom: 2rem;
 }
+
+/* ====== FIN: Sección completa ====== */
+
+/* ====== INICIO: Formularios ====== */
 
 .form-control {
     border: 1px solid #2c3035;
@@ -283,6 +406,10 @@ body {
     background-color: #2c3035;
 }
 
+/* ====== FIN: Formularios ====== */
+
+/* ====== INICIO: Footer ====== */
+
 footer {
     border-top: 5px solid #2c3035;
 }
@@ -308,3 +435,5 @@ footer a:hover {
 .footer-logo:hover {
     transform: scale(1.1);
 }
+
+/* ====== FIN: Footer ====== */
