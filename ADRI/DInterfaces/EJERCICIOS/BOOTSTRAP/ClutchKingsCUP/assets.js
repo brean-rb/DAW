@@ -26,6 +26,22 @@ botonLat.onclick = function () {
         );
     }
 };
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+});
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[title]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-placement]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-placement]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
 document.getElementById("logo").addEventListener("click", function () {
     location.reload();
 });
@@ -53,6 +69,43 @@ function actualizarFecha() {
         // Si no hay selección, borrar el valor del input de fecha
         document.getElementById("fecha").value = '';
     }
+}
+
+function limpiarCompe(){
+    const modal = document.getElementById('exampleModalCenterCompe'); 
+    const nombre = modal.querySelector("#name");
+    const email = modal.querySelector("#email");
+    const torneo = modal.querySelector("#torneosDIs");
+    const fecha = modal.querySelector("#fecha");
+    
+    if (nombre) nombre.value = "";
+    if (email) email.value = "";
+    if (torneo) torneo.value = "";
+    if (fecha) fecha.value = "";
+}
+function limpiarDeath(){
+    const modal = document.getElementById('exampleModalCenterDeath'); 
+    const nombre = modal.querySelector("#name");
+    const email = modal.querySelector("#email");
+    const torneo = modal.querySelector("#torneosDIs");
+    const fecha = modal.querySelector("#fecha");
+    
+    if (nombre) nombre.value = "";
+    if (email) email.value = "";
+    if (torneo) torneo.value = "";
+    if (fecha) fecha.value = "";
+}
+function limpiarEscond(){
+    const modal = document.getElementById('exampleModalCenterEscond'); 
+    const nombre = modal.querySelector("#name");
+    const email = modal.querySelector("#email");
+    const torneo = modal.querySelector("#torneosDIs");
+    const fecha = modal.querySelector("#fecha");
+    
+    if (nombre) nombre.value = "";
+    if (email) email.value = "";
+    if (torneo) torneo.value = "";
+    if (fecha) fecha.value = "";
 }
 document.querySelectorAll(".btn.btn-custom:not(.limpio)").forEach((button) => {    
     button.addEventListener("click", function () {

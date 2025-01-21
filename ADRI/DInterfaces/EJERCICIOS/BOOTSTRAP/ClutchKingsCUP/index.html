@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -15,13 +15,13 @@
     <nav class="navbar navbar-expand-lg bg-danger" data-bs-theme="dark">
         <div class="container-fluid d-flex align-items-center">
             <!-- Logo -->
-            <img src="src/logo.png" alt="logo" width="75px" height="75px" id="logo" style="cursor: pointer;"
+            <img src="src/logo.png" alt="logo" width="75" height="75" id="logo" style="cursor: pointer;"
                 data-bs-toggle="tooltip" data-bs-placement="bottom" title="Volver al inicio">
 
             <!-- Botón de hamburguesa para pantallas pequeñas -->
             <button id="menuLat" class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false"
-                aria-label="Toggle navigation" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Abrir menú">
+                aria-label="Toggle navigation" data-bs-placement="bottom" title="Abrir menú">
                 <span class="navbar-toggler-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                         <path id="menuPath" fill="#ffffff"
@@ -109,159 +109,153 @@
             <h4 style="color: #dc3545;">¿Que rol jugarás?</h4>
             <ul id="roles">
                 <!-- Iniciador -->
-                <li data-bs-toggle="modal" data-bs-target="#modalIniciador" data-bs-toggle="tooltip"
-                    data-bs-placement="top" title="Haz clic para saber más sobre el rol de Iniciador">
-                    <img src="src/iniciador.png" height="50px" width="50px" alt="Iniciador" data-bs-toggle="tooltip"
+                <li data-bs-toggle="modal" data-bs-target="#modalIniciador" data-bs-placement="top"
+                    title="Haz clic para saber más sobre el rol de Iniciador">
+                    <img src="src/iniciador.png" height="50" width="50" alt="Iniciador" data-bs-toggle="tooltip"
                         data-bs-placement="top" title="Imagen del rol Iniciador">
                     Iniciador
                 </li>
 
-                <!-- Modal Iniciador -->
-                <div class="modal fade" id="modalIniciador" tabindex="-1" role="dialog"
-                    aria-labelledby="modalIniciadorTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modalIniciadorTitle">¿Sabías que...?</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <img class="fotosmodal" src="src/iniciadoresfondo.gif" alt="" width="475px"
-                                    height="200px"><br>
-                                <br>
-                                <h5> El <em>20-25%</em> de jugadores en la comunidad juegan iniciador pero
-                                    realmente sabes para que sirven?</h5> <br>
-                                Ellos preparan el terreno para que su equipo pueda entrar a zonas controladas por el
-                                enemigo. <br>
-                                Esto lo logran facilitando información, desestabilizando al equipo contrario y creando
-                                oportunidades para que sus compañeros <br>
-                                avancen de manera segura.
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ya lo
-                                    sabía</button>
-                                <button type="button" class="btn btn-custom" data-bs-dismiss="modal">WOW</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Humos -->
-                <li data-bs-toggle="modal" data-bs-target="#modalHumos" data-bs-toggle="tooltip" data-bs-placement="top"
+                <li data-bs-toggle="modal" data-bs-target="#modalHumos" data-bs-placement="top"
                     title="Haz clic para saber más sobre el rol de Controlador">
-                    <img src="src/smoker.png" height="50px" width="50px" alt="Controlador" data-bs-toggle="tooltip"
+                    <img src="src/smoker.png" height="50" width="50" alt="Controlador" data-bs-toggle="tooltip"
                         data-bs-placement="top" title="Imagen del rol Controlador">
                     Controladores
                 </li>
 
-                <!-- Modal Humos -->
-                <div class="modal fade" id="modalHumos" tabindex="-1" role="dialog" aria-labelledby="modalHumosTitle"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modalHumosTitle">¿Sabías que...?</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <img src="src/controladorModal.gif" alt="">
-                                <h5> El <em>15-20%</em> de jugadores en la comunidad juegan controlador pero
-                                    realmente sabes para que sirven?</h5> <br>
-                                Los controladores son especialistas en bloquear líneas de visión, restringir movimientos
-                                enemigos y facilitar la ejecución de estrategias tanto ofensivas como defensivas. <br>Su
-                                objetivo principal es proporcionar ventaja táctica a su equipo, ya sea asegurando un
-                                sitio para plantar la spike o dificultando el avance del equipo contrario.
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ya lo
-                                    sabía</button>
-                                <button type="button" class="btn btn-custom" data-bs-dismiss="modal">WOW</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Duelista -->
-                <li data-bs-toggle="modal" data-bs-target="#modalDuelista" data-bs-toggle="tooltip"
-                    data-bs-placement="top" title="Haz clic para saber más sobre el rol de Duelista">
-                    <img src="src/duelista.png" height="50px" width="50px" alt="Duelista" data-bs-toggle="tooltip"
+                <li data-bs-toggle="modal" data-bs-target="#modalDuelista" data-bs-placement="top"
+                    title="Haz clic para saber más sobre el rol de Duelista">
+                    <img src="src/duelista.png" height="50" width="50" alt="Duelista" data-bs-toggle="tooltip"
                         data-bs-placement="top" title="Imagen del rol Duelista">
                     Duelista
                 </li>
 
-                <!-- Modal Duelista -->
-                <div class="modal fade" id="modalDuelista" tabindex="-1" role="dialog"
-                    aria-labelledby="modalDuelistaTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modalDuelistaTitle">¿Sabías que...?</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <img class="fotosmodal" src="src/duelistasmodal.gif" alt="" width="475px"
-                                    height="200px"><br>
-                                <br>
-                                <h5> El <em>35-40%</em> de jugadores en la comunidad juegan duelista pero
-                                    realmente sabes para que sirven?</h5> <br>
-                                Los duelistas son los encargados de abrir las rondas, buscar eliminaciones y generar
-                                espacio para su <br>
-                                equipo. Este rol destaca por su alta capacidad de daño y habilidades que permiten
-                                enfrentamientos directos con los enemigos. Su objetivo principal es hacer que su equipo
-                                <br>
-                                gane terreno mediante el control de zonas clave del mapa, generalmente iniciando el
-                                combate.
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ya lo
-                                    sabía</button>
-                                <button type="button" class="btn btn-custom" data-bs-dismiss="modal">WOW</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Centinela -->
-                <li data-bs-toggle="modal" data-bs-target="#modalCentinela" data-bs-toggle="tooltip"
-                    data-bs-placement="top" title="Haz clic para saber más sobre el rol de Centinela">
-                    <img src="src/centinela.png" height="50px" width="50px" alt="Centinela" data-bs-toggle="tooltip"
+                <li data-bs-toggle="modal" data-bs-target="#modalCentinela" data-bs-placement="top"
+                    title="Haz clic para saber más sobre el rol de Centinela">
+                    <img src="src/centinela.png" height="50" width="50" alt="Centinela" data-bs-toggle="tooltip"
                         data-bs-placement="top" title="Imagen del rol Centinela">
                     Centinela
                 </li>
 
                 <!-- Modal Centinela -->
-                <div class="modal fade" id="modalCentinela" tabindex="-1" role="dialog"
-                    aria-labelledby="modalCentinelaTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modalCentinelaTitle">¿Sabías que...?</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <img src="src/centinelasModal.gif" alt="" width="475px" height="auto">
-                                <h5> El <em>20-25%</em> de jugadores en la comunidad juegan centinela pero
-                                    realmente sabes para que sirven?</h5> <br>
-                                Los centinelas son esenciales para garantizar la seguridad de sitios clave y
-                                proporcionar herramientas para frenar o retrasar los avances enemigos. <br> Su enfoque
-                                es
-                                mayormente defensivo, aunque también pueden apoyar en el ataque asegurando flancos o
-                                zonas críticas.
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ya lo
-                                    sabía</button>
-                                <button type="button" class="btn btn-custom" data-bs-dismiss="modal">WOW</button>
-                            </div>
+
+            </ul>
+            <!-- Modal Iniciador -->
+            <div class="modal fade" id="modalIniciador" tabindex="-1" role="dialog"
+                aria-labelledby="modalIniciadorTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalIniciadorTitle">¿Sabías que...?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img class="fotosmodal" src="src/iniciadoresfondo.gif"  width="475"
+                                height="200"><br>
+                            <br>
+                            <h5> El <em>20-25%</em> de jugadores en la comunidad juegan iniciador pero
+                                realmente sabes para que sirven?</h5> <br>
+                            Ellos preparan el terreno para que su equipo pueda entrar a zonas controladas por el
+                            enemigo. <br>
+                            Esto lo logran facilitando información, desestabilizando al equipo contrario y creando
+                            oportunidades para que sus compañeros <br>
+                            avancen de manera segura.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ya lo
+                                sabía</button>
+                            <button type="button" class="btn btn-custom" data-bs-dismiss="modal">WOW</button>
                         </div>
                     </div>
                 </div>
+            </div>
+            <!-- Modal Humos -->
+            <div class="modal fade" id="modalHumos" tabindex="-1" role="dialog" aria-labelledby="modalHumosTitle"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalHumosTitle">¿Sabías que...?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="src/controladorModal.gif" alt="">
+                            <h5> El <em>15-20%</em> de jugadores en la comunidad juegan controlador pero
+                                realmente sabes para que sirven?</h5> <br>
+                            Los controladores son especialistas en bloquear líneas de visión, restringir movimientos
+                            enemigos y facilitar la ejecución de estrategias tanto ofensivas como defensivas. <br>Su
+                            objetivo principal es proporcionar ventaja táctica a su equipo, ya sea asegurando un
+                            sitio para plantar la spike o dificultando el avance del equipo contrario.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ya lo
+                                sabía</button>
+                            <button type="button" class="btn btn-custom" data-bs-dismiss="modal">WOW</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            </ul>
+            <!-- Modal Duelista -->
+            <div class="modal fade" id="modalDuelista" tabindex="-1" role="dialog" aria-labelledby="modalDuelistaTitle"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalDuelistaTitle">¿Sabías que...?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img class="fotosmodal" src="src/duelistasmodal.gif"  width="475"
+                                height="200"><br>
+                            <br>
+                            <h5> El <em>35-40%</em> de jugadores en la comunidad juegan duelista pero
+                                realmente sabes para que sirven?</h5> <br>
+                            Los duelistas son los encargados de abrir las rondas, buscar eliminaciones y generar
+                            espacio para su <br>
+                            equipo. Este rol destaca por su alta capacidad de daño y habilidades que permiten
+                            enfrentamientos directos con los enemigos. Su objetivo principal es hacer que su equipo
+                            <br>
+                            gane terreno mediante el control de zonas clave del mapa, generalmente iniciando el
+                            combate.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ya lo
+                                sabía</button>
+                            <button type="button" class="btn btn-custom" data-bs-dismiss="modal">WOW</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modalCentinela" tabindex="-1" role="dialog"
+                aria-labelledby="modalCentinelaTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalCentinelaTitle">¿Sabías que...?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="src/centinelasModal.gif"  width="475">
+                            <h5> El <em>20-25%</em> de jugadores en la comunidad juegan centinela pero
+                                realmente sabes para que sirven?</h5> <br>
+                            Los centinelas son esenciales para garantizar la seguridad de sitios clave y
+                            proporcionar herramientas para frenar o retrasar los avances enemigos. <br> Su enfoque
+                            es
+                            mayormente defensivo, aunque también pueden apoyar en el ataque asegurando flancos o
+                            zonas críticas.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ya lo
+                                sabía</button>
+                            <button type="button" class="btn btn-custom" data-bs-dismiss="modal">WOW</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </aside>
     <main id="tarjetasT" class="container my-5">
@@ -274,30 +268,33 @@
                 <div class="card h-100">
                     <!-- Imagen con Tooltip -->
                     <img src="src/competitivoValorantRojp.png" class="card-img-top" alt="Torneo Competitivo Valorant"
-                        height="230px" data-bs-toggle="tooltip" data-bs-placement="top"
+                        height="230" data-bs-toggle="tooltip" data-bs-placement="top"
                         title="Torneo Competitivo de Valorant">
-                    
+
                     <div class="card-body" id="comperef">
                         <!-- Título con Tooltip -->
                         <h5 class="card-title" data-bs-toggle="tooltip" data-bs-placement="top"
                             title="Torneo Competitivo de Valorant">Torneo Competitivo de Valorant</h5>
-                        
+
                         <!-- Descripción con Tooltip -->
-                        <p class="card-text" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-toggle="tooltip" data-bs-placement="top"
-                        title="Torneo Competitivo de Valorant">
-                            Inscríbete al torneo competitivo de Valorant! Las reglas son las comunes, el equipo que llegue a 13 rondas gana.
+                        <p class="card-text" data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="Torneo Competitivo de Valorant">
+                            Inscríbete al torneo competitivo de Valorant! Las reglas son las comunes, el equipo que
+                            llegue a 13 rondas gana.
                         </p>
-                        
+
                         <div class="d-grid gap-2" data-bs-toggle="tooltip" data-bs-placement="top"
-                        title="Torneo Competitivo de Valorant">
+                            title="Torneo Competitivo de Valorant">
                             <!-- Botones con Tooltips -->
                             <button type="button" class="btn btn-primary btnAcercade" data-bs-toggle="modal"
-                                data-bs-target="#exampleModalLongCompe" data-bs-toggle="tooltip" data-bs-placement="top"
+                                data-bs-target="#exampleModalLongCompe" data-bs-placement="top"
                                 title="Torneo Competitivo de Valorant">
                                 Acerca de
                             </button>
                             <button type="button" class="btn btn-primary btnInscribirse" data-bs-toggle="modal"
-                                data-bs-target="#exampleModalCenterCompe" data-bs-toggle="tooltip" data-bs-placement="top"
+                                data-bs-target="#exampleModalCenterCompe"
+
+                                data-bs-placement="top"
                                 title="Haz clic para inscribirte en el torneo competitivo de Valorant">
                                 Inscribirse
                             </button>
@@ -305,14 +302,14 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Modal Acerca de modo competitivo-->
             <div class="modal fade" id="exampleModalLongCompe" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                aria-labelledby="exampleModalLongTitleHeaderCompe" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Acerca del torneo competitivo</h5>
+                            <h5 class="modal-title" id="exampleModalLongTitleHeaderCompe">Acerca del torneo competitivo</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -403,17 +400,17 @@
                 </div>
             </div>
 
-            <!-- Modal Inscribirse competitivo-->
+            <!-- Modal Inscribirse competitivo -->
             <div class="modal fade" id="exampleModalCenterCompe" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                aria-labelledby="exampleModalCenterTitleCOMPE" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalCenterTitle">Inscripcion al torneo competitivo</h5>
+                            <h5 class="modal-title" id="exampleModalCenterTitleCOMPE">Inscripción al torneo competitivo</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="" id="inscripcion">
+                            <form id="inscripcionCompe">
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Nombre:</label>
                                     <input type="text" class="form-control" id="name" name="name" required>
@@ -440,7 +437,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="selector" class="form-label">Tipo de torneo:</label><br>
+                                    <label for="torneosDIs" class="form-label">Tipo de torneo:</label><br>
                                     <select name="torneosDis" id="torneosDIs" class="styled-select">
                                         <option value="">Selecciona un torneo</option>
                                         <option value="1">Torneo Competitivo</option>
@@ -451,45 +448,48 @@
                                         Por favor, ingresa una opción válida.
                                     </div>
                                 </div>
-
-
+                            </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                             <button type="button" id="inscribirTorneoCompetitivo" class="btn btn-custom"
                                 data-bs-dismiss="modal">Inscribete</button>
-
-                            <button type="reset" class="btn limpio btn-custom ">Limpiar</button>
-                            </form>
-
+                            <button type="button" onclick="limpiarCompe()" class="btn limpio btn-custom">Limpiar</button>
+                            
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Mensaje de éxito -->
             <div id="successMessage" class="alert alert-success alert-overlay" role="alert">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16"
-                    height="16"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
                     <path
                         d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z" />
                 </svg>
                 ¡Inscrito con éxito!
             </div>
+
+            <!-- Mensaje de error -->
             <div id="errorMessage" class="alert alert-danger alert-overlay" role="alert">
                 <img src="src/error.jpg" width="36" height="26" alt="">
-                ¡Error en la inscripcion!
+                ¡Error en la inscripción!
             </div>
+
+            <!-- Card para torneo de Deathmatch -->
             <div class="col-12 col-md-6 col-lg-4 mb-4 tarjetasTipo">
                 <div class="card h-100">
-                    <img src="src/deathmatchTorneo.jpg" class="card-img-top" alt="Torneo Combate a Muerte Valorant" data-bs-toggle="tooltip" data-bs-placement="top"
-                    title="Torneo de Deathmatch en Valorant">
+                    <img src="src/deathmatchTorneo.jpg" class="card-img-top" alt="Torneo Combate a Muerte Valorant"
+                        data-bs-toggle="tooltip" data-bs-placement="top" title="Torneo de Deathmatch en Valorant">
                     <div class="card-body" id="deathref">
                         <h5 class="card-title" data-bs-toggle="tooltip" data-bs-placement="top"
-                        title="Torneo de Deathmatch en Valorant">Torneo Combate a Muerte de Valorant</h5>
+                            title="Torneo de Deathmatch en Valorant">Torneo Combate a Muerte de Valorant</h5>
                         <p class="card-text" data-bs-toggle="tooltip" data-bs-placement="top"
-                        title="Torneo de Deathmatch en Valorant">Inscribete al torneo de combate a muerte de Valorant! Las reglas son las
+                            title="Torneo de Deathmatch en Valorant">Inscribete al torneo de combate a muerte de
+                            Valorant! Las reglas son las
                             comunes, el jugador que llegue a 40 asesinatos gana.</p>
                         <div class="d-grid gap-2" data-bs-toggle="tooltip" data-bs-placement="top"
-                        title="Torneo de Deathmatch en Valorant">
+                            title="Torneo de Deathmatch en Valorant">
                             <button type="button" class="btn btn-primary btnAcercade" data-bs-toggle="modal"
                                 data-bs-target="#exampleModalLongDeath">Acerca de</button>
                             <button type="button" class="btn btn-primary btnInscribirse" data-bs-toggle="modal"
@@ -501,11 +501,11 @@
 
             <!-- Modal Acerca de modo deathmatch-->
             <div class="modal fade" id="exampleModalLongDeath" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                aria-labelledby="exampleModalLongTitleHeaderDeath" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title deathmatch</h5>
+                            <h5 class="modal-title" id="exampleModalLongTitleHeaderDeath">Modal title deathmatch</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -601,15 +601,15 @@
 
             <!-- Modal Inscribirse deathmatch-->
             <div class="modal fade" id="exampleModalCenterDeath" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                aria-labelledby="exampleModalCenterTitleDEATH" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalCenterTitle">Modal title deathmatch</h5>
+                            <h5 class="modal-title" id="exampleModalCenterTitleDEATH">Modal title deathmatch</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="" id="inscripcion">
+                            <form  id="inscripcionDeath">
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Nombre:</label>
                                     <input type="text" class="form-control" id="name" name="name" required>
@@ -635,7 +635,7 @@
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="selector" class="form-label">Tipo de torneo:</label><br>
+                                    <label for="torneosDIs" class="form-label">Tipo de torneo:</label><br>
                                     <select name="torneosDis" id="torneosDIs" class="styled-select">
                                         <option value="">Selecciona un torneo</option>
                                         <option value="1">Torneo Competitivo</option>
@@ -646,16 +646,13 @@
                                         Por favor, ingresa una opción válida.
                                     </div>
                                 </div>
-
-
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="button" id="inscribirTorneoDeathmatch" class="btn btn-custom"
-                                data-bs-dismiss="modal">Inscribete</button>
-                            <button type="reset" class="btn limpio btn-custom ">Limpiar</button>
                             </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" id="inscribirTorneoDeathmatch" class="btn btn-custom"
+                                    data-bs-dismiss="modal">Inscribete</button>
+                                <button type="button" onclick="limpiarDeath()" class="btn limpio btn-custom ">Limpiar</button>
                         </div>
                     </div>
                 </div>
@@ -663,16 +660,18 @@
 
             <div class="col-12 col-md-6 col-lg-4 mb-4 tarjetasTipo">
                 <div class="card h-100">
-                    <img src="src/esconditeTorneo.jpg" class="card-img-top" alt="Torneo Escondite Valorant" data-bs-toggle="tooltip" data-bs-placement="top"
-                    title="Torneo Competitivo de Escondite en Valorant">
+                    <img src="src/esconditeTorneo.jpg" class="card-img-top" alt="Torneo Escondite Valorant"
+                        data-bs-toggle="tooltip" data-bs-placement="top"
+                        title="Torneo Competitivo de Escondite en Valorant">
                     <div class="card-body" id="esconditeref">
                         <h5 class="card-title" data-bs-toggle="tooltip" data-bs-placement="top"
-                        title="Torneo Competitivo de Escondite en Valorant">Torneo Escondite de Valorant</h5>
+                            title="Torneo Competitivo de Escondite en Valorant">Torneo Escondite de Valorant</h5>
                         <p class="card-text" data-bs-toggle="tooltip" data-bs-placement="top"
-                        title="Torneo Competitivo de Escondite en Valorant">Inscribete al torneo competitivo de Valorant! Las reglas son las comunes,
+                            title="Torneo Competitivo de Escondite en Valorant">Inscribete al torneo competitivo de
+                            Valorant! Las reglas son las comunes,
                             el equipo que llegue a 13 rondas gana.</p>
                         <div class="d-grid gap-2" data-bs-toggle="tooltip" data-bs-placement="top"
-                        title="Torneo Competitivo de Escondite en Valorant">
+                            title="Torneo Competitivo de Escondite en Valorant">
                             <button type="button" class="btn btn-primary btnAcercade" data-bs-toggle="modal"
                                 data-bs-target="#exampleModalLongEscond">Acerca de</button>
                             <button type="button" class="btn btn-primary btnInscribirse" data-bs-toggle="modal"
@@ -683,11 +682,11 @@
             </div>
             <!-- Modal Acerca de modo escondite-->
             <div class="modal fade" id="exampleModalLongEscond" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                aria-labelledby="exampleModalLongTitleHeaderEscond" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title escondite</h5>
+                            <h5 class="modal-title" id="exampleModalLongTitleHeaderEscond">Modal title escondite</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -781,15 +780,15 @@
 
             <!-- Modal Inscribirse escondite-->
             <div class="modal fade" id="exampleModalCenterEscond" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                aria-labelledby="exampleModalCenterTitleESCOND" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalCenterTitle">Modal title escondite</h5>
+                            <h5 class="modal-title" id="exampleModalCenterTitleESCOND">Modal title escondite</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="" id="inscripcion">
+                            <form id="inscripcionEscond">
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Nombre:</label>
                                     <input type="text" class="form-control" id="name" name="name" required>
@@ -815,7 +814,7 @@
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="selector" class="form-label">Tipo de torneo:</label><br>
+                                    <label for="torneosDIs" class="form-label">Tipo de torneo:</label><br>
                                     <select name="torneosDis" id="torneosDIs" class="styled-select">
                                         <option value="">Selecciona un torneo</option>
                                         <option value="1">Torneo Competitivo</option>
@@ -827,15 +826,15 @@
                                     </div>
                                 </div>
 
-
+                            </form>
 
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                             <button type="button" id="inscribirTorneoEscondite" class="btn btn-custom"
                                 data-bs-dismiss="modal">Inscribete</button>
-                            <button type="reset" class="btn limpio btn-custom ">Limpiar</button>
-                            </form>
+                            <button type="button" onclick="limpiarEscond()" class="btn limpio btn-custom ">Limpiar</button>
+                           
                         </div>
                     </div>
                 </div>
@@ -845,7 +844,7 @@
     <h1 style="text-align: center;">CONTÁCTANOS</h1>
     <div id="contacto">
         <form id="formucon" method="POST" data-bs-toggle="tooltip" data-bs-placement="top"
-        title="Formulario de contacto">
+            title="Formulario de contacto">
             <div class="mb-3">
                 <label for="name" class="form-label">Nombre:</label>
                 <input type="text" class="form-control" id="name" name="name" required>
@@ -884,10 +883,9 @@
         </form>
     </div>
     <footer>
-        <p data-bs-toggle="tooltip" data-bs-placement="top"
-        title="Derechos reservados">&copy; 2025 Clutch Kings CUP. Todos los derechos reservados.</p>
-        <p data-bs-toggle="tooltip" data-bs-placement="top"
-        title="Enlaces a nuestras redes">Síguenos en:
+        <p data-bs-toggle="tooltip" data-bs-placement="top" title="Derechos reservados">&copy; 2025 Clutch Kings CUP.
+            Todos los derechos reservados.</p>
+        <p data-bs-toggle="tooltip" data-bs-placement="top" title="Enlaces a nuestras redes">Síguenos en:
             <a href="https://www.facebook.com" style="color: white; margin: 0 5px;">Facebook</a>|
             <a href="https://x.com" style="color: white; margin: 0 5px;">Twitter</a>|
             <a href="https://www.instagram.com/" style="color: white; margin: 0 5px;">Instagram</a>|
@@ -895,8 +893,8 @@
                 style="color: white; margin: 0 5px;">Política de privacidad</a>
         </p>
         <div class="d-flex justify-content-center mt-4">
-            <a href="#logo" id="volverArriba" class="btn btn-primary btn-lg" data-bs-toggle="tooltip" data-bs-placement="top"
-            title="volver al inicio">
+            <a href="#logo" id="volverArriba" class="btn btn-primary btn-lg" data-bs-toggle="tooltip"
+                data-bs-placement="top" title="volver al inicio">
                 Volver Arriba
             </a>
         </div>
