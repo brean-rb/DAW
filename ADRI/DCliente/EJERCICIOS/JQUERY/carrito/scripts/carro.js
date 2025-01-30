@@ -1,52 +1,59 @@
-$(function () {
-    var precioElemento = 0;
+$(function() {
+    $(".item").dblclick(function() {
+        var stockElement = $(this).find('.stock');
+        var stock = parseInt(stockElement.text().split(' ')[1]);
+        if(stock > 0){
+            stock--;
+            stockElement.text('Stock: ' + stock);
 
-    $(".item").dblclick(function () {
-        var cantidadStock = $(this).find(".stock");
-        var cantidadCad = cantidadStock.text().split(" ");
-        var cantidad = parseInt(cantidadCad[1]);
-        var carroCant = parseInt($("#citem").val());
-        if (cantidad > 0) {
-            cantidad--;
-            carroCant++;
-            precioElemento += parseInt($(this).find(".price").text());
-            cantidadStock.text("Stock " + cantidad);
-            $("#citem").val(carroCant.toString());
-            $("#cprice").val(precioElemento.toString() + " €");
-            if (cantidad == 0) {
-                cantidadStock.addClass("agotado");
+            if(stock == 0){
+                stockElement.addClass('agotado');
             }
 
-            var producto = $(this).clone();
-            producto.attr('id', 'c' + $(this).attr("id"));
-            producto.find('stock').hide();
-            producto.css('cursor', 'default');
+            $('#citem').val(parseInt($('#citem').val()) + 1);
+
+            var price = parseInt($('#cprice').val().split(' ')[0]);
+            var product_price = parseInt($(this).find('.price').text().split(' ')[0]);
+            var new_price = price + product_price;
+
+            $('#cprice').val(new_price + ' €');
+
+            var item = $(this).clone();
+            item.attr('id', 'c' + $(this).attr('id'));
+            item.find('.stock').hide();
+            item.css('cursor', 'default');
+            item.css('cursor', 'default');
+
             var $delete = $('<a href="" class="delete"></a>');
-            producto.prepend($delete)
-            $("#cart_items").prepend(producto);
+            item.prepend($delete);
+            $('#cart_items').prepend(item);
         }
 
-        $delete.click(function () {
-            var stockdelElemento = $("#" + producto.attr("id")).find('.stock');
-            var cantidad = parseInt(stockdelElemento.text().split(' ')[1]);
-            cantidad++;
-            stockdelElemento.text("Stock " + cantidad);
-            if (cantidad > 0) {
-                precioElemento -= parseInt($(this).parent().find(".price").text());
-                cantidadStock.removeClass("agotado");
+        $delete.on("click",function() {
+            var idPadre = $(this).parent().attr('id');
+            var id = idPadre.substring(1);
+
+            var stockElement = $('#' + id).find('.stock');
+            var stock = parseInt(stockElement.text().split(' ')[1]);
+            stock++;
+            stockElement.text('Stock: ' + stock);
+
+            if(stock > 0){
+                stockElement.removeClass('agotado');
             }
-            $('#citem').val(parseInt($("#citem").val()) - 1);
 
-            var precio = parseInt($('#cprice').val().split(' ')[0]);
-            var prodprecio = parseInt($(this).parent().find('.price').text().split(' ')[0]);
-            var finprecio = precio - prodprecio;
+            $('#citem').val(parseInt($('#citem').val()) - 1);
 
-            $('#cprice').val(finprecio + ' €');
+            var price = parseInt($('#cprice').val().split(' ')[0]);
+            var product_price = parseInt($(this).parent().find('.price').text().split(' ')[0]);
+            var new_price = price - product_price;
+
+            $('#cprice').val(new_price + ' €');
 
             $(this).parent().remove();
 
             return false;
         });
-    });
 
+    });
 });
