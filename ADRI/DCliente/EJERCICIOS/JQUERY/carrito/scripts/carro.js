@@ -1,12 +1,12 @@
-$(function() {
-    $(".item").dblclick(function() {
+$(function () {
+    $(".item").bind("dblclick.anadir" ,function() {
         var stockElement = $(this).find('.stock');
         var stock = parseInt(stockElement.text().split(' ')[1]);
-        if(stock > 0){
+        if (stock > 0) {
             stock--;
             stockElement.text('Stock: ' + stock);
 
-            if(stock == 0){
+            if (stock == 0) {
                 stockElement.addClass('agotado');
             }
 
@@ -24,12 +24,14 @@ $(function() {
             item.css('cursor', 'default');
             item.css('cursor', 'default');
 
-            var $delete = $('<a href="" class="delete"></a>');
+             $delete = $('<a href="" class="delete"></a>');
             item.prepend($delete);
             $('#cart_items').prepend(item);
-        }
 
-        $delete.on("click",function() {
+                
+        }
+    });
+        $(document).on("click.borrar",".delete" ,function () {
             var idPadre = $(this).parent().attr('id');
             var id = idPadre.substring(1);
 
@@ -38,8 +40,11 @@ $(function() {
             stock++;
             stockElement.text('Stock: ' + stock);
 
-            if(stock > 0){
+            if (stock > 0) {
                 stockElement.removeClass('agotado');
+                $(".item").bind("dblclick.anadir");
+            } else {
+                $(".item").unbind("dblclick.anadir");
             }
 
             $('#citem').val(parseInt($('#citem').val()) - 1);
@@ -51,9 +56,55 @@ $(function() {
             $('#cprice').val(new_price + ' €');
 
             $(this).parent().remove();
-
             return false;
         });
 
-    });
-});
+        $("#btn_clear").click(function(){
+            $(".item a.delete").trigger("click.borrar")
+        });
+
+                var posicionInicio = $("#cart_items").offset();
+                var izqInicio = posicionInicio.left;
+                var anchoInicio = $("#cart_items").width();
+                var derInicio = izqInicio + anchoInicio;
+                
+                function moverFlechaDerecha(despl){
+                
+                    var pos = $("#cart_items").offset();
+                    var ancho =$("#cart_items").width();
+
+                    if(derInicio - despl >= izqInicio + anchoInicio){
+                        pos.left -= despl;
+                    } else{
+                        pos.left = izqInicio + anchoInicio - ancho  
+                    }
+                    $("#cart_items").offset(pos);
+                }
+
+                function moverFlechaIzquierda(despl){
+                
+                    var pos = $("#cart_items").offset();
+
+                    if(pos.left + despl  <= izqInicio){
+                        pos.left += despl;
+                    } else{
+                        pos.left = izqInicio;
+                    }
+                    $("#cart_items").offset(pos);
+
+                }
+
+                $("#btn_next").click(function () {
+                    moverFlechaDerecha(50);
+                });
+                
+                $("#btn_prev").click(function () {
+                    moverFlechaIzquierda(50);
+                });
+                
+
+        
+       
+        
+});    
+  
