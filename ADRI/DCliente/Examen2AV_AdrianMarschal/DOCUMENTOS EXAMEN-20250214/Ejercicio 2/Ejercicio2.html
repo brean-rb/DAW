@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit=" return validar()">
+        <label for="clave">Introduzca una clave</label>
+        <input type="text" name="clave" id="clave">
+        <button type="submit">Validar</button>
+    </form>
+
+    <script>
+
+        function validar(){
+            var clave = document.getElementById("clave").value;
+            var regex = /^[aeiouAEIOU]{2}[^S]\D?(D|T){1}[0-9]{1,4}\$$/
+            if (!regex.test(clave)) {
+                alert("No valido");
+            }else{
+                alert("validado")
+            }
+        }
+    </script>
+</body>
+</html>

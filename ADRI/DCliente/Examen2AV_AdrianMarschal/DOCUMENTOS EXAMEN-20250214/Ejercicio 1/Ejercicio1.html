@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+</style>
+<body>
+    <h1>MENÚ DEL DÍA</h1>
+    <form onsubmit=" return verMenu()">
+        <h3>ENTRANTES:</h3>
+        <br>
+        <input type="checkbox" name="ensalada" id="ensalada" value="Ensalada mediterranea"> 
+        <label for="ensalada">Ensalada mediterranea</label><br><br>
+        <input type="checkbox" name="sopa" id="sopa" value="Sopa Benicarlanda">
+        <label for="sopa">Sopa Benicarlanda</label><br><br>
+        <input type="checkbox" name="escalivada" id="escalivada" value="escalivada">
+        <label for="escalivada">escalivada </label><br><br>
+
+        <br><br>
+
+        <h3>SEGUNDO PLATO:</h3>
+        <br><br>
+        <input type="radio" name="segundo" id="pavo" value="Pavo trufado">
+        <label for="pavo">Pavo trufado</label><br><br>
+        <input type="radio" name="segundo" id="salmon" value="Salmon al cava">
+        <label for="salmon">Salmon al cava</label><br><br>
+        <input type="radio" name="segundo" id="paella" value="Paella valenciana">
+        <label for="paella">Paella valenciana</label><br><br>
+
+        <input type="hidden" name="postre" id="postre" value=5>
+        <br><br>
+        <button type="submit">Menu Seleccionado</button>
+        <button type="reset">Nuevo Menú</button>
+
+    </form>
+
+    <script>
+
+        var contadorEntrantes =0;
+        var segundo =0;
+        var totalprecio = 0;
+        var mensaje = "";
+        function verMenu(){
+            var listaEntrantes = document.querySelectorAll("input[type='checkbox']");
+            var listaSegundos = document.querySelectorAll("input[type='radio']");
+
+            for (let i = 0; i < listaEntrantes.length; i++) {
+                if(listaEntrantes[i].checked){
+                    contadorEntrantes++;
+                    mensaje += listaEntrantes[i].value + ",";
+                };
+                
+            }
+
+            for (let i = 0; i < listaSegundos.length; i++) {
+                if(listaSegundos[i].checked){
+                    segundo=1;
+                    mensaje += listaSegundos[i].value;
+                };
+            }
+            if (segundo == 1) {
+                totalprecio =contadorEntrantes*5 + 10 + parseInt(document.getElementById("postre").value);
+            } else {
+                alert("No has seleccionado segundo")
+                return false;
+            }
+
+            alert("Tienes seleccionados: " + contadorEntrantes + " Entrante y " + segundo + " Segundo.\n El precio final es de: " + totalprecio + "\n Los platos seleccionados son: " + mensaje + " postre incluido")
+            
+        }
+
+    </script>
+</body>
+</html>

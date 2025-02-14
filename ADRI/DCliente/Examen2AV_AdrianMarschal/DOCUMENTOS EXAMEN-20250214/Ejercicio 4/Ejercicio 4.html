@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejericio 4</title>
+
+<style>
+#icono {
+    position:absolute;
+    width: 50px;
+    height: 50px;
+}
+</style>
+
+</head>
+
+<body>
+    <div>
+        <img id="icono" src="icono.png" alt="Icono">
+    </div>
+    
+    <script>
+        //Generador de coordenadas aleatorias
+
+            var cordenadaX = 0;
+            var cordenadaY = 0;
+            var icono = document.getElementById("icono");
+            icono.onmouseover = mover;
+            icono.style.top = "0px";
+            icono.style.left = "0px"; 
+            window.onload = function () {
+                icono.style.top = "0px";
+                icono.style.left = "0px"; 
+            cordenadaX = Math.floor(Math.random() * 1000) + 1;
+            cordenadaY = Math.floor(Math.random() * 1000) + 1;
+
+            icono.style.position = "absolute";
+            icono.style.top = cordenadaY + "px";
+            icono.style.left = cordenadaX + "px"; 
+            }
+
+            function mover(){
+                icono.style.top = "0px";
+                icono.style.left = "0px"; 
+
+                icono.style.display = "none";
+                cordenadaX = Math.floor(Math.random() * 1000) + 1;
+                cordenadaY = Math.floor(Math.random() * 1000) + 1;
+                icono.style.top = cordenadaY + "px";
+                icono.style.left = cordenadaX + "px"; 
+                icono.style.display = "block";
+
+            }
+
+    </script>
+</body>
+</html>

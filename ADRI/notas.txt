@@ -4,3 +4,15 @@ Lanzamiento --> 7
 DesInterfaces --> 6
 DesCliente --> 8
 DesServer --> 8
+//Notas 2AV
+Ingles --> 8
+Lanzamiento --> 9
+DesInterfaces --> 9
+DesCliente --> 7
+DesServer --> 8
+ //Media = 7.6
+ Ingles --> 7
+ Lanzamiento --> 8
+ DesInterfaces --> 7.5
+ DesCliente --> 7.5
+ DesServer --> 8
