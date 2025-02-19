@@ -2,193 +2,153 @@
 var posCarritoInicial;
 var anchoCarritoInicial;
 var anchoProductoEnCarrito = 120;
- 
-function actualizaStockProducto($item, incremento)
-{
-	var stock = parseInt($item.children(".stock").html().replace("Stock ", ""));
-	
-	if (stock+incremento >= 0)
-	{
-		stock += incremento;
-		$item.children(".stock").html("Stock " + stock);
-		if (stock == 0)
-		{
-			$item.find(".stock").addClass("agotado");
-			$item.unbind("dblclick");
-		}
-		else
-		{
-			if (stock == 1 && incremento == 1)
-			{
-				$item.find(".stock").removeClass("agotado");
-				establece_evento_dblclick_items($item);
-			}
-		}
-	}
-	ocultarBotones();
+
+function actualizaStockProducto($item, incremento) {
+    var stock = parseInt($item.children(".stock").text().replace("Stock ", "")) || 0;
+
+    stock += incremento;
+    if (stock < 0) return;
+
+    $item.children(".stock").fadeOut(200, function () {
+        $(this).text("Stock " + stock).fadeIn(300);
+    });
+
+    if (stock === 0) {
+        $item.find(".stock").addClass("agotado");
+        $item.off("dblclick");
+    } else if (stock === 1 && incremento === 1) {
+        $item.find(".stock").removeClass("agotado");
+        establece_evento_dblclick_items($item);
+    }
+    ocultarBotones();
 }
 
-function actualizaNumeroProductosPedidos(incremento)
-{
-	var numProductosPedido = parseInt($("#citem").val());
-	numProductosPedido += incremento;
-	$("#citem").val(numProductosPedido);
+function actualizaNumeroProductosPedidos(incremento) {
+    var numProductosPedido = parseInt($("#citem").val()) || 0;
+    numProductosPedido += incremento;
+    if (numProductosPedido < 0) numProductosPedido = 0;
+
+    $("#citem").fadeOut(200, function () {
+        $(this).val(numProductosPedido).fadeIn(200);
+    });
+
+    ocultarBotones();
 }
 
-function actualizaPrecioTotal($item, incremento)
-{
-	var precioPedido = parseInt($("#cprice").val());
-	precioPedido += parseInt(incremento);
-	$("#cprice").val(precioPedido + " €");
+function actualizaPrecioTotal(incremento) {
+    var precioPedido = parseInt($("#cprice").val()) || 0;
+    precioPedido += incremento;
+    if (precioPedido < 0) precioPedido = 0;
+
+    $("#cprice").fadeOut(200, function () {
+        $(this).val(precioPedido + " €").fadeIn(200);
+    });
 }
 
-function incrementaAnchoCarrito(incremento)
-{
-	$("#cart_items").width($("#cart_items").width() + incremento);
+function incrementaAnchoCarrito(incremento) {
+    $("#cart_items").animate({ width: $("#cart_items").width() + incremento }, 300);
 }
 
-function anyadeProductoAlCarrito($item)
-{
-	var $delete = $('<a href="" class="delete"></a>');
+function anyadeProductoAlCarrito($item) {
+    var $delete = $('<a href="#" class="delete">❌</a>');
 
-	var id = "c"+$item.attr("id");
-	$copia = $item.clone().attr("id", id).addClass('icart').prepend($delete);
-	$copia.children(":not(a)").addBack().css("cursor", "default").find(".stock").hide();
-	
-	$("#cart_items").prepend($copia);
-	ocultarBotones();
-	anadirAnimacion($copia);
+    var id = "c" + $item.attr("id");
+    var $copia = $item.clone().attr("id", id).addClass('icart').prepend($delete);
+    $copia.children(":not(a)").addBack().css("cursor", "default").find(".stock").hide();
+
+    $("#cart_items").prepend($copia);
+    ocultarBotones();
+    anadirAnimacion($copia);
 }
 
-function desplazaCarritoIzquierda(desplazamiento)
-{
-	var pos = $("#cart_items").offset();
-	
-	if (pos.left + desplazamiento <= posCarritoInicial.left)
-		pos.left += desplazamiento;
-	else
-		pos.left = posCarritoInicial.left;
-		
-	$("#cart_items").offset(pos);
+function desplazaCarritoIzquierda(desplazamiento) {
+    var pos = $("#cart_items").offset();
+
+    pos.left = Math.max(pos.left + desplazamiento, posCarritoInicial.left);
+    $("#cart_items").offset(pos);
 }
 
-function desplazaCarritoDerecha(desplazamiento)
-{
-	var pos = $("#cart_items").offset();
-	var ancho = $("#cart_items").width();
-	var der = pos.left + ancho;
-	
-	if (der - desplazamiento >= posCarritoInicial.left + anchoCarritoInicial)
-		pos.left -= desplazamiento;
-	else
-		pos.left = posCarritoInicial.left + anchoCarritoInicial - ancho;
+function desplazaCarritoDerecha(desplazamiento) {
+    var pos = $("#cart_items").offset();
+    var ancho = $("#cart_items").width();
+    var der = pos.left + ancho;
 
-	$("#cart_items").offset(pos);
+    pos.left = Math.min(pos.left - desplazamiento, posCarritoInicial.left + anchoCarritoInicial - ancho);
+    $("#cart_items").offset(pos);
 }
 
-function establece_evento_dblclick_items($items)
-{
-	$items.dblclick(function()
-	{
-		actualizaStockProducto($(this), -1);
+function establece_evento_dblclick_items($items) {
+    $items.off("dblclick").dblclick(function () {
+        actualizaStockProducto($(this), -1);
+        actualizaNumeroProductosPedidos(1);
+        var precioProducto = parseInt($(this).children(".price").html()) || 0;
+        actualizaPrecioTotal(precioProducto);
+        anyadeProductoAlCarrito($(this));
 
-		actualizaNumeroProductosPedidos(1);
-			
-		actualizaPrecioTotal($(this), parseInt($(this).children(".price").html()));
-		
-		anyadeProductoAlCarrito($(this));
-
-		var numArticulosCarrito = $("#cart_items").children().length;
-		if (numArticulosCarrito > 4) 
-			incrementaAnchoCarrito(anchoProductoEnCarrito);
-	});
+        if ($("#cart_items").children().length > 4) {
+            incrementaAnchoCarrito(anchoProductoEnCarrito);
+        }
+    });
 }
 
-function eliminaProductoDelCarrito($item)
-{
-	var id = $item.attr("id");
-	id = id.substring(1);
-	
-	actualizaStockProducto($("#"+id), 1);
-	
-	actualizaNumeroProductosPedidos(-1);
-	
-	actualizaPrecioTotal($item, -parseInt($item.children(".price").html()));
-	
-	var pos = $("#cart_items").offset();
-	
-	var numArticulosCarrito = $("#cart_items").children().length-1;
-	if (numArticulosCarrito >= 4) 
-	{
-		incrementaAnchoCarrito(-anchoProductoEnCarrito);
-		
-		var anchoCarrito = $("#cart_items").width();
-		var der = pos.left + anchoCarrito;
-		if (der < posCarritoInicial.left + anchoCarritoInicial)
-			pos.left = posCarritoInicial.left + anchoCarritoInicial - anchoCarrito;
-	}
-	else
-		pos.left = posCarritoInicial.left;
-	
-	$("#cart_items").offset(pos);
+function eliminaProductoDelCarrito($item) {
+    var id = $item.attr("id").substring(1);
+    var $productoOriginal = $("#" + id);
 
-	$item.remove();
-	ocultarBotones();
+    var precio = parseInt($item.children(".price").html()) || 0;
+
+    $item.animate({ opacity: 0, height: 0 }, 500, function () {
+        actualizaStockProducto($productoOriginal, 1);
+        actualizaNumeroProductosPedidos(-1);
+        actualizaPrecioTotal(-precio);
+
+        var numArticulosCarrito = $("#cart_items").children().length - 1;
+        if (numArticulosCarrito >= 4) {
+            incrementaAnchoCarrito(-anchoProductoEnCarrito);
+        }
+
+        $(this).remove();
+        ocultarBotones();
+    });
 }
 
-function ocultarBotones(){
-	if (parseInt($("#citem").val()) == 0) {
-		$("#btn_next").hide();
-		$("#btn_prev").hide();
-		$("#btn_clear").hide();
-		$("#btn_comprar").hide();
-	} else {
-		$("#btn_clear").show();
-		$("#btn_comprar").show();
-		if(parseInt($("#citem").val()) > 4){
-			$("#btn_next").show();
-			$("#btn_prev").show();
-		} else {
-			$("#btn_next").hide();
-			$("#btn_prev").hide();
-		}
-	}
+function ocultarBotones() {
+    var cantidad = parseInt($("#citem").val()) || 0;
+
+    if (cantidad === 0) {
+        $("#btn_next, #btn_prev, #btn_clear, #btn_comprar").hide();
+    } else {
+        $("#btn_clear, #btn_comprar").show();
+        $("#btn_next, #btn_prev").toggle(cantidad > 4);
+    }
 }
 
-function anadirAnimacion($item){
-		$item.hide();
-		$item.slideDown(400, function(){
-			// tiene que hacer de derecha a izquierda
-		});
+function anadirAnimacion($item) {
+    $item.hide().css("opacity", 0).slideDown(300).animate({ opacity: 1 }, 300);
 }
 
-$(function() 
-{
-	anchoCarritoInicial = $("#cart_items").width();
-	posCarritoInicial = $("#cart_items").offset();
+$(function () {
+    anchoCarritoInicial = $("#cart_items").width();
+    posCarritoInicial = $("#cart_items").offset();
 
-	establece_evento_dblclick_items($(".item"));
-	
-	$(document).on("click", ".delete", function()
-	{
-		eliminaProductoDelCarrito($(this).parent());
-		
-		return false;
-	});
-	
-	$("#btn_clear").click(function(evento) 
-	{
-		$(".delete").trigger("click");
-	});
-	
-	$("#btn_prev").click(function(evento) 
-	{
-		desplazaCarritoIzquierda(50);
-	});
+    establece_evento_dblclick_items($(".item"));
 
-	$("#btn_next").click(function(evento) 
-	{
-		desplazaCarritoDerecha(50);
-	});
-	ocultarBotones();
+    $(document).on("click", ".delete", function () {
+        eliminaProductoDelCarrito($(this).parent());
+        return false;
+    });
+
+    $("#btn_clear").click(function () {
+        $(".delete").trigger("click");
+    });
+
+    $("#btn_prev").click(function () {
+        desplazaCarritoIzquierda(50);
+    });
+
+    $("#btn_next").click(function () {
+        desplazaCarritoDerecha(50);
+    });
+
+    ocultarBotones();
 });
