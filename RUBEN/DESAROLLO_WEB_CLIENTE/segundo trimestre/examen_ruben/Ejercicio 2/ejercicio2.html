@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio 2</title>
+</head>
+<body>
+    <form action="">
+        <label for="clave">escriba su clave</label>
+        <input type="text" name="clave" id="clave">
+
+        <button type="submit" onclick="validarClave()">Validar clave</button>
+    </form>
+<script>
+
+</script>
+</body>
+
+<script>
+    window.onload = function(){
+        document.getElementById('clave').focus();
+    }
+    function validarClave(){
+        let clave = document.getElementById('clave').value;
+        let input_clave = document.getElementById('clave');
+        let regex = /^[aeiouAEIOU]{2}[A-RT-Z]?[DT]\d{1,4}\$$/;
+        
+        if(regex.test(clave)){
+            alert('La clave es correcta');
+            input_clave.value = '';
+        } else {
+            alert('La clave es incorrecta');
+            input_clave.value = '';
+        }
+        input_clave.focus();
+    }
+</script>
+</html>

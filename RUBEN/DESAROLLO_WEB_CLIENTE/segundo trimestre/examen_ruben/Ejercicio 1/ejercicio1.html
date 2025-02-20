@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio 1</title>
+</head>
+<body>
+    <h1>MENU DEL DIA</h1>
+    <form action="">
+        <h2>ENTRANTES</h2>  
+        <label for="entrante1">Ensalada mediterrania</label>
+        <input type="checkbox" name="entrante1" id="entrante1">
+        <br>
+        <label for="entrante2">Sopa Benicarlanda</label>
+        <input type="checkbox" name="entrante2" id="entrante2">
+        <br>
+        <label for="entrante3">Escalivada</label>
+        <input type="checkbox" name="entrante3" id="entrante3">
+
+        <h2>SEGUNDO PLATO</h2>
+        <input type="radio" name="segundo_plato" id="pavo_trufado" value="Pavo Trufado">
+        <label for="pavo_trufado">Pavo Trufado</label>
+        <br>
+        <input type="radio" name="segundo_plato" id="salmon_al_cava" value="Salmon al cava">
+        <label for="salmon_al_cava">Salmon al cava</label>
+        <br>
+        <input type="radio" name="segundo_plato" id="paella_valenciana" value="Paella Valenciana">
+        <label for="paella_valenciana">Paella Valenciana</label>
+
+        <br>
+        <button type="submit" onclick="mostrar()">Menu Seleccionado</button>
+        <button type="reset">Nuevo Menu</button>
+    </form>
+</body>
+
+<script>
+    function mostrar(){
+        var precio = 0;
+        var postre = 5;
+
+        var entrantes_seleccionados = 0;
+        var platos_seleccionados = 0;
+
+        var array_entrantes = [];
+        var texto_platos = '';
+
+        let entrante1 = document.getElementById('entrante1');
+        let entrante2 = document.getElementById('entrante2');
+        let entrante3 = document.getElementById('entrante3');
+
+        if(entrante1.checked){
+            precio += 5;
+            entrantes_seleccionados++;
+            let entrante1_label = document.querySelector('label[for="entrante1"]').innerText;
+            array_entrantes.push(entrante1_label);
+        }
+
+        if(entrante2.checked){
+            precio += 5;
+            entrantes_seleccionados++;
+            let entrante2_label = document.querySelector('label[for="entrante2"]').innerText;
+            array_entrantes.push(entrante2_label);
+        }
+
+        if(entrante3.checked){
+            precio += 5;
+            entrantes_seleccionados++;
+            let entrante3_label = document.querySelector('label[for="entrante3"]').innerText;
+            array_entrantes.push(entrante3_label);
+        }
+
+        let pavo_trufado = document.getElementById('pavo_trufado');
+        let salmon_al_cava = document.getElementById('salmon_al_cava');
+        let paella_valenciana = document.getElementById('paella_valenciana');
+
+        if(pavo_trufado.checked){
+            precio += 10;
+            platos_seleccionados++;
+            texto_platos = pavo_trufado.value;
+        }
+
+        if(salmon_al_cava.checked){
+            precio += 10;
+            platos_seleccionados++;
+            texto_platos = salmon_al_cava.value;
+        }
+
+        if(paella_valenciana.checked){
+            precio += 10;
+            platos_seleccionados++;
+            texto_platos = paella_valenciana.value;
+        }
+
+        alert('Tienes seleccionados : ' + entrantes_seleccionados + ' entrantes y ' + platos_seleccionados + ' platos. \nEl precio total es de ' + (precio + postre) + '€\n' + 
+            'Los platos seleccionados son: ' + array_entrantes.join(', ') + ' y ' + texto_platos + ' ,postre incluido');
+    };
+</script>
+</html>

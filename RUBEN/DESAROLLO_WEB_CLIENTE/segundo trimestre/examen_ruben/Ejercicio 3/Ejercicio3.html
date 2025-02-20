@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+
+<head>
+	<style type="text/css">
+		.rojo {
+			color: #cc0000;
+		}
+
+		.verde {
+			color: #00cc00;
+		}
+
+		.azul {
+			color: #0000cc;
+		}
+
+		.fondogris {
+			background-color: #cccccc;
+		}
+
+		body {
+			font-family: verdana, arial, helvetica;
+		}
+
+		div {
+			margin-bottom: 4px;
+		}
+	</style>
+
+	<style>
+		table,
+		th,
+		td {
+			border: 1px solid gray;
+		}
+
+		.mates {
+			background-color: red;
+		}
+
+		.ef {
+			background-color: pink;
+		}
+
+		.musica {
+			background-color: blue;
+		}
+
+		.lengua {
+			background-color: brown;
+		}
+
+		.inf {
+			background-color: yellow;
+		}
+
+		.Inglés {
+			background-color: aquamarine;
+		}
+	</style>
+	<meta charset="utf-8" />
+
+	<script src="jquery-3.7.1.min.js" type="text/javascript"></script>
+
+
+
+
+
+	<title></title>
+</head>
+
+<body>
+	<h1 class="rojo">Selectores en jQuery</h1>
+	<h1>Selectores en jQuery</h1>
+	<h1 class="rojo">Selectores en jQuery</h1>
+	<h1>Selectores en jQuery</h1>
+	<h1 class="rojo">Selectores en jQuery</h1>
+	<h1>Selectores en jQuery</h1>
+	<h1 class="rojo">Selectores en jQuery</h1>
+	<h1>Selectores en jQuery</h1>
+	<h1 class="rojo">Selectores en jQuery</h1>
+
+	<hr>
+
+	<div>
+		<p>Esto es un div con parrafo y <b>negrita</b></p>
+	</div>
+	<div>
+		<p>Esto es un div con parrafo y sin negrita</p>
+	</div>
+	<div>
+		<p>Esto es un div con parrafo y <i>cursiva</i></p>
+	</div>
+	<div>
+		<p>Esto es un div con parrafo y <b>negrita</b></p>
+	</div>
+	<div>
+		<p>Esto es un div con parrafo y sin negrita</p>
+	</div>
+	<div>
+		<p>Esto es un div con parrafo y <i>cursiva</i></p>
+	</div>
+	<div>
+		<p>Esto es un div con parrafo y <b>negrita</b></p>
+	</div>
+	<div>
+		<p>Esto es un div con parrafo y sin negrita</p>
+	</div>
+	<div>
+		<p>Esto es un div con parrafo y <i>cursiva</i></p>
+	</div>
+	<p>Esto es un parrafo con <b>negrita</b></p>
+	<p>Esto es un parrafo sin negrita</p>
+	<p>Esto es un parrafo con <b>negrita</b></p>
+	<p>Esto es un parrafo sin negrita</p>
+	<p>Esto es un parrafo con <i>cursiva</i></p>
+	<p>Esto es un parrafo sin cursiva</p>
+
+
+
+	<hr>
+	<li id="tabla">
+		<ul>
+			<li>Asiento a</li>
+			<li>Asiento b</li>
+			<ul>
+				<li>Asiento c</li>
+				<li class="rojo"></li>
+				<li>Asiento f</li>
+				<ul>
+					<li>Asiento g</li>
+					<li>Asiento h</li>
+					<ul>
+						<li>Asiento i</li>
+						<li></li>
+						<ul>
+							<li>Asiento k</li>
+							<li>Asiento l</li>
+							<li class="rojo"></li>
+							<li>Asiento n</li>
+							<li><strong>Asiento ñ</strong></li>
+							<li>Asiento o</li>
+							<li>Asiento p</li>
+						</ul>
+						<li>Asiento q</li>
+						<li>Asiento r</li>
+						<li><strong>Asiento s</strong></li>
+						<li>Asiento t</li>
+						<li>Asiento u</li>
+					</ul>
+					<li>Asiento v</li>
+					<li>Asiento width</li>
+					<li><strong>Asiento x</strong></li>
+					<li></li>
+					<li>Asiento z</li>
+				</ul>
+				<li>Asiento pa</li>
+				<li><strong>Asiento pb</strong></li>
+				<li>Asiento pc</li>
+				<li>Asiento pd</li>
+			</ul>
+			<li class="rojo"></li>
+			<li>Asiento pf</li>
+			<li><strong>Asiento pg</strong></li>
+			<li>Asiento ph</li>
+			<li></li>
+		</ul>
+	</li>
+	<hr>
+	<table>
+		<tr>
+			<th>Horas</th>
+			<th>Lunes</th>
+			<th>Martes</th>
+			<th>Miércoles</th>
+			<th>Jueves</th>
+			<th>Viernes</th>
+		</tr>
+		<tr>
+			<td>8:00-9:00</td>
+			<td rowspan="2" class="mates">Matemáticas</td>
+			<td class="lengua">Lengua</td>
+			<td class="musica">Música</td>
+			<td style="background-color: orange;">Valenciano</td>
+			<td class="mates" rowspan="2">Matemáticas</td>
+		</tr>
+		<tr>
+			<td>9:00-10:00</td>
+
+			<td class="Inglés">Inglés</td>
+			<td class="Inglés">Inglés</td>
+			<td class="ef">E. Física</td>
+
+
+		</tr>
+		<tr>
+			<td>10:00-10:30</td>
+			<td colspan="5" style="background-color: green;">Recreo</td>
+		</tr>
+		<tr>
+			<td>10:30-11:30</td>
+			<td class="ef">E. Física</td>
+			<td style="background-color: orange;">Valenciano</td>
+			<td class="lengua" rowspan="2">Lengua</td>
+			<td class="inf">Informática</td>
+			<td class="Inglés">Inglés</td>
+
+		</tr>
+		<tr>
+			<td>12:30-13:30</td>
+			<td rowspan="3" class="musica">Música</td>
+			<td class="ef">E. Física</td>
+			<td class="mates" rowspan="2">Matemáticas</td>
+			<td class="inf">Informática</td>
+		</tr>
+		<tr>
+			<td>13:30-14:30</td>
+			<td class="inf">Informática</td>
+			<td style="background-color: orange;">Valenciano</td>
+			<td style="background-color: orange;">Valenciano</td>
+		</tr>
+	</table>
+
+
+<script>
+	$(document).ready(function() {
+		$('h1:even').fadeOut(5000);
+
+		$('div:has(p:has(b))').css('background-color', 'green');
+
+		$('li:empty').not('.rojo').text('ASIENTO EXTRA');
+
+		$('td.musica').css('background-color', 'yellow');
+	});
+</script>
+
+</body>
+
+</html>

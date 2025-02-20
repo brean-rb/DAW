@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        #icono {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <img id="icono" src="icono.png" alt="Icono">
+    </div>
+</body>
+
+<script>
+    window.onload = function() {
+        const icono = document.getElementById('icono');
+
+        function moveIcono() {
+            var x = Math.floor(Math.random() * (window.innerWidth - icono.offsetWidth));
+            var y = Math.floor(Math.random() * (window.innerHeight - icono.offsetHeight));
+            icono.style.left = x + 'px';
+            icono.style.top = y + 'px';
+        }
+
+        icono.addEventListener('mouseover', moveIcono);
+
+        moveIcono();
+    }
+</script>
+</html>
