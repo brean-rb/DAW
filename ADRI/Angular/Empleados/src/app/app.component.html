@@ -1,0 +1,33 @@
+
+<div class="container">
+  <form>
+    <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" class="form-control" [(ngModel)]="Cuadronombre" name="nombre">
+    </div>
+    <div class="form-group">
+      <label for="apellido">Apellidos:</label>
+      <input type="text" id="apellido" class="form-control" [(ngModel)]="Cuadroapellido" name="apellido">
+    </div>
+    <div class="form-group">
+      <label for="cargo">Cargo:</label>
+      <input type="text" id="cargo" class="form-control" [(ngModel)]="Cuadrocargo" name="cargo">
+    </div>
+    <div class="form-group">
+      <label for="salario">Salario:</label>
+      <input type="number" id="salario" class="form-control" [(ngModel)]="Cuadrosalario" name="salario">
+    </div>
+    <button type="button" class="btn btn-primary" (click)="agregarEmpleado()">Agregar Empleado</button>
+    <button type="reset" class="btn btn-danger">Borrar</button>
+  </form>
+</div>
+
+
+<div class="container">
+  <div class="row">
+      <div class="col">
+        <div *ngFor="let empleado of empleados; let i = index">
+         {{i+1}} {{empleado.nombre}}-{{empleado.apellido}}-{{empleado.cargo}}-{{empleado.salario}}
+      </div>
+  </div>
+</div>

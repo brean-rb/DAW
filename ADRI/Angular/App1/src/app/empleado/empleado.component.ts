@@ -1,39 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-empleado',
-  imports: [],
+  standalone: true, // Asegúrate de que sea un componente independiente
+  imports: [FormsModule], // Importa FormsModule aquí
   templateUrl: './empleado.component.html',
-  styleUrl: './empleado.component.css'
+  styleUrls: ['./empleado.component.css']
 })
-export class EmpleadoComponent implements OnInit{
-  
+export class EmpleadoComponent {
   nombre = "Ruben";
   apellido = "Ferrer";
-   edad=20;
-  //empresa="asistecs";
+  edad = 20;
+  empresa = "asistecs";
 
   habilitarCuadrotexto = false;
- 
   usuRegistrado = false;
 
-  textodeRegistro="no hay nadie registrado ";
-  getRegistroUsuario(){
+  textodeRegistro = "no hay nadie registrado";
+
+  getRegistroUsuario() {
     this.usuRegistrado = false;
   }
 
-  setUsuarioRegs(event:Event){
-  //  this.textodeRegistro = "El usuario ha sido registrado";
-if((<HTMLInputElement>event.target).value === "SI"){
-  this.textodeRegistro = "El usuario ha sido registrado";
-}else{
-  this.textodeRegistro = "No hay nadie registrado";
-}
+  setUsuarioRegs(event: Event) {
+    if ((<HTMLInputElement>event.target).value === "SI") {
+      this.textodeRegistro = "El usuario ha sido registrado";
+    } else {
+      this.textodeRegistro = "No hay nadie registrado";
+    }
   }
-
-  constructor (){}
-  
-  ngOnInit(): void {
-  }
-
 }

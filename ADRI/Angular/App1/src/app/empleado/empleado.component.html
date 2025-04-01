@@ -1,10 +1,11 @@
 <p>Nombre: {{nombre}}</p>
 <p>Apellido: {{apellido}}</p>
 <p>Edad: {{edad < 18 ? "es menor":"es mayor"}}</p>
-<p>Empresa: {{empresa.value}}</p>
+<p>Empresa: {{empresa}}</p>
 <label for="texto">Introduce la empresa:</label><br>
-<input type="text"  #empresa (keyup)="0" [disabled]="habilitarCuadrotexto"><br>
+<!-- <input type="text"  #empresa (keyup)="0" [disabled]="habilitarCuadrotexto"><br> -->
+<input type="text" [(ngModel)]="empresa"><br><br>
 
-{{textodeRegistro}}
+{{textodeRegistro}}<br>
 Registrado: <input type="radio" name="registro" value="SI" id="registro1" [checked]="usuRegistrado" (click) ="setUsuarioRegs($event)">
 No registrado: <input type="radio" name="registro"  value="NO"  (click) ="setUsuarioRegs($event)">
