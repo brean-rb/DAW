@@ -1,28 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Empleado } from './empleado.model';
 import { CommonModule } from '@angular/common';
+import { EmpleadoInfoComponent } from './empleado-info/empleado-info.component';
+import { ConfirmacionAnadirService } from './confirmacion-anadir.service';
+import { EmpleadosService } from './empleados.service';
 @Component({
   selector: 'app-root',
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule, EmpleadoInfoComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
+  providers: [
+    ConfirmacionAnadirService,
+    EmpleadosService
+  ],
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'Empleados';
-  empleados:Empleado[]=[
-    new Empleado("Ruben","Ferrer","Informatico",1800),
-    new Empleado("Adrian","Marschal","Tecnico",2200),
-    new Empleado("Noe","Gonzalez","Recepcion",1500),
-    new Empleado("Roberto","Tudor","Mantenimiento",1200),
-  ];
+
+    constructor(private miServicio:ConfirmacionAnadirService, private miBase:EmpleadosService){
+
+     // this.empleados=this.miBase.empleados;
+    }
+  ngOnInit(): void {
+    this.empleados=this.miBase.empleados;
+  }
+ 
   Cuadronombre:string = "";
   Cuadroapellido:string = "";
   Cuadrocargo:string = "";
   Cuadrosalario:number=0;
 
+  empleados:Empleado[]=[];
+
   agregarEmpleado(){
     let miEmpleado = new Empleado(this.Cuadronombre,this.Cuadroapellido,this.Cuadrocargo,this.Cuadrosalario);
-    this.empleados.push(miEmpleado);
+    this.miServicio.muestraMensaje("Informacion del empleado al añadir:\n 1.Nombre: " + miEmpleado.nombre + "\n 2.Apellido: " + miEmpleado.apellido + "\n 3.Cargo: " + miEmpleado.cargo + " \n 4.Salario: " + miEmpleado.salario + "€");
+    this.miBase.anadirEmpleado(miEmpleado);
   }
 }
