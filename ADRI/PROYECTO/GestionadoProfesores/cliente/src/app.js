@@ -1,5 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
   const fechaElemento = document.querySelector('.fecha-actual');
+  const togglePassword = document.getElementById("togglePassword");
+  const passwordInput = document.getElementById("password");
+  const eyeIcon = document.getElementById("eyeIcon");
+
+  togglePassword.addEventListener("click", function () {
+    const isPassword = passwordInput.type === "password";
+    passwordInput.type = isPassword ? "text" : "password";
+    eyeIcon.textContent = isPassword ? "🙈" : "👁️";
+  });
 
   function actualizarFechaHora() {
     const ahora = new Date();
@@ -37,5 +46,5 @@ document.addEventListener('DOMContentLoaded', () => {
     if (error === "usuario_inexistente") {
       document.getElementById("errorDNI").style.display = 'flex';
     }
-
+    
 });

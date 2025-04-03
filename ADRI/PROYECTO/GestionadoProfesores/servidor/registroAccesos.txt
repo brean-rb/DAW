@@ -1,4 +1,14 @@
-2025-04-02 20:09:53 |  Fallo | DNI: 010960328X | Profesor: Desconocido
-2025-04-02 20:10:06 |  Fallo | DNI: 010960328X | Profesor: Desconocido
-2025-04-02 20:15:29 |  Fallo | DNI: 010960328X | Profesor: Desconocido
-2025-04-02 20:17:04 |  Éxito | DNI: 010960328X | Profesor: ANGEL
+2025-04-03 07:50:04 |  Éxito | DNI: 010960328X | Profesor: ANGEL | Log In(Entrada)
+2025-04-03 07:50:06 |  DNI: 010960328X | Profesor: ANGEL | Log Out(Salida)
+2025-04-03 07:51:12 |  Éxito | DNI: 011078949R | Profesor: ANGEL | Log In(Entrada)
+2025-04-03 07:56:11 |  Éxito | DNI: 010960328X | Profesor: ANGEL A C | Log In(Entrada)
+2025-04-03 08:11:31 |  DNI: 010960328X | Profesor: ANGEL   | Log Out(Salida)
+2025-04-03 08:11:55 |  Éxito | DNI: 011921608R | Profesor: MARCOS ANTONIO O Q | Log In(Entrada)
+2025-04-03 08:15:33 |  DNI: 011921608R | Profesor: MARCOS ANTONIO   | Log Out(Salida)
+2025-04-03 08:16:03 |  Fallo | DNI: 012855339X | Profesor: Desconocido   | Log In(Entrada)
+2025-04-03 08:19:48 |  Fallo | DNI: 012855339X | Profesor: Desconocido   | Log In(Entrada)
+2025-04-03 08:21:32 |  Fallo | DNI: 010960328X | Profesor: Desconocido   | Log In(Entrada)
+2025-04-03 08:22:00 |  Éxito | DNI: 010960328X | Profesor: ANGEL A C | Log In(Entrada)
+2025-04-03 08:28:29 |  DNI: 010960328X | Profesor: ANGEL   | Log Out(Salida)
+2025-04-03 08:28:48 |  Éxito | DNI: 010960328X | Profesor: ANGEL A C | Log In(Entrada)
+2025-04-03 08:33:08 |  DNI: 010960328X | Profesor: ANGEL   | Log Out(Salida)
