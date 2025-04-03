@@ -1,41 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
 import { Empleado } from './empleado.model';
-import { CommonModule } from '@angular/common';
-import { EmpleadoInfoComponent } from './empleado-info/empleado-info.component';
-import { ConfirmacionAnadirService } from './confirmacion-anadir.service';
+import { ServicioEmpleadosService } from './servicio-empleados.service';
 import { EmpleadosService } from './empleados.service';
+import { CaracteristicasEmpleadosCComponent } from './caracteristicas-empleados-c/caracteristicas-empleados-c.component';
 @Component({
   selector: 'app-root',
-  imports: [FormsModule,CommonModule, EmpleadoInfoComponent],
+  standalone:false,
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
-  providers: [
-    ConfirmacionAnadirService,
-    EmpleadosService
-  ],
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
-  title = 'Empleados';
+export class AppComponent {
+  titulo = 'Listado de Empleados';
 
-    constructor(private miServicio:ConfirmacionAnadirService, private miBase:EmpleadosService){
+  constructor(private miServicio:ServicioEmpleadosService, private empleadosService:EmpleadosService){
 
-     // this.empleados=this.miBase.empleados;
-    }
-  ngOnInit(): void {
-    this.empleados=this.miBase.empleados;
   }
- 
-  Cuadronombre:string = "";
-  Cuadroapellido:string = "";
-  Cuadrocargo:string = "";
-  Cuadrosalario:number=0;
 
-  empleados:Empleado[]=[];
+
+  empleados:Empleado[]= [];
+  cuadroNombre:string = "";
+  cuadroApellido:string = "";
+  cuadroCargo:string = "";
+  cuadroSalario:number = 0;
+
 
   agregarEmpleado(){
-    let miEmpleado = new Empleado(this.Cuadronombre,this.Cuadroapellido,this.Cuadrocargo,this.Cuadrosalario);
-    this.miServicio.muestraMensaje("Informacion del empleado al añadir:\n 1.Nombre: " + miEmpleado.nombre + "\n 2.Apellido: " + miEmpleado.apellido + "\n 3.Cargo: " + miEmpleado.cargo + " \n 4.Salario: " + miEmpleado.salario + "€");
-    this.miBase.anadirEmpleado(miEmpleado);
+    let miEmpleado = new Empleado(this.cuadroNombre,this.cuadroApellido,this.cuadroCargo,this.cuadroSalario);
+    this.miServicio.muestraMensaje(
+      "Nombre: " + this.cuadroNombre + "\n" +
+      "Apellido: " + this.cuadroApellido + "\n" +
+      "Cargo: " + this.cuadroCargo + "\n" +
+      "Salario: " + this.cuadroSalario
+    );
+    this.empleadosService.agregarEmpleadosServicio(miEmpleado);
   }
 }

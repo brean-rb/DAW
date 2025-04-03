@@ -1,26 +1,47 @@
-
 <div class="container">
-  <form>
-    <div class="form-group">
-      <label for="nombre">Nombre:</label>
-      <input type="text" id="nombre" class="form-control" [(ngModel)]="Cuadronombre" name="nombre">
+  <div class="col" style="text-align: center;"><h1>{{titulo}}</h1></div>
+  <br><br>
+
+  <form class="form-group row">
+
+    <div class="form-group col-md-3">
+
+      <label for="nombre">Nombre</label>
+      <input type="text" name="nombre" id="nombre" placeholder="Nombre" class="form-control" [(ngModel)]="cuadroNombre">
+
     </div>
-    <div class="form-group">
-      <label for="apellido">Apellidos:</label>
-      <input type="text" id="apellido" class="form-control" [(ngModel)]="Cuadroapellido" name="apellido">
+    
+    <div class="form-group col-md-3">
+
+      <label for="apellido">Apellido</label>
+      <input type="text" name="apellido" id="apellido" placeholder="Apellido" class="form-control" [(ngModel)]="cuadroApellido">
+      
     </div>
-    <div class="form-group">
-      <label for="cargo">Cargo:</label>
-      <input type="text" id="cargo" class="form-control" [(ngModel)]="Cuadrocargo" name="cargo">
+    
+    <div class="form-group col-md-3">
+
+      <label for="cargo">Cargo</label>
+      <input type="text" name="cargo" id="cargo" placeholder="Cargo" class="form-control" [(ngModel)]="cuadroCargo">
+      
     </div>
-    <div class="form-group">
-      <label for="salario">Salario:</label>
-      <input type="number" id="salario" class="form-control" [(ngModel)]="Cuadrosalario" name="salario">
+    
+    <div class="form-group col-md-3">
+
+      <label for="salario">Salario</label>
+      <input type="number" name="salario" id="salario" placeholder="salario" class="form-control" [(ngModel)]="cuadroSalario">
+      
     </div>
-    <button type="button" class="btn btn-primary" (click)="agregarEmpleado()">Agregar Empleado</button>
-    <button type="reset" class="btn btn-danger">Borrar</button>
+
+    <div class="col">
+      <button type="submit" class="btn btn-primary" (click)="agregarEmpleado()" style="margin-top: 35px;">Añadir</button>
+    </div>
+
   </form>
 </div>
 
-<app-empleado-info *ngFor="let empleado of empleados; let i = index" [empleado]="empleado" [i]="i"></app-empleado-info>
 
+<br><br><br>
+<app-empleado-hijo-c  *ngFor="let empleado of empleados; let i = index" [empleadoDeLista]="empleado" [indice]="i"></app-empleado-hijo-c>
+
+
+<router-outlet></router-outlet>

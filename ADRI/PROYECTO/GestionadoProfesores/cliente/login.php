@@ -63,7 +63,13 @@ if($_SERVER['REQUEST_METHOD']=== 'POST'){
                 $apellido2 = $fila['cognom2'];
 
             }
-
+            $sqlFoto = "SELECT foto FROM usuarios WHERE document = '$document'";
+            $resFoto = mysqli_query($conexion_db, $sqlFoto);
+            if ($resFoto && mysqli_num_rows($resFoto) === 1) {
+                $fotos = mysqli_fetch_assoc($resFoto);
+                $foto = $fotos['foto'];
+                $_SESSION['foto'] = $foto;
+            }
              // Guardar en sesión
              $_SESSION['document'] = $document;
              $_SESSION['nombre'] = $nombre_profesor;

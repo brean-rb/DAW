@@ -3,13 +3,11 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class ConfirmacionAnadirService {
+export class ServicioEmpleadosService {
 
   constructor() { }
 
-
-    muestraMensaje(mensaje:string){
-      alert(mensaje);
-    }
-
+  muestraMensaje(mensaje:string){
+    alert(mensaje);
+  }
 }

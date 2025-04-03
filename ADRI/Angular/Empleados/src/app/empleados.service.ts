@@ -1,16 +1,25 @@
-import { Empleado } from "./empleado.model";
+import { Empleado } from "./empleado.model"
+import { ServicioEmpleadosService } from './servicio-empleados.service'; // Asegúrate de que la ruta sea correcta
+import { Injectable } from '@angular/core';
 
-export class EmpleadosService{
-       
-  empleados:Empleado[]=[
-    new Empleado("Ruben","Ferrer","Informatico",1800),
-    new Empleado("Adrian","Marschal","Tecnico",2200),
-    new Empleado("Noe","Gonzalez","Recepcion",1500),
-    new Empleado("Roberto","Tudor","Mantenimiento",1200),
+@Injectable({
+  providedIn: 'root',
+})
+export class EmpleadosService {
+  // Your service logic here
+
+    empleados:Empleado[]=[
+    new Empleado("Juan", "Perez","presidente",7400),
+    new Empleado("Marcos", "Gomez","informatico",2300),
+    new Empleado("Natalia", "Sanchez","profesora",1850),
+    new Empleado("Sara", "tronco","mecanica",2020),
+
   ];
 
+  constructor(private miServicio: ServicioEmpleadosService) {}
 
-  anadirEmpleado(empleado:Empleado){
-    this.empleados.push(empleado);    
+
+  agregarEmpleadosServicio(empleado:Empleado){
+        this.empleados.push(empleado);
   }
 }
