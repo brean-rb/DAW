@@ -7,6 +7,7 @@ $nombre = $_SESSION['nombre'];
 $documento = $_SESSION['document'];
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -83,38 +84,36 @@ $documento = $_SESSION['document'];
             <th>Sesion</th>
             <th>Aula</th>
             <th>Grupo</th>
-            
-            
+            <th>Asignatura</th>
           </tr>
         </thead>
         <tbody>
-        <?php foreach ($_SESSION["sesiones_hoy"] as $sesion): ?>
-  <tr>
-    <td><?= htmlspecialchars($sesion[4] . ' - ' . $sesion[5]) ?></td>
-    <td><?= htmlspecialchars($sesion[3] ?? '-') ?></td>
-    <td><?= htmlspecialchars($sesion[11] ?? '-') ?></td>
-    <td><?= htmlspecialchars($sesion[6] ?? '-') ?></td>
-   
-  </tr>
-<?php endforeach; ?>
+          <?php foreach ($_SESSION["sesiones_hoy"] as $sesion): ?>
+            <tr>
+              <td><?= htmlspecialchars($sesion[1] . ' - ' . $sesion[2]) ?></td>
+              <td><?= htmlspecialchars($sesion[0] ?? '-') ?></td>
+              <td><?= htmlspecialchars($sesion[5] ?? '-') ?></td>
+              <td><?= htmlspecialchars($sesion[4] ?? '-') ?></td>
+              <td><?= htmlspecialchars($sesion[3] ?? '-') ?></td>
+            </tr>
+          <?php endforeach; ?>
         </tbody>
       </table>
       <br>
       <div class="d-flex justify-content-center">
-    <form action="../fichar.php" method="post">
-        <button class="btn btn-primary mx-3 w-auto" name="fentrada" id="fentrada">Fichar entrada</button>
-    </form>
-    <form action="../fichar.php" method="post">
-        <button class="btn btn-danger mx-3 w-auto" name="fsalida" id="fsalida">Fichar salida</button>
-    </form>
-</div>
-
-
-
+        <form action="../fichar.php" method="post">
+          <button class="btn btn-primary mx-3 w-auto" name="fentrada" id="fentrada">Fichar entrada</button>
+        </form>
+        <form action="../fichar.php" method="post">
+          <button class="btn btn-danger mx-3 w-auto" name="fsalida" id="fsalida">Fichar salida</button>
+        </form>
+      </div>
     </div>
   </div>
 <?php else: ?>
-  <div class="alert alert-info mt-4 text-center">Hoy no tienes sesiones asignadas.</div>
+  <div class="alert alert-info mt-4 text-center mx-auto" style="max-width: 600px;">
+  Hoy no tienes sesiones asignadas.
+</div>
 <?php endif; ?>
 
 </section>

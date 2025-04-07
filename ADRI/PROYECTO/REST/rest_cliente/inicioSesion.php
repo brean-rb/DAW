@@ -22,8 +22,24 @@ if (isset($_POST["validar"])) {
                 $_SESSION["document"] = $resp["document"];
                 $_SESSION["rol"] = $resp["rol"];
 
-                // Obtenemos el horario del día actual para el profesor logueado
-                $params_get = ['document' => $_SESSION["document"]];
+                // Calculamos la letra correspondiente al día actual
+                $dayMap = [
+                    'Monday'    => 'L',
+                    'Tuesday'   => 'M',
+                    'Wednesday' => 'X',
+                    'Thursday'  => 'J',
+                    'Friday'    => 'V',
+                    'Saturday'  => 'S',
+                    'Sunday'    => 'D'
+                ];
+                // date('l') devuelve el día en inglés (e.g., "Monday")
+                $dia = $dayMap[date('l')];
+
+                // Enviamos también el parámetro 'dia' para que se ejecute el branch correcto en el servidor
+                $params_get = [
+                    'document' => $_SESSION["document"],
+                    'dia' => $dia
+                ];
                 $url_get = URL . '?' . http_build_query($params_get);
                 $resp_get = curl_conexion($url_get, "GET");
                 $sesiones = json_decode($resp_get, true);
