@@ -46,5 +46,4 @@ document.addEventListener('DOMContentLoaded', () => {
     if (error === "usuario_inexistente") {
       document.getElementById("errorDNI").style.display = 'flex';
     }
-    
 });

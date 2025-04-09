@@ -9,7 +9,8 @@ if (isset($_POST["validar"])) {
     
         $params = [
             'document' => $document,
-            'password' => $password
+            'password' => $password,
+            'accion' => 'InicioSesion',
         ];
 
         $response = curl_conexion(URL, "POST", $params);
