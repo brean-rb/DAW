@@ -22,7 +22,8 @@ if ($metodo === 'GET') {
         hg.hora_fins,
         c.nom_cas AS asignatura,
         hg.grup AS grupo,
-        hg.aula AS aula
+        hg.aula AS aula,
+        hg.sessio_orde AS sesion
     FROM horari_grup hg
     LEFT JOIN continguts c ON c.codi = hg.contingut
     WHERE hg.docent = '$document'
@@ -211,32 +212,32 @@ elseif ($metodo === 'POST') {
     } elseif ($accion === "registrarAusencia") {
         $fecha_sin = $_POST['fecha'] ?? null;
 
-        $fecha_format = new DateTime($fecha_sin);     
-        $fecha = $fecha_format->format('Y-m-d');    
+        $fecha_format = new Date($fecha_sin);     
+        $fecha = $fecha_format->date_format('Y-m-d');  
 
-        
-        $sesionesSeleccionadas = $_POST['sesiones'] ?? [];  // Sesiones seleccionadas (valores de los checkboxes)
+        NO PUEDO HACERLO CON EL MISMO ARRAY DE LA SESSION YA QUE SE GUARDA TENGO Q REPETIR CONSULTA;
+        // $sesionesSeleccionadas = $_POST['sesiones'] ?? [];  // Sesiones seleccionadas (valores de los checkboxes)
     
-        foreach ($sesionesSeleccionadas as $index => $sesion) {
-            $hora_inicio = $sesion[1];
-            $hora_fin = $sesion[2];
-            $dia = $sesion[0];
-            $aula = $sesion[5];
-            $grupo = $sesion[4];
-            $asignatura = $sesion[3];
-            $sesion_id = $sesion[6];
+        // foreach ($sesionesSeleccionadas as $index => $sesion) {
+        //     $hora_inicio = $sesion[1];
+        //     $hora_fin = $sesion[2];
+        //     $dia = $sesion[0];
+        //     $aula = $sesion[5];
+        //     $grupo = $sesion[4];
+        //     $asignatura = $sesion[3];
+        //     $sesion_id = $sesion[6];
 
-            // Log each session data for debugging
-            error_log("Sesion data: hora_inicio=$hora_inicio, hora_fin=$hora_fin, dia=$dia, aula=$aula, grupo=$grupo, asignatura=$asignatura, sesion_id=$sesion_id");
-            $document = $_POST['document'] ?? null;         
-            $justificada = $_POST['justificada'] ?? null;         
-            $jornada_completa = $_POST["jornada_completa"] ?? null;
+        //     // Log each session data for debugging
+        //     error_log("Sesion data: hora_inicio=$hora_inicio, hora_fin=$hora_fin, dia=$dia, aula=$aula, grupo=$grupo, asignatura=$asignatura, sesion_id=$sesion_id");
+        //     $document = $_POST['document'] ?? null;         
+        //     $justificada = $_POST['justificada'] ?? null;         
+        //     $jornada_completa = $_POST["jornada_completa"] ?? null;
 
-            $sql = "INSERT INTO ausencias (hora_inicio, hora_fin, dia, aula, grupo, asignatura, sesion, document, justificada, jornada_completa, fecha) 
-                VALUES ('$hora_inicio', '$hora_fin', '$dia', '$aula', '$grupo', '$asignatura', $sesion_id, '$document', $justificada, $jornada_completa, $fecha);";
-                $resultadoIn = conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sql);
+        //     $sql = "INSERT INTO ausencias (hora_inicio, hora_fin, dia, aula, grupo, asignatura, sesion, document, justificada, jornada_completa, fecha) 
+        //         VALUES ('$hora_inicio', '$hora_fin', '$dia', '$aula', '$grupo', '$asignatura', $sesion_id, '$document', $justificada, $jornada_completa, $fecha);";
+        //         $resultadoIn = conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sql);
     
-    }
+    //}
     
         if ($resultadoIn > 0) {
                             echo json_encode(["exito" => "Entrada registrada correctamente"]);

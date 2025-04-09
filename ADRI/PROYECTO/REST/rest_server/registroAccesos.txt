@@ -39,3 +39,6 @@
 09-04-2025 14:07:00 | Éxito | DNI: 010960328X | Profesor: ANGEL A C | Log In(Entrada)
 09-04-2025 14:09:28 | Éxito | DNI: 010960328X | Profesor: ANGEL A C | Log In(Entrada)
 09-04-2025 14:10:34 | Éxito | DNI: 010960328X | Profesor: ANGEL A C | Log In(Entrada)
+09-04-2025 14:47:47 | Éxito | DNI: 011949328W | Profesor: JOSEP LLUIS B C | Log In(Entrada)
+09-04-2025 14:47:48 | Éxito | DNI: 011949328W | Profesor: JOSEP LLUIS B C | Log In(Entrada)
+09-04-2025 14:48:43 | Éxito | DNI: 010960328X | Profesor: ANGEL A C | Log In(Entrada)
