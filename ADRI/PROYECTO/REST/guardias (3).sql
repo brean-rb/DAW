@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-04-2025 a las 13:19:11
+-- Tiempo de generación: 10-04-2025 a las 08:40:08
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -92,12 +92,33 @@ INSERT INTO `aules` (`codi`, `aula`) VALUES
 
 CREATE TABLE `ausencias` (
   `id` int(11) NOT NULL,
-  `document` varchar(10) NOT NULL,
-  `fecha` date NOT NULL,
-  `hora_inicio` time NOT NULL,
-  `hora_fin` time NOT NULL,
-  `justificada` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+  `hora_inicio` time DEFAULT NULL,
+  `hora_fin` time DEFAULT NULL,
+  `dia` char(1) DEFAULT NULL,
+  `aula` varchar(10) DEFAULT NULL,
+  `grupo` varchar(10) DEFAULT NULL,
+  `asignatura` varchar(100) DEFAULT NULL,
+  `sesion` int(11) DEFAULT NULL,
+  `document` text DEFAULT NULL,
+  `justificada` tinyint(1) DEFAULT NULL,
+  `jornada_completa` tinyint(1) DEFAULT NULL,
+  `fecha` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `ausencias`
+--
+
+INSERT INTO `ausencias` (`id`, `hora_inicio`, `hora_fin`, `dia`, `aula`, `grupo`, `asignatura`, `sesion`, `document`, `justificada`, `jornada_completa`, `fecha`) VALUES
+(15, '09:10:00', '10:00:00', 'L', 'D14', '2BAHA', 'Griego II', 2, '011973418Z', 1, 1, '2025-04-21'),
+(16, '10:00:00', '10:50:00', 'L', 'D14', '2BAHA', 'Griego II', 3, '011973418Z', 1, 1, '2025-04-21'),
+(17, '11:15:00', '12:05:00', 'L', 'D14', '4ESOB', 'Latín', 4, '011973418Z', 1, 1, '2025-04-21'),
+(18, '11:15:00', '12:05:00', 'L', 'D14', '4ESOC', 'Latín', 4, '011973418Z', 1, 1, '2025-04-21'),
+(19, '12:05:00', '12:55:00', 'L', 'D14', '1BAHA', 'Latín I', 5, '011973418Z', 1, 1, '2025-04-21'),
+(20, '10:00:00', '10:50:00', 'L', 'B03', '1ESOC', 'Geografía e Historia', 3, '012855339X', 0, 0, '2025-04-21'),
+(21, '11:15:00', '12:05:00', 'L', 'B13', '2ESOD', 'Ciencias Sociales Geografía e Historia', 4, '012855339X', 0, 0, '2025-04-21'),
+(22, '13:10:00', '14:00:00', 'L', 'B15', '3ESOC', 'Geografía e Historia', 6, '012855339X', 0, 0, '2025-04-21'),
+(23, '13:10:00', '14:00:00', 'L', 'B15', '3ESOD', 'Geografía e Historia', 6, '012855339X', 0, 0, '2025-04-21');
 
 -- --------------------------------------------------------
 
@@ -692,22 +713,6 @@ INSERT INTO `docent` (`nom`, `cognom1`, `cognom2`, `tipo_doc`, `document`, `sexe
 ('MANUEL', 'S', 'O', 'N', '079320803C', 'H', '01/09/2004', '20:00', '20:00', '01/05/1962', 4, 4),
 ('MERCEDES DEL CARMEN', 'J', 'E', 'N', '079351863T', 'M', '01/09/2005', '20:00', '20:00', '16/09/1963', 5, 4),
 ('EMILIE', 'B', ' ', 'E', 'X09610120P', 'M', '01/09/2011', '20:00', '20:00', '26/07/1959', 5, 4);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `failed_jobs`
---
-
-CREATE TABLE `failed_jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) NOT NULL,
-  `connection` text NOT NULL,
-  `queue` text NOT NULL,
-  `payload` longtext NOT NULL,
-  `exception` longtext NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -2920,41 +2925,6 @@ INSERT INTO `horari_ocupacions` (`id`, `plantilla`, `dia_setmana`, `sessio_orde`
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `jobs`
---
-
-CREATE TABLE `jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `queue` varchar(255) NOT NULL,
-  `payload` longtext NOT NULL,
-  `attempts` tinyint(3) UNSIGNED NOT NULL,
-  `reserved_at` int(10) UNSIGNED DEFAULT NULL,
-  `available_at` int(10) UNSIGNED NOT NULL,
-  `created_at` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `job_batches`
---
-
-CREATE TABLE `job_batches` (
-  `id` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `total_jobs` int(11) NOT NULL,
-  `pending_jobs` int(11) NOT NULL,
-  `failed_jobs` int(11) NOT NULL,
-  `failed_job_ids` longtext NOT NULL,
-  `options` mediumtext DEFAULT NULL,
-  `cancelled_at` int(11) DEFAULT NULL,
-  `created_at` int(11) NOT NULL,
-  `finished_at` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `migrations`
 --
 
@@ -2976,37 +2946,6 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2025_03_31_093043_create_personal_access_tokens_table', 3),
 (6, '2025_04_01_053955_create_personal_access_tokens_table', 4),
 (7, '2025_04_01_055437_create_table_passreset', 5);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `password_reset_tokens`
---
-
-CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `personal_access_tokens`
---
-
-CREATE TABLE `personal_access_tokens` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) NOT NULL,
-  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `token` varchar(64) NOT NULL,
-  `abilities` text DEFAULT NULL,
-  `last_used_at` timestamp NULL DEFAULT NULL,
-  `expires_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -3058,20 +2997,18 @@ CREATE TABLE `registro_jornada` (
   `id` int(11) NOT NULL,
   `document` varchar(10) NOT NULL,
   `fecha` date NOT NULL,
-  `hora_inicio` time NOT NULL,
-  `hora_fin` time DEFAULT NULL
+  `hora_entrada` time NOT NULL,
+  `hora_salida` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `registro_jornada`
 --
 
-INSERT INTO `registro_jornada` (`id`, `document`, `fecha`, `hora_inicio`, `hora_fin`) VALUES
-(1, '012950628N', '2025-03-30', '16:31:03', '16:31:12'),
-(2, '011921608R', '2025-03-30', '16:39:51', '16:39:59'),
-(3, '010969028D', '2025-03-30', '17:29:45', '17:29:46'),
-(4, '017050149N', '2025-03-31', '07:05:14', '07:05:18'),
-(5, '013928518A', '2025-03-31', '07:53:24', '07:53:26');
+INSERT INTO `registro_jornada` (`id`, `document`, `fecha`, `hora_entrada`, `hora_salida`) VALUES
+(6, '016976848Q', '2025-04-09', '14:14:43', '14:14:44'),
+(7, '010960328X', '2025-04-09', '14:28:22', '14:28:24'),
+(8, '011949328W', '2025-04-09', '14:47:55', '14:47:56');
 
 -- --------------------------------------------------------
 
@@ -3340,13 +3277,6 @@ ALTER TABLE `docent`
   ADD PRIMARY KEY (`document`);
 
 --
--- Indices de la tabla `failed_jobs`
---
-ALTER TABLE `failed_jobs`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
-
---
 -- Indices de la tabla `grups`
 --
 ALTER TABLE `grups`
@@ -3365,37 +3295,10 @@ ALTER TABLE `horari_ocupacions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `jobs`
---
-ALTER TABLE `jobs`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `jobs_queue_index` (`queue`);
-
---
--- Indices de la tabla `job_batches`
---
-ALTER TABLE `job_batches`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indices de la tabla `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `password_reset_tokens`
---
-ALTER TABLE `password_reset_tokens`
-  ADD PRIMARY KEY (`email`);
-
---
--- Indices de la tabla `personal_access_tokens`
---
-ALTER TABLE `personal_access_tokens`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
-  ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
 -- Indices de la tabla `plantilles_horari`
@@ -3443,13 +3346,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `ausencias`
 --
 ALTER TABLE `ausencias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `failed_jobs`
---
-ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `horari_grup`
@@ -3464,22 +3361,10 @@ ALTER TABLE `horari_ocupacions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=640;
 
 --
--- AUTO_INCREMENT de la tabla `jobs`
---
-ALTER TABLE `jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT de la tabla `personal_access_tokens`
---
-ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `registro_guardias`
@@ -3491,7 +3376,7 @@ ALTER TABLE `registro_guardias`
 -- AUTO_INCREMENT de la tabla `registro_jornada`
 --
 ALTER TABLE `registro_jornada`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `sessions_horari`

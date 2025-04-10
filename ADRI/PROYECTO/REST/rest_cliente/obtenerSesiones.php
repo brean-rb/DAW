@@ -6,6 +6,7 @@ $justificada = false;
 if (isset($_POST["fecha"]) && isset($_POST["document"])) {
     $document = $_POST["document"];
     $_SESSION["documentAusente"] = $document;
+    $_SESSION["fechaSinFormat"] = $_POST["fecha"];
     $_SESSION["fechaAusencia"] = date('d-m-Y', strtotime($_POST["fecha"]));
 if (!empty($_POST["motivo"])) {
     $justificada = true;
@@ -23,7 +24,7 @@ $dayMap = [
 
 $dia = $dayMap[date('l', strtotime($_POST["fecha"]))];
 $params = [
-    'document' => $_SESSION["document"],
+    'document' => $document,
     'dia' => $dia,
     'accion' => 'verSesiones'
 ];
@@ -31,7 +32,6 @@ $params = [
 $response = curl_conexion(URL, 'POST', $params); 
 $sesiones = json_decode($response, true);
 $_SESSION["sesiones_profesor"] = is_array($sesiones) ? $sesiones : [];
-
 header("Location: vistas/horarioAusente.php");
 }
 ?>

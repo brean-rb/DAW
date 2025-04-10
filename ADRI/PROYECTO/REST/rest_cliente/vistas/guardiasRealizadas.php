@@ -3,9 +3,9 @@ session_start();
 $rol = $_SESSION['rol'];
 $nombre = $_SESSION['nombre'];
 $documento = $_SESSION['document'];
+
+
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,38 +70,59 @@ $documento = $_SESSION['document'];
 <section>
 <div class="container mt-4">
 <h4 class="mb-3">Guardias realizadas</h4>
+<div class="d-flex justify-content-center mb-3">
+        <form action="../verGuardiasRealizadas.php" method="POST">
+            <button type="submit" name="cargar_guardias" id="cargar_guardias" class="btn btn-primary">Ver mis Guardias</button>
+        </form>
+    </div>
+ 
 
 <!-- Tabla responsiva -->
-<div class="table-responsive">
-      <table class="table table-bordered table-striped text-center align-middle">
-        <thead class="table-dark">
-          <tr>
-            <th>Fecha</th>
-            <th>Sesion</th>
-            <th>Aula</th>
-            <th>Grupo</th>
-            <th>Asignatura</th>
-            <th>Docente Ausente</th>
-          </tr>
-        </thead>
-        <tbody>
-            <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-            </tr>
-            </tbody>
-      </table>
-      <?php// else: ?>
-  <div class="alert alert-info mt-4 text-center mx-auto" style="max-width: 600px;">
-  No has realizado ninguna guardia todavía.
+<?php if (isset($_SESSION['historial']) && is_array($_SESSION['historial']) && empty($_SESSION['error'])): ?>
+    <div class="table-responsive">
+  <table class="table table-bordered table-striped text-center align-middle">
+    <thead class="table-dark">
+      <tr>
+        <th>Fecha</th>
+        <th>Sesión</th>
+        <th>Aula</th>
+        <th>Grupo</th>
+        <th>Asignatura</th>
+        <th>Docente Ausente</th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php 
+    error_log(print_r($_SESSION['historial'], true)); 
+    foreach ($_SESSION['historial'] as $registro): ?>
+      <tr>
+        <td><?= htmlspecialchars($registro[1]) ?></td>
+        <td><?= htmlspecialchars($registro[7]) ?></td>
+        <td><?= htmlspecialchars($registro[4]) ?></td>
+        <td><?= htmlspecialchars($registro[5]) ?></td>
+        <td><?= htmlspecialchars($registro[6]) ?></td>
+        <td><?= htmlspecialchars($registro[2]) ?></td>
+      </tr>
+    <?php endforeach; ?>
+    </tbody>
+  </table>
 </div>
-<?php //endif; ?>
+<?php else: ?>
+
+  <div class="alert alert-info mt-4 text-center mx-auto" style="max-width: 600px;">
+    No has realizado ninguna guardia todavía.
+  </div>
+<?php endif; ?>
+
 </section>
-<script src="../src/app.js"></script>
+<script>
+<script>
+    window.onload = function(){
+        document.getElementById('cargar_guardias').click();
+    }
+</script>
+
+</script>
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 

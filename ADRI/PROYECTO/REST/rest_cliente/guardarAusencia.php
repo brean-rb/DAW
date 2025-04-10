@@ -19,7 +19,7 @@ if (isset($_POST['sesiones']) && !empty($_POST['sesiones'])) {
         $jornadaC = true;
     }
     // Recoger las sesiones seleccionadas
-    $sesionesSeleccionadas = $_POST['sesiones_profesor'];
+    $sesionesSeleccionadas = isset($_SESSION['sesiones_profesor']) ? $_SESSION['sesiones_profesor'] : [];
 
     // Si es necesario, puedes hacer algo con las sesiones seleccionadas, por ejemplo, imprimirlas:
     // print_r($sesionesSeleccionadas); // Esto es solo para depuración
@@ -27,7 +27,7 @@ if (isset($_POST['sesiones']) && !empty($_POST['sesiones'])) {
     // Preparar datos para enviar por cURL
     $params = [
         'document' => $_SESSION["documentAusente"],
-        'fecha' => $_SESSION["fechaAusencia"],
+        'fecha' => $_SESSION["fechaSinFormat"],
         'justificada' => $_SESSION["justificada"],
         'jornada_completa' => $jornadaC,
         'sesiones' => $sesionesSeleccionadas,

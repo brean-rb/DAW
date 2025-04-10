@@ -39,7 +39,8 @@ if (isset($_POST["validar"])) {
                 // Enviamos también el parámetro 'dia' para que se ejecute el branch correcto en el servidor
                 $params_get = [
                     'document' => $_SESSION["document"],
-                    'dia' => $dia
+                    'dia' => $dia,
+                    'accion' => 'verHorario',
                 ];
                 $url_get = URL . '?' . http_build_query($params_get);
                 $resp_get = curl_conexion($url_get, "GET");

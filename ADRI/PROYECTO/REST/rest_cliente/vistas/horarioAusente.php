@@ -90,7 +90,7 @@ $fecha = $_SESSION["fechaAusencia"];
             <td><?= htmlspecialchars($sesion[3] ?? '-') ?></td>
             <td><?= htmlspecialchars($sesion[6] ?? '-') ?></td>
             <td>
-            <input type="checkbox" class="checkboxSesion" name="sesiones[]" value="<?php echo $sesion[1] . ' - ' . $sesion[2]; ?>">
+            <input type="checkbox" class="checkboxSesion" name="sesiones[]" value="<?php echo $sesion[1] . ' - ' . $sesion[2] . '-' . $sesion[3] . '-' . $sesion[5]; ?>">
             </td>
           </tr>
         <?php endforeach; ?>

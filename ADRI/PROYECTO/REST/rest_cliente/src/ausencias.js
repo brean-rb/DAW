@@ -1,7 +1,7 @@
 // Función para actualizar las horas seleccionadas
 function actualizarHoras() {
     var checkboxesSeleccionados = document.querySelectorAll('input[name="sesiones[]"]:checked');
-
+    console.log(checkboxesSeleccionados);
     if (checkboxesSeleccionados.length > 0) {
         var horas = [];
         checkboxesSeleccionados.forEach(checkbox => {

@@ -23,10 +23,10 @@ function conexion_bd($serv, $user, $passwd, $bd, $sql){
               case "UPDATE":
               case "DELETE":
                   if(mysqli_affected_rows($con_bd) > 0){
-                      $res_array="Operación realizada en la BD";
+                      $res_array=true;
                   }
                   else {
-                      $res_array="Error modificar la BD";
+                      $res_array=false;
                   }
                   break;
           }
