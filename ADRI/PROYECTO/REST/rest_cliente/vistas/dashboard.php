@@ -14,17 +14,16 @@ if (isset($_SESSION['registro_exitoso']) && $_SESSION['registro_exitoso']) {
 }
 unset($_SESSION['mensaje']); // Limpiar el mensaje después de mostrarlo
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina principal de <?php echo $nombre;?></title>
+    <title>Pagina principal de <?php echo htmlspecialchars($nombre); ?></title>
     <link rel="stylesheet" href="../src/principal.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+<style>
         /* Estilo para el contenedor del mensaje */
         .alert-container {
             position: fixed;
@@ -47,42 +46,36 @@ unset($_SESSION['mensaje']); // Limpiar el mensaje después de mostrarlo
 </head>
 <body>
     
-<!-- navbar -->
 <nav class="navbar navbar-expand-lg navbar-custom">
     <div class="container-fluid justify-content-between align-items-center">
-        <!-- Logo de la aplicación -->
-        <a class="navbar-brand p-0 m-0" href="#">
-            <img src="../src/images/sinFondoDos.png" alt="Logo AsistGuard" class="logo-navbar">
+        <a class="navbar-brand p-0 m-0" href="dashboard.php">
+            <img src="../src/images/sinFondoDos.png" alt="Logo AsistGuard"  class="logo-navbar">
         </a>
-
-        <!-- Botón para móviles -->
         <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
             <span class="navbar-toggler-icon"></span>
         </button>
-
-        <!-- Enlaces -->
         <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
             <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="dashboard.php">Página principal</a></li>
-                <li class="nav-item"><a class="nav-link" href="guardiasRealizadas.php">Guardias realizadas</a></li>
-                  <li class="nav-item"><a class="nav-link" href="consultaAusencias.php">Consultar ausencias</a></li>
-
+                <li class="nav-item"><a class="nav-link" href="guardiasRealizadas.php">Guardias Realizadas</a></li>
+                <li class="nav-item"><a class="nav-link" href="consultaAusencias.php">Consultar Ausencias</a></li>
                 <?php if ($rol === 'admin'): ?>
-                  <li class="nav-item"><a class="nav-link" href="registroAusencias.php" id="registrarAusencia">Registrar Ausencia</a></li>
-                  <li class="nav_item"><a href="consultaAusenciaEnfecha.php" class="nav-link">Consultar falta por fecha</a></li>
-                  <?php endif; ?>
+                    <li class="nav-item"><a class="nav-link" href="registroAusencias.php" id="registrarAusencia">Registrar Ausencia</a></li>
+                    <li class="nav-item"><a href="consultaAusenciaEnfecha.php" class="nav-link">Consultar Falta Por Fecha</a></li>
+                <?php endif; ?>
             </ul>
-
-            <!-- Bienvenida y logout -->
             <div class="ms-auto d-flex align-items-center">
-                <p id="bienvenida" class="mb-0 me-3">Bienvenid@ <?php echo $nombre; ?></p>
-                <form method="POST" action="../logout.php">
-                    <button type="submit" class="btn btn-sm btn-danger">Cerrar sesión</button>
-                </form>
-            </div>
+    <p id="bienvenida" class="mb-0 me-3">Bienvenid@ <?php echo htmlspecialchars($nombre); ?></p>
+    <form method="POST" action="../logout.php">
+        <button type="submit" class="btn btn-sm btn-danger" title="Cerrar sesión">
+            <i class="bi bi-box-arrow-right"></i>
+        </button>
+    </form>
+</div>
+
         </div>
     </div>
 </nav>
+
 
 <main>
     <div class="container mt-5 d-flex justify-content-start align-items-center perfil-contenedor">

@@ -6,50 +6,45 @@ $documento = $_SESSION['document'];
 
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina principal de <?php echo $nombre;?></title>
+    <title>Pagina principal de <?php echo htmlspecialchars($nombre); ?></title>
     <link rel="stylesheet" href="../src/principal.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    </head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+</head>
 <body>
     
-<!-- navbar -->
 <nav class="navbar navbar-expand-lg navbar-custom">
     <div class="container-fluid justify-content-between align-items-center">
-        <!-- Logo de la aplicación -->
-        <a class="navbar-brand p-0 m-0" href="#">
-            <img src="../src/images/sinFondoDos.png" alt="Logo AsistGuard" class="logo-navbar">
+        <a class="navbar-brand p-0 m-0" href="dashboard.php">
+            <img src="../src/images/sinFondoDos.png" alt="Logo AsistGuard"  class="logo-navbar">
         </a>
-
-        <!-- Botón para móviles -->
         <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
             <span class="navbar-toggler-icon"></span>
         </button>
-
-        <!-- Enlaces -->
         <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
-        <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="dashboard.php">Página principal</a></li>
-                <li class="nav-item"><a class="nav-link" href="guardiasRealizadas.php">Guardias realizadas</a></li>
-                  <li class="nav-item"><a class="nav-link" href="consultaAusencias.php">Consultar ausencias</a></li>
-
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="guardiasRealizadas.php">Guardias Realizadas</a></li>
+                <li class="nav-item"><a class="nav-link" href="consultaAusencias.php">Consultar Ausencias</a></li>
                 <?php if ($rol === 'admin'): ?>
-                  <li class="nav-item"><a class="nav-link" href="registroAusencias.php" id="registrarAusencia">Registrar Ausencia</a></li>
-                  <li class="nav_item"><a href="consultaAusenciaEnfecha.php" class="nav-link">Consultar falta por fecha</a></li>
-                  <?php endif; ?>
+                    <li class="nav-item"><a class="nav-link" href="registroAusencias.php" id="registrarAusencia">Registrar Ausencia</a></li>
+                    <li class="nav-item"><a href="consultaAusenciaEnfecha.php" class="nav-link">Consultar Falta Por Fecha</a></li>
+                <?php endif; ?>
             </ul>
-
-            <!-- Bienvenida y logout -->
             <div class="ms-auto d-flex align-items-center">
-                <p id="bienvenida" class="mb-0 me-3">Bienvenid@ <?php echo $nombre; ?></p>
-                <form method="POST" action="../logout.php">
-                    <button type="submit" class="btn btn-sm btn-danger">Cerrar sesión</button>
-                </form>
-            </div>
+    <p id="bienvenida" class="mb-0 me-3">Bienvenid@ <?php echo htmlspecialchars($nombre); ?></p>
+    <form method="POST" action="../logout.php">
+        <button type="submit" class="btn btn-sm btn-danger" title="Cerrar sesión">
+            <i class="bi bi-box-arrow-right"></i>
+        </button>
+    </form>
+</div>
+
         </div>
     </div>
 </nav>
@@ -70,12 +65,24 @@ $documento = $_SESSION['document'];
 <section>
 <div class="container mt-4">
 <h4 class="mb-3">Guardias realizadas</h4>
-<div class="d-flex justify-content-center mb-3">
-        <form action="../verGuardiasRealizadas.php" method="POST">
-            <button type="submit" name="cargar_guardias" id="cargar_guardias" class="btn btn-primary">Ver mis Guardias</button>
-        </form>
-    </div>
- 
+<div class="d-flex justify-content-center mb-4">
+    <form action="../verGuardiasRealizadas.php" method="POST" class="w-75">
+        <div class="d-flex justify-content-between gap-3">
+            <div class="flex-fill">
+                <label for="fecha" class="form-label">Fecha:</label>
+                <input type="date" id="fecha" name="fecha" class="form-control" value="<?php echo date('Y-m-d'); ?>">
+            </div>
+            <div class="flex-fill">
+                <label for="hora" class="form-label">Hora:</label>
+                <input type="time" id="hora" name="hora" class="form-control">
+            </div>
+            <div class="d-flex align-items-end">
+                <button type="submit" name="cargar_guardias" id="cargar_guardias" class="btn btn-primary w-100">Ver mis Guardias</button>
+            </div>
+        </div>
+    </form>
+</div>
+
 
 <!-- Tabla responsiva -->
 <?php if (isset($_SESSION['historial']) && is_array($_SESSION['historial']) && empty($_SESSION['error'])): ?>
@@ -93,15 +100,14 @@ $documento = $_SESSION['document'];
     </thead>
     <tbody>
     <?php 
-    error_log(print_r($_SESSION['historial'], true)); 
     foreach ($_SESSION['historial'] as $registro): ?>
       <tr>
-        <td><?= htmlspecialchars($registro[1]) ?></td>
-        <td><?= htmlspecialchars($registro[7]) ?></td>
-        <td><?= htmlspecialchars($registro[4]) ?></td>
-        <td><?= htmlspecialchars($registro[5]) ?></td>
-        <td><?= htmlspecialchars($registro[6]) ?></td>
-        <td><?= htmlspecialchars($registro[2]) ?></td>
+        <td><?= htmlspecialchars($registro[1] ?? '-'); ?></td>
+        <td><?= htmlspecialchars($registro[8] ?? '-'); ?></td>
+        <td><?= htmlspecialchars($registro[5] ?? '-'); ?></td>
+        <td><?= htmlspecialchars($registro[6] ?? '-'); ?></td>
+        <td><?php echo htmlspecialchars($registro[7] ?? '-'); ?></td>
+        <td><?= htmlspecialchars($registro[3] ?? '-'); ?></td>
       </tr>
     <?php endforeach; ?>
     </tbody>

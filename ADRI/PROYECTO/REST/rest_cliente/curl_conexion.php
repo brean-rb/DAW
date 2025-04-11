@@ -6,26 +6,34 @@
  * y opcionalmente parámetros para el paso tipo POST
  */
 DEFINE("URL", "http://localhost/REST/rest_server/index.php");
-function curl_conexion($url, $metodo, $params = NULL) {
-    $curl = curl_init();
-    curl_setopt($curl, CURLOPT_URL, $url);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
-    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $metodo);
+function curl_conexion($url, $metodo = 'GET', $datos = null, $headers = null) {
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-    if ($params != NULL) {
-        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($params));
+    // Convertir método a mayúsculas por si acaso
+    $metodo = strtoupper($metodo);
+
+    if ($metodo === 'POST') {
+        curl_setopt($ch, CURLOPT_POST, true);
+
+        // Solo enviamos datos si hay contenido
+        if (!empty($datos)) {
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $datos);
+        }
     }
 
-    curl_setopt($curl, CURLOPT_HTTPHEADER, array("cache-control: no-cache"));
-    $response = curl_exec($curl);
-    $err = curl_error($curl);
-
-    if ($err) {
-        // Log the error details
-        error_log("cURL Error #: " . $err);
-        $response = json_encode(["error" => "cURL Error #: " . $err]);
+    // Solo aplicar headers si son un array válido
+    if (is_array($headers) && !empty($headers)) {
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     }
 
-    curl_close($curl);
-    return $response;
+    $respuesta = curl_exec($ch);
+
+    if (curl_errno($ch)) {
+        error_log("Error cURL: " . curl_error($ch));
+        return false;
+    }
+
+    curl_close($ch);
+    return $respuesta;
 }

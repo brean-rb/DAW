@@ -1,0 +1,84 @@
+COMANDOS
+--------
+Para actualizar a Angular 19 hay que ir subiendo version por version.
+SE DEBE INSTALAR NODE_MODULES(npm install --force)
+Marcar todas los opciones en las que te deja marcar
+
+ng update @angular/core@15 @angular/cli@15 --force
+ng update @angular/material@15 --force
+
+ng update @angular/core@16 @angular/cli@16 --force
+ng update @angular/material@16 --force
+
+ng update @angular/core@17 @angular/cli@17 --force
+ng generate @angular/material:mdc-migration
+ng update @angular/material@17 --force
+
+ng update @angular/core@18 @angular/cli@18 --force
+ng update @angular/material@18 --force
+
+ng update @angular/core@19 @angular/cli@19 --force
+ng update @angular/material@19 --force
+npm install @schematics/angular@19.0.0 --force	
+
+COPIAR
+------
+ng new nombre_Proyecto
+npm install --force
+npm install @schematics/angular@19.0.0 --force
+npm install @angular/materials --force
+ng update @angular/core@15 @angular/cli@15 --force
+ng update @angular/core@16 @angular/cli@16 --force
+ng update @angular/core@17 @angular/cli@17 --force
+ng update @angular/core@18 @angular/cli@18 --force
+ng update @angular/core@19 @angular/cli@19 --force
+
+npm install rxjs@^7.8.1 --force   
+
+npm install typescript@5.5 --save-dev --force
+
+npm install @types/node@18 --save-dev --force
+
+npm install @ngx-translate/core@latest --save --force
+
+npm install ng2-pdf-viewer@latest --save --force
+
+npm install ngx-webcam@latest --save --force
+
+npm update @ionic/angular @ionic/core @stencil/core --force
+
+npm install @ng-bootstrap/ng-bootstrap@latest --force
+
+npm install devextreme@latest --force
+
+npm install devextreme-angular@latest --save --force
+
+Modificar angular.json para que no te genere los spec.ts
+--------
+"schematics": {
+        "@schematics/angular:component": {
+          "style": "scss",
+          "skipTests": true
+        },
+        "@schematics/angular:class": {
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true
+        },
+        "@schematics/angular:interceptor": {
+          "skipTests": true
+        },
+        "@schematics/angular:module": {
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        }
+      },
+------

@@ -5,26 +5,26 @@ session_start();
 // Verificar si se enviaron las sesiones seleccionadas
 if (isset($_POST['sesiones']) && !empty($_POST['sesiones'])) {
 
-    // Recoger las horas de inicio y fin desde el formulario
-    $hora_inicio = $_POST['hora_inicio'] ?? null;  // Se obtiene la hora de inicio
-    $hora_fin = $_POST['hora_fin'] ?? null;        // Se obtiene la hora de fin
+    $sesionesSeleccionadas = $_POST['sesiones'];
 
-    // Verificar que las horas no estén vacías
-    if (!$hora_inicio || !$hora_fin) {
-        echo "Por favor, selecciona las horas de inicio y fin.";
+    // Comprobar si hay sesiones JSON válidas
+    $jsonValido = true;
+    foreach ($sesionesSeleccionadas as $sesionJson) {
+        if (json_decode($sesionJson, true) === null) {
+            $jsonValido = false;
+            break;
+        }
+    }
+
+    if (!$jsonValido) {
+        echo "Error: Sesiones mal formateadas.";
         exit;
     }
-    $jornadaC = false;
-    if (isset($_POST["jornada_completa"])) {
-        $jornadaC = true;
-    }
-    // Recoger las sesiones seleccionadas
-    $sesionesSeleccionadas = isset($_SESSION['sesiones_profesor']) ? $_SESSION['sesiones_profesor'] : [];
 
-    // Si es necesario, puedes hacer algo con las sesiones seleccionadas, por ejemplo, imprimirlas:
-    // print_r($sesionesSeleccionadas); // Esto es solo para depuración
+    // Recoger si la ausencia es de jornada completa
+    $jornadaC = isset($_POST["jornada_completa"]) ? true : false;
 
-    // Preparar datos para enviar por cURL
+    // Preparar los datos para enviar como JSON
     $params = [
         'document' => $_SESSION["documentAusente"],
         'fecha' => $_SESSION["fechaSinFormat"],
@@ -34,22 +34,27 @@ if (isset($_POST['sesiones']) && !empty($_POST['sesiones'])) {
         'accion' => 'registrarAusencia'
     ];
 
-    // Realizar la petición cURL
-    $response = curl_conexion(URL, 'POST', $params);
+    // Enviar JSON con headers personalizados
+    $response = curl_conexion(URL, 'POST', json_encode($params), [
+        "Content-Type: application/json"
+    ]);
 
-    // Decodificar la respuesta JSON
-    $estado = json_decode($response, TRUE);
+    // Decodificar la respuesta
+    $estado = json_decode($response, true);
 
-    // Verificar la respuesta de la petición
-    if ($estado["exito"]) {
-        $_SESSION['registro_exitoso'] = true;
-    } elseif ($estado["error"]) {
-        $_SESSION['registro_exitoso'] = false;
-    } else {
-        error_log("Respuesta inválida");
-    }
+if ($response === false || $response === "") {
+    error_log("Respuesta vacía del backend.");
+} elseif (isset($estado["exito"])) {
+    $_SESSION['registro_exitoso'] = true;
+} elseif (isset($estado["error"])) {
+    $_SESSION['registro_exitoso'] = false;
+    error_log("Error del servidor: " . $estado["error"]);
+} else {
+    error_log("Respuesta inválida del backend: " . $response);
+}
 
-    // Redirigir a la página de registro de ausencias
+
+    // Redirigir al dashboard
     header('Location: vistas/dashboard.php');
     exit;
 

@@ -31,7 +31,7 @@ $params = [
 
 $response = curl_conexion(URL, 'POST', $params); 
 $sesiones = json_decode($response, true);
-$_SESSION["sesiones_profesor"] = is_array($sesiones) ? $sesiones : [];
+$_SESSION["sesiones_profesor"] = !empty($sesiones) && is_array($sesiones) && !$sesiones["error"] ? $sesiones : [];
 header("Location: vistas/horarioAusente.php");
 }
 ?>

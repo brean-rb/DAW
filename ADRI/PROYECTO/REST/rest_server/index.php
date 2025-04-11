@@ -48,18 +48,33 @@ if ($metodo === 'GET') {
         $fecha = date('Y-m-d');  // Obtener la fecha de hoy
 
         // Consulta para obtener las guardias
-        $sql = "SELECT sesion, aula, grupo, asignatura, document,cubierto FROM ausencias WHERE fecha = '$fecha'";
+        $sql = "SELECT sesion, aula, grupo, asignatura, document,nombreProfe,cubierto FROM ausencias WHERE fecha = '$fecha'";
         $respuesta = conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sql);
         if (is_array($respuesta)) {
             echo json_encode($respuesta);  // Devolver la respuesta con las guardias
         } else {
             echo json_encode(["error" => "No se encontraron guardias para hoy"]);
         }
+    } elseif ($accion === "verGuardiasPorFecha") {
+        $fecha = $_GET['fecha'] ?? null;
+        if (!$fecha) {
+            echo json_encode(["error" => "Fecha no proporcionada"]);
+            exit;
+        }
+        // Consulta para obtener las guardias
+        $sql = "SELECT sesion, aula, grupo, asignatura, document,nombreProfe,fecha FROM ausencias WHERE fecha = '$fecha'";
+        $respuesta = conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sql);
+        if (is_array($respuesta)) {
+            echo json_encode($respuesta);  // Devolver la respuesta con las guardias
+        } else {
+            echo json_encode(["error" => "No se encontraron guardias para " . $fecha]);
+        }
     }
 }
 elseif ($metodo === 'POST') {
-   
-    $accion = $_POST['accion'] ?? null;
+    $data = json_decode(file_get_contents("php://input"), true);
+    $accion = $data['accion'] ?? ($_POST['accion'] ?? null);
+    
     if ($accion === "InicioSesion") {
         // Manejo de inicio de sesión
         $document = $_POST['document'] ?? null;         
@@ -202,63 +217,95 @@ elseif ($metodo === 'POST') {
         } else {
             echo json_encode(["error" => "No se encontraron datos de horario"]);
         }
-    } elseif ($accion === "registrarAusencia") { 
-        $fecha = $_POST['fecha'] ?? null; 
-        $sesionesSeleccionadas = $_POST['sesiones'];  // Sesiones seleccionadas (valores de los checkboxes)
-        $resultadoIn = true; 
-        if (isset($sesionesSeleccionadas)) {
-        foreach ($sesionesSeleccionadas as $index => $sesion) {
-            $hora_inicio = $sesion[1];
-            $hora_fin = $sesion[2];
-            $dia = $sesion[0];
-            $aula = $sesion[5];
-            $grupo = $sesion[4];
-            $asignatura = $sesion[3];
-            $sesion = $sesion[6];
+    } elseif ($accion === "registrarAusencia") {
+        error_log("Entrando en registrarAusencia");
     
-            $document = $_POST['document'] ?? null;         
-            $justificada = $_POST['justificada'] ?? null;         
-            $jornada_completa = $_POST["jornada_completa"] ?? null;
+        $data = json_decode(file_get_contents("php://input"), true);
     
-            // Ejecutar la consulta
-            $sql = "INSERT INTO ausencias (hora_inicio, hora_fin, dia, aula, grupo, asignatura, sesion, document, justificada, jornada_completa, fecha) 
-            VALUES ('$hora_inicio', '$hora_fin', '$dia','$aula','$grupo','$asignatura','$sesion','$document','$justificada','$jornada_completa', '$fecha')";
-            
-            // Comprobar si la consulta fue exitosa
-            $resultadoConsulta = conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sql);
+        $fecha = $data['fecha'] ?? null;
+        $document = $data['document'] ?? null;
+        $justificada = $data['justificada'] ?? null;
+        $jornada_completa = $data['jornada_completa'] ?? null;
+        $sesionesSeleccionadas = $data['sesiones'] ?? [];
     
-            // Si alguna consulta falla, no continuar
-            if ($resultadoConsulta === false) {
-                $resultadoIn = false;  // Marcar que hubo un error en alguna consulta
-                error_log("Error al ejecutar la consulta SQL: " . $sql);
-                break;  // Salir del bucle si hay un error
+        $resultadoIn = true;
+    
+        // Obtener nombre del profesor
+        $sqlNombre = "SELECT CONCAT(nom, ' ', cognom1, ' ', cognom2) AS nombreProfe FROM docent WHERE document = '$document'";
+        $resultadoNombre = conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sqlNombre);
+        $nombreProfe = is_array($resultadoNombre) ? $resultadoNombre[0][0] : 'Desconocido';
+    
+        if (!empty($sesionesSeleccionadas)) {
+            foreach ($sesionesSeleccionadas as $sesionJson) {
+                $sesion = json_decode($sesionJson, true);
+    
+                if (!is_array($sesion) || count($sesion) < 7) {
+                    error_log("Sesión malformada: " . print_r($sesionJson, true));
+                    $resultadoIn = false;
+                    break;
+                }
+    
+                $dia = $sesion[0];
+                $hora_inicio = $sesion[1];
+                $hora_fin = $sesion[2];
+                $asignatura = $sesion[3];
+                $grupo = $sesion[4];
+                $aula = $sesion[5];
+                $sesion_orden = $sesion[6];
+    
+                $sql = "INSERT INTO ausencias (
+                            hora_inicio, hora_fin, dia, aula, grupo, asignatura, sesion,
+                            document, nombreProfe, justificada, jornada_completa, fecha
+                        ) VALUES (
+                            '$hora_inicio', '$hora_fin', '$dia', '$aula', '$grupo', '$asignatura', '$sesion_orden',
+                            '$document', '$nombreProfe', '$justificada', '$jornada_completa', '$fecha'
+                        )";
+    
+                $resultadoConsulta = conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sql);
+    
+                if ($resultadoConsulta === false) {
+                    $resultadoIn = false;
+                    error_log("Error al ejecutar la consulta SQL: " . $sql);
+                    break;
+                }
             }
-        }
-        // Verificar si todas las consultas fueron exitosas
-        if ($resultadoIn) {
-            echo json_encode(["exito" => "Entrada registrada correctamente"]);
+    
+            if ($resultadoIn) {
+                error_log("Insert OK");
+                echo json_encode(["exito" => "Entrada registrada correctamente"]);
+            } else {
+                error_log("Error en la inserción");
+                echo json_encode(["error" => "Error al registrar la entrada"]);
+            }
         } else {
-            error_log("Error en la consulta o no se insertaron registros.");
-            echo json_encode(["error" => "Error al registrar la entrada"]);
+            error_log("No se enviaron sesiones.");
+            echo json_encode(["error" => "No se seleccionaron sesiones"]);
         }
-        }else{
-            error_log("No definido");
+    }
+    
+    elseif ($accion === "asignarGuardia") {
+        $fecha = date('Y-m-d');
+        $datos = json_decode(file_get_contents("php://input"), true);
+    
+        if (!is_array($datos)) {
+            error_log("Error: los datos recibidos no son JSON válido");
+            echo json_encode(["error" => "Datos no válidos"]);
+            exit;
         }
-    }elseif ($accion === "asignarGuardia") {
-        $fecha = date('Y-m-d');  // Obtener la fecha de hoy
-        parse_str(file_get_contents("php://input"), $datos);
+    
         $sesionAus = $datos["sesion"];
         $documentAus = $datos["documentAus"];
         $documentCubierto = $datos["document"];
         $cubiertoAus = $datos["cubierto"];
-        // Consulta para obtener las guardias
+    
         $sql = "UPDATE ausencias SET cubierto = '$cubiertoAus' WHERE sesion = '$sesionAus' AND document = '$documentAus'";
         $resultadoAsignar = conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sql);
         $funcional = false;
+    
         if ($resultadoAsignar > 0) {
-
-            $sql = "SELECT * FROM ausencias WHERE cubierto = 1";
-            $resinsertinforme = conexion_bd(SERVIDOR,USER,PASSWD,BASE_DATOS,$sql);
+            $sql = "SELECT * FROM ausencias WHERE sesion = '$sesionAus' AND document = '$documentAus' AND cubierto = 1";
+            $resinsertinforme = conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sql);
+    
             if (is_array($resinsertinforme)) {
                 $hora_inicio = $resinsertinforme[0][1];
                 $hora_fin = $resinsertinforme[0][2];
@@ -268,23 +315,50 @@ elseif ($metodo === 'POST') {
                 $asignatura = $resinsertinforme[0][6];
                 $sesion = $resinsertinforme[0][7];
                 $document = $resinsertinforme[0][8];
-                $fecha = $resinsertinforme[0][11];
-                $sqlInforme = "INSERT INTO registro_guardias (fecha, docente_ausente, docente_guardia, aula, grupo, asignatura, sesion_orden, dia_semana, hora_inicio, hora_fin) 
-                               VALUES ('$fecha', '$document', '$documentCubierto', '$aula', '$grupo', '$asignatura', '$sesion', '$dia', '$hora_inicio', '$hora_fin')";
-                $resultadoInforme = conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sqlInforme);
-
-                if ($resultadoInforme > 0) {
-                    $funcional = true;
+                $fecha = $resinsertinforme[0][12];
+    
+                // Obtener nombre del docente ausente
+                $sqlNombre = "SELECT CONCAT(nom, ' ', cognom1, ' ', cognom2) AS nombreProfe FROM docent WHERE document = '$document'";
+                $resultadoNombre = conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sqlNombre);
+                $nombreProfe = is_array($resultadoNombre) ? $resultadoNombre[0][0] : 'Desconocido';
+    
+                $sqlCheck = "SELECT COUNT(*) FROM registro_guardias 
+                             WHERE fecha = '$fecha' AND docente_ausente = '$document' AND sesion_orden = '$sesion'";
+                $existe = conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sqlCheck);
+    
+                if (is_array($existe) && $existe[0][0] == 0) {
+                    $sqlInforme = "INSERT INTO registro_guardias 
+                        (fecha, docente_ausente, nombreProfe, docente_guardia, aula, grupo, asignatura, sesion_orden, dia_semana, hora_inicio, hora_fin) 
+                        VALUES 
+                        ('$fecha', '$document', '$nombreProfe', '$documentCubierto', '$aula', '$grupo', '$asignatura', '$sesion', '$dia', '$hora_inicio', '$hora_fin')";
+    
+                    $resultadoInforme = conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sqlInforme);
+    
+                    if ($resultadoInforme > 0) {
+                        $funcional = true;
+                    }
                 }
             }
         }
+    
         if ($funcional) {
             echo json_encode(["exito" => "Guardia asignada correctamente"]);
-        }else
-        echo json_encode(["error" => "Error al asignar la guardia"]);
+        } else {
+            echo json_encode(["error" => "La guardia ya estaba registrada o ha fallado el guardado"]);
+        }
     }
+    
+        
     elseif ($accion === "historialGuardias") {
         $document = $_POST['document'];
+        if (isset($_POST["fecha"]) && !isset($_POST["hora"])) {
+            $fecha = $_POST["fecha"];
+            $sql = "SELECT * FROM registro_guardias WHERE docente_guardia = '$document' AND fecha = '$fecha'";
+        }else if (isset($_POST['hora']) && !isset($_POST["fecha"])) {
+            $sql = "SELECT * FROM registro_guardias WHERE docente_guardia = '$document'";
+        }elseif (isset($_POST["fecha"]) && isset($_POST['hora'])) {
+            $sql = "SELECT * FROM registro_guardias WHERE docente_guardia = '$document'";
+        }else{
         $sql = "SELECT * FROM registro_guardias WHERE docente_guardia = '$document'";
         $historialGuard = conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sql);
         if (is_array($historialGuard)) {
@@ -292,8 +366,8 @@ elseif ($metodo === 'POST') {
         } else {
             echo json_encode(["error" => "No se encontraron registros de guardias"]);
         }
-    }
-}
+        }
+}}
     
 
 elseif ($metodo === 'PUT') {         

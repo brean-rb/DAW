@@ -37,15 +37,22 @@ if (isset($_GET["cargar_guardias"])) {
         'accion' => 'asignarGuardia'
     ];
 
-    $response = curl_conexion(URL,'POST',$params);
-    $resp = json_decode($response, TRUE);
+    // Convertimos los datos a JSON y añadimos el header
+    $response = curl_conexion(URL, 'POST', json_encode($params), [
+        'Content-Type: application/json'
+    ]);
+
+    $resp = json_decode($response, true);
 
     if (isset($resp["exito"]) && $resp["exito"]) {
         header('Location: vistas/consultaAusencias.php?cargar_guardias=1');
     } else {
-        $errorMessage = isset($resp["mensaje"]) ? $resp["mensaje"] : "Error desconocido al cambiar";
+        $errorMessage = isset($resp["error"]) ? $resp["error"] : "Error desconocido al cambiar";
         error_log("Error al cambiar: " . $errorMessage);
+        header('Location: vistas/consultaAusencias.php?error=' . urlencode($errorMessage));
     }
+
     exit();
 }
+
 
