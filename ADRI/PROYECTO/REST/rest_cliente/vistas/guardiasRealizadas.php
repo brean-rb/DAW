@@ -1,9 +1,17 @@
 <?php
 session_start();
-$rol = $_SESSION['rol'];
-$nombre = $_SESSION['nombre'];
-$documento = $_SESSION['document'];
+include("../curl_conexion.php");
+$rol = $_SESSION['rol'] ?? [];
+$nombre = $_SESSION['nombre'] ?? [];
+$documento = $_SESSION['document'] ?? [];
 
+$params = [
+    'document' => $documento,
+    'accion' => 'consultaSesiones'
+];
+    $UrlGet = URL . '?' . http_build_query($params);
+$response = curl_conexion($UrlGet,'GET');
+$horasDisponibles = json_decode($response, TRUE);
 
 ?>
 
@@ -18,37 +26,55 @@ $documento = $_SESSION['document'];
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
-    
 <nav class="navbar navbar-expand-lg navbar-custom">
-    <div class="container-fluid justify-content-between align-items-center">
-        <a class="navbar-brand p-0 m-0" href="dashboard.php">
-            <img src="../src/images/sinFondoDos.png" alt="Logo AsistGuard"  class="logo-navbar">
-        </a>
-        <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="guardiasRealizadas.php">Guardias Realizadas</a></li>
-                <li class="nav-item"><a class="nav-link" href="consultaAusencias.php">Consultar Ausencias</a></li>
-                <?php if ($rol === 'admin'): ?>
-                    <li class="nav-item"><a class="nav-link" href="registroAusencias.php" id="registrarAusencia">Registrar Ausencia</a></li>
-                    <li class="nav-item"><a href="consultaAusenciaEnfecha.php" class="nav-link">Consultar Falta Por Fecha</a></li>
-                <?php endif; ?>
+  <div class="container-fluid">
+
+    <!-- LOGO -->
+    <a class="navbar-brand" href="dashboard.php">
+      <img src="../src/images/sinFondoDos.png" alt="Logo AsistGuard" class="logo-navbar">
+    </a>
+
+    <!-- BOTÓN HAMBURGUESA -->
+    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- CONTENIDO -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+
+      <!-- MENÚ CENTRAL -->
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item"><a class="nav-link text-white" href="guardiasRealizadas.php">Guardias Realizadas</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="consultaAusencias.php">Consultar Ausencias</a></li>
+
+        <?php if ($rol === 'admin'): ?>
+          <li class="nav-item"><a class="nav-link text-white" href="registroAusencias.php">Registrar Ausencia</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="verInformes.php">Generar informes</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
+              Gestión de asistencia
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="verAsistencia.php">Consultar asistencia</a></li>
+              <li><a class="dropdown-item" href="introducirAusente.php">Añadir profesorado ausente</a></li>
             </ul>
-            <div class="ms-auto d-flex align-items-center">
-    <p id="bienvenida" class="mb-0 me-3">Bienvenid@ <?php echo htmlspecialchars($nombre); ?></p>
-    <form method="POST" action="../logout.php">
-        <button type="submit" class="btn btn-sm btn-danger" title="Cerrar sesión">
+          </li>
+        <?php endif; ?>
+      </ul>
+
+      <!-- BIENVENIDA + LOGOUT A LA DERECHA -->
+      <div class="d-flex align-items-center ms-auto">
+        <span class="text-white me-3"><strong>Bienvenid@ <?= htmlspecialchars($nombre); ?></strong></span>
+        <form method="POST" action="../logout.php" class="mb-0">
+          <button class="btn btn-sm btn-danger" title="Cerrar sesión">
             <i class="bi bi-box-arrow-right"></i>
-        </button>
-    </form>
-</div>
+          </button>
+        </form>
+      </div>
 
-        </div>
     </div>
+  </div>
 </nav>
-
 <main>
     <div class="container mt-5 d-flex justify-content-start align-items-center perfil-contenedor">
         <div class="foto-wrapper me-4">
@@ -70,11 +96,22 @@ $documento = $_SESSION['document'];
         <div class="d-flex justify-content-between gap-3">
             <div class="flex-fill">
                 <label for="fecha" class="form-label">Fecha:</label>
-                <input type="date" id="fecha" name="fecha" class="form-control" value="<?php echo date('Y-m-d'); ?>">
-            </div>
+                
+                <input type="date" id="fecha" name="fecha" class="form-control">
+                </div>
             <div class="flex-fill">
-                <label for="hora" class="form-label">Hora:</label>
-                <input type="time" id="hora" name="hora" class="form-control">
+                <label for="hora" class="form-label">Sesión:</label>
+                <select id="hora" name="hora" class="form-select">
+                    <option value="" disabled selected>Selecciona una sesión</option>
+<?php
+foreach ($horasDisponibles as $hora) {
+    $id = $hora[0];
+    $texto = $hora[1]; 
+    echo '<option value="' . htmlspecialchars($id) . '">' . htmlspecialchars($texto) . '</option>';
+}
+?>
+</select>
+
             </div>
             <div class="d-flex align-items-end">
                 <button type="submit" name="cargar_guardias" id="cargar_guardias" class="btn btn-primary w-100">Ver mis Guardias</button>
@@ -102,7 +139,7 @@ $documento = $_SESSION['document'];
     <?php 
     foreach ($_SESSION['historial'] as $registro): ?>
       <tr>
-        <td><?= htmlspecialchars($registro[1] ?? '-'); ?></td>
+        <td><?= htmlspecialchars(date('d-m-Y', strtotime($registro[1] ?? '-'))); ?></td>
         <td><?= htmlspecialchars($registro[8] ?? '-'); ?></td>
         <td><?= htmlspecialchars($registro[5] ?? '-'); ?></td>
         <td><?= htmlspecialchars($registro[6] ?? '-'); ?></td>
@@ -122,11 +159,14 @@ $documento = $_SESSION['document'];
 
 </section>
 <script>
-<script>
-    window.onload = function(){
+window.onload = function() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('auto') === '1') {
         document.getElementById('cargar_guardias').click();
     }
+}
 </script>
+
 
 </script>
 <!-- Bootstrap JS -->

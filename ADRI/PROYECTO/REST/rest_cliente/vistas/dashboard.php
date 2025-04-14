@@ -47,36 +47,54 @@ unset($_SESSION['mensaje']); // Limpiar el mensaje después de mostrarlo
 <body>
     
 <nav class="navbar navbar-expand-lg navbar-custom">
-    <div class="container-fluid justify-content-between align-items-center">
-        <a class="navbar-brand p-0 m-0" href="dashboard.php">
-            <img src="../src/images/sinFondoDos.png" alt="Logo AsistGuard"  class="logo-navbar">
-        </a>
-        <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="guardiasRealizadas.php">Guardias Realizadas</a></li>
-                <li class="nav-item"><a class="nav-link" href="consultaAusencias.php">Consultar Ausencias</a></li>
-                <?php if ($rol === 'admin'): ?>
-                    <li class="nav-item"><a class="nav-link" href="registroAusencias.php" id="registrarAusencia">Registrar Ausencia</a></li>
-                    <li class="nav-item"><a href="consultaAusenciaEnfecha.php" class="nav-link">Consultar Falta Por Fecha</a></li>
-                <?php endif; ?>
+  <div class="container-fluid">
+
+    <!-- LOGO -->
+    <a class="navbar-brand" href="dashboard.php">
+      <img src="../src/images/sinFondoDos.png" alt="Logo AsistGuard" class="logo-navbar">
+    </a>
+
+    <!-- BOTÓN HAMBURGUESA -->
+    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- CONTENIDO -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+
+      <!-- MENÚ CENTRAL -->
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item"><a class="nav-link text-white" href="guardiasRealizadas.php">Guardias Realizadas</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="consultaAusencias.php">Consultar Ausencias</a></li>
+
+        <?php if ($rol === 'admin'): ?>
+          <li class="nav-item"><a class="nav-link text-white" href="registroAusencias.php">Registrar Ausencia</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="verInformes.php">Generar informes</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
+              Gestión de asistencia
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="verAsistencia.php">Consultar asistencia</a></li>
+              <li><a class="dropdown-item" href="introducirAusente.php">Añadir profesorado ausente</a></li>
             </ul>
-            <div class="ms-auto d-flex align-items-center">
-    <p id="bienvenida" class="mb-0 me-3">Bienvenid@ <?php echo htmlspecialchars($nombre); ?></p>
-    <form method="POST" action="../logout.php">
-        <button type="submit" class="btn btn-sm btn-danger" title="Cerrar sesión">
+          </li>
+        <?php endif; ?>
+      </ul>
+
+      <!-- BIENVENIDA + LOGOUT A LA DERECHA -->
+      <div class="d-flex align-items-center ms-auto">
+        <span class="text-white me-3"><strong>Bienvenid@ <?= htmlspecialchars($nombre); ?></strong></span>
+        <form method="POST" action="../logout.php" class="mb-0">
+          <button class="btn btn-sm btn-danger" title="Cerrar sesión">
             <i class="bi bi-box-arrow-right"></i>
-        </button>
-    </form>
-</div>
+          </button>
+        </form>
+      </div>
 
-        </div>
     </div>
+  </div>
 </nav>
-
-
 <main>
     <div class="container mt-5 d-flex justify-content-start align-items-center perfil-contenedor">
         <div class="foto-wrapper me-4">

@@ -3,7 +3,8 @@ DEFINE ("SERVIDOR", "localhost");
 DEFINE ("USER", "root");
 DEFINE ("PASSWD", "");
 DEFINE ("BASE_DATOS", "guardias");
-
+ini_set("log_errors", 1);
+ini_set("error_log", __DIR__ . "\C:\xampp\php\logs\php_error.log");
 function conexion_bd($serv, $user, $passwd, $bd, $sql){  
     $con_bd = @mysqli_connect($serv, $user, $passwd, $bd);
     $acentos = $con_bd->query("SET NAMES 'utf8'");

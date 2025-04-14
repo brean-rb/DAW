@@ -14,8 +14,25 @@ if ($metodo === 'GET') {
     }
     // Manejo de diferentes acciones
     $accion = $_GET['accion'] ?? null;
-
-    if ($accion === "verHorario") {
+    error_log("entro server");
+    if($accion === "consultaSesiones"){
+        error_log("entro consultaSesiones");
+        $sql = "SELECT DISTINCT sessio_orde, CONCAT('Sesion ', sessio_orde, ': ', hora_desde, ' - ', hora_fins) AS horario_completo 
+            FROM sessions_horari 
+            ORDER BY sessio_orde ASC";
+        $result = conexion_bd(SERVIDOR,USER,PASSWD,BASE_DATOS,$sql);
+        error_log("hago consulta");
+        if (is_array($result)) {
+            if (!empty($result)) {
+                echo json_encode($result);
+            } else{
+                echo json_encode(["error" => "Sesiones vacias"]);
+            }
+        } else{
+                echo json_encode(["error" => "Error en la consulta"]);
+            }
+    }
+    elseif ($accion === "verHorario") {
         if (isset($_GET['dia'])) {
             $dia = $_GET['dia'];
 
@@ -142,7 +159,11 @@ elseif ($metodo === 'POST') {
                 } else {
                     // Fichaje de entrada
                     if ($hora_entrada) {
-                        $sql = "INSERT INTO registro_jornada (document, fecha, hora_entrada) VALUES ('$document', '$fecha', '$hora_entrada')";
+                        $sqlNombre = "SELECT CONCAT(nom, ' ', cognom1, ' ', cognom2) AS nombre FROM docent WHERE document = '$document'";
+                        $resultadoNombre = conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sqlNombre);
+                        $nombre = is_array($resultadoNombre) ? $resultadoNombre[0][0] : 'Desconocido';
+
+                        $sql = "INSERT INTO registro_jornada (document, fecha, hora_entrada, hora_salida, nombre) VALUES ('$document', '$fecha', '$hora_entrada', NULL, '$nombre')";
                         $resultFicharEnt = conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sql);
 
                         if ($resultFicharEnt > 0) {
@@ -271,7 +292,7 @@ elseif ($metodo === 'POST') {
             }
     
             if ($resultadoIn) {
-                error_log("Insert OK");
+                
                 echo json_encode(["exito" => "Entrada registrada correctamente"]);
             } else {
                 error_log("Error en la inserción");
@@ -351,25 +372,80 @@ elseif ($metodo === 'POST') {
         
     elseif ($accion === "historialGuardias") {
         $document = $_POST['document'];
-        if (isset($_POST["fecha"]) && !isset($_POST["hora"])) {
-            $fecha = $_POST["fecha"];
-            $sql = "SELECT * FROM registro_guardias WHERE docente_guardia = '$document' AND fecha = '$fecha'";
-        }else if (isset($_POST['hora']) && !isset($_POST["fecha"])) {
-            $sql = "SELECT * FROM registro_guardias WHERE docente_guardia = '$document'";
-        }elseif (isset($_POST["fecha"]) && isset($_POST['hora'])) {
-            $sql = "SELECT * FROM registro_guardias WHERE docente_guardia = '$document'";
-        }else{
-        $sql = "SELECT * FROM registro_guardias WHERE docente_guardia = '$document'";
+        $fecha = isset($_POST["fecha"]) ? date("Y-m-d", strtotime($_POST["fecha"])) : null;
+        $sesion = isset($_POST["hora"]) ? (int)trim($_POST["hora"]) : null;
+    
+        if ($fecha && $sesion) {
+            // Ambos seleccionados
+            $sql = "SELECT * FROM registro_guardias 
+                    WHERE docente_guardia = '$document' 
+                    AND fecha = '$fecha' 
+                    AND sesion_orden = $sesion";
+        } elseif ($fecha) {
+            // Solo fecha
+            $sql = "SELECT * FROM registro_guardias 
+                    WHERE docente_guardia = '$document' 
+                    AND fecha = '$fecha'";
+        } elseif ($sesion) {
+            // Solo sesión
+            $sql = "SELECT * FROM registro_guardias 
+                    WHERE docente_guardia = '$document' 
+                    AND sesion_orden = $sesion";
+        } else {
+            // Ni fecha ni sesión
+            $sql = "SELECT * FROM registro_guardias 
+                    WHERE docente_guardia = '$document'";
+        }
+    
+        error_log("SQL generado: $sql");
+    
         $historialGuard = conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sql);
+    
         if (is_array($historialGuard)) {
             echo json_encode($historialGuard);
         } else {
             echo json_encode(["error" => "No se encontraron registros de guardias"]);
         }
-        }
-}}
+    }
+    elseif ($accion === 'consultarAsistencia') {
+        $documento = $_POST['document'] ?? null;
+        $fecha = $_POST['fecha'] ?? null;
+        $mes = $_POST['mes'] ?? null;
     
-
+        $condiciones = [];
+        
+        if ($documento) {
+            $condiciones[] = "document = '$documento'";
+        }
+    
+        if ($fecha) {
+            $fechaFormateada = date("Y-m-d", strtotime($fecha));
+            $condiciones[] = "fecha = '$fechaFormateada'";
+        }
+    
+        if ($mes) {
+            // Extraemos año y mes del input tipo "2025-04"
+            $anioMes = explode('-', $mes);
+            $anio = $anioMes[0];
+            $mesNum = $anioMes[1];
+            $condiciones[] = "YEAR(fecha) = '$anio' AND MONTH(fecha) = '$mesNum'";
+        }
+    
+        $where = count($condiciones) > 0 ? 'WHERE ' . implode(' AND ', $condiciones) : '';
+    
+        $sql = "SELECT nombre, fecha, hora_entrada, hora_salida FROM registro_jornada $where ORDER BY fecha, hora_entrada";
+    
+        error_log("Consulta asistencia: $sql");
+    
+        $resultado = conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sql);
+    
+        if (is_array($resultado)) {
+            echo json_encode($resultado);
+        } else {
+            echo json_encode(["error" => "No se encontraron registros"]);
+        }
+    }
+    
 elseif ($metodo === 'PUT') {         
     // Por implementar         
 } 
@@ -378,4 +454,5 @@ elseif ($metodo === 'DELETE') {
 } 
 else {         
     echo json_encode(["error" => "Opción incorrecta!!!!"]); 
+}
 }

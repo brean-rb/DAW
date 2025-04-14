@@ -1,46 +1,35 @@
 <?php
 include("curl_conexion.php");
 session_start();
-
 if (isset($_POST["cargar_guardias"])) {
-    if (isset($_POST["fecha"]) && !isset($_POST["hora"])) {
-        $params=[
-            'document' => $_SESSION['document'],
-            'fecha' => $_POST['fecha'],
-            'accion' => 'historialGuardias'
-        ];
-    } else if (isset($_POST['hora']) && !isset($_POST["fecha"])) {
-        $params=[
-            'document' => $_SESSION['document'],
-            'hora' => $_POST['hora'],
-            'accion' => 'historialGuardias'
-        ];
-    } elseif (isset($_POST["fecha"]) && isset($_POST['hora'])) {
-        $params=[
-            'document' => $_SESSION['document'],
-            'fecha' => $_POST['fecha'],
-            'hora' => $_POST['hora'],
-            'accion' => 'historialGuardias'
-        ];
-    } else {
-    $params=[
+    $params = [
         'document' => $_SESSION['document'],
         'accion' => 'historialGuardias'
     ];
+
+    if (!empty($_POST['fecha'])) {
+        $params['fecha'] = $_POST['fecha'];
     }
-    $respuesta = curl_conexion(URL,'POST',$params);
-    $historial = json_decode($respuesta,TRUE);
+
+    if (!empty($_POST['hora'])) {
+        $params['hora'] = trim($_POST['hora']);
+    }
+
+    $respuesta = curl_conexion(URL, 'POST', $params);
+    $historial = json_decode($respuesta, TRUE);
 
     if (is_array($historial)) {
-        if ($historial["error"]) {
+        if (isset($historial["error"])) {
             $_SESSION['historial'] = "";
-        }else {
-        $_SESSION['historial'] = $historial;
-    } 
-    }else{
-        error_log("No se encontraron los resultados");
+            $_SESSION['error'] = $historial["error"];
+        } else {
+            $_SESSION['historial'] = $historial;
+            unset($_SESSION['error']);
+        }
     }
-    
 
-    header('location:vistas/guardiasRealizadas.php?historial=1');
+    header('Location: vistas/guardiasRealizadas.php?historial=1&auto=0');
+    exit;
 }
+
+

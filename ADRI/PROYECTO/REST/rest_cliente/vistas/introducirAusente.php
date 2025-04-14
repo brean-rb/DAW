@@ -4,7 +4,6 @@ session_start();
 $rol = $_SESSION['rol'];
 $nombre = $_SESSION['nombre'];
 $documento = $_SESSION['document'];
-$fecha = $_SESSION["fechaAusencia"];
 ?>
 
 <!DOCTYPE html>
@@ -67,72 +66,20 @@ $fecha = $_SESSION["fechaAusencia"];
     </div>
   </div>
 </nav>
-
-<?php if (!empty($_SESSION["sesiones_profesor"])): ?>
-  <div class="container mt-4">
-  <h4 class="mb-3">Sesiones del <?php echo htmlspecialchars($fecha); ?></h4>
-
-  <!-- Mostrar horas seleccionadas en una fila -->
-  <div class="row mb-3">
-  <form action="../guardarAusencia.php" method="POST">
-    <!-- Campos ocultos para enviar las horas -->
-<input type="hidden" name="hora_inicio" id="hora_inicio">
-<input type="hidden" name="hora_fin" id="hora_fin">
-
-
-  <!-- Tabla responsiva -->
-  <div class="table-responsive">
-    <table class="table table-bordered table-striped text-center align-middle">
-      <thead class="table-dark">
-        <tr>
-          <th>Hora</th>
-          <th>Día</th>
-          <th>Aula</th>
-          <th>Grupo</th>
-          <th>Asignatura</th>
-          <th>Sesion</th>
-          <th>Seleccionar</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php foreach ($_SESSION["sesiones_profesor"] as $index => $sesion): ?>
-          <tr id="fila-<?php echo $index; ?>">
-            <td><?= htmlspecialchars($sesion[1] . ' - ' . $sesion[2]) ?></td>
-            <td><?= htmlspecialchars($sesion[0] ?? '-') ?></td>
-            <td><?= htmlspecialchars($sesion[5] ?? '-') ?></td>
-            <td><?= htmlspecialchars($sesion[4] ?? '-') ?></td>
-            <td><?= htmlspecialchars($sesion[3] ?? '-') ?></td>
-            <td><?= htmlspecialchars($sesion[6] ?? '-') ?></td>
-            <td>
-            <input type="checkbox" class="checkboxSesion" name="sesiones[]" value="<?php echo htmlspecialchars(json_encode($sesion)); ?>">
-            </td>
-          </tr>
-        <?php endforeach; ?>
-      </tbody>
-    </table>
-
-    <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="jornada_completa" name="jornada_completa">
-          <label class="form-check-label" for="jornada_completa">Seleccionar todas las sesiones</label>
+<main>
+    <div class="container mt-5 d-flex justify-content-start align-items-center perfil-contenedor">
+        <div class="foto-wrapper me-4">
+            <img src="../src/images/default.jpg" alt="Foto de perfil" class="foto-circular">
         </div>
-    <br>
-    <div class="d-flex justify-content-center">
-      
-        <button class="btn btn-primary mx-3 w-auto" name="guardarAusencia" id="guardarAusencia">Registrar Ausencia</button>
-      </form>
-      <a href="dashboard.php" class="btn btn-danger mx-3 w-auto">Volver</a>
-    </div>
-  </div>
-</div>
 
-<?php else: ?>
-  <div class="alert alert-info mt-4 text-center mx-auto" style="max-width: 600px;">
-    Hoy no tienes sesiones asignadas.
-  </div>
-  <?php endif; ?>
-  
-  <script src="../src/ausencias.js"></script>
-<!-- Bootstrap JS -->
+        <div class="info-usuario text-start">
+            <p><strong>Documento:</strong> <?php echo htmlspecialchars($documento); ?></p>
+            <p><strong>Nombre:</strong> <?php echo htmlspecialchars($nombre); ?></p>
+            <p><strong>Rol:</strong> <?php echo htmlspecialchars($rol); ?></p>
+        </div>
+    </div>
+</main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+          
