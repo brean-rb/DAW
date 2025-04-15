@@ -1,6 +1,9 @@
 <?php
 session_start();
-
+if (!isset($_SESSION['document'])) {
+  header("Location: ../login.php");
+  exit();
+}
 $rol = $_SESSION['rol'];
 $nombre = $_SESSION['nombre'];
 $documento = $_SESSION['document'];

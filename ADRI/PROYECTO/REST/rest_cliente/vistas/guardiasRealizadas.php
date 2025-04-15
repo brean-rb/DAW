@@ -1,6 +1,10 @@
 <?php
 session_start();
 include("../curl_conexion.php");
+if (!isset($_SESSION['document'])) {
+  header("Location: ../login.php");
+  exit();
+}
 $rol = $_SESSION['rol'] ?? [];
 $nombre = $_SESSION['nombre'] ?? [];
 $documento = $_SESSION['document'] ?? [];
