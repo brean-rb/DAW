@@ -82,23 +82,50 @@ if (isset($_SESSION['resultado_asistencia']) && is_array($_SESSION['resultado_as
 
       <!-- MENÚ CENTRAL -->
       <ul class="navbar-nav mx-auto">
-        <li class="nav-item"><a class="nav-link text-white" href="guardiasRealizadas.php">Guardias Realizadas</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="consultaAusencias.php">Consultar Ausencias</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="guardiasRealizadas.php?auto=1">Guardias Realizadas</a>
+        </li>
+        <li class="nav-item"><a class="nav-link text-white" href="../verAusencias.php?cargar_guardias=1">Consultar Ausencias</a>
+        </li>
 
         <?php if ($rol === 'admin'): ?>
-          <li class="nav-item"><a class="nav-link text-white" href="registroAusencias.php">Registrar Ausencia</a></li>
           <li class="nav-item"><a class="nav-link text-white" href="verInformes.php">Generar informes</a></li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
-              Gestión de asistencia
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="verAsistencia.php">Consultar asistencia</a></li>
-              <li><a class="dropdown-item" href="introducirAusente.php">Añadir profesorado ausente</a></li>
-            </ul>
+        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Gestión de asistencia
+        </a>
+        <ul class="dropdown-menu dropdown-hover">
+          <li><a class="dropdown-item" href="verAsistencia.php">Consultar asistencia</a></li>
+          <li><a class="dropdown-item" href="registroAusencias.php">Registrar Ausencia</a></li>
+        </ul>
           </li>
         <?php endif; ?>
       </ul>
+
+      <style>
+  .dropdown-menu li {
+    color: white;
+    font-weight: bold;
+  }
+
+  .dropdown-menu .dropdown-item {
+    color: white !important;
+    font-weight: bold;
+    background-color: transparent !important;
+    transition: color 0.3s ease;
+  }
+
+  .dropdown-menu .dropdown-item:hover {
+    background-color: transparent !important;
+    color: #d0f0ff !important; /* blanco azulado más claro */
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: block;
+    background: linear-gradient(135deg, #0f1f2d, #18362f);
+  }
+</style>
+
+
 
       <!-- BIENVENIDA + LOGOUT A LA DERECHA -->
       <div class="d-flex align-items-center ms-auto">
@@ -113,7 +140,6 @@ if (isset($_SESSION['resultado_asistencia']) && is_array($_SESSION['resultado_as
     </div>
   </div>
 </nav>
-
 
 <main>
     <div class="container mt-5 d-flex justify-content-start align-items-center perfil-contenedor">

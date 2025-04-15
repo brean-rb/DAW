@@ -86,6 +86,63 @@ if ($metodo === 'GET') {
         } else {
             echo json_encode(["error" => "No se encontraron guardias para " . $fecha]);
         }
+    } elseif ($accion === "generarInforme") {
+        $tipo = $_GET['tipo'] ?? [];
+
+        switch ($tipo) {
+            case 'dia':
+                $fecha = $_GET['fecha'];
+                $sql = "SELECT fecha,nombreProfe, aula, grupo, asignatura, sesion_orden,dia_semana, CONCAT(hora_inicio, '--', hora_fin) 
+                 FROM  registro_guardias WHERE  fecha = '$fecha'; ";
+                break;
+            case 'semana':  
+                $diaSemana = $_GET['semana'];
+                $inicioSemana = date('Y-m-d', strtotime('monday this week', strtotime($diaSemana)));
+                $finSemana = date('Y-m-d', strtotime('sunday this week', strtotime($diaSemana)));
+                $sql = "SELECT fecha,nombreProfe, aula, grupo, asignatura, sesion_orden,dia_semana, CONCAT(hora_inicio, '--', hora_fin)
+                 FROM registro_guardias WHERE fecha BETWEEN '$inicioSemana' AND '$finSemana'";
+                break;
+            case 'mes':
+                $mes = $_GET['mes'];
+                $sql = "SELECT fecha,nombreProfe, aula, grupo, asignatura, sesion_orden,dia_semana, CONCAT(hora_inicio, '--', hora_fin)
+                 FROM registro_guardias WHERE DATE_FORMAT(fecha, '%Y-%m') = '$mes'";
+                 break;
+            case 'trimestre':
+                $trimestre = $_GET['trimestre'] ?? '';
+                if ($trimestre == 1) {
+                    $inicio = "2024-09-09";
+                    $fin = "2024-12-22";
+                } elseif ($trimestre == 2) {
+                    $inicio = "2025-01-08";
+                    $fin = "2025-04-14";
+                } else {
+                    $inicio = "2025-04-29";
+                    $fin = "2025-06-21";
+                }
+                $sql = "SELECT fecha,nombreProfe, aula, grupo, asignatura, sesion_orden,dia_semana, CONCAT(hora_inicio, '--', hora_fin) 
+                FROM registro_guardias WHERE fecha BETWEEN '$inicio' AND '$fin'";
+                break;
+            case 'docent':
+                    $docente = $_GET['docente'] ?? '';
+                    $sql = "SELECT fecha,nombreProfe, aula, grupo, asignatura, sesion_orden,dia_semana, CONCAT(hora_inicio, '--', hora_fin)
+                     FROM registro_guardias WHERE docente_guardia = '$docente'";
+                break;
+            case 'curs':
+                $inicio = "2024-09-09";
+                $fin = "2025-06-21";
+                $sql = "SELECT fecha,nombreProfe, aula, grupo, asignatura, sesion_orden,dia_semana, CONCAT(hora_inicio, '--', hora_fin)
+                 FROM registro_guardias WHERE fecha BETWEEN '$inicio' AND '$fin'";
+                break;
+            default:
+            error_log("tipo no valido");
+                break;
+        }
+        $result = conexion_bd(SERVIDOR,USER,PASSWD,BASE_DATOS,$sql);
+        if (is_array($result)) {
+            echo json_encode($result);
+        }else{
+            error_log("error en la consulta");
+        }
     }
 }
 elseif ($metodo === 'POST') {

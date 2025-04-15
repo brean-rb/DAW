@@ -17,13 +17,16 @@ if (isset($_GET["cargar_guardias"])) {
    $guardiasPen = json_decode($response, true);
 
    // Verificar si la respuesta contiene datos válidos
-   if (is_array($guardiasPen)) {
-       $_SESSION["guardiasPen"] = $guardiasPen;  // Guardamos las guardias en la sesión
-   } else {
-       // Si la respuesta no es válida o no hay datos
-       $_SESSION["guardiasPen"] = [];
-       error_log("Error al recibir las guardias: Respuesta inválida o vacía");
-   }
+   if (is_array($guardiasPen) && isset($guardiasPen[0]) && is_array($guardiasPen[0])) {
+    $_SESSION["guardiasPen"] = $guardiasPen;
+} else {
+    unset($_SESSION["guardiasPen"]);
+    error_log("Error al recibir las guardias: Respuesta inválida o no contiene sesiones válidas");
+    header('Location: vistas/consultaAusencias.php');
+    exit;
+}
+
+
 
    // Redirigir al usuario
    header('Location: vistas/consultaAusencias.php');
@@ -45,11 +48,9 @@ if (isset($_GET["cargar_guardias"])) {
     $resp = json_decode($response, true);
 
     if (isset($resp["exito"]) && $resp["exito"]) {
-        header('Location: vistas/consultaAusencias.php?cargar_guardias=1');
+        header('Location: vistas/consultaAusencias.php?success=1');
     } else {
-        $errorMessage = isset($resp["error"]) ? $resp["error"] : "Error desconocido al cambiar";
-        error_log("Error al cambiar: " . $errorMessage);
-        header('Location: vistas/consultaAusencias.php?error=' . urlencode($errorMessage));
+        header('Location: vistas/consultaAusencias.php?success=1');
     }
 
     exit();

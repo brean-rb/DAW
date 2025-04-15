@@ -3,10 +3,8 @@ session_start();
 $rol = $_SESSION['rol'];
 $nombre = $_SESSION['nombre'];
 $documento = $_SESSION['document'];
-if (isset($_GET["error"])) {
-    $error = htmlspecialchars($_GET["error"]);
-    echo "<div style='color: red; font-weight: bold;'>⚠️ $error</div>";
-}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -38,23 +36,52 @@ if (isset($_GET["error"])) {
 
       <!-- MENÚ CENTRAL -->
       <ul class="navbar-nav mx-auto">
-        <li class="nav-item"><a class="nav-link text-white" href="guardiasRealizadas.php">Guardias Realizadas</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="consultaAusencias.php">Consultar Ausencias</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="guardiasRealizadas.php?auto=1">Guardias Realizadas</a>
+        </li>
+        <li class="nav-item"><a id="link-cargar-guardias" class="nav-link text-white" href="../verAusencias.php?cargar_guardias=1">Consultar Ausencias</a>
+
+
+        </li>
 
         <?php if ($rol === 'admin'): ?>
-          <li class="nav-item"><a class="nav-link text-white" href="registroAusencias.php">Registrar Ausencia</a></li>
           <li class="nav-item"><a class="nav-link text-white" href="verInformes.php">Generar informes</a></li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
-              Gestión de asistencia
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="verAsistencia.php">Consultar asistencia</a></li>
-              <li><a class="dropdown-item" href="introducirAusente.php">Añadir profesorado ausente</a></li>
-            </ul>
+        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Gestión de asistencia
+        </a>
+        <ul class="dropdown-menu dropdown-hover">
+          <li><a class="dropdown-item" href="verAsistencia.php">Consultar asistencia</a></li>
+          <li><a class="dropdown-item" href="registroAusencias.php">Registrar Ausencia</a></li>
+        </ul>
           </li>
         <?php endif; ?>
       </ul>
+
+      <style>
+  .dropdown-menu li {
+    color: white;
+    font-weight: bold;
+  }
+
+  .dropdown-menu .dropdown-item {
+    color: white !important;
+    font-weight: bold;
+    background-color: transparent !important;
+    transition: color 0.3s ease;
+  }
+
+  .dropdown-menu .dropdown-item:hover {
+    background-color: transparent !important;
+    color: #d0f0ff !important; /* blanco azulado más claro */
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: block;
+    background: linear-gradient(135deg, #0f1f2d, #18362f);
+  }
+</style>
+
+
 
       <!-- BIENVENIDA + LOGOUT A LA DERECHA -->
       <div class="d-flex align-items-center ms-auto">
@@ -88,7 +115,7 @@ if (isset($_GET["error"])) {
             <button type="submit" name="cargar_guardias" class="btn btn-primary">Cargar Guardias</button>
         </form>
     </div>
-    <?php if (!empty($_SESSION["guardiasPen"])): ?>
+    <?php if (!empty($_SESSION["guardiasPen"]) && isset($_SESSION["guardiasPen"])): ?>
         <div class="container mt-4">
             <h4 class="mb-3">Guardias pendientes de hoy (<?php echo htmlspecialchars(date('d-m-Y')); ?>):</h4>
             
@@ -142,11 +169,13 @@ if (isset($_GET["error"])) {
                 </table>
             </div>
         </div>
-    <?php else: ?>
-        <div class="alert alert-info mt-4 text-center mx-auto" style="max-width: 600px;">
-            No hay ninguna guardia pendiente.
-        </div>
-    <?php endif; ?>
+        <?php else: ?>
+  <div class="alert alert-info mt-4 text-center fw-bold d-flex align-items-center justify-content-center gap-2" style="max-width: 400px; margin: 0 auto;">
+    <i class="bi bi-exclamation-triangle-fill"></i>
+    No hay guardias pendientes
+  </div>
+<?php endif; ?>
+
 
     <!-- Modal de confirmación para cubrir la guardia -->
 <div class="modal fade" id="coverGuardModal" tabindex="-1" aria-labelledby="coverGuardModalLabel" aria-hidden="true">
@@ -162,10 +191,13 @@ if (isset($_GET["error"])) {
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar guardia</button>
         <form action="../verAusencias.php" method="POST" class="d-inline">
-    <input type="hidden" id="sesion_id_input" name="sesion_id" value="">
-    <input type="hidden" id="document_input" name="document" value="">
-    <button type="submit" name="asignar" class="btn btn-primary" id="confirm-cover">Asignarme guardia</button>
+  <input type="hidden" id="sesion_id_input" name="sesion_id" value="">
+  <input type="hidden" id="document_input" name="document" value="">
+  <input type="hidden" name="asignar" value="1">
+  <input type="hidden" name="redirigir" value="1"> <!-- para saber que después debe redirigir -->
+  <button type="submit" class="btn btn-primary" id="confirm-cover">Asignarme guardia</button>
 </form>
+
 
 
         </div>
@@ -174,6 +206,14 @@ if (isset($_GET["error"])) {
 </div>
 
 </section>
+
+<?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
+  <div class="position-fixed top-0 start-50 translate-middle-x mt-4" style="z-index: 1050; width: 100%; max-width: 500px;">
+    <div class="alert alert-primary text-center fw-bold mb-0" role="alert">
+      Guardia asignada correctamente. Pulsa 👇 para ver los cambios.
+    </div>
+  </div>
+<?php endif; ?>
 
 
 <script src="../src/guardias.js"></script>
