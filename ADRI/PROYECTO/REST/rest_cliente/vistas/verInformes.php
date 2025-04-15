@@ -39,6 +39,7 @@ $profesores = $_SESSION['profesores'] ?? [];
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Página principal de <?php echo htmlspecialchars($nombre); ?></title>
+  <link rel="shortcut icon" href="../src/images/favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="../src/principal.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
@@ -123,7 +124,13 @@ $profesores = $_SESSION['profesores'] ?? [];
     </div>
   </div>
 </main>
-
+<div class="container mt-5">
+    <?php if (isset($_SESSION['alert_message'])): ?>
+        <div class="alert alert-warning text-center" role="alert">
+            <?php echo htmlspecialchars($_SESSION['alert_message']); ?>
+        </div>
+        <?php unset($_SESSION['alert_message']); ?>
+    <?php endif; ?>
 <div class="container py-5">
   <h2 class="mb-4">📄 Generador de informes de faltas</h2>
 
@@ -143,17 +150,17 @@ $profesores = $_SESSION['profesores'] ?? [];
 
     <div id="campo-dia" class="campo-dinamico mb-3">
       <label for="dia" class="form-label">Selecciona un día:</label>
-      <input type="date" name="dia" id="dia" class="form-control">
+      <input type="date" name="dia" id="dia" class="form-control" value="<?php echo date('Y-m-d'); ?>">
     </div>
 
     <div id="campo-semana" class="campo-dinamico mb-3">
       <label for="semana" class="form-label">Selecciona un día de la semana:</label>
-      <input type="date" name="semana" id="semana" class="form-control">
+      <input type="date" name="semana" id="semana" class="form-control" value="<?php echo date('Y-m-d'); ?>">
     </div>
 
     <div id="campo-mes" class="campo-dinamico mb-3">
       <label for="mes" class="form-label">Selecciona un mes:</label>
-      <input type="month" name="mes" id="mes" class="form-control">
+      <input type="month" name="mes" id="mes" class="form-control" value="<?php echo date('Y-m'); ?>">
     </div>
 
     <div id="campo-trimestre" class="campo-dinamico mb-3">

@@ -5,7 +5,6 @@ include("curl_conexion.php");
 $tipo = $_GET['tipoInforme'] ?? null;
 $params = ['document'=>$_SESSION['document'], 'accion' => 'generarInforme', 'tipo' => $tipo];
 
-
 switch ($tipo) {
   case 'dia':
     $params['fecha'] = $_GET['dia'] ?? '';
@@ -38,9 +37,9 @@ if (!empty($data) && is_array($data)) {
   $_SESSION['resultado_informe'] = $data;
   $_SESSION['tipo_informe'] = $tipo;
   header('Location: vistas/verResultados.php');
-
   exit;
 } else {
-  header('Location: generarInforme.php?error=No%20se%20obtuvo%20ningún%20resultado');
-  exit;
+  $_SESSION['alert_message'] = 'No se encontraron resultados para la consulta.';
+  header('Location: vistas/verInformes.php');
+
 }

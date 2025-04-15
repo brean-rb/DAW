@@ -18,6 +18,7 @@ if (empty($resultados) || !isset($resultados[0]) || !is_array($resultados[0])) {
 <head>
   <meta charset="UTF-8">
   <title>Resultados del Informe</title>
+  <link rel="shortcut icon" href="../src/images/favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="../src/principal.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
@@ -76,7 +77,23 @@ if (empty($resultados) || !isset($resultados[0]) || !is_array($resultados[0])) {
         }
 
         
-      </style>
+  table {
+    table-layout: auto !important;
+    width: 100% !important;
+  }
+
+  th, td {
+    white-space: nowrap;
+    word-break: break-word;
+    padding: 6px;
+    font-size: 11px;
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+  }
+</style>
+
 
       <div class="d-flex align-items-center ms-auto">
         <span class="text-white me-3"><strong>Bienvenid@ <?= htmlspecialchars($nombre); ?></strong></span>
@@ -103,7 +120,8 @@ if (empty($resultados) || !isset($resultados[0]) || !is_array($resultados[0])) {
   </div>
 </main>
 
-<div class="container mt-5">
+<div class="container mt-5 tabla2PDF">
+
   <h2 class="mb-4 text-center">📊 Informe filtrado por <?= htmlspecialchars($tipo) ?></h2>
 
   <div class="table-responsive">
@@ -132,9 +150,20 @@ if (empty($resultados) || !isset($resultados[0]) || !is_array($resultados[0])) {
     </table>
   </div>
 
-  <div class="mt-4 text-center">
+  
+</div>
+<div class="mt-4 text-center">
     <a href="verInformes.php" class="btn btn-secondary">⬅️ Volver</a>
   </div>
-</div>
+<!-- Botón flotante para exportar a PDF -->
+<button id="exportarPDF" class="btn btn-danger position-fixed" 
+        style="top: 90px; right: 20px; z-index: 1000;">
+  <i class="bi bi-file-earmark-pdf-fill"></i> Exportar a PDF
+</button>
+<img id="footerLogo" src="../src/images/logoenUno.png" alt="Imagen PDF" style="display:none; max-width: 250px;">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="../src/exportarAPDF.js"></script>
+
 </body>
 </html>
