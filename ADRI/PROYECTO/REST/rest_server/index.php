@@ -1,22 +1,7 @@
 
 <?php 
-/**
- * index.php
- *
- * Punto de entrada para el servicio REST de GestiónGuardias.
- * Atiende métodos HTTP GET, POST, PUT y DELETE, redirigiendo cada petición
- * a la acción correspondiente definida en el parámetro 'accion'.
- *
- * @package    GestionGuardias\RESTServer
- * @author     Adrian Pascual Marschal
- * @license    MIT
- */
-
-// Carga configuración y funciones auxiliares
 include("config.php");
-session_start();
-
-// Obtiene método HTTP y URI solicitada
+session_start(); 
 
 $metodo = $_SERVER['REQUEST_METHOD']; 
 $recurso = filter_input(INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_URL);  

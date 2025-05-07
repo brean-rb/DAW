@@ -1,4 +1,13 @@
 /**
+ *  ==========================
+ *       dashboard.css
+ *  ==========================
+ * Hoja de estilos adicional para la pestaña principal
+ *
+ * @package    GestionGuardias
+ * @author     Adrian Pascual Marschal
+ * @license    MIT
+ *
  * Contenedor del mensaje de alerta que se muestra en pantalla.
  *
  * @class alert-container
@@ -56,8 +65,8 @@ table.table-guardias thead tr th {
 * @param {string} border - Borde blanco de 2px.
 */
 .navbar-toggler {
-  background-color: #0f1f2d !important;  /* tu azul custom */
-  border: 2px solid #fff !important;     /* borde blanco */
+  background-color: #0f1f2d !important;  
+  border: 2px solid #fff !important;    
 }
 
 /**
@@ -88,4 +97,47 @@ table.table-guardias thead tr th {
 */
 ::-webkit-scrollbar {
   display: none;
+}
+/**
+ * @selector html, body
+ * @description Asegura que la raíz y el body ocupen el 100% de la altura de la ventana y elimina márgenes por defecto.
+ * @param {string} height – Altura al 100% del viewport.
+ * @param {string} margin – Elimina márgenes por defecto.
+ */
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+/**
+ * @selector body
+ * @description Convierte el body en un contenedor flex de columna y reparte el espacio entre sus hijos.
+ * @param {string} display – Define flexbox.
+ * @param {string} flex-direction – Dirección de los elementos en columna.
+ * @param {string} justify-content – Espacia los elementos para que el footer se empuje hacia abajo.
+ */
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+/**
+ * @class page-content
+ * @description Contenedor principal de la página que crece para rellenar el espacio disponible.
+ * @param {number} flex – Crece de forma proporcional para ocupar el espacio sobrante.
+ */
+.page-content {
+  flex: 1;
+}
+/**
+ * @selector footer
+ * @description Se sitúa siempre al final del body, “empujado” por el contenido previo.
+ * @param {string} position – Posición relativa para respetar el flujo de documento.
+ * @param {string} margin-top – Automático para empujar el footer hacia abajo.
+ * @param {string} width – Ocupa el 100% del ancho del contenedor.
+ */
+footer {
+  position: relative;
+  margin-top: auto;
+  width: 100%;
 }

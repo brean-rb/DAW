@@ -1,20 +1,30 @@
 /**
- * Actualiza los campos de hora de inicio y fin según las sesiones seleccionadas.
- * - Recoge los checkboxes marcados con name="sesiones[]".
- * - Ordena las sesiones por hora de inicio.
- * - Asigna la hora más temprana a `#hora_inicio` y la más tardía a `#hora_fin`.
- * - También actualiza los inputs ocultos para envío en formulario.
+ *  ==========================
+ *          ausencias.js
+ *  ==========================
+ * Script que realiza el control de las sesiones seleccionadas que 
+ * indican la ausencia por sesiones de ese docente seleccionado que 
+ * llega aquí por redireccionamiento
  *
- * @function actualizarHoras
- * @returns {void}
+ * @package    GestionGuardias
+ * @author     Adrian Pascual Marschal
+ * @license    MIT
+ * 
+ * @var {NodeListOf<HTMLInputElement>} checkboxesSeleccionados - Lista de todos los checkboxes de sesiones que están marcados.
+ * @var {Array<[string, string]>} horas         - Array de pares [horaInicio, horaFin] extraídos de los checkboxes seleccionados.
+ * @var {[string, string]} hora                - Par [horaInicio, horaFin] obtenido al hacer split del valor de un checkbox.
+ *
+ * @param {[string, string]} a                  - Primer par [horaInicio, horaFin] a comparar en la función de ordenación.
+ * @param {[string, string]} b                  - Segundo par [horaInicio, horaFin] a comparar en la función de ordenación.
+ * @var {HTMLInputElement} jornadaCompleta      - Checkbox que activa/desactiva la selección de todas las sesiones.
+ * @var {NodeListOf<HTMLInputElement>} checkboxes - Lista de todos los checkboxes de sesiones (usada al marcar jornada completa).
+ * @var {HTMLInputElement} checkbox             - Cada checkbox individual en los bucles forEach de los event listeners.
  */
 function actualizarHoras() {
     // Obtener todos los checkboxes de sesiones marcados
     var checkboxesSeleccionados = document.querySelectorAll('input[name="sesiones[]"]:checked');
-    console.log(checkboxesSeleccionados);
 
     if (checkboxesSeleccionados.length > 0) {
-        /** @type {Array<[string, string]>} Array de pares [horaInicio, horaFin] */
         var horas = [];
 
         // Recorrer cada checkbox marcado y extraer rango de horas

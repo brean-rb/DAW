@@ -1,115 +1,84 @@
 <?php
 /**
- * consultaAsistencia.php
+ * verAsistencia.php
  *
- * Permite a un administrador consultar la asistencia del profesorado,
- * mostrando registros filtrados por fecha o mes y opcionalmente por profesor.
+ * Página de consulta de asistencia del profesorado.
+ * Permite filtrar por profesor en una fecha o mes, o bien cualquier profesor 
+ * en una fecha o un mes  mostrando resultados válidos.
  *
  * @package    GestionGuardias
+ * @author     Adrian Pascual Marschal
+ * @license    MIT
+ * @link       http://localhost/GestionGuardias/PROYECTO/REST/rest_cliente/vistas/verAsistencia.php
+ *
+ * @function initSessionAndFetchProfesores
+ * @description Inicia la sesión, valida autenticación de administrador y obtiene la lista de profesores.
  */
-
 session_start();
-/** Inicia o reanuda la sesión PHP para gestionar autenticación y datos de usuario. */
-
 include("../curl_conexion.php");
-/** Incluye la función curl_conexion(URL, método, params) para llamadas al servicio REST. */
 
-// Verificación de autenticación: redirige al login si no hay usuario
+// Redirige al login si no hay sesión activa
 if (!isset($_SESSION['document'])) {
     header("Location: ../login.php");
     exit();
 }
 
-// Recupera datos de sesión
-$rol         = $_SESSION['rol']        ?? '';  // Rol del usuario ('admin' o 'user')
-$nombre      = $_SESSION['nombre']     ?? '';  // Nombre del usuario para mostrar en la interfaz
-$documento   = $_SESSION['document']   ?? '';  // Documento o identificador del usuario
+/**
+ * @var string $rol         Rol del usuario ('admin' o 'profesor').
+ * @var string $nombre      Nombre a mostrar en la cabecera.
+ * @var string $documento   Documento/ID del usuario.
+ */
+$rol        = $_SESSION['rol'] ?? '';
+$nombre     = $_SESSION['nombre'] ?? '';
+$documento  = $_SESSION['document'] ?? '';
 
-// Control de acceso: solo administradores pueden consultar asistencia
+// Solo administradores pueden acceder
 if ($rol !== 'admin') {
     header('Location: dashboard.php');
-    exit();
+    exit;
 }
 
-/** Parámetros para la consulta de la lista de profesores. */
-$params     = [
-    'accion' => 'consultaProfes'
-];
-
-/** Llamada al servicio REST para obtener el listado de profesores. */
-$response   = curl_conexion(URL, 'POST', $params);
+// Petición a la API para obtener la lista de profesores
+$params    = ['accion' => 'consultaProfes'];
+$response  = curl_conexion(URL, 'POST', $params);
 $profesores = json_decode($response, true);
 
-/** Manejo de errores devueltos por la API. */
+// Manejo de error en respuesta
 if (isset($profesores['error'])) {
-    $_SESSION['mensaje'] = [
-        'type' => 'danger',
-        'text' => $profesores['error']
-    ];
+    $_SESSION['mensaje'] = ['type' => 'danger', 'text' => $profesores['error']];
 } else {
     $_SESSION['profesores'] = $profesores;
 }
 
-/** Lista de profesores desde la sesión para poblar el <select>. */
-$profesores_session = $_SESSION['profesores'] ?? [];
+// Preparar los datos de profesores para el formulario
+$profesores = $_SESSION['profesores'] ?? [];
 
-/**
- * Filtrado de registros válidos de asistencia:
- * conserva solo aquellos con identificador de docente no vacío y distinto de 'N'.
- */
+// Filtrar registros válidos de la consulta previa (si existen)
 $datosValidos = [];
 if (isset($_SESSION['resultado_asistencia']) && is_array($_SESSION['resultado_asistencia'])) {
-    $datosValidos = array_filter($_SESSION['resultado_asistencia'], function($registro) {
-        return !empty($registro[0]) && $registro[0] !== 'N';
-    });
+    $datosValidos = array_filter(
+        $_SESSION['resultado_asistencia'],
+        function($registro) {
+            // Un registro es válido si el nombre del docente no está vacío ni marcado como 'N'
+            return !empty($registro[0]) && $registro[0] !== 'N';
+        }
+    );
 }
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!-- Metadatos esenciales -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Consulta de asistencia — <?= htmlspecialchars($nombre) ?></title>
-  <link rel="shortcut icon" href="../src/images/favicon.png" type="image/x-icon">
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina principal de <?php echo htmlspecialchars($nombre); ?></title>
+    <link rel="shortcut icon" href="../src/images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../src/principal.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css">
+<link rel="stylesheet" href="../src/asistencias.css">
 
-  <!-- CSS de Bootstrap e iconos -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-
-  <!-- CSS plano y personalizado -->
-  <link rel="stylesheet" href="../src/principal.css">
-  <link rel="stylesheet" href="../src/guardias.css">
-
-  <style>
-    /* Ocultar scrollbar en WebKit */
-    ::-webkit-scrollbar { display: none; }
-
-    /* Personalización de la navbar-toggler */
-    .navbar-toggler {
-      background-color: #0f1f2d !important;
-      border: 2px solid #fff !important;
-    }
-    .navbar-toggler-icon {
-      background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' d='M4 7H26 M4 15H26 M4 23H26'/%3E%3C/svg%3E");
-    }
-    .navbar-toggler:hover {
-      background-color: #18362f !important;
-    }
-
-    /* Estilos para la tabla de resultados */
-    .table-responsive {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    .table th, .table td {
-      white-space: nowrap;
-    }
-    table.table-guardias thead tr th {
-      background: linear-gradient(135deg, #0f1f2d, #18362f) !important;
-      color: #fff !important;
-    }
-  </style>
 
 </head>
 <body>
@@ -251,7 +220,7 @@ if (isset($_SESSION['resultado_asistencia']) && is_array($_SESSION['resultado_as
       <div class="col-12 col-md-6">
         <label for="fecha" class="form-label">Fecha:</label>
         <input type="date" name="fecha" id="fecha"
-               class="form-select" value="<?= date('Y-m-d') ?>">
+        class="input-select-custom w-100" value="<?= date('Y-m-d') ?>">
       </div>
     </div>
 
@@ -259,7 +228,7 @@ if (isset($_SESSION['resultado_asistencia']) && is_array($_SESSION['resultado_as
       <div class="col-12 col-md-6">
         <label for="mes" class="form-label">Mes:</label>
         <input type="month" name="mes" id="mes"
-               class="form-select" value="<?= date('Y-m') ?>">
+        class="input-select-custom w-100" value="<?= date('Y-m') ?>">
       </div>
     </div>
 
@@ -307,6 +276,13 @@ if (isset($_SESSION['resultado_asistencia']) && is_array($_SESSION['resultado_as
 <?php endif; ?>
 <?php endif; ?>
 
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
+<script src="../src/calendar.js"></script>
+
 <script>
 document.getElementById('tipoConsulta').addEventListener('change', function () {
     const inputFecha = document.getElementById('inputFecha');
@@ -319,9 +295,6 @@ document.getElementById('tipoConsulta').addEventListener('change', function () {
     if (this.value === 'mes') inputMes.style.display = 'block';
 });
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-
 <footer class="bg-dark text-white py-4 mt-5" style="background: linear-gradient(135deg, #0f1f2d, #18362f) !important;">
    <div class="container text-center">
      <p class="mb-0">&copy; 2025 AsistGuard. Todos los derechos reservados.</p>

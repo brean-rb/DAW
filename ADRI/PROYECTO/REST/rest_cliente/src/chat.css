@@ -1,4 +1,13 @@
 /**
+ *  ==========================
+ *       chat.css
+ *  ==========================
+ * Hoja de estilos para la pestaña del chat
+ *
+ * @package    GestionGuardias
+ * @author     Adrian Pascual Marschal
+ * @license    MIT
+ *
  * @class chat-window
  * @description Ventana principal de chat que ocupa el 70% de la altura de la ventana.
  */
@@ -281,4 +290,54 @@ input[name="mensaje"]:focus {
   outline: none !important;
   box-shadow: none !important;
   border-image: linear-gradient(135deg, #9d4edd, #1e3a5f) 1;
+}
+/**
+ * @selector input[type="checkbox"]
+ * @description Checkbox personalizado: elimina apariencia nativa, define tamaño, borde y fondo transparente.
+ */
+ input[type="checkbox"] {
+  appearance: none;
+  width: 1.2em;
+  height: 1.2em;
+  margin-right: 0.5em;
+  border: 2px solid #1e3a5f;
+  border-radius: 0.25em;
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+  vertical-align: middle;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+/**
+ * @selector input[type="checkbox"]:hover
+ * @description Cambio de color de borde al pasar el ratón sobre el checkbox.
+ */
+input[type="checkbox"]:hover {
+  border-color: #0f1f2d;
+}
+
+/**
+ * @selector input[type="checkbox"]:checked
+ * @description Estado marcado: cambia el borde y el fondo a un degradado.
+ */
+input[type="checkbox"]:checked {
+  border-color: #0f1f2d;
+  background: linear-gradient(135deg, #1e3a5f, #0f1f2d);
+}
+
+/**
+ * @selector input[type="checkbox"]:checked::after
+ * @description Dibuja la marca interna (tick) cuando el checkbox está marcado.
+ */
+input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  width: 4px;
+  height: 8px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }

@@ -1,117 +1,73 @@
 <?php
 /**
- * generarInforme.php
+ * verInformes.php
  *
- * Interfaz para administradores: genera informes de faltas de asistencia
- * con distintos filtros (día, semana, mes, trimestre, docente, todo el curso).
- * Obtiene la lista de profesores vía CURL y controla la autenticación y permisos.
+ * Pestaña con formulario dinámico en la muestra del informe respecto a las ausencias y por quien
+ * ha sido asignado, ademas de ver la cantidad de faltas que ha realizado ese profesor. Puedes generar
+ * el informe por dia, semana, mes, trimestre, curso o docente. Incluye la posibilidad de exportarlo en
+ * PDF. Incluye un alert que cancela la redirección en caso de no existir ausencias sobre esos filtros
  *
  * @package    GestionGuardias
  * @author     Adrian Pascual Marschal
  * @license    MIT
+ * @link       http://localhost/GestionGuardias/PROYECTO/REST/rest_cliente/vistas/verInformes.php
+ *
+ * @function initSessionAndFetchProfesores
+ * @description Inicia la sesión, valida autenticación de administrador y obtiene la lista de profesores.
  */
-
 session_start();
-/**
- * Inicia o reanuda la sesión PHP para gestionar autenticación y datos de usuario.
- */
-
 include("../curl_conexion.php");
-/**
- * Incluye la función curl_conexion(URL, método, params) para llamadas al servicio REST.
- */
-
-// Verificación de autenticación: redirige al login si no hay usuario
 if (!isset($_SESSION['document'])) {
-    header("Location: ../login.php");
-    exit();
+  header("Location: ../login.php");
+  exit();
 }
+$rol = $_SESSION['rol'];
+$nombre = $_SESSION['nombre'];
+$documento = $_SESSION['document'];
 
-// Recupera datos de sesión
-$rol       = $_SESSION['rol']      ?? '';  // Rol del usuario ('admin' o 'user')
-$nombre    = $_SESSION['nombre']   ?? '';  // Nombre del usuario para mostrar en la interfaz
-$documento = $_SESSION['document'] ?? '';  // Documento o identificador del usuario
-
-// Control de acceso: solo administradores pueden generar informes
 if ($rol !== 'admin') {
-    header('Location: dashboard.php');
-    exit();
+  header('Location: dashboard.php'); // Redirige si no es admin
+  exit;
 }
+$params = [
+  'accion' => 'consultaProfes'
+];
+$response = curl_conexion(URL, 'POST', $params); // Realizamos la consulta usando POST
 
-/**
- * Parámetros para la consulta de la lista de profesores.
- * - accion: 'consultaProfes'
- */
-$params   = ['accion' => 'consultaProfes'];
-
-/**
- * Llamada al servicio REST para obtener el listado de profesores.
- * Usa método POST y decodifica la respuesta JSON.
- */
-$response   = curl_conexion(URL, 'POST', $params);
+// Decodificar la respuesta JSON
 $profesores = json_decode($response, true);
 
-// Manejo de errores devueltos por la API: guarda mensaje flash en sesión
+// Verificar si hay errores en la respuesta
 if (isset($profesores['error'])) {
-    $_SESSION['mensaje'] = [
-        'type' => 'danger',
-        'text' => $profesores['error']
-    ];
+  $_SESSION['mensaje'] = ['type' => 'danger', 'text' => $profesores['error']];
 } else {
-    $_SESSION['profesores'] = $profesores;
+  $_SESSION['profesores'] = $profesores;
 }
 
-/**
- * Recupera la lista de profesores desde la sesión para poblar el <select> “docent”.
- */
-$profesores_session = $_SESSION['profesores'] ?? [];
+// Verificar si el usuario está autenticado y tiene permisos de administrador
+if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
+  header("Location: login.php"); // Redirigir si no es un admin
+  exit();
+}
 
+// Obtener los datos de los profesores desde la sesión
+$profesores = $_SESSION['profesores'] ?? [];
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Generador de informes — <?= htmlspecialchars($nombre) ?></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página principal de <?php echo htmlspecialchars($nombre); ?></title>
   <link rel="shortcut icon" href="../src/images/favicon.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css">
 
-  <!-- Bootstrap CSS e iconos -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="../src/guardias.css">
+<link rel="stylesheet" href="../src/principal.css">
 
-  <!-- Flatpickr CSS y plugin monthSelect -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css">
-
-  <!-- Estilos personalizados -->
-  <link rel="stylesheet" href="../src/guardias.css">
-  <link rel="stylesheet" href="../src/principal.css">
-
-  <style>
-    /* Ocultar scrollbar en WebKit */
-    ::-webkit-scrollbar { display: none; }
-
-    /* Personalización del botón hamburguesa */
-    .navbar-toggler {
-      background-color: #0f1f2d !important;
-      border: 2px solid #fff !important;
-    }
-    .navbar-toggler-icon {
-      background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' d='M4 7H26 M4 15H26 M4 23H26'/%3E%3C/svg%3E");
-    }
-    .navbar-toggler:hover {
-      background-color: #18362f !important;
-    }
-
-    /* Estilos para los campos dinamicos */
-    .campo-dinamico { display: none; }
-
-    /* Estilos para la tabla-guardias */
-    table.table-guardias thead tr th {
-      background: linear-gradient(135deg, #0f1f2d, #18362f) !important;
-      color: #fff !important;
-    }
-  </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-custom">
@@ -178,7 +134,7 @@ $profesores_session = $_SESSION['profesores'] ?? [];
         </div>
       </div>
       
-     <!-- DERECHA: botones en línea -->
+     
      <div class="botones-usuario d-flex align-items-center gap-2 text-center text-md-end">
 
 
@@ -208,7 +164,7 @@ $profesores_session = $_SESSION['profesores'] ?? [];
 </main>
 <div class="container mt-5">
     <?php if (isset($_SESSION['alert_message'])): ?>
-        <div class="alert alert-warning text-center" role="alert">
+        <div class="alert alert-warning text-center w-50 mx-auto" role="alert">
             <?php echo htmlspecialchars($_SESSION['alert_message']); ?>
         </div>
         <?php unset($_SESSION['alert_message']); ?>
@@ -274,89 +230,8 @@ $profesores_session = $_SESSION['profesores'] ?? [];
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css">
-
-<!-- 2) Inicializaciones -->
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const commonOpts = {
-    disableMobile: true,
-    altInput: true,
-    altInputClass: "input-select-custom",
-    locale: "es",
-    onReady(_, __, instance) {
-      instance.calendarContainer.style.border = "2px solid #1e3a5f";
-    }
-  };
-
-  // Campo “fecha” (ya lo tenías)
-  flatpickr("#fecha", {
-    ...commonOpts,
-    dateFormat: "Y-m-d",
-    altFormat: "j F, Y",
-    monthSelectorType: "dropdown"
-  });
-
-  // **** Campo “dia” – ahora también tendrá tu Flatpickr ****
-  flatpickr("#dia", {
-    ...commonOpts,
-    dateFormat: "Y-m-d",
-    altFormat: "j F, Y"
-  });
-
-  flatpickr("#semana", {
-    ...commonOpts,
-    dateFormat: "Y-m-d",
-    altFormat: "j F, Y"
-  });
-  
-  flatpickr("#mes", {
-  disableMobile: true,
-  altInput: true,
-  altInputClass: "input-select-custom",
-  locale: "es",
-  plugins: [
-    new monthSelectPlugin({
-      shorthand: false,    // meses completos (“Enero”, “Febrero”…)
-      dateFormat: "Y-m",   // valor que se envía: “2025-05”
-      altFormat:  "Y-m"    // formato visible en el input: “2025-05”
-    })
-  ],
-  onReady(_, __, instance) {
-    instance.calendarContainer.style.border = "2px solid #1e3a5f";
-  }
-});
-
-  });
-</script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const tipoSelect = document.getElementById('tipoInforme');
-
-    const campos = {
-      dia: document.getElementById('campo-dia'),
-      semana: document.getElementById('campo-semana'),
-      mes: document.getElementById('campo-mes'),
-      trimestre: document.getElementById('campo-trimestre'),
-      docent: document.getElementById('campo-docent')
-    };
-
-    function actualizarCampos() {
-      Object.values(campos).forEach(campo => {
-        campo.style.display = 'none';
-      });
-
-      const seleccionado = tipoSelect.value;
-      if (seleccionado && campos[seleccionado]) {
-        campos[seleccionado].style.display = 'block';
-      }
-    }
-
-    tipoSelect.addEventListener('change', actualizarCampos);
-    actualizarCampos();
-  });
-</script>
+<script src="../src/calendar.js"></script>
+<script src="../src/verInformes.js"></script>
 
 </body>
 <footer class="bg-dark text-white py-4 mt-5" style="background: linear-gradient(135deg, #0f1f2d, #18362f) !important;">

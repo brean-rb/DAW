@@ -1,3 +1,18 @@
+/**
+ *  ==========================
+ *          APP.JS
+ *  ==========================
+ * Script que realiza el inicio de sesión e incluye la fecha y la hora 
+ * actual dinámicamente
+ *
+ * @package    GestionGuardias
+ * @author     Adrian Pascual Marschal
+ * @license    MIT
+ * @param {HTMLElement|null} fechaElemento   Elemento donde se muestra la fecha y hora actuales.
+ * @param {HTMLElement}       togglePassword  Botón/icono para alternar la visibilidad de la contraseña.
+ * @param {HTMLInputElement}  passwordInput   Campo de entrada de contraseña cuyo tipo se alterna.
+ * @param {HTMLElement}       eyeIcon         Icono visual que cambia según el estado de la contraseña.
+ */
 document.addEventListener('DOMContentLoaded', () => {
   // Seleccionamos el elemento donde mostraremos la fecha y hora actuales
   const fechaElemento = document.querySelector('.fecha-actual');
@@ -17,9 +32,21 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /**
-   * Función para actualizar la fecha y hora en pantalla
+   * Función para actualizar la fecha y hora en pantalla.
    * - Formatea la fecha (día de la semana, día, mes, año)
    * - Formatea la hora (HH:MM:SS)
+   *
+   * @function actualizarFechaHora
+   * @param {Intl.DateTimeFormatOptions} [opcionesFecha] Opciones de formateo de la fecha.
+   * @param {('long')} [opcionesFecha.weekday]    Día de la semana completo (ej: "miércoles").
+   * @param {('numeric')} [opcionesFecha.day]      Día del mes (ej: "7").
+   * @param {('long')} [opcionesFecha.month]      Mes completo (ej: "mayo").
+   * @param {('numeric')} [opcionesFecha.year]     Año (ej: "2025").
+   * @param {Intl.DateTimeFormatOptions} [opcionesHora]    Opciones de formateo de la hora.
+   * @param {('2-digit')} [opcionesHora.hour]     Hora en formato 2 dígitos (ej: "09").
+   * @param {('2-digit')} [opcionesHora.minute]   Minutos en formato 2 dígitos (ej: "05").
+   * @param {('2-digit')} [opcionesHora.second]   Segundos en formato 2 dígitos (ej: "07").
+   * @returns {void}
    */
   function actualizarFechaHora() {
     const ahora = new Date();

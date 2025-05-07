@@ -1,88 +1,54 @@
 <?php
 /**
- * registrarAusencia.php
+ * registroAusencias.php
  *
- * Página para consultar la lista de profesores mediante CURL, preparar
- * el formulario de registro de ausencia y controlar acceso de administradores.
+ * Formulario de consulta de un profesor a seleccionar en un dia a seleccionar con prevención de
+ * no ser un dia en fin de semana y además un campo de justificación de ausencia
  *
  * @package    GestionGuardias
- */
+ * @author     Adrian Pascual Marschal
+ * @license    MIT
+ * @link       http://localhost/GestionGuardias/PROYECTO/REST/rest_cliente/vistas/registroAusencias.php
 
+ * @function initSession
+ * @description Inicia la sesión y valida que el usuario esté autenticado.
+ */
 session_start();
-/**
- * Inicia o reanuda la sesión PHP para gestionar datos de usuario.
- */
-
 include("../curl_conexion.php");
-/**
- * Incluye la función curl_conexion(URL, método, params) para realizar peticiones HTTP
- * al servicio REST remoto.
- */
-
-// Autenticación: redirige al login si no hay usuario en sesión
 if (!isset($_SESSION['document'])) {
-    header("Location: ../login.php");
-    exit();
+  header("Location: ../login.php");
+  exit();
 }
-/**
- * @var string $rol    Rol del usuario autenticado (desde $_SESSION['rol']).
- * @var string $nombre Nombre del usuario autenticado (desde $_SESSION['nombre']).
- */
-$rol    = $_SESSION['rol'];
-$nombre = $_SESSION['nombre'];
 
 /**
- * Parámetros para la consulta al servicio REST:
- * - accion: 'consultaProfes'
- *
- * @var array $params
+ * @var string $rol      Rol del usuario ("admin" o "profesor").
+ * @var string $nombre   Nombre del usuario para mostrar en la cabecera.
  */
+
+$rol = $_SESSION['rol'];
+$nombre = $_SESSION['nombre'];
 $params = [
     'accion' => 'consultaProfes'
 ];
-
-/**
- * Realiza la petición CURL al servicio REST usando método POST.
- *
- * @param string $URL     Constante que define la URL base del servicio.
- * @param string $method  Método HTTP ('POST').
- * @param array  $params  Parámetros a enviar en el body de la petición.
- * @return string         Respuesta JSON en texto.
- */
 $response = curl_conexion(URL, 'POST', $params); // Realizamos la consulta usando POST
 
-/**
- * Decodifica la respuesta JSON en un array asociativo.
- *
- * @var array $profesores Array resultante de la decodificación.
- */
+// Decodificar la respuesta JSON
 $profesores = json_decode($response, true);
 
-// Manejo de errores devueltos por la API: guarda flash message en sesión
+// Verificar si hay errores en la respuesta
 if (isset($profesores['error'])) {
-    $_SESSION['mensaje'] = [
-        'type' => 'danger',
-        'text' => $profesores['error']
-    ];
+    $_SESSION['mensaje'] = ['type' => 'danger', 'text' => $profesores['error']];
 } else {
-    // Almacena la lista de profesores en sesión para su uso en el formulario
     $_SESSION['profesores'] = $profesores;
 }
 
-/**
- * Control de acceso: solo administradores pueden continuar.
- * Si no es admin, redirige a la página de login o dashboard.
- */
+// Verificar si el usuario está autenticado y tiene permisos de administrador
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
-    header("Location: login.php");
+    header("Location: login.php"); // Redirigir si no es un admin
     exit();
 }
 
-/**
- * Recupera la lista de profesores desde la sesión para poblar el <select>.
- *
- * @var array $profesores Array de [id, nombre] de profesores.
- */
+// Obtener los datos de los profesores desde la sesión
 $profesores = $_SESSION['profesores'] ?? [];
 ?>
 <!DOCTYPE html>
@@ -140,7 +106,9 @@ $profesores = $_SESSION['profesores'] ?? [];
   #motivo:-ms-input-placeholder {
     color: #fff;
   }
-.navbar-toggler {background-color: #0f1f2d !important;  /* tu azul custom */border: 2px solid #fff !important;     /* borde blanco */}
+.navbar-toggler {background-color: #0f1f2d !important; 
+  border: 2px solid #fff !important;    
+}
 
 /* 2) Icono: tres barras blancas */
 .navbar-toggler-icon {
@@ -149,7 +117,7 @@ $profesores = $_SESSION['profesores'] ?? [];
 
 
 .navbar-toggler:hover {
-  background-color: #18362f !important;  /* un tono ligeramente distinto si quieres */
+  background-color: #18362f !important;  
 }
     </style>
 </head>
@@ -263,21 +231,8 @@ $profesores = $_SESSION['profesores'] ?? [];
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
 
-<!-- 3) Tu inicialización -->
-<script>
-  flatpickr("#fecha", {
-    disableMobile: true,
-    monthSelectorType: "dropdown",
-    altInput: true,
-    altInputClass: "input-select-custom",
-    dateFormat: "Y-m-d",
-    altFormat: "j F, Y",
-    locale: "es",
-    onReady(_, __, instance) {
-      instance.calendarContainer.style.border = "2px solid #1e3a5f";
-    }
-  });
-</script>
+<script src="../src/calendar.js"></script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
     const form = document.querySelector('#busqueda');

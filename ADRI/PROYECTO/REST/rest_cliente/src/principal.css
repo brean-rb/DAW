@@ -1,36 +1,41 @@
+
+
 /**
- * Encabezados de la tabla de guardias con degradado de fondo.
+ *  ==========================
+ *       principal.css
+ *  ==========================
+ * Hoja de estilos para todas las pestañas que incorporen el nav, solo
+ * solo se excepciona el registroAusencias
+ *
+ * @package    GestionGuardias
+ * @author     Adrian Pascual Marschal
+ * @license    MIT
  *
  * @selector table.table-guardias thead tr th
- * @param {string} background - Degradado diagonal de #0f1f2d a #18362f.
- * @param {string} color - Color del texto en blanco.
+ * @description Degradado diagonal en las cabeceras de la tabla de guardias y texto en blanco.
  */
  table.table-guardias thead tr th {
   background: linear-gradient(135deg, #0f1f2d, #18362f) !important;
   color: #fff !important;
 }
 
+/* ===========================
+   NAVBAR PERSONALIZADA
+   =========================== */
+
 /**
-* Navbar personalizada con degradado de fondo y padding.
-*
-* @class navbar-custom
-* @param {string} background - Degradado diagonal de #0f1f2d a #18362f.
-* @param {string} padding - Espaciado superior e inferior de 10px.
-*/
+ * @class navbar-custom
+ * @description Barra de navegación con fondo degradado y padding vertical.
+ */
 .navbar-custom {
   background: linear-gradient(135deg, #0f1f2d, #18362f);
   padding: 10px 0;
 }
 
 /**
-* Contenedor de la marca (logo) centrado vertical y horizontalmente.
-*
-* @class navbar-brand
-* @param {string} display - Flex para centrar el logo.
-* @param {string} justify-content - Centrado horizontal.
-* @param {string} align-items - Centrado vertical.
-* @param {string} height - Altura de 50px.
-*/
+ * @selector .navbar-brand
+ * @description Contenedor del logo centrado vertical y horizontalmente.
+ */
 .navbar-brand {
   display: flex;
   justify-content: center;
@@ -39,91 +44,69 @@
 }
 
 /**
-* Imagen del logo dentro de la navbar.
-*
-* @selector .navbar-brand img
-* @param {string} height - Altura de 60px.
-* @param {string} object-fit - Ajuste de imagen para contener.
-*/
+ * @selector .navbar-brand img
+ * @description Imagen del logo ajustada a altura fija y manteniendo proporción.
+ */
 .navbar-brand img {
   height: 60px;
   object-fit: contain;
 }
 
 /**
-* Contenedor de enlaces de navegación centrado en pantallas grandes.
-*
-* @class navbar-nav
-* @param {string} margin - Centrado horizontal.
-* @param {string} text-align - Alineación centrada del texto.
-*/
+ * @selector .navbar-nav
+ * @description Centrado de los enlaces de navegación en pantallas grandes.
+ */
 .navbar-nav {
   margin: 0 auto;
   text-align: center;
 }
 
 /**
-* Estilo de los enlaces de navegación.
-*
-* @selector .navbar-nav .nav-link
-* @param {string} color - Texto en blanco.
-* @param {string} font-weight - Negrita.
-*/
+ * @selector .navbar-nav .nav-link
+ * @description Enlaces de navegación en blanco y negrita.
+ */
 .navbar-nav .nav-link {
   color: white !important;
   font-weight: bold;
 }
 
 /**
-* Hover de los enlaces de navegación.
-*
-* @selector .navbar-nav .nav-link:hover
-* @param {string} color - Texto cambia a #8fe3b3.
-*/
+ * @selector .navbar-nav .nav-link:hover
+ * @description Color de enlace al pasar el ratón, tono verde agua.
+ */
 .navbar-nav .nav-link:hover {
   color: #8fe3b3 !important;
 }
 
 /**
-* Estilo del botón toggler de la navbar (hamburguesa).
-*
-* @selector vbar-toggler
-* @param {string} background-color - Fondo oscuro #0f1f2d.
-* @param {string} border - Borde blanco de 2px.
-*/
+ * @selector vbar-toggler
+ * @description Botón hamburguesa con fondo oscuro y borde blanco. (Puede ser typo de .navbar-toggler)
+ */
 vbar-toggler {
-  background-color: #0f1f2d !important;  
-  border: 2px solid #fff !important;     
+  background-color: #0f1f2d !important;
+  border: 2px solid #fff !important;
 }
 
 /**
-* Icono SVG de tres barras blancas para el toggler.
-*
-* @class navbar-toggler-icon
-* @param {string} background-image - SVG inline con tres líneas blancas.
-*/
+ * @selector .navbar-toggler-icon
+ * @description Icono SVG en blanco para el botón hamburguesa.
+ */
 .navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' d='M4 7H26 M4 15H26 M4 23H26'/%3E%3C/svg%3E");
 }
 
 /**
-* Hover del botón toggler de la navbar.
-*
-* @selector .navbar-toggler:hover
-* @param {string} background-color - Fondo más claro #18362f.
-*/
+ * @selector .navbar-toggler:hover
+ * @description Cambio de fondo al pasar el ratón sobre el botón hamburguesa.
+ */
 .navbar-toggler:hover {
-  background-color: #18362f !important; 
+  background-color: #18362f !important;
 }
 
 /**
-* Texto de bienvenida dentro de la navbar.
-*
-* @selector #bienvenida
-* @param {string} color - Texto en blanco.
-* @param {string} font-weight - Negrita.
-* @param {string} margin - Sin margen.
-*/
+ * @selector #bienvenida
+ * @description Texto de bienvenida en blanco y negrita.
+ */
 #bienvenida {
   color: white !important;
   font-weight: bold;
@@ -131,25 +114,18 @@ vbar-toggler {
 }
 
 /**
-* Elementos de lista dentro de un dropdown.
-*
-* @selector .dropdown-menu li
-* @param {string} color - Texto en blanco.
-* @param {string} font-weight - Negrita.
-*/
+ * @selector .dropdown-menu li
+ * @description Elementos de la lista desplegable en blanco y negrita.
+ */
 .dropdown-menu li {
   color: white;
   font-weight: bold;
 }
 
 /**
-* Items del dropdown con fondo transparente y transición de color.
-*
-* @selector .dropdown-menu .dropdown-item
-* @param {string} color - Texto en blanco.
-* @param {string} background-color - Fondo transparente.
-* @param {string} transition - Transición de color en 0.3s.
-*/
+ * @selector .dropdown-menu .dropdown-item
+ * @description Items del dropdown con fondo transparente y transición de color.
+ */
 .dropdown-menu .dropdown-item {
   color: white !important;
   font-weight: bold;
@@ -158,38 +134,31 @@ vbar-toggler {
 }
 
 /**
-* Hover sobre items del dropdown.
-*
-* @selector .dropdown-menu .dropdown-item:hover
-* @param {string} background-color - Fondo transparente.
-* @param {string} color - Texto cambia a #d0f0ff.
-*/
+ * @selector .dropdown-menu .dropdown-item:hover
+ * @description Cambio de color al pasar el ratón sobre un item del dropdown.
+ */
 .dropdown-menu .dropdown-item:hover {
   background-color: transparent !important;
   color: #d0f0ff !important;
 }
 
 /**
-* Muestra el dropdown al hacer hover sobre el contenedor.
-*
-* @selector .dropdown:hover .dropdown-menu
-* @param {string} display - Muestra el menú.
-* @param {string} background - Degradado diagonal.
-*/
+ * @selector .dropdown:hover .dropdown-menu
+ * @description Muestra el menú desplegable al pasar el ratón y aplica fondo degradado.
+ */
 .dropdown:hover .dropdown-menu {
   display: block;
   background: linear-gradient(135deg, #0f1f2d, #18362f);
 }
 
+/* ===========================
+   ZONA CENTRAL (Perfil + Horario)
+   =========================== */
+
 /**
-* Zona central que contiene perfil y horario.
-*
-* @selector #medio
-* @param {string} display - Flex para distribuir contenido.
-* @param {string} justify-content - Espacio entre elementos.
-* @param {string} align-items - Alineación superior.
-* @param {string} padding - Espacio interno de 20px.
-*/
+ * @selector #medio
+ * @description Contenedor flex para perfil y horario con espacio entre ellos.
+ */
 #medio {
   display: flex;
   justify-content: space-between;
@@ -198,25 +167,18 @@ vbar-toggler {
 }
 
 /**
-* Contenedor de perfil e información del usuario.
-*
-* @selector #info
-* @param {string} display - Flex para alinear horizontalmente.
-* @param {string} align-items - Centrado vertical.
-*/
+ * @selector #info
+ * @description Contenedor del perfil de usuario alineado horizontalmente.
+ */
 #info {
   display: flex;
   align-items: center;
 }
 
 /**
-* Lista de información del usuario sin estilo de lista.
-*
-* @selector #info ul
-* @param {string} list-style - Sin marcadores.
-* @param {string} margin-left - Separación izquierda de 20px.
-* @param {string} padding - Sin relleno.
-*/
+ * @selector #info ul
+ * @description Lista sin estilo de viñetas ni padding para datos de usuario.
+ */
 #info ul {
   list-style: none;
   margin-left: 20px;
@@ -224,14 +186,9 @@ vbar-toggler {
 }
 
 /**
-* Imagen de perfil circular.
-*
-* @selector #info img
-* @param {string} width - Ancho de 120px.
-* @param {string} height - Alto de 120px.
-* @param {string} object-fit - Cubrir área.
-* @param {string} border-radius - 50% para círculo.
-*/
+ * @selector #info img
+ * @description Foto de perfil circular con ajustes de tamaño y recorte.
+ */
 #info img {
   width: 120px;
   height: 120px;
@@ -240,40 +197,33 @@ vbar-toggler {
 }
 
 /**
-* Tabla de horario a ancho completo sin separación entre celdas.
-*
-* @selector #horario table
-* @param {string} width - Ancho al 100%.
-* @param {string} border-collapse - Colapsar bordes.
-*/
+ * @selector #horario table
+ * @description Tabla de horario con ancho completo y colapsado de bordes.
+ */
 #horario table {
   width: 100%;
   border-collapse: collapse;
 }
 
 /**
-* Celdas de la tabla de horario con padding y borde ligero.
-*
-* @selector #horario th, #horario td
-* @param {string} padding - Espacio interior de 8px.
-* @param {string} border - 1px sólido #ddd.
-* @param {string} text-align - Centrado de texto.
-*/
-#horario th, #horario td {
+ * @selector #horario th, #horario td
+ * @description Celdas y encabezados de la tabla con padding, borde y texto centrado.
+ */
+#horario th,
+#horario td {
   padding: 8px;
   border: 1px solid #ddd;
   text-align: center;
 }
 
+/* ===========================
+   BOTONES DE FICHAJE
+   =========================== */
+
 /**
-* Contenedor de botones de fichaje centrado con separación.
-*
-* @class botones-fichaje
-* @param {string} display - Flex para alinear.
-* @param {string} justify-content - Centrado horizontal.
-* @param {string} gap - Separación de 10px.
-* @param {string} margin-top - Separación superior de 20px.
-*/
+ * @class botones-fichaje
+ * @description Contenedor flex centrado para los botones de fichaje.
+ */
 .botones-fichaje {
   display: flex;
   justify-content: center;
@@ -282,17 +232,9 @@ vbar-toggler {
 }
 
 /**
-* Botón de fichar con estilo moderno y degradado.
-*
-* @class btn-fichar
-* @param {string} font-weight - Semi-negrita.
-* @param {string} font-size - 18px.
-* @param {string} padding - 12px 20px.
-* @param {string} border-radius - 10px.
-* @param {string} background - Degradado diagonal.
-* @param {string} border - Sin borde.
-* @param {string} transition - Transform y sombra en 0.2s.
-*/
+ * @class btn-fichar
+ * @description Botón de fichaje con estilo moderno, degradado y transiciones.
+ */
 .btn-fichar {
   font-weight: 600;
   font-size: 18px;
@@ -304,26 +246,22 @@ vbar-toggler {
 }
 
 /**
-* Hover del botón de fichar: ligero escalado y sombra.
-*
-* @selector .btn-fichar:hover
-* @param {string} transform - Escala 1.02.
-* @param {string} box-shadow - Sombra suave.
-*/
+ * @selector .btn-fichar:hover
+ * @description Efecto hover en el botón de fichar: escala y sombra.
+ */
 .btn-fichar:hover {
   transform: scale(1.02);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+/* ===========================
+   ALERTAS / MENSAJES
+   =========================== */
+
 /**
-* Estilo general de alertas/mensajes.
-*
-* @class alert
-* @param {string} padding - Espaciado 10px 16px.
-* @param {string} font-size - 15px.
-* @param {string} border-radius - 8px.
-* @param {string} transition - Opacidad en 0.5s.
-*/
+ * @class alert
+ * @description Estilo general para alertas con padding, tamaño de fuente y transición.
+ */
 .alert {
   padding: 10px 16px;
   font-size: 15px;
@@ -331,16 +269,14 @@ vbar-toggler {
   transition: opacity 0.5s ease;
 }
 
+/* ===========================
+   FOTO DE PERFIL
+   =========================== */
+
 /**
-* Foto de perfil circular con borde personalizado.
-*
-* @class foto-circular
-* @param {string} width - 100px.
-* @param {string} height - 100px.
-* @param {string} object-fit - Cover.
-* @param {string} border-radius - 50% para círculo.
-* @param {string} border - 4px sólido #004545.
-*/
+ * @class foto-circular
+ * @description Imagen circular de perfil con borde destacado.
+ */
 .foto-circular {
   width: 100px;
   height: 100px;
@@ -350,13 +286,9 @@ vbar-toggler {
 }
 
 /**
-* Wrapper relativo para acción de subir foto.
-*
-* @class foto-wrapper
-* @param {string} position - Relative para posicionar overlay.
-* @param {string} width - 120px.
-* @param {string} height - 120px.
-*/
+ * @class foto-wrapper
+ * @description Contenedor relativo para la foto con dimensiones fijas.
+ */
 .foto-wrapper {
   position: relative;
   width: 120px;
@@ -364,34 +296,21 @@ vbar-toggler {
 }
 
 /**
-* Imagen circular dentro de wrapper con cursor pointer.
-*
-* @selector .foto-wrapper .foto-circular
-* @param {string} width - 100%.
-* @param {string} height - 100%.
-* @param {string} border-radius - 50%.
-* @param {string} object-fit - Cover.
-* @param {string} border - 3px sólido #004545.
-* @param {string} cursor - Pointer.
-*/
+ * @selector .foto-wrapper .foto-circular
+ * @description Ajustes de tamaño completo y cursor pointer para la foto.
+ */
 .foto-wrapper .foto-circular {
   width: 100%;
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid #004545;
-  cursor: pointer;
 }
 
 /**
-* Contenedor de hover para foto.
-*
-* @class foto-hover
-* @param {string} position - Relative.
-* @param {string} display - Block.
-* @param {string} width - 100%.
-* @param {string} height - 100%.
-*/
+ * @class foto-hover
+ * @description Contenedor que permite mostrar overlay al pasar el ratón.
+ */
 .foto-hover {
   position: relative;
   display: block;
@@ -400,23 +319,9 @@ vbar-toggler {
 }
 
 /**
-* Overlay de texto sobre la imagen en hover.
-*
-* @class overlay-text
-* @param {string} position - Absolute.
-* @param {string} bottom - 0.
-* @param {string} background - rgba(0,0,0,0.6).
-* @param {string} color - Blanco.
-* @param {string} width - 100%.
-* @param {string} height - 100%.
-* @param {string} border-radius - 50%.
-* @param {string} display - Flex para centrar texto.
-* @param {string} align-items - Centrado vertical.
-* @param {string} justify-content - Centrado horizontal.
-* @param {string} font-size - 14px.
-* @param {string} opacity - 0 por defecto.
-* @param {string} transition - Opacidad en 0.3s.
-*/
+ * @class overlay-text
+ * @description Capa superpuesta con texto centrado y fondo semitransparente.
+ */
 .overlay-text {
   position: absolute;
   bottom: 0;
@@ -434,31 +339,17 @@ vbar-toggler {
 }
 
 /**
-* Muestra el overlay-text al pasar el ratón sobre la foto.
-*
-* @selector .foto-hover:hover .overlay-text
-* @param {string} opacity - Cambio a 1.
-*/
+ * @selector .foto-hover:hover .overlay-text
+ * @description Hace visible el overlay al pasar el ratón sobre la foto.
+ */
 .foto-hover:hover .overlay-text {
   opacity: 1;
 }
 
 /**
-* Footer personalizado con degradado de fondo.
-*
-* @selector footer.custom-footer
-* @param {string} background - Degradado diagonal.
-*/
+ * @class footer.custom-footer
+ * @description Footer personalizado con degradado de fondo.
+ */
 footer.custom-footer {
   background: linear-gradient(135deg, #0f1f2d, #18362f) !important;
-}
-
-/**
-* Oculta la barra de scroll en navegadores WebKit.
-*
-* @selector ::-webkit-scrollbar
-* @param {string} display - none.
-*/
-::-webkit-scrollbar {
-  display: none;
 }

@@ -1,23 +1,31 @@
 /**
- * Se ejecuta cuando el DOM ha sido completamente cargado y parseado.
+ *  ==========================
+ *       verInformes.js
+ *  ==========================
+ * Script que controla la visibilidad de los campos de filtro de informes
+ * según la opción seleccionada en el select.
  *
- * @param {Event} event - Evento DOMContentLoaded que indica que el DOM está listo.
- * @returns {void}
+ * @package    GestionGuardias
+ * @author     Adrian Pascual Marschal
+ * @license    MIT
  */
-document.addEventListener('DOMContentLoaded', (/* event */) => {
-  // Formulario oculto para consulta de profesores
-  const hiddenForm = document.getElementById('formConsultaProfes');
 
-  // Si existe el formulario y no se ha enviado antes, lo envía y marca en localStorage
-  if (hiddenForm && !localStorage.getItem('consultaProfesRealizada')) {
-      hiddenForm.submit();
-      localStorage.setItem('consultaProfesRealizada', 'true');
-  }
-
-  // Select que determina el tipo de informe a mostrar
+document.addEventListener('DOMContentLoaded', () => {
+  /**
+   * @var {HTMLSelectElement} tipoSelect
+   * @description Select que determina el tipo de informe a generar.
+   */
   const tipoSelect = document.getElementById('tipoInforme');
 
-  // Mapeo de tipos a sus campos correspondientes en el DOM
+  /**
+   * @var {{ dia: HTMLElement, semana: HTMLElement, mes: HTMLElement, trimestre: HTMLElement, docent: HTMLElement }} campos
+   * @description Mapa de campos de entrada asociados a cada tipo de informe.
+   * @property {HTMLElement} dia         - Contenedor del campo para seleccionar un día.
+   * @property {HTMLElement} semana      - Contenedor del campo para seleccionar una semana.
+   * @property {HTMLElement} mes         - Contenedor del campo para seleccionar un mes.
+   * @property {HTMLElement} trimestre   - Contenedor del campo para seleccionar un trimestre.
+   * @property {HTMLElement} docent      - Contenedor del campo para seleccionar un docente.
+   */
   const campos = {
     dia: document.getElementById('campo-dia'),
     semana: document.getElementById('campo-semana'),
@@ -27,10 +35,9 @@ document.addEventListener('DOMContentLoaded', (/* event */) => {
   };
 
   /**
-   * Oculta todos los campos de informe y muestra únicamente
-   * el campo correspondiente al tipo seleccionado.
-   *
-   * @returns {void}
+   * @function actualizarCampos
+   * @description Oculta todos los contenedores de campos y muestra solo
+   *              aquél correspondiente al informe seleccionado.
    */
   function actualizarCampos() {
     // Oculta todos los campos
@@ -38,21 +45,16 @@ document.addEventListener('DOMContentLoaded', (/* event */) => {
       campo.style.display = 'none';
     });
 
-    // Muestra el campo asociado al valor actual del select, si existe
+    // Muestra el campo correspondiente al valor seleccionado
     const seleccionado = tipoSelect.value;
     if (seleccionado && campos[seleccionado]) {
       campos[seleccionado].style.display = 'block';
     }
   }
 
-  /**
-   * Manejador del evento 'change' en el select de tipo de informe.
-   *
-   * @param {Event} event - Evento que indica cambio de selección.
-   * @returns {void}
-   */
+  // Listener para actualizar al cambiar la selección
   tipoSelect.addEventListener('change', actualizarCampos);
 
-  // Inicializa la visibilidad correcta al cargar la página
+  // Inicializa la vista al cargar la página
   actualizarCampos();
 });

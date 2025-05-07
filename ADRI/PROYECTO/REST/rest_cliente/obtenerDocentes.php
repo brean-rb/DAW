@@ -1,56 +1,29 @@
 <?php
-/**
- * consultaProfesRegistroAusencias.php
- *
- * Obtiene la lista de profesores desde el servicio REST y la almacena en sesión
- * para su uso en el formulario de registro de ausencias.
- *
- * @package    GestionGuardias
- * @author     Adrian Pascual Marschal
- * @license    MIT
- *
- * @return void Redirige inmediatamente a vistas/registroAusencias.php tras guardar datos en sesión.
- */
+include("curl_conexion.php");
+session_start();
 
-include("curl_conexion.php"); // Incluye la función curl_conexion(URL, método, datos, headers)
-session_start();              // Inicia o reanuda la sesión PHP
 
-/**
- * Parámetros para la petición al servicio REST.
- *
- * @var array $params
- * @param string $params['accion'] Acción a ejecutar en el servidor: 'consultaProfes'
- */
+// Parámetros que se pasan al servidor
 $params = [
-    'accion' => 'consultaProfes'
+    'accion' => 'consultaProfes',
 ];
 
-/**
- * Realiza la petición POST al servicio REST para obtener profesores.
- *
- * @see curl_conexion()
- * @var string|false $response Respuesta JSON o false en caso de error.
- */
-$response = curl_conexion(URL, 'POST', $params); // Usamos POST para la consulta
+// Realizar la solicitud cURL al servidor
+$response = curl_conexion(URL, 'POST', $params); // Usamos GET para la consulta
 
-/**
- * Decodifica la respuesta JSON en array asociativo.
- *
- * @var array $profesores
- */
+// Decodificar la respuesta JSON
 $profesores = json_decode($response, true);
 
-// Manejo de errores: si la API retorna clave 'error', lo guarda como mensaje flash
+// Verificar si hay errores en la respuesta
 if (isset($profesores['error'])) {
-    $_SESSION['mensaje'] = [
-        'type' => 'danger',
-        'text' => $profesores['error']
-    ];
+    // Si hay un error, guardar el mensaje de error en la sesión y redirigir
+    $_SESSION['mensaje'] = ['type' => 'danger', 'text' => $profesores['error']];
 } else {
-    // Almacena el listado de profesores en sesión para el formulario de ausencias
+    // Si no hay errores, guardar los profesores en la sesión
     $_SESSION['profesores'] = $profesores;
 }
 
-// Redirige al formulario de registro de ausencias
+// Redirigir al formulario para registrar ausencias
 header("Location: vistas/registroAusencias.php");
-exit;
+exit();
+?>

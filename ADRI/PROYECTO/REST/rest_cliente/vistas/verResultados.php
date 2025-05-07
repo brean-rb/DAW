@@ -1,39 +1,47 @@
 <?php
 /**
- * mostrarInforme.php
+ * verResultados.php
  *
- * Muestra los resultados de un informe de faltas filtrado y permite exportarlos a PDF.
- * - Verifica autenticación y permisos de administrador.
- * - Obtiene datos desde la sesión: resultados del informe y tipo de filtro.
- * - Genera la tabla de resultados y el botón de exportación.
- * - Utiliza jsPDF y jsPDF-AutoTable para la exportación a PDF con pie de página y encabezado.
+ * Muestra los resultados de la consulta de ausencias generada en verInformes.php,
+ * con opción de exportar a PDF o volver atrás para cambiar filtros.
  *
  * @package    GestionGuardias
  * @author     Adrian Pascual Marschal
  * @license    MIT
+ * @link       http://localhost/GestionGuardias/PROYECTO/REST/rest_cliente/vistas/verResultados.php
+ * @warning    **Atención:** Este script solo funciona si viene redireccionado desde verInformes.php
+ *
+ * @function initSession
+ * @description Inicia la sesión y valida que el usuario esté autenticado.
  */
-
 session_start();
-/** Inicia o reanuda la sesión para acceder a datos de usuario y resultados almacenados. */
 
-// Verificación de autenticación: redirige al login si no hay usuario en sesión
+// Validar sesión activa
 if (!isset($_SESSION['document'])) {
     header("Location: ../login.php");
     exit();
 }
 
-// Recupera datos de usuario desde la sesión
+/**
+ * @var string $rol       Rol del usuario ("admin" o "profesor").
+ * @var string $nombre    Nombre para mostrar en la cabecera.
+ * @var string $documento ID/documento del usuario.
+ */
 $rol        = $_SESSION['rol'];
 $nombre     = $_SESSION['nombre'];
 $documento  = $_SESSION['document'];
 
-// Obtiene los resultados del informe y el tipo de filtro usados
+// Obtener resultados e informe del filtro anterior
+/**
+ * @var array $resultados       Array de filas del informe obtenido.
+ * @var string $tipo            Tipo de informe (día, mes, trimestre, etc.).
+ */
 $resultados = $_SESSION['resultado_informe'] ?? [];
-$tipo       = $_SESSION['tipo_informe']     ?? 'informe';
+$tipo        = $_SESSION['tipo_informe']   ?? 'informe';
 
-// Validación: si no hay datos estructurados, muestra alerta y termina
+// Si no hay datos o formato incorrecto, mostrar alerta y detener
 if (empty($resultados) || !isset($resultados[0]) || !is_array($resultados[0])) {
-    echo "<div class='alert alert-warning text-center m-5'>⚠️ No hay datos disponibles para mostrar.</div>";
+    echo "<div class='alert alert-warning text-center w-50 mx-auto my-5'>⚠️ No hay datos disponibles para mostrar.</div>";
     exit;
 }
 ?>
@@ -47,6 +55,7 @@ if (empty($resultados) || !isset($resultados[0]) || !is_array($resultados[0])) {
   <link rel="stylesheet" href="../src/principal.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="../src/informe.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-custom">
@@ -77,67 +86,6 @@ if (empty($resultados) || !isset($resultados[0]) || !is_array($resultados[0])) {
           </li>
         <?php endif; ?>
       </ul>
-
-      <style>
-        
-        .table-responsive {
-  overflow-x: auto !important;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* 2) Fuerza que aquí sí se muestre la scrollbar */
-.table-responsive::-webkit-scrollbar {
-  display: block !important;
-  height: 6px;
-}
-.table-responsive::-webkit-scrollbar-thumb {
-  background: rgba(30,58,95,0.8);
-  border-radius: 3px;
-}
-.table-responsive::-webkit-scrollbar-track {
-  background: rgba(15,31,45,0.5);
-  border-radius: 3px;
-}
-@media (max-width: 767.98px) {
-  .table-responsive table {
-    min-width: 700px; /* o el ancho que necesiten tus columnas */
-  }
-}
-
-::-webkit-scrollbar {display: none; } 
-.navbar-toggler {background-color: #0f1f2d !important;  /* tu azul custom */border: 2px solid #fff !important;     /* borde blanco */}
-
-/* 2) Icono: tres barras blancas */
-.navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' d='M4 7H26 M4 15H26 M4 23H26'/%3E%3C/svg%3E");
-}
-
-
-.navbar-toggler:hover {
-  background-color: #18362f !important;  /* un tono ligeramente distinto si quieres */
-}
-        
-  table {
-    table-layout: auto !important;
-    width: 100% !important;
-  }
-
-  th, td {
-    white-space: nowrap;
-    word-break: break-word;
-    padding: 6px;
-    font-size: 11px;
-  }
-
-  .table-responsive {
-    overflow-x: auto;
-  }
-  table.table-guardias thead tr th {
-background: linear-gradient(135deg, #0f1f2d, #18362f) !important;
-color: #fff !important;
-}
-</style>
-
 
       <div class="d-flex align-items-center ms-auto">
         <span class="text-white me-3"><strong>Bienvenid@ <?= htmlspecialchars($nombre); ?></strong></span>
@@ -172,7 +120,6 @@ color: #fff !important;
         </div>
       </div>
       
-     <!-- DERECHA: botones en línea -->
      <div class="botones-usuario d-flex align-items-center gap-2 text-center text-md-end">
 
 
@@ -206,6 +153,7 @@ color: #fff !important;
 <div class="mb-4 text-center d-flex justify-content-center align-items-center" id="tituloInforme">
   <img id="iconoInforme" src="../src/images/icono-informe.png" alt="Informe" style="height: 24px; margin-right: 8px;">
   <span style="font-size: 20px;">Informe filtrado por <?= htmlspecialchars($tipo) ?></span>
+  <input type="hidden" name="tipo" id="tipo" value="<?=$tipo?>">
 </div>
 
 
@@ -260,83 +208,10 @@ color: #fff !important;
   <!-- 1) Bootstrap Bundle (Popper + Collapse, Dropdowns, etc) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   
-  <!-- 2) Tus otros scripts (jsPDF, Flatpickr, inicializadores, etc) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
-  <!-- …el resto de tus scripts… -->
-</body>
-<script>
- document.getElementById("exportarPDF").addEventListener("click", () => {
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF({ orientation: "landscape", unit: "mm", format: "a4" });
 
-  const footerLogo = document.getElementById("footerLogo");
-  const imgFooter = new Image();
-  imgFooter.src = footerLogo.src;
-
-  const iconoInforme = document.getElementById("iconoInforme");
-  const iconoImg = new Image();
-  iconoImg.src = iconoInforme.src;
-
-  iconoImg.onload = function () {
-    const pageWidth = doc.internal.pageSize.getWidth();
-
-    const iconW = 10;
-    const iconH = 10;
-    const spacing = 4;
-    const texto = "Informe filtrado por " + <?= json_encode($tipo) ?>;
-
-    doc.setFontSize(14);
-    const textWidth = doc.getTextWidth(texto);
-    const totalWidth = iconW + spacing + textWidth;
-    const startX = (pageWidth - totalWidth) / 2;
-    const iconY = 20;
-    const textY = iconY + 7;
-
-    // Dibujar icono y texto centrados
-    doc.addImage(iconoImg, 'PNG', startX, iconY, iconW, iconH);
-    doc.text(texto, startX + iconW + spacing, textY);
-
-    // Extraer datos de la tabla
-    const table = document.querySelector("table");
-    const head = [];
-    const body = [];
-
-    table.querySelectorAll("thead tr").forEach(tr => {
-      const row = [];
-      tr.querySelectorAll("th").forEach(th => row.push(th.textContent.trim()));
-      head.push(row);
-    });
-
-    table.querySelectorAll("tbody tr").forEach(tr => {
-      const row = [];
-      tr.querySelectorAll("td").forEach(td => row.push(td.textContent.trim()));
-      body.push(row);
-    });
-
-    // Dibujar la tabla
-    doc.autoTable({
-      head: head,
-      body: body,
-      startY: 35,
-      margin: { top: 30, bottom: 25 },
-      styles: { fontSize: 8, halign: 'center', cellPadding: 2 },
-      headStyles: { fillColor: [15, 31, 45] },
-      didDrawPage: function () {
-        const pageHeight = doc.internal.pageSize.height;
-        const imgWidth = 40;
-        const imgHeight = 15;
-        const x = (doc.internal.pageSize.width - imgWidth) / 2;
-        const y = pageHeight - imgHeight - 5;
-        doc.addImage(imgFooter, 'PNG', x, y, imgWidth, imgHeight);
-      }
-    });
-
-    doc.save("informe-filtrado.pdf");
-  };
-});
-
-</script>
+<script src="../src/exportarAPDF.js"></script>
 </body>
 <footer class="bg-dark text-white py-4 mt-5" style="background: linear-gradient(135deg, #0f1f2d, #18362f) !important;">
    <div class="container text-center">
