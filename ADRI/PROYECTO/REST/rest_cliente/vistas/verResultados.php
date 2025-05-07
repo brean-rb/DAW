@@ -1,20 +1,41 @@
 <?php
+/**
+ * mostrarInforme.php
+ *
+ * Muestra los resultados de un informe de faltas filtrado y permite exportarlos a PDF.
+ * - Verifica autenticación y permisos de administrador.
+ * - Obtiene datos desde la sesión: resultados del informe y tipo de filtro.
+ * - Genera la tabla de resultados y el botón de exportación.
+ * - Utiliza jsPDF y jsPDF-AutoTable para la exportación a PDF con pie de página y encabezado.
+ *
+ * @package    GestionGuardias
+ * @author     Adrian Pascual Marschal
+ * @license    MIT
+ */
+
 session_start();
+/** Inicia o reanuda la sesión para acceder a datos de usuario y resultados almacenados. */
+
+// Verificación de autenticación: redirige al login si no hay usuario en sesión
 if (!isset($_SESSION['document'])) {
-  header("Location: ../login.php");
-  exit();
+    header("Location: ../login.php");
+    exit();
 }
-$rol = $_SESSION['rol'];
-$nombre = $_SESSION['nombre'];
-$documento = $_SESSION['document'];
 
+// Recupera datos de usuario desde la sesión
+$rol        = $_SESSION['rol'];
+$nombre     = $_SESSION['nombre'];
+$documento  = $_SESSION['document'];
+
+// Obtiene los resultados del informe y el tipo de filtro usados
 $resultados = $_SESSION['resultado_informe'] ?? [];
-$tipo = $_SESSION['tipo_informe'] ?? 'informe';
+$tipo       = $_SESSION['tipo_informe']     ?? 'informe';
 
+// Validación: si no hay datos estructurados, muestra alerta y termina
 if (empty($resultados) || !isset($resultados[0]) || !is_array($resultados[0])) {
     echo "<div class='alert alert-warning text-center m-5'>⚠️ No hay datos disponibles para mostrar.</div>";
     exit;
-  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -58,28 +79,43 @@ if (empty($resultados) || !isset($resultados[0]) || !is_array($resultados[0])) {
       </ul>
 
       <style>
-        .dropdown-menu li {
-          color: white;
-          font-weight: bold;
-        }
+        
+        .table-responsive {
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
 
-        .dropdown-menu .dropdown-item {
-          color: white !important;
-          font-weight: bold;
-          background-color: transparent !important;
-          transition: color 0.3s ease;
-        }
+/* 2) Fuerza que aquí sí se muestre la scrollbar */
+.table-responsive::-webkit-scrollbar {
+  display: block !important;
+  height: 6px;
+}
+.table-responsive::-webkit-scrollbar-thumb {
+  background: rgba(30,58,95,0.8);
+  border-radius: 3px;
+}
+.table-responsive::-webkit-scrollbar-track {
+  background: rgba(15,31,45,0.5);
+  border-radius: 3px;
+}
+@media (max-width: 767.98px) {
+  .table-responsive table {
+    min-width: 700px; /* o el ancho que necesiten tus columnas */
+  }
+}
 
-        .dropdown-menu .dropdown-item:hover {
-          background-color: transparent !important;
-          color: #d0f0ff !important;
-        }
+::-webkit-scrollbar {display: none; } 
+.navbar-toggler {background-color: #0f1f2d !important;  /* tu azul custom */border: 2px solid #fff !important;     /* borde blanco */}
 
-        .dropdown:hover .dropdown-menu {
-          display: block;
-          background: linear-gradient(135deg, #0f1f2d, #18362f);
-        }
+/* 2) Icono: tres barras blancas */
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' d='M4 7H26 M4 15H26 M4 23H26'/%3E%3C/svg%3E");
+}
 
+
+.navbar-toggler:hover {
+  background-color: #18362f !important;  /* un tono ligeramente distinto si quieres */
+}
         
   table {
     table-layout: auto !important;
@@ -96,31 +132,72 @@ if (empty($resultados) || !isset($resultados[0]) || !is_array($resultados[0])) {
   .table-responsive {
     overflow-x: auto;
   }
+  table.table-guardias thead tr th {
+background: linear-gradient(135deg, #0f1f2d, #18362f) !important;
+color: #fff !important;
+}
 </style>
 
 
       <div class="d-flex align-items-center ms-auto">
         <span class="text-white me-3"><strong>Bienvenid@ <?= htmlspecialchars($nombre); ?></strong></span>
         <form method="POST" action="../logout.php" class="mb-0">
-          <button class="btn btn-sm btn-danger" title="Cerrar sesión">
-            <i class="bi bi-box-arrow-right"></i>
-          </button>
+        <button 
+  class="btn btn-sm btn-outline-light"
+  style="background:linear-gradient(135deg, #1e3a5f, #0f1f2d);" 
+  title="Cerrar sesión">
+    <i class="bi bi-box-arrow-right"></i>
+  </button>
         </form>
       </div>
     </div>
   </div>
 </nav>
-
 <main>
-  <div class="container mt-5 d-flex justify-content-start align-items-center perfil-contenedor">
-    <div class="foto-wrapper me-4">
-      <img src="../src/images/default.jpg" alt="Foto de perfil" class="foto-circular">
+  <div class="container mt-5">
+    <!-- Perfil: foto + datos a la izquierda, botones a la derecha -->
+    <div class="perfil-contenedor 
+                d-flex flex-column flex-md-row 
+                align-items-center justify-content-between">
+      
+      <!-- IZQUIERDA: foto + datos -->
+      <div class="d-flex align-items-center mb-3 mb-md-0">
+        <div class="foto-wrapper me-4">
+          <img src="../src/images/default.jpg" alt="Foto de perfil" class="foto-circular">
+        </div>
+        <div class="info-usuario text-start">
+          <p><strong>Documento:</strong> <?php echo htmlspecialchars($documento); ?></p>
+          <p><strong>Nombre:</strong> <?php echo htmlspecialchars($nombre); ?></p>
+          <p><strong>Rol:</strong> <?php echo htmlspecialchars($rol); ?></p>
+        </div>
+      </div>
+      
+     <!-- DERECHA: botones en línea -->
+     <div class="botones-usuario d-flex align-items-center gap-2 text-center text-md-end">
+
+
+  <!-- CHAT -->
+  <a 
+    href="chat.php" 
+    class="btn btn-primary d-flex align-items-center justify-content-center" 
+    role="button"
+    style=" border: 2px solid; 
+   background:linear-gradient(135deg, #1e3a5f, #0f1f2d);"
+  >
+    <i class="bi bi-chat-dots-fill fs-4"></i>
+    <span class="ms-2 d-none d-md-inline">Chat</span>
+  </a>
     </div>
-    <div class="info-usuario text-start">
-      <p><strong>Documento:</strong> <?php echo htmlspecialchars($documento); ?></p>
-      <p><strong>Nombre:</strong> <?php echo htmlspecialchars($nombre); ?></p>
-      <p><strong>Rol:</strong> <?php echo htmlspecialchars($rol); ?></p>
-    </div>
+
+
+
+    <?php if (isset($mensaje)): ?>
+      <div class="alert-container">
+        <div class="alert alert-<?php echo htmlspecialchars($mensaje['type']); ?> text-center" id="mensajeAlert">
+          <?php echo htmlspecialchars($mensaje['text']); ?>
+        </div>
+      </div>
+    <?php endif; ?>
   </div>
 </main>
 
@@ -133,8 +210,8 @@ if (empty($resultados) || !isset($resultados[0]) || !is_array($resultados[0])) {
 
 
   
-  <div class="table-responsive">
-    <table class="table table-bordered table-striped text-center align-middle">
+  <div class="table-responsive ">
+    <table class="table table-bordered table-striped text-center align-middle table-guardias">
     <thead>
         <tr>
             <th>Fecha</th>
@@ -146,6 +223,7 @@ if (empty($resultados) || !isset($resultados[0]) || !is_array($resultados[0])) {
             <th>Sesion</th>
             <th>Dia</th>
             <th>Hora Inicio -- Hora fin</th>
+            <th>Guardias totales</th>
         </tr>
     </thead>
     <tbody>
@@ -166,14 +244,27 @@ if (empty($resultados) || !isset($resultados[0]) || !is_array($resultados[0])) {
     <a href="verInformes.php" class="btn btn-secondary">⬅️ Volver</a>
   </div>
 <!-- Botón flotante para exportar a PDF -->
-<button id="exportarPDF" class="btn btn-danger position-fixed" 
-        style="top: 90px; right: 20px; z-index: 1000;">
+<button id="exportarPDF"
+        class="btn btn-danger position-fixed"
+        style="
+          right: 20px;
+          bottom: 20px;
+          z-index: 1000;
+          border: 2px solid;
+          background: linear-gradient(135deg, #1e3a5f, #0f1f2d);
+        ">
   <i class="bi bi-file-earmark-pdf-fill"></i> Exportar a PDF
 </button>
 <img id="footerLogo" src="../src/images/logoenUno.png" alt="Imagen PDF" style="display:none; max-width: 250px;">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+  <!-- 1) Bootstrap Bundle (Popper + Collapse, Dropdowns, etc) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- 2) Tus otros scripts (jsPDF, Flatpickr, inicializadores, etc) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+  <!-- …el resto de tus scripts… -->
+</body>
 <script>
  document.getElementById("exportarPDF").addEventListener("click", () => {
   const { jsPDF } = window.jspdf;
@@ -247,4 +338,22 @@ if (empty($resultados) || !isset($resultados[0]) || !is_array($resultados[0])) {
 
 </script>
 </body>
+<footer class="bg-dark text-white py-4 mt-5" style="background: linear-gradient(135deg, #0f1f2d, #18362f) !important;">
+   <div class="container text-center">
+     <p class="mb-0">&copy; 2025 AsistGuard. Todos los derechos reservados.</p>
+     <p>
+       <a href="https://www.instagram.com/" style="color: white; text-decoration: none;">
+         <img src="../src/images/instagram.png" alt="Instagram" width="24" height="24" style="background: transparent;">
+       </a> |
+       <a href="https://www.facebook.com/?locale=es_ES" style="color: white; text-decoration: none;">
+         <img src="../src/images/facebook.png" alt="Facebook" width="24" height="24" style="background: transparent;">
+       </a> |
+       <a href="https://x.com/?lang=es" style="color: white; text-decoration: none;">
+         <img src="../src/images/twitter.png" alt="Twitter" width="24" height="24" style="background: transparent;">
+       </a> |
+       <a href="https://es.linkedin.com/" style="color: white; text-decoration: none;">
+         <img src="../src/images/linkedin.png" alt="LinkedIn" width="24" height="24" style="background: transparent;">
+       </a></p>
+   </div>
+ </footer>
 </html>

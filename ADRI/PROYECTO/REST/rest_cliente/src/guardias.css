@@ -1,0 +1,257 @@
+/**
+ * Degradado en las cabeceras (<th>) de la tabla de guardias.
+ *
+ * @selector table.table-guardias thead tr th
+ * @param {string} background - Gradiente diagonal de #0f1f2d a #18362f.
+ * @param {string} color - Color del texto en blanco.
+ */
+ table.table-guardias thead tr th {
+  background: linear-gradient(135deg, #0f1f2d, #18362f) !important;
+  color: #fff !important;
+}
+
+/**
+* Estilo de las opciones dentro del select personalizado.
+*
+* @class input-select-custom option
+* @param {string} background-color - Fondo oscuro #0f1f2d.
+* @param {string} color - Texto en blanco.
+*/
+.input-select-custom option {
+  background-color: #0f1f2d;
+  color: #fff;
+}
+
+/**
+* Select personalizado sin estilos nativos y con degradado y flecha SVG.
+*
+* @class input-select-custom
+* @param {string} -webkit-appearance - Quita apariencia nativa en WebKit.
+* @param {string} -moz-appearance - Quita apariencia nativa en Firefox.
+* @param {string} appearance - Quita apariencia nativa en navegadores.
+* @param {string} display - Define como inline-block para controlar ancho/alto.
+* @param {string} width - Ancho al 100% del contenedor.
+* @param {string} padding - Espaciado interno para texto y flecha.
+* @param {string} font-size - Tamaño de fuente de 1rem.
+* @param {string} line-height - Altura de línea de 1.5.
+* @param {string} background-image - Flecha SVG blanca y degradado de fondo.
+* @param {string} background-repeat - No repetir imágenes de fondo.
+* @param {string} background-position - Posición de la flecha y fondo.
+* @param {string} background-size - Tamaño de la flecha y del fondo.
+* @param {string} border - Borde transparente degradado.
+* @param {string} border-image - Aplica degradado al borde.
+* @param {string} border-radius - Radios de 0.5rem.
+* @param {string} color - Texto en blanco.
+* @param {string} transition - Transición de sombra y color de borde.
+*/
+.input-select-custom {
+-webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+
+display: inline-block;
+width: 100%;
+
+padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+font-size: 1rem;
+line-height: 1.5;
+
+background-image:
+  url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16'><path fill='white' d='M4 6l4 4 4-4z'/></svg>"),
+  linear-gradient(135deg, #1e3a5f, #0f1f2d);
+background-repeat: no-repeat, no-repeat;
+background-position: right 0.75rem center, center center;
+background-size: 1rem auto, 100% 100%;
+
+border: 2px solid transparent;
+border-image: linear-gradient(135deg, #1e3a5f, #0f1f2d) 1;
+border-radius: 0.5rem;
+
+color: #fff;
+transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/**
+* Oculta las flechas extra en IE/Edge para el select personalizado.
+*
+* @selector select.input-select-custom::-ms-expand
+* @param {string} display - Oculta el elemento.
+*/
+select.input-select-custom::-ms-expand {
+display: none;
+}
+
+/**
+* Estado hover del select personalizado.
+*
+* @class input-select-custom:hover
+* @param {string} box-shadow - Sombra al pasar el ratón.
+*/
+.input-select-custom:hover {
+box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+/**
+* Estado focus del select personalizado.
+*
+* @class input-select-custom:focus
+* @param {string} outline - Sin contorno.
+* @param {string} border-color - Borde verde-azulado.
+* @param {string} box-shadow - Sombra de enfoque.
+*/
+.input-select-custom:focus {
+outline: none;
+border-color: #1e3a5f;
+box-shadow: 0 0 0 3px rgba(30,58,95,0.6);
+}
+
+/**
+* Repetición del estilo de opciones para asegurar legibilidad.
+*
+* @class input-select-custom option
+* @param {string} background-color - Fondo oscuro #0f1f2d.
+* @param {string} color - Texto en blanco.
+*/
+.input-select-custom option {
+background-color: #0f1f2d;
+color: #fff;
+}
+
+/**
+* Fondo y color general del calendario Flatpickr.
+*
+* @class flatpickr-calendar
+* @param {string} background - Gradiente diagonal de #1e3a5f a #0f1f2d.
+* @param {string} color - Texto en blanco.
+*/
+.flatpickr-calendar {
+background: linear-gradient(135deg, #1e3a5f, #0f1f2d) !important;
+color: #fff !important;
+}
+
+/**
+* Color del mes en el encabezado del calendario.
+*
+* @selector .flatpickr-months .flatpickr-month
+* @param {string} color - Texto del mes en blanco.
+*/
+.flatpickr-months .flatpickr-month {
+color: #fff !important;
+}
+
+/**
+* Bordes de flechas de navegación del calendario.
+*
+* @selector .flatpickr-prev-month, .flatpickr-next-month
+* @param {string} border-color - Bordes blancos.
+*/
+.flatpickr-prev-month,
+.flatpickr-next-month {
+border-color: #fff !important;
+}
+
+/**
+* Color de las rutas SVG de las flechas de navegación.
+*
+* @selector .flatpickr-prev-month svg path, .flatpickr-next-month svg path
+* @param {string} stroke - Trazo blanco.
+*/
+.flatpickr-prev-month svg path,
+.flatpickr-next-month svg path {
+stroke: #fff !important;
+}
+
+/**
+* Días de la semana en el calendario.
+*
+* @selector .flatpickr-weekdays .flatpickr-weekday
+* @param {string} color - Texto en blanco.
+*/
+.flatpickr-weekdays .flatpickr-weekday {
+color: #fff !important;
+}
+
+/**
+* Celdas de los días en el calendario.
+*
+* @selector .flatpickr-days .flatpickr-day
+* @param {string} color - Texto en blanco.
+*/
+.flatpickr-days .flatpickr-day {
+color: #fff !important;
+}
+
+/**
+* Estilo para “Hoy” y día seleccionado en el calendario.
+*
+* @selector .flatpickr-day.today, .flatpickr-day.selected
+* @param {string} background - Fondo verde-azulado #1e3a5f.
+* @param {string} color - Texto en blanco.
+*/
+.flatpickr-day.today,
+.flatpickr-day.selected {
+background: #1e3a5f !important;
+color: #fff !important;
+}
+
+/**
+* Hover sobre días en el calendario.
+*
+* @class flatpickr-day:hover
+* @param {string} background - Fondo semitransparente.
+*/
+.flatpickr-day:hover {
+background: rgba(30,58,95,0.5) !important;
+}
+
+/**
+* Estilo del dropdown del selector de mes en Flatpickr.
+*
+* @class flatpickr-monthDropdown-month
+* @param {string} background - Fondo sólido verde-azulado.
+*/
+.flatpickr-monthDropdown-month {
+background: rgba(30,58,95,1) !important;
+}
+
+/**
+* Botón hamburguesa de la navbar con estilo oscuro y borde.
+*
+* @class navbar-toggler
+* @param {string} background-color - Fondo oscuro #0f1f2d.
+* @param {string} border - Borde blanco de 2px.
+*/
+.navbar-toggler {
+background-color: #0f1f2d !important;
+border: 2px solid #fff !important;
+}
+
+/**
+* Icono SVG de la hamburguesa en la navbar.
+*
+* @class navbar-toggler-icon
+* @param {string} background-image - SVG de tres barras blancas.
+*/
+.navbar-toggler-icon {
+background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' d='M4 7H26 M4 15H26 M4 23H26'/%3E%3C/svg%3E");
+}
+
+/**
+* Estado hover del botón hamburguesa.
+*
+* @class navbar-toggler:hover
+* @param {string} background-color - Fondo más claro #18362f.
+*/
+.navbar-toggler:hover {
+background-color: #18362f !important;
+}
+
+/**
+* Oculta la barra de scroll en navegadores WebKit.
+*
+* @selector ::-webkit-scrollbar
+* @param {string} display - Oculta la barra de desplazamiento.
+*/
+::-webkit-scrollbar {
+display: none;
+}

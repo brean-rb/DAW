@@ -1,175 +1,379 @@
-/* ===========================
-   REGLAS GENERALES
-=========================== */
+/**
+ * Encabezados de la tabla de guardias con degradado de fondo.
+ *
+ * @selector table.table-guardias thead tr th
+ * @param {string} background - Degradado diagonal de #0f1f2d a #18362f.
+ * @param {string} color - Color del texto en blanco.
+ */
+ table.table-guardias thead tr th {
+  background: linear-gradient(135deg, #0f1f2d, #18362f) !important;
+  color: #fff !important;
+}
 
+/**
+* Navbar personalizada con degradado de fondo y padding.
+*
+* @class navbar-custom
+* @param {string} background - Degradado diagonal de #0f1f2d a #18362f.
+* @param {string} padding - Espaciado superior e inferior de 10px.
+*/
+.navbar-custom {
+  background: linear-gradient(135deg, #0f1f2d, #18362f);
+  padding: 10px 0;
+}
 
-  /* ===========================
-     NAVBAR PERSONALIZADA
-  =========================== */
+/**
+* Contenedor de la marca (logo) centrado vertical y horizontalmente.
+*
+* @class navbar-brand
+* @param {string} display - Flex para centrar el logo.
+* @param {string} justify-content - Centrado horizontal.
+* @param {string} align-items - Centrado vertical.
+* @param {string} height - Altura de 50px.
+*/
+.navbar-brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
 
-  .navbar-custom {
-    background: linear-gradient(135deg, #0f1f2d, #18362f);
-    padding: 10px 0;
-  }
+/**
+* Imagen del logo dentro de la navbar.
+*
+* @selector .navbar-brand img
+* @param {string} height - Altura de 60px.
+* @param {string} object-fit - Ajuste de imagen para contener.
+*/
+.navbar-brand img {
+  height: 60px;
+  object-fit: contain;
+}
 
-  /* Centrado del logo */
-  .navbar-brand {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50px;
-  }
+/**
+* Contenedor de enlaces de navegación centrado en pantallas grandes.
+*
+* @class navbar-nav
+* @param {string} margin - Centrado horizontal.
+* @param {string} text-align - Alineación centrada del texto.
+*/
+.navbar-nav {
+  margin: 0 auto;
+  text-align: center;
+}
 
-  /* Imagen del logo */
-  .navbar-brand img {
-    height: 60px;
-    object-fit: contain;
-  }
+/**
+* Estilo de los enlaces de navegación.
+*
+* @selector .navbar-nav .nav-link
+* @param {string} color - Texto en blanco.
+* @param {string} font-weight - Negrita.
+*/
+.navbar-nav .nav-link {
+  color: white !important;
+  font-weight: bold;
+}
 
-  /* Centrar los enlaces en pantallas grandes */
-  .navbar-nav {
-    margin: 0 auto;
-    text-align: center;
-  }
+/**
+* Hover de los enlaces de navegación.
+*
+* @selector .navbar-nav .nav-link:hover
+* @param {string} color - Texto cambia a #8fe3b3.
+*/
+.navbar-nav .nav-link:hover {
+  color: #8fe3b3 !important;
+}
 
-  /* Estilo de los enlaces de navegación */
-  .navbar-nav .nav-link {
-    color: white !important;
-    font-weight: bold;
-  }
+/**
+* Estilo del botón toggler de la navbar (hamburguesa).
+*
+* @selector vbar-toggler
+* @param {string} background-color - Fondo oscuro #0f1f2d.
+* @param {string} border - Borde blanco de 2px.
+*/
+vbar-toggler {
+  background-color: #0f1f2d !important;  
+  border: 2px solid #fff !important;     
+}
 
-  /* Hover de los enlaces */
-  .navbar-nav .nav-link:hover {
-    color: #8fe3b3 !important;
-  }
+/**
+* Icono SVG de tres barras blancas para el toggler.
+*
+* @class navbar-toggler-icon
+* @param {string} background-image - SVG inline con tres líneas blancas.
+*/
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' d='M4 7H26 M4 15H26 M4 23H26'/%3E%3C/svg%3E");
+}
 
-  /* Texto de bienvenida */
-  #bienvenida {
-    color: white !important;
-    font-weight: bold;
-    margin: 0;
-  }
+/**
+* Hover del botón toggler de la navbar.
+*
+* @selector .navbar-toggler:hover
+* @param {string} background-color - Fondo más claro #18362f.
+*/
+.navbar-toggler:hover {
+  background-color: #18362f !important; 
+}
 
+/**
+* Texto de bienvenida dentro de la navbar.
+*
+* @selector #bienvenida
+* @param {string} color - Texto en blanco.
+* @param {string} font-weight - Negrita.
+* @param {string} margin - Sin margen.
+*/
+#bienvenida {
+  color: white !important;
+  font-weight: bold;
+  margin: 0;
+}
 
-  .dropdown-menu li {
-    color: white;
-    font-weight: bold;
-  }
+/**
+* Elementos de lista dentro de un dropdown.
+*
+* @selector .dropdown-menu li
+* @param {string} color - Texto en blanco.
+* @param {string} font-weight - Negrita.
+*/
+.dropdown-menu li {
+  color: white;
+  font-weight: bold;
+}
 
-  .dropdown-menu .dropdown-item {
-    color: white !important;
-    font-weight: bold;
-    background-color: transparent !important;
-    transition: color 0.3s ease;
-  }
+/**
+* Items del dropdown con fondo transparente y transición de color.
+*
+* @selector .dropdown-menu .dropdown-item
+* @param {string} color - Texto en blanco.
+* @param {string} background-color - Fondo transparente.
+* @param {string} transition - Transición de color en 0.3s.
+*/
+.dropdown-menu .dropdown-item {
+  color: white !important;
+  font-weight: bold;
+  background-color: transparent !important;
+  transition: color 0.3s ease;
+}
 
-  .dropdown-menu .dropdown-item:hover {
-    background-color: transparent !important;
-    color: #d0f0ff !important; /* blanco azulado más claro */
-  }
+/**
+* Hover sobre items del dropdown.
+*
+* @selector .dropdown-menu .dropdown-item:hover
+* @param {string} background-color - Fondo transparente.
+* @param {string} color - Texto cambia a #d0f0ff.
+*/
+.dropdown-menu .dropdown-item:hover {
+  background-color: transparent !important;
+  color: #d0f0ff !important;
+}
 
-  .dropdown:hover .dropdown-menu {
-    display: block;
-    background: linear-gradient(135deg, #0f1f2d, #18362f);
-  }
+/**
+* Muestra el dropdown al hacer hover sobre el contenedor.
+*
+* @selector .dropdown:hover .dropdown-menu
+* @param {string} display - Muestra el menú.
+* @param {string} background - Degradado diagonal.
+*/
+.dropdown:hover .dropdown-menu {
+  display: block;
+  background: linear-gradient(135deg, #0f1f2d, #18362f);
+}
 
-  /* ===========================
-     ZONA CENTRAL (Perfil + Horario)
-  =========================== */
+/**
+* Zona central que contiene perfil y horario.
+*
+* @selector #medio
+* @param {string} display - Flex para distribuir contenido.
+* @param {string} justify-content - Espacio entre elementos.
+* @param {string} align-items - Alineación superior.
+* @param {string} padding - Espacio interno de 20px.
+*/
+#medio {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+}
 
-  #medio {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 20px;
-  }
+/**
+* Contenedor de perfil e información del usuario.
+*
+* @selector #info
+* @param {string} display - Flex para alinear horizontalmente.
+* @param {string} align-items - Centrado vertical.
+*/
+#info {
+  display: flex;
+  align-items: center;
+}
 
-  /* Contenedor de perfil y texto */
-  #info {
-    display: flex;
-    align-items: center;
-  }
+/**
+* Lista de información del usuario sin estilo de lista.
+*
+* @selector #info ul
+* @param {string} list-style - Sin marcadores.
+* @param {string} margin-left - Separación izquierda de 20px.
+* @param {string} padding - Sin relleno.
+*/
+#info ul {
+  list-style: none;
+  margin-left: 20px;
+  padding: 0;
+}
 
-  /* Lista de información del usuario */
-  #info ul {
-    list-style: none;
-    margin-left: 20px;
-    padding: 0;
-  }
+/**
+* Imagen de perfil circular.
+*
+* @selector #info img
+* @param {string} width - Ancho de 120px.
+* @param {string} height - Alto de 120px.
+* @param {string} object-fit - Cubrir área.
+* @param {string} border-radius - 50% para círculo.
+*/
+#info img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+}
 
-  /* Foto de perfil */
-  #info img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 50%;
-  }
+/**
+* Tabla de horario a ancho completo sin separación entre celdas.
+*
+* @selector #horario table
+* @param {string} width - Ancho al 100%.
+* @param {string} border-collapse - Colapsar bordes.
+*/
+#horario table {
+  width: 100%;
+  border-collapse: collapse;
+}
 
-  /* Tabla del horario */
-  #horario table {
-    width: 100%;
-    border-collapse: collapse;
-  }
+/**
+* Celdas de la tabla de horario con padding y borde ligero.
+*
+* @selector #horario th, #horario td
+* @param {string} padding - Espacio interior de 8px.
+* @param {string} border - 1px sólido #ddd.
+* @param {string} text-align - Centrado de texto.
+*/
+#horario th, #horario td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
 
-  #horario th, #horario td {
-    padding: 8px;
-    border: 1px solid #ddd;
-    text-align: center;
-  }
+/**
+* Contenedor de botones de fichaje centrado con separación.
+*
+* @class botones-fichaje
+* @param {string} display - Flex para alinear.
+* @param {string} justify-content - Centrado horizontal.
+* @param {string} gap - Separación de 10px.
+* @param {string} margin-top - Separación superior de 20px.
+*/
+.botones-fichaje {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
 
-  /* ===========================
-     BOTONES DE FICHAJE
-  =========================== */
+/**
+* Botón de fichar con estilo moderno y degradado.
+*
+* @class btn-fichar
+* @param {string} font-weight - Semi-negrita.
+* @param {string} font-size - 18px.
+* @param {string} padding - 12px 20px.
+* @param {string} border-radius - 10px.
+* @param {string} background - Degradado diagonal.
+* @param {string} border - Sin borde.
+* @param {string} transition - Transform y sombra en 0.2s.
+*/
+.btn-fichar {
+  font-weight: 600;
+  font-size: 18px;
+  padding: 12px 20px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #0f1f2d, #18362f);
+  border: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-  .botones-fichaje {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
-  }
+/**
+* Hover del botón de fichar: ligero escalado y sombra.
+*
+* @selector .btn-fichar:hover
+* @param {string} transform - Escala 1.02.
+* @param {string} box-shadow - Sombra suave.
+*/
+.btn-fichar:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
 
-  /* Botón estilo moderno */
-  .btn-fichar {
-    font-weight: 600;
-    font-size: 18px;
-    padding: 12px 20px;
-    border-radius: 10px;
-    background: linear-gradient(135deg, #0f1f2d, #18362f);
-    border: 0;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
+/**
+* Estilo general de alertas/mensajes.
+*
+* @class alert
+* @param {string} padding - Espaciado 10px 16px.
+* @param {string} font-size - 15px.
+* @param {string} border-radius - 8px.
+* @param {string} transition - Opacidad en 0.5s.
+*/
+.alert {
+  padding: 10px 16px;
+  font-size: 15px;
+  border-radius: 8px;
+  transition: opacity 0.5s ease;
+}
 
-  /* Hover del botón de fichar */
-  .btn-fichar:hover {
-    transform: scale(1.02);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
+/**
+* Foto de perfil circular con borde personalizado.
+*
+* @class foto-circular
+* @param {string} width - 100px.
+* @param {string} height - 100px.
+* @param {string} object-fit - Cover.
+* @param {string} border-radius - 50% para círculo.
+* @param {string} border - 4px sólido #004545.
+*/
+.foto-circular {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #004545;
+}
 
-  /* ===========================
-     ALERTAS / MENSAJES
-  =========================== */
-
-  .alert {
-    padding: 10px 16px;
-    font-size: 15px;
-    border-radius: 8px;
-    transition: opacity 0.5s ease;
-  }
-  .foto-circular {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 4px solid #004545;
-  }
-
-  /* Accion subir foto*/
-  .foto-wrapper {
+/**
+* Wrapper relativo para acción de subir foto.
+*
+* @class foto-wrapper
+* @param {string} position - Relative para posicionar overlay.
+* @param {string} width - 120px.
+* @param {string} height - 120px.
+*/
+.foto-wrapper {
   position: relative;
   width: 120px;
   height: 120px;
 }
 
+/**
+* Imagen circular dentro de wrapper con cursor pointer.
+*
+* @selector .foto-wrapper .foto-circular
+* @param {string} width - 100%.
+* @param {string} height - 100%.
+* @param {string} border-radius - 50%.
+* @param {string} object-fit - Cover.
+* @param {string} border - 3px sólido #004545.
+* @param {string} cursor - Pointer.
+*/
 .foto-wrapper .foto-circular {
   width: 100%;
   height: 100%;
@@ -179,6 +383,15 @@
   cursor: pointer;
 }
 
+/**
+* Contenedor de hover para foto.
+*
+* @class foto-hover
+* @param {string} position - Relative.
+* @param {string} display - Block.
+* @param {string} width - 100%.
+* @param {string} height - 100%.
+*/
 .foto-hover {
   position: relative;
   display: block;
@@ -186,6 +399,24 @@
   height: 100%;
 }
 
+/**
+* Overlay de texto sobre la imagen en hover.
+*
+* @class overlay-text
+* @param {string} position - Absolute.
+* @param {string} bottom - 0.
+* @param {string} background - rgba(0,0,0,0.6).
+* @param {string} color - Blanco.
+* @param {string} width - 100%.
+* @param {string} height - 100%.
+* @param {string} border-radius - 50%.
+* @param {string} display - Flex para centrar texto.
+* @param {string} align-items - Centrado vertical.
+* @param {string} justify-content - Centrado horizontal.
+* @param {string} font-size - 14px.
+* @param {string} opacity - 0 por defecto.
+* @param {string} transition - Opacidad en 0.3s.
+*/
 .overlay-text {
   position: absolute;
   bottom: 0;
@@ -202,7 +433,32 @@
   transition: opacity 0.3s ease;
 }
 
+/**
+* Muestra el overlay-text al pasar el ratón sobre la foto.
+*
+* @selector .foto-hover:hover .overlay-text
+* @param {string} opacity - Cambio a 1.
+*/
 .foto-hover:hover .overlay-text {
   opacity: 1;
 }
 
+/**
+* Footer personalizado con degradado de fondo.
+*
+* @selector footer.custom-footer
+* @param {string} background - Degradado diagonal.
+*/
+footer.custom-footer {
+  background: linear-gradient(135deg, #0f1f2d, #18362f) !important;
+}
+
+/**
+* Oculta la barra de scroll en navegadores WebKit.
+*
+* @selector ::-webkit-scrollbar
+* @param {string} display - none.
+*/
+::-webkit-scrollbar {
+  display: none;
+}

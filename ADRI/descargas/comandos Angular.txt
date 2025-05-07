@@ -23,10 +23,10 @@ npm install @schematics/angular@19.0.0 --force
 
 COPIAR
 ------
-ng new nombre_Proyecto
+ng new nombre_Proyecto -g
 npm install --force
 npm install @schematics/angular@19.0.0 --force
-npm install @angular/materials --force
+npm install @angular/material --force
 ng update @angular/core@15 @angular/cli@15 --force
 ng update @angular/core@16 @angular/cli@16 --force
 ng update @angular/core@17 @angular/cli@17 --force

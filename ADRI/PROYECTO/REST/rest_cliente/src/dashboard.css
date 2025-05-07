@@ -1,0 +1,91 @@
+/**
+ * Contenedor del mensaje de alerta que se muestra en pantalla.
+ *
+ * @class alert-container
+ * @param {fixed} position - Posición fija para que siga visible al hacer scroll.
+ * @param {string} top - Separación desde la parte superior.
+ * @param {string} right - Separación desde la parte derecha.
+ * @param {string} width - Ancho del mensaje.
+ * @param {number} z-index - Nivel de apilamiento por encima de otros elementos.
+ * @param {string} overflow - Manejo del desbordamiento de texto.
+ */
+ .alert-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 300px; /* Ancho del mensaje */
+  z-index: 9999; /* Asegura que el mensaje esté por encima de otros elementos */
+  overflow: hidden; /* Evita que el texto se desborde del contenedor */
+}
+
+/**
+* Estilo para los mensajes de alerta dentro del contenedor.
+*
+* @class alert-container .alert
+* @param {string} padding - Espacio interior para el texto.
+* @param {string} font-size - Tamaño del texto.
+* @param {string} text-align - Alineación del texto.
+* @param {string} white-space - Permite división en varias líneas.
+* @param {string} word-wrap - Rompe palabras largas que no caben en una línea.
+*/
+.alert-container .alert {
+  padding: 15px;
+  font-size: 14px; /* Ajusta el tamaño del texto */
+  text-align: center;
+  white-space: normal; /* Permite que el texto se divida en varias líneas */
+  word-wrap: break-word; /* Rompe las palabras largas que no caben en una línea */
+}
+
+/**
+* Encabezados de la tabla de guardias con degradado de fondo.
+*
+* @selector table.table-guardias thead tr th
+* @param {string} background - Degradado diagonal de colores personalizados.
+* @param {string} color - Color del texto de los encabezados.
+*/
+table.table-guardias thead tr th {
+  background: linear-gradient(135deg, #0f1f2d, #18362f) !important;
+  color: #fff !important;
+}
+
+/**
+* Botón hamburguesa de la navbar con estilo personalizado.
+*
+* @class navbar-toggler
+* @param {string} background-color - Color de fondo del botón.
+* @param {string} border - Borde blanco de 2px.
+*/
+.navbar-toggler {
+  background-color: #0f1f2d !important;  /* tu azul custom */
+  border: 2px solid #fff !important;     /* borde blanco */
+}
+
+/**
+* Icono de hamburguesa en la navbar con barras blancas.
+*
+* @class navbar-toggler-icon
+* @param {string} background-image - SVG en línea de tres barras.
+*/
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' d='M4 7H26 M4 15H26 M4 23H26'/%3E%3C/svg%3E");
+}
+
+/**
+* Estado hover del botón hamburguesa.
+*
+* @class navbar-toggler:hover
+* @param {string} background-color - Color de fondo al pasar el ratón.
+*/
+.navbar-toggler:hover {
+  background-color: #18362f !important;  /* un tono ligeramente distinto si quieres */
+}
+
+/**
+* Oculta la barra de scroll en navegadores WebKit.
+*
+* @selector ::-webkit-scrollbar
+* @param {string} display - Oculta la barra de desplazamiento.
+*/
+::-webkit-scrollbar {
+  display: none;
+}

@@ -1,48 +1,113 @@
-body {
-    min-height: 100vh;
-    margin: 0;
-    background: linear-gradient(135deg, #0f1f2d, #18362f);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-  
-  .login-box {
-    background: white;
-    padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    width: 100%;
-    max-width: 400px;
-  }
-  
-  img {
-    max-width: 200px;
-    margin-bottom: 1.5rem;
-  }
-  .btn-gradient {
-    background: linear-gradient(135deg, #0f1f2d, #18362f); /* mismo fondo que body */
-    color: #fff !important;
-    border: none;
-    padding: 0.75rem 1.25rem;
-    border-radius: 0.5rem;
-    font-weight: bold;
-    transition: background 0.3s ease, transform 0.2s;
-  }
-  
-  .btn-gradient:hover {
-    background: linear-gradient(135deg, #18362f, #0f1f2d); /* invertimos colores */
-    transform: scale(1.03);
-  }
-  .fecha-actual {
-    color: white;
-    font-weight: bold;
-    font-size: 2rem;
-    text-transform: lowercase;
-  }
-  
-  /* Primera letra en mayúscula */
-  .fecha-actual::first-letter {
-    text-transform: uppercase;
-  }
+/**
+ * Estilo base del body: ocupa toda la altura, elimina márgenes y centra su contenido.
+ *
+ * @selector body
+ * @param {string} min-height - Altura mínima de la ventana (100vh).
+ * @param {string} margin - Márgenes a 0.
+ * @param {string} background - Degradado diagonal de #0f1f2d a #18362f.
+ * @param {string} display - Configura como flex container.
+ * @param {string} justify-content - Centrado horizontal de elementos.
+ * @param {string} align-items - Centrado vertical de elementos.
+ * @param {string} flex-direction - Dirección de los hijos en columna.
+ */
+ body {
+  min-height: 100vh;
+  margin: 0;
+  background: linear-gradient(135deg, #0f1f2d, #18362f);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/**
+* Caja de login: fondo blanco, bordes redondeados, sombra y ancho máximo.
+*
+* @selector .login-box
+* @param {string} background - Fondo blanco.
+* @param {string} padding - Espaciado interno de 2rem.
+* @param {string} border-radius - Radio de 1rem.
+* @param {string} box-shadow - Sombra difusa para elevación.
+* @param {string} width - Ancho al 100% del contenedor padre.
+* @param {string} max-width - Ancho máximo de 400px.
+*/
+.login-box {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 400px;
+}
+
+/**
+* Imagen genérica: ajusta el ancho máximo y margen inferior.
+*
+* @selector img
+* @param {string} max-width - Máximo ancho de 200px.
+* @param {string} margin-bottom - Separación inferior de 1.5rem.
+*/
+img {
+  max-width: 200px;
+  margin-bottom: 1.5rem;
+}
+
+/**
+* Botón con degradado que coincide con el fondo del body.
+*
+* @selector .btn-gradient
+* @param {string} background - Degradado diagonal de #0f1f2d a #18362f.
+* @param {string} color - Texto blanco.
+* @param {string} border - Sin borde.
+* @param {string} padding - Espaciado interno 0.75rem vertical y 1.25rem horizontal.
+* @param {string} border-radius - Radio de 0.5rem.
+* @param {string} font-weight - Negrita.
+* @param {string} transition - Transición de fondo y transformación.
+*/
+.btn-gradient {
+  background: linear-gradient(135deg, #0f1f2d, #18362f); /* mismo fondo que body */
+  color: #fff !important;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s;
+}
+
+/**
+* Hover del botón degradado: invierte colores y aplica ligero escalado.
+*
+* @selector .btn-gradient:hover
+* @param {string} background - Degradado invertido (#18362f a #0f1f2d).
+* @param {string} transform - Escala al 103%.
+*/
+.btn-gradient:hover {
+  background: linear-gradient(135deg, #18362f, #0f1f2d); /* invertimos colores */
+  transform: scale(1.03);
+}
+
+/**
+* Estilo del elemento que muestra la fecha y hora actual.
+*
+* @selector .fecha-actual
+* @param {string} color - Texto blanco.
+* @param {string} font-weight - Negrita.
+* @param {string} font-size - Tamaño de fuente de 2rem.
+* @param {string} text-transform - Texto en minúsculas.
+*/
+.fecha-actual {
+  color: white;
+  font-weight: bold;
+  font-size: 2rem;
+  text-transform: lowercase;
+}
+
+/**
+* Ajuste para que la primera letra de .fecha-actual sea mayúscula.
+*
+* @selector .fecha-actual::first-letter
+* @param {string} text-transform - Capitaliza la primera letra.
+*/
+.fecha-actual::first-letter {
+  text-transform: uppercase;
+}

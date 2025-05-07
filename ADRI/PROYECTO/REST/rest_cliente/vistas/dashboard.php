@@ -1,203 +1,231 @@
 <?php
+/**
+ * dashboard.php
+ *
+ * Página principal del dashboard de usuario.
+ * Muestra la navegación, perfil, sesiones del día y modales de confirmación.
+ *
+ * Gestiona la sesión y muestra mensajes flash y modales según variables de sesión.
+ *
+ * @package    GestionGuardias
+ */
+
+ // Inicia o reanuda la sesión PHP para acceder a datos de usuario
 session_start();
+
+// Si no hay usuario autenticado, redirige al login
 if (!isset($_SESSION['document'])) {
-  header("Location: ../login.php");
-  exit();
+    header("Location: ../login.php");
+    exit();
 }
-$rol = $_SESSION['rol'];
-$nombre = $_SESSION['nombre'];
-$documento = $_SESSION['document'];
-$mensaje = isset($_SESSION['mensaje']) ? $_SESSION['mensaje'] : null;
+
+// Recupera datos del usuario desde la sesión
+$rol            = $_SESSION['rol'];                     // Rol del usuario ('admin' o 'user')
+$nombre         = $_SESSION['nombre'];                  // Nombre completo del usuario
+$documento      = $_SESSION['document'];                // Documento o identificador único
+$mensaje        = isset($_SESSION['mensaje']) 
+                  ? $_SESSION['mensaje'] 
+                  : null;                                // Mensaje flash (texto y tipo)
+                  
+// Control para mostrar el modal de registro exitoso
 if (isset($_SESSION['registro_exitoso']) && $_SESSION['registro_exitoso']) {
-  // Eliminar la variable de sesión después de usarla
-  unset($_SESSION['registro_exitoso']);
-  $mostrarModal = true; // Establecer una variable para mostrar el modal en JavaScript
+    unset($_SESSION['registro_exitoso']);
+    $mostrarModal = true;  // Indicador para mostrar modal
 } else {
-  $mostrarModal = false;
+    $mostrarModal = false;
 }
-unset($_SESSION['mensaje']); // Limpiar el mensaje después de mostrarlo
+
+// Limpia el mensaje flash para que no se repita
+unset($_SESSION['mensaje']);
+
+// Si hubo alerta sin sesiones, limpia el array de sesiones
+if (isset($_SESSION["alertSinSesiones"])) {
+    unset($_SESSION["sesiones_hoy"]);
+}
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
+    <!-- Configuración de metaetiquetas -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina principal de <?php echo htmlspecialchars($nombre); ?></title>
+    <title>Página principal de <?php echo htmlspecialchars($nombre); ?></title>
+    
+    <!-- Favicon -->
     <link rel="shortcut icon" href="../src/images/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="../src/principal.css">
+    
+    <!-- CSS de Bootstrap e iconos -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-<style>
-        /* Estilo para el contenedor del mensaje */
-        .alert-container {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 300px; /* Ancho del mensaje */
-            z-index: 9999; /* Asegura que el mensaje esté por encima de otros elementos */
-            overflow: hidden; /* Evita que el texto se desborde del contenedor */
-        }
-
-        /* Opcional: Estilo para los mensajes de alerta */
-        .alert-container .alert {
-            padding: 15px;
-            font-size: 14px; /* Ajusta el tamaño del texto */
-            text-align: center;
-            white-space: normal; /* Permite que el texto se divida en varias líneas */
-            word-wrap: break-word; /* Rompe las palabras largas que no caben en una línea */
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="../src/principal.css">
+    <link rel="stylesheet" href="../src/dashboard.css">
 </head>
 <body>
     
 <nav class="navbar navbar-expand-lg navbar-custom">
   <div class="container-fluid">
-
-    <!-- LOGO -->
+    <!-- Logo que enlaza al mismo dashboard -->
     <a class="navbar-brand" href="dashboard.php">
       <img src="../src/images/sinFondoDos.png" alt="Logo AsistGuard" class="logo-navbar">
     </a>
 
-    <!-- BOTÓN HAMBURGUESA -->
-    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false">
+    <!-- Botón hamburguesa para pantallas pequeñas -->
+    <button class="navbar-toggler bg-light" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navbarContent"
+            aria-controls="navbarContent" aria-expanded="false">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- CONTENIDO -->
+    <!-- Menú colapsable -->
     <div class="collapse navbar-collapse" id="navbarContent">
-
-      <!-- MENÚ CENTRAL -->
       <ul class="navbar-nav mx-auto">
-        <li class="nav-item"><a class="nav-link text-white" href="guardiasRealizadas.php?auto=1">Guardias Realizadas</a>
+        <!-- Enlace a guardias realizadas -->
+        <li class="nav-item">
+          <a class="nav-link text-white" href="guardiasRealizadas.php?auto=1">
+            Guardias Realizadas
+          </a>
         </li>
-        <li class="nav-item"><a class="nav-link text-white" href="../verAusencias.php?cargar_guardias=1">Consultar Ausencias</a>
-
+        <!-- Enlace a consulta de ausencias -->
+        <li class="nav-item">
+          <a class="nav-link text-white" href="../verAusencias.php?cargar_guardias=1">
+            Consultar Ausencias
+          </a>
+        </li>
 
         <?php if ($rol === 'admin'): ?>
-          <li class="nav-item"><a class="nav-link text-white" href="verInformes.php">Generar informes</a></li>
+          <!-- Opciones adicionales para administradores -->
+          <li class="nav-item">
+            <a class="nav-link text-white" href="verInformes.php">Generar informes</a>
+          </li>
           <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Gestión de asistencia
-        </a>
-        <ul class="dropdown-menu dropdown-hover">
-          <li><a class="dropdown-item" href="verAsistencia.php">Consultar asistencia</a></li>
-          <li><a class="dropdown-item" href="registroAusencias.php">Registrar Ausencia</a></li>
-        </ul>
+            <a class="nav-link dropdown-toggle text-white" href="#" role="button"
+               data-bs-toggle="dropdown" aria-expanded="false">
+              Gestión de asistencia
+            </a>
+            <ul class="dropdown-menu dropdown-hover">
+              <li><a class="dropdown-item" href="verAsistencia.php">Consultar asistencia</a></li>
+              <li><a class="dropdown-item" href="registroAusencias.php">Registrar Ausencia</a></li>
+            </ul>
           </li>
         <?php endif; ?>
       </ul>
 
-      <style>
-  .dropdown-menu li {
-    color: white;
-    font-weight: bold;
-  }
-
-  .dropdown-menu .dropdown-item {
-    color: white !important;
-    font-weight: bold;
-    background-color: transparent !important;
-    transition: color 0.3s ease;
-  }
-
-  .dropdown-menu .dropdown-item:hover {
-    background-color: transparent !important;
-    color: #d0f0ff !important; /* blanco azulado más claro */
-  }
-
-  .dropdown:hover .dropdown-menu {
-    display: block;
-    background: linear-gradient(135deg, #0f1f2d, #18362f);
-  }
-</style>
-
-
-
-      <!-- BIENVENIDA + LOGOUT A LA DERECHA -->
+      <!-- Saludo y botón de logout -->
       <div class="d-flex align-items-center ms-auto">
-        <span class="text-white me-3"><strong>Bienvenid@ <?= htmlspecialchars($nombre); ?></strong></span>
+        <span class="text-white me-3">
+          <strong>Bienvenid@ <?= htmlspecialchars($nombre); ?></strong>
+        </span>
         <form method="POST" action="../logout.php" class="mb-0">
-          <button class="btn btn-sm btn-danger" title="Cerrar sesión">
+          <button class="btn btn-sm btn-outline-light"
+                  style="background:linear-gradient(135deg, #1e3a5f, #0f1f2d);"
+                  title="Cerrar sesión">
             <i class="bi bi-box-arrow-right"></i>
           </button>
         </form>
       </div>
-
     </div>
   </div>
 </nav>
-<main>
-    <div class="container mt-5 d-flex justify-content-start align-items-center perfil-contenedor">
-        <div class="foto-wrapper me-4">
-            <img src="../src/images/default.jpg" alt="Foto de perfil" class="foto-circular">
-        </div>
 
+<main>
+  <div class="container mt-5">
+    <!-- Sección de perfil: foto y datos -->
+    <div class="perfil-contenedor d-flex flex-column flex-md-row 
+                align-items-center justify-content-between">
+      
+      <!-- Foto y datos del usuario -->
+      <div class="d-flex align-items-center mb-3 mb-md-0">
+        <div class="foto-wrapper me-4">
+          <img src="../src/images/default.jpg" alt="Foto de perfil" class="foto-circular">
+        </div>
         <div class="info-usuario text-start">
-            <p><strong>Documento:</strong> <?php echo htmlspecialchars($documento); ?></p>
-            <p><strong>Nombre:</strong> <?php echo htmlspecialchars($nombre); ?></p>
-            <p><strong>Rol:</strong> <?php echo htmlspecialchars($rol); ?></p>
+          <p><strong>Documento:</strong> <?php echo htmlspecialchars($documento); ?></p>
+          <p><strong>Nombre:</strong>    <?php echo htmlspecialchars($nombre); ?></p>
+          <p><strong>Rol:</strong>       <?php echo htmlspecialchars($rol); ?></p>
         </div>
+      </div>
+      
+      <!-- Botones de acción (Chat) -->
+      <div class="botones-usuario d-flex align-items-center gap-2 text-center text-md-end">
+        <a href="chat.php"
+           class="btn btn-primary d-flex align-items-center justify-content-center"
+           style="border:2px solid; background:linear-gradient(135deg, #1e3a5f, #0f1f2d);">
+          <i class="bi bi-chat-dots-fill fs-4"></i>
+          <span class="ms-2 d-none d-md-inline">Chat</span>
+        </a>
+      </div>
     </div>
+
+    <!-- Mensaje flash si existe -->
     <?php if ($mensaje): ?>
-        <div class="alert-container">
-            <div class="alert alert-<?php echo htmlspecialchars($mensaje['type']); ?> text-center" id="mensajeAlert">
-                <?php echo htmlspecialchars($mensaje['text']); ?>
-            </div>
+      <div class="alert-container">
+        <div class="alert alert-<?php echo htmlspecialchars($mensaje['type']); ?> text-center" id="mensajeAlert">
+          <?php echo htmlspecialchars($mensaje['text']); ?>
         </div>
+      </div>
     <?php endif; ?>
+  </div>
 </main>
 
 <section>
-<?php if (!empty($_SESSION["sesiones_hoy"])): ?>
-  <div class="container mt-4">
-    <h4 class="mb-3">Sesiones de hoy</h4>
-
-    <!-- Tabla responsiva -->
-    <div class="table-responsive">
-      <table class="table table-bordered table-striped text-center align-middle">
-        <thead class="table-dark">
-          <tr>
-            <th>Hora</th>
-            <th>Día</th>
-            <th>Aula</th>
-            <th>Grupo</th>
-            <th>Asignatura</th>
-            <th>Sesion</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php foreach ($_SESSION["sesiones_hoy"] as $sesion): ?>
+  <?php if (!empty($_SESSION["sesiones_hoy"])): ?>
+    <!-- Tabla de sesiones programadas para hoy -->
+    <div class="container mt-4">
+      <h4 class="mb-3">Sesiones de hoy</h4>
+      <div class="table-responsive">
+        <table class="table text-center align-middle table-guardias">
+          <thead class="table-dark">
             <tr>
-              <td><?= htmlspecialchars($sesion[1] . ' - ' . $sesion[2]) ?></td>
-              <td><?= htmlspecialchars($sesion[0] ?? '-') ?></td>
-              <td><?= htmlspecialchars($sesion[5] ?? '-') ?></td>
-              <td><?= htmlspecialchars($sesion[4] ?? '-') ?></td>
-              <td><?= htmlspecialchars($sesion[3] ?? '-') ?></td>
-              <td><?= htmlspecialchars($sesion[6] ?? '-') ?></td>
-
+              <th>Hora</th>
+              <th>Día</th>
+              <th>Aula</th>
+              <th>Grupo</th>
+              <th>Asignatura</th>
+              <th>Sesión</th>
             </tr>
-          <?php endforeach; ?>
-        </tbody>
-      </table>
-      <br>
-      <div class="d-flex justify-content-center">
-        <form action="../fichar.php" method="POST">
-          <button class="btn btn-primary mx-3 w-auto" name="fentrada" id="fentrada">Fichar entrada</button>
-        </form>
-        <form action="../fichar.php" method="POST">
-          <button class="btn btn-danger mx-3 w-auto" name="fsalida" id="fsalida">Fichar salida</button>
-        </form>
+          </thead>
+          <tbody>
+            <?php foreach ($_SESSION["sesiones_hoy"] as $sesion): ?>
+              <tr>
+                <!-- Cada columna toma valores del array de sesión -->
+                <td><?= htmlspecialchars($sesion[1] . ' - ' . $sesion[2]) ?></td>
+                <td><?= htmlspecialchars($sesion[0] ?? '-') ?></td>
+                <td><?= htmlspecialchars($sesion[5] ?? '-') ?></td>
+                <td><?= htmlspecialchars($sesion[4] ?? '-') ?></td>
+                <td><?= htmlspecialchars($sesion[3] ?? '-') ?></td>
+                <td><?= htmlspecialchars($sesion[6] ?? '-') ?></td>
+              </tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
+        <!-- Botones de fichar entrada/salida -->
+        <div class="d-flex justify-content-center">
+          <form action="../fichar.php" method="POST">
+            <button name="fentrada" id="fentrada" class="btn btn-primary mx-3 w-auto"
+                    style="background:linear-gradient(135deg, #1e3a5f, #0f1f2d);border:0;">
+              Fichar entrada
+            </button>
+          </form>
+          <form action="../fichar.php" method="POST">
+            <button name="fsalida" id="fsalida" class="btn btn-danger mx-3 w-auto"
+                    style="background:linear-gradient(135deg, #1e3a5f, #0f1f2d);border:0;">
+              Fichar salida
+            </button>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-<?php else: ?>
-  <div class="alert alert-info mt-4 text-center mx-auto" style="max-width: 600px;">
-  Hoy no tienes sesiones asignadas.
-</div>
-<?php endif; ?>
-
+  <?php else: ?>
+    <!-- Alerta si no hay sesiones hoy -->
+    <div class="alert alert-info mt-4 text-center mx-auto" style="max-width: 600px;">
+      No tienes sesiones asignadas para hoy.
+    </div>
+  <?php endif; ?>
 </section>
-<!-- Modal de confirmación -->
+
+<!-- Modal de confirmación de registro exitoso -->
 <div class="modal fade" id="modalConfirmacion" tabindex="-1" aria-labelledby="modalConfirmacionLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -209,41 +237,60 @@ unset($_SESSION['mensaje']); // Limpiar el mensaje después de mostrarlo
         El registro de ausencia se ha realizado satisfactoriamente.
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-secondary"
+                data-bs-dismiss="modal"
+                style="border: 2px solid; background:linear-gradient(135deg, #1e3a5f, #0f1f2d);">
+          Cerrar
+        </button>
       </div>
     </div>
   </div>
 </div>
 
 <?php if ($mostrarModal): ?>
-    <!-- Mostrar el modal automáticamente después de 5 segundos -->
-    <script>
-        // Mostrar el modal después de 5 segundos
-        setTimeout(function() {
-            var myModal = new bootstrap.Modal(document.getElementById("modalConfirmacion"));
-            myModal.show();
-        }, 1000); // 5000 milisegundos = 5 segundos
-    </script>
+  <!-- Script para mostrar modal automáticamente tras cargar la página -->
+  <script>
+    setTimeout(function() {
+      var myModal = new bootstrap.Modal(document.getElementById("modalConfirmacion"));
+      myModal.show();
+    }, 1000); // 1 segundo de retardo
+  </script>
 <?php endif; ?>
+
+<!-- Script de la aplicación y Bootstrap JS -->
 <script src="../src/app.js"></script>
-<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Script para eliminar el mensaje después de 5 segundos -->
+<!-- Oculta el mensaje flash después de 5 segundos -->
 <script>
-    setTimeout(function() {
-        var alertElement = document.getElementById('mensajeAlert');
-        if (alertElement) {
-            alertElement.style.display = 'none';
-        }
-    }, 5000); 
-
-    document.getElementById('registrarAusencia').addEventListener('click', function(event) {
-      const params = {
-        accion: 'consultaProfes' // La acción que se va a realizar
-    };
-    });
+  setTimeout(function() {
+    var alertElement = document.getElementById('mensajeAlert');
+    if (alertElement) {
+      alertElement.style.display = 'none';
+    }
+  }, 5000);
 </script>
 
+<!-- Footer con derechos reservados y enlaces sociales -->
+<footer class="bg-dark text-white py-4 mt-5"
+        style="background: linear-gradient(135deg, #0f1f2d, #18362f) !important;">
+  <div class="container text-center">
+    <p class="mb-0">&copy; 2025 AsistGuard. Todos los derechos reservados.</p>
+    <p>
+      <a href="https://www.instagram.com/" style="color: white; text-decoration: none;">
+        <img src="../src/images/instagram.png" alt="Instagram" width="24" height="24">
+      </a> |
+      <a href="https://www.facebook.com/?locale=es_ES" style="color: white; text-decoration: none;">
+        <img src="../src/images/facebook.png" alt="Facebook" width="24" height="24">
+      </a> |
+      <a href="https://x.com/?lang=es" style="color: white; text-decoration: none;">
+        <img src="../src/images/twitter.png" alt="Twitter" width="24" height="24">
+      </a> |
+      <a href="https://es.linkedin.com/" style="color: white; text-decoration: none;">
+        <img src="../src/images/linkedin.png" alt="LinkedIn" width="24" height="24">
+      </a>
+    </p>
+  </div>
+</footer>
 </body>
 </html>

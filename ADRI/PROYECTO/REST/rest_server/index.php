@@ -1,6 +1,22 @@
+
 <?php 
+/**
+ * index.php
+ *
+ * Punto de entrada para el servicio REST de GestiónGuardias.
+ * Atiende métodos HTTP GET, POST, PUT y DELETE, redirigiendo cada petición
+ * a la acción correspondiente definida en el parámetro 'accion'.
+ *
+ * @package    GestionGuardias\RESTServer
+ * @author     Adrian Pascual Marschal
+ * @license    MIT
+ */
+
+// Carga configuración y funciones auxiliares
 include("config.php");
-session_start(); 
+session_start();
+
+// Obtiene método HTTP y URI solicitada
 
 $metodo = $_SERVER['REQUEST_METHOD']; 
 $recurso = filter_input(INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_URL);  
@@ -14,14 +30,11 @@ if ($metodo === 'GET') {
     }
     // Manejo de diferentes acciones
     $accion = $_GET['accion'] ?? null;
-    error_log("entro server");
     if($accion === "consultaSesiones"){
-        error_log("entro consultaSesiones");
         $sql = "SELECT DISTINCT sessio_orde, CONCAT('Sesion ', sessio_orde, ': ', hora_desde, ' - ', hora_fins) AS horario_completo 
             FROM sessions_horari 
             ORDER BY sessio_orde ASC";
         $result = conexion_bd(SERVIDOR,USER,PASSWD,BASE_DATOS,$sql);
-        error_log("hago consulta");
         if (is_array($result)) {
             if (!empty($result)) {
                 echo json_encode($result);
@@ -92,19 +105,19 @@ if ($metodo === 'GET') {
         switch ($tipo) {
             case 'dia':
                 $fecha = $_GET['fecha'];
-                $sql = "SELECT fecha,nombreProfe,nombreProfeReempl, aula, grupo, asignatura, sesion_orden,dia_semana, CONCAT(hora_inicio, '--', hora_fin) 
+                $sql = "SELECT fecha,nombreProfe,nombreProfeReempl, aula, grupo, asignatura, sesion_orden,dia_semana, CONCAT(hora_inicio, '--', hora_fin),total_guardias 
                  FROM  registro_guardias WHERE  fecha = '$fecha'; ";
                 break;
             case 'semana':  
                 $diaSemana = $_GET['semana'];
                 $inicioSemana = date('Y-m-d', strtotime('monday this week', strtotime($diaSemana)));
                 $finSemana = date('Y-m-d', strtotime('sunday this week', strtotime($diaSemana)));
-                $sql = "SELECT fecha,nombreProfe,nombreProfeReempl, aula, grupo, asignatura, sesion_orden,dia_semana, CONCAT(hora_inicio, '--', hora_fin)
+                $sql = "SELECT fecha,nombreProfe,nombreProfeReempl, aula, grupo, asignatura, sesion_orden,dia_semana, CONCAT(hora_inicio, '--', hora_fin),total_guardias
                  FROM registro_guardias WHERE fecha BETWEEN '$inicioSemana' AND '$finSemana'";
                 break;
             case 'mes':
                 $mes = $_GET['mes'];
-                $sql = "SELECT fecha,nombreProfe,nombreProfeReempl, aula, grupo, asignatura, sesion_orden,dia_semana, CONCAT(hora_inicio, '--', hora_fin)
+                $sql = "SELECT fecha,nombreProfe,nombreProfeReempl, aula, grupo, asignatura, sesion_orden,dia_semana, CONCAT(hora_inicio, '--', hora_fin),total_guardias
                  FROM registro_guardias WHERE DATE_FORMAT(fecha, '%Y-%m') = '$mes'";
                  break;
             case 'trimestre':
@@ -119,18 +132,18 @@ if ($metodo === 'GET') {
                     $inicio = "2025-04-29";
                     $fin = "2025-06-21";
                 }
-                $sql = "SELECT fecha,nombreProfe, nombreProfeReempl,aula, grupo, asignatura, sesion_orden,dia_semana, CONCAT(hora_inicio, '--', hora_fin) 
+                $sql = "SELECT fecha,nombreProfe, nombreProfeReempl,aula, grupo, asignatura, sesion_orden,dia_semana, CONCAT(hora_inicio, '--', hora_fin),total_guardias 
                 FROM registro_guardias WHERE fecha BETWEEN '$inicio' AND '$fin'";
                 break;
             case 'docent':
                     $docente = $_GET['docente'] ?? '';
-                    $sql = "SELECT fecha,nombreProfe,nombreProfeReempl, aula, grupo, asignatura, sesion_orden,dia_semana, CONCAT(hora_inicio, '--', hora_fin)
+                    $sql = "SELECT fecha,nombreProfe,nombreProfeReempl, aula, grupo, asignatura, sesion_orden,dia_semana, CONCAT(hora_inicio, '--', hora_fin),total_guardias
                      FROM registro_guardias WHERE docente_guardia = '$docente'";
                 break;
             case 'curs':
                 $inicio = "2024-09-09";
                 $fin = "2025-06-21";
-                $sql = "SELECT fecha,nombreProfe,nombreProfeReempl, aula, grupo, asignatura, sesion_orden,dia_semana, CONCAT(hora_inicio, '--', hora_fin)
+                $sql = "SELECT fecha,nombreProfe,nombreProfeReempl, aula, grupo, asignatura, sesion_orden,dia_semana, CONCAT(hora_inicio, '--', hora_fin),total_guardias
                  FROM registro_guardias WHERE fecha BETWEEN '$inicio' AND '$fin'";
                 break;
             default:
@@ -148,6 +161,8 @@ if ($metodo === 'GET') {
 elseif ($metodo === 'POST') {
     $data = json_decode(file_get_contents("php://input"), true);
     $accion = $data['accion'] ?? ($_POST['accion'] ?? null);
+   // error_log("ACCION RECIBIDA: " . $accion . "\n", 3, "errores.log");
+
     
     if ($accion === "InicioSesion") {
         // Manejo de inicio de sesión
@@ -362,80 +377,51 @@ elseif ($metodo === 'POST') {
     }
     
     elseif ($accion === "asignarGuardia") {
+        // Fecha actual (no se usa en PHP para el INSERT, el trigger tomará NEW.fecha)
         $fecha = date('Y-m-d');
-        $datos = json_decode(file_get_contents("php://input"), true);
     
+        // Lee y decodifica JSON de la petición
+        $datos = json_decode(file_get_contents("php://input"), true);
         if (!is_array($datos)) {
             error_log("Error: los datos recibidos no son JSON válido");
             echo json_encode(["error" => "Datos no válidos"]);
             exit;
         }
     
-        $sesionAus = $datos["sesion"];
-        $documentAus = $datos["documentAus"];
-        $documentCubierto = $datos["document"];
-        $cubiertoAus = $datos["cubierto"];
-    
-        $sql = "UPDATE ausencias 
-        SET 
-            cubierto = '$cubiertoAus', 
-            NombreRemp = (
+        // Parámetros necesarios
+        $sesionAus       = $datos["sesion"];
+        $documentAus     = $datos["documentAus"];
+        $documentCubierto= $datos["document"];
+        $cubiertoAus     = $datos["cubierto"];
+
+        // Actualiza la ausencia — el trigger se disparará si cambias cubierto a 1
+        $sql = "
+            UPDATE ausencias
+            SET 
+              cubierto          = '$cubiertoAus',
+              document_cubierto = '$documentCubierto',
+              NombreRemp        = (
                 SELECT CONCAT(nom, ' ', cognom1, ' ', cognom2)
-                FROM docent 
+                FROM docent
                 WHERE document = '$documentCubierto'
-            )
-        WHERE sesion = '$sesionAus' AND document = '$documentAus'";
+              )
+            WHERE sesion   = '$sesionAus'
+              AND document = '$documentAus';
+        ";
+
         $resultadoAsignar = conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sql);
-        $funcional = false;
     
-        if ($resultadoAsignar > 0) {
-            $sql = "SELECT * FROM ausencias WHERE sesion = '$sesionAus' AND document = '$documentAus' AND cubierto = 1";
-            $resinsertinforme = conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sql);
-    
-            if (is_array($resinsertinforme)) {
-                $hora_inicio = $resinsertinforme[0][1];
-                $hora_fin = $resinsertinforme[0][2];
-                $dia = $resinsertinforme[0][3];
-                $aula = $resinsertinforme[0][4];
-                $grupo = $resinsertinforme[0][5];
-                $asignatura = $resinsertinforme[0][6];
-                $sesion = $resinsertinforme[0][7];
-                $document = $resinsertinforme[0][8];
-                $fecha = $resinsertinforme[0][12];
-                $nombreGuardia = $resinsertinforme[0][14];
-    
-                // Obtener nombre del docente ausente
-                $sqlNombre = "SELECT CONCAT(nom, ' ', cognom1, ' ', cognom2) AS nombreProfe FROM docent WHERE document = '$document'";
-                $resultadoNombre = conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sqlNombre);
-                $nombreProfe = is_array($resultadoNombre) ? $resultadoNombre[0][0] : 'Desconocido';
-    
-                $sqlCheck = "SELECT COUNT(*) FROM registro_guardias 
-                             WHERE fecha = '$fecha' AND docente_ausente = '$document' AND sesion_orden = '$sesion'";
-                $existe = conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sqlCheck);
-    
-                if (is_array($existe) && $existe[0][0] == 0) {
-                    $sqlInforme = "INSERT INTO registro_guardias 
-                        (fecha, docente_ausente, nombreProfe, docente_guardia,nombreProfeReempl ,aula, grupo, asignatura, sesion_orden, dia_semana, hora_inicio, hora_fin) 
-                        VALUES 
-                        ('$fecha', '$document', '$nombreProfe', '$documentCubierto','$nombreGuardia' ,'$aula', '$grupo', '$asignatura', '$sesion', '$dia', '$hora_inicio', '$hora_fin')";
-    
-                    $resultadoInforme = conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sqlInforme);
-    
-                    if ($resultadoInforme > 0) {
-                        $funcional = true;
-                    }
-                }
-            }
+        // Sólo comprobamos si se actualizó: el trigger de BD hará el INSERT en registro_guardias
+        if ($resultado === false) {
+            // aquí hay fallo de MySQL o mysqli no afectó la query
+            error_log("asignarGuardia › UPDATE fallida (mysql error o sintaxis)\n", 3, "errores.log");
+            echo json_encode(["error" => "Error al marcar la guardia como cubierta"]);
+            exit;
         }
-    
-        if ($funcional) {
-            echo json_encode(["exito" => "Guardia asignada correctamente"]);
-        } else {
-            echo json_encode(["error" => "La guardia ya estaba registrada o ha fallado el guardado"]);
-        }
+        echo json_encode(["exito" => "Guardia asignada correctamente"]);
+        exit;
     }
-    
-        
+     
     elseif ($accion === "historialGuardias") {
         $document = $_POST['document'];
         $fecha = isset($_POST["fecha"]) ? date("Y-m-d", strtotime($_POST["fecha"])) : null;
@@ -511,14 +497,200 @@ elseif ($metodo === 'POST') {
             echo json_encode(["error" => "No se encontraron registros"]);
         }
     }
+    elseif ($accion === "consultaProfesEscritos") {
+        $doc = $_POST['documento'];
+        $sql = "SELECT DISTINCT *
+FROM (
+  -- Mensaje más reciente enviado
+  SELECT DISTINCT
+    docent_receptor AS interlocutor_id,
+    nombreReceptor   AS interlocutor_nombre,
+    mensaje,
+    fecha,
+    hora
+  FROM mensajes
+  WHERE docent_emisor  = '$doc'
+    AND docent_receptor <> '$doc'
+
+  UNION ALL
+
+  -- Mensaje más reciente recibido
+  SELECT DISTINCT
+    docent_emisor   AS interlocutor_id,
+    nombreEmisor    AS interlocutor_nombre,
+    mensaje,
+    fecha,
+    hora
+  FROM mensajes
+  WHERE docent_receptor = '$doc'
+    AND docent_emisor   <> '$doc'
+) AS todos_los_mensajes
+ORDER BY fecha DESC, hora DESC;
+
+";
+        $resultado = conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sql);
+        // Verificar si la consulta fue exitosa
+        if (is_array($resultado)) {
+           // 1) Asumimos que $resultado ya viene ordenado por fecha DESC, hora DESC
+$unicos = [];
+
+// 2) Recorremos todos los mensajes
+foreach ($resultado as $mensaje) {
+    $dni = $mensaje[0]; // índice 0 = dni/interlocutor_id
     
-elseif ($metodo === 'PUT') {         
-    // Por implementar         
+    // Si aún no hemos guardado nada para este DNI, lo guardamos
+    // (como vienen ordenados, la primera vez será el más reciente).
+    if (!isset($unicos[$dni])) {
+        $unicos[$dni] = $mensaje;
+    }
+}
+
+// 3) Reconstruimos un array indexado con solo los mensajes únicos
+$resultadoFiltrado = array_values($unicos);
+
+// Ahora $resultadoFiltrado solo contiene un mensaje (el más reciente) por cada DNI
+            echo json_encode($resultadoFiltrado);  // Devolver los datos de los profesores
+        } else {
+            echo json_encode(["error" => "No se encontraron docentes"]);  // Error en caso de no encontrar docentes
+        }
+    }
+    elseif ($accion === "consultaProfesMensaje") {
+        $sql = "SELECT document, CONCAT(nom, ' ', cognom1, ' ', cognom2) AS nombre_completo FROM docent";
+        $resultado = conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sql);
+    
+        // Verificar si la consulta fue exitosa
+        if (is_array($resultado)) {
+            echo json_encode($resultado);  // Devolver los datos de los profesores
+        } else {
+            echo json_encode(["error" => "No se encontraron docentes"]);  // Error en caso de no encontrar docentes
+        }
+    }
+    elseif ($accion === "consultaMensajes") {
+        $docent_emisor   = $_POST['emisor'];
+        $docent_receptor = $_POST['receptor'];
+    
+        $sql = "SELECT docent_emisor, mensaje, fecha, hora, leido
+                FROM mensajes
+                WHERE (docent_emisor = '$docent_emisor' AND docent_receptor = '$docent_receptor')
+                   OR (docent_emisor = '$docent_receptor' AND docent_receptor = '$docent_emisor')
+                ORDER BY fecha";
+        $resultMensajes = conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sql);
+    
+        if (is_array($resultMensajes) && !empty($resultMensajes)) {
+            foreach ($resultMensajes as $mensaje) {
+                if (!($mensaje[4])) {
+                    $sqlUpd = "
+                    UPDATE mensajes
+                    SET leido = NOW()
+                    WHERE docent_emisor   = '$docent_receptor'
+                    AND docent_receptor = '$docent_emisor'
+                    AND leido IS NULL 
+                    ";
+                conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sqlUpd);
+                }
+            }
+         }
+            $sql = "SELECT docent_emisor, mensaje, fecha, hora, leido
+                FROM mensajes
+                WHERE (docent_emisor = '$docent_emisor' AND docent_receptor = '$docent_receptor')
+                   OR (docent_emisor = '$docent_receptor' AND docent_receptor = '$docent_emisor')
+                ORDER BY fecha";
+       
+        if (is_array($resultMensajes) && !empty($resultMensajes)) {
+
+        $resultMensajes = conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sql);
+    
+            echo json_encode($resultMensajes);
+            }
+        else {
+            echo json_encode("No tienes mensajes en este chat");
+        }
+    
+    }
+    elseif ($accion == "enviaMensaje") {
+        $docent_emisor   = $_POST['emisor'];
+        $nombreEmisor = $_POST['nombreEmisor'];
+        $docent_receptor = $_POST['receptor'];
+        $nombreReceptor = $_POST['nombreReceptor'];
+        $mensaje         = $_POST['mensaje'];
+        $fecha           = date('Y-m-d');
+        $hora            = date('H:i:s');  // guardamos la hora con segundos
+    
+        $sql = "INSERT INTO mensajes
+        (docent_emisor, nombreEmisor, docent_receptor, nombreReceptor, mensaje, fecha, hora)
+      VALUES
+        ('$docent_emisor', '$nombreEmisor', '$docent_receptor', '$nombreReceptor', '"
+        . addslashes($mensaje) . "', '$fecha', '$hora')";
+
+        $mensajeEscrito = conexion_bd(SERVIDOR, USER, PASSWD, BASE_DATOS, $sql);
+        if ($mensajeEscrito) {
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode([
+                'success' => false,
+                'error'   => 'No se pudo enviar el mensaje'
+            ]);
+        }
+        exit;
+    }
+    
+    
+}elseif ($metodo === 'PUT') {
+
+    $raw = file_get_contents('php://input');
+
+    $datos = json_decode($raw, true);
+    if (!is_array($datos)) {
+        parse_str($raw, $datos);
+    }
+    if ($datos["accion"] == "EditarMensaje") {
+        error_log("entro en editar");
+    $docentEmisor       = $datos['docentEmisor']  ?? null;
+    $fecha           = $datos['fecha']         ?? null;
+    $hora            = $datos['hora']          ?? null;
+    $mensajeOriginal = $datos['mOriginal']     ?? null;
+    $mensajeEditado  = $datos['mEditado']      ?? null;
+
+        $sql = "UPDATE mensajes SET mensaje = '$mensajeEditado' WHERE docent_emisor = '$docentEmisor' AND
+        fecha = '$fecha' AND hora ='$hora' AND mensaje = '$mensajeOriginal'";
+
+        error_log($sql);
+        $result = conexion_bd(SERVIDOR, USER,PASSWD,BASE_DATOS,$sql);
+
+        if ($result) {
+            echo json_encode(["exito" => true]);
+        } else{
+            echo json_encode(["exito" => false]);
+        }
+    }
 } 
 elseif ($metodo === 'DELETE') {         
-    // Por implementar         
-} 
+    $raw = file_get_contents('php://input');
+
+    $datos = json_decode($raw, true);
+    if (!is_array($datos)) {
+        parse_str($raw, $datos);
+    }
+    if ($datos["accion"] == "BorrarMensaje") {
+
+        $wheres = [];
+foreach ($datos["mensajes"] as $m) {
+    $fecha   = $m['fecha'];
+    $hora    = $m['hora'];
+    $texto   = $m['mensajeOriginal'];
+    $wheres[] = "(`fecha` = '$fecha' AND `hora` = '$hora' AND `mensaje` = '$texto')";
+        }
+    
+        $sql = "DELETE FROM `mensajes` WHERE " . implode(' OR ', $wheres);
+        $result = conexion_bd(SERVIDOR,USER,PASSWD,BASE_DATOS,$sql);
+
+        if ($result) {
+            echo json_encode(["exito" => true]);
+        } else{
+            echo json_encode(["exito" => false]);
+        }
+    }
+    } 
 else {         
     echo json_encode(["error" => "Opción incorrecta!!!!"]); 
-}
 }
